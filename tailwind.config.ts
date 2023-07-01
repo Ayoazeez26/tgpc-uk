@@ -18,7 +18,8 @@ export default <Partial<Config>>{
       },
       backgroundImage: {
         'hero-bg': "url('~/assets/images/hero-bg.png')",
-        'about-bg': "url('~/assets/images/about-bg.png')"
+        'about-bg': "url('~/assets/images/about-bg.png')",
+        'services-bg': "url('~/assets/images/services-bg.png')"
       }
     }
   },
