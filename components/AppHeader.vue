@@ -1,7 +1,9 @@
 <template>
   <div class="fixed bg-whiter right-0 left-0 font-medium text-black/70 ">
     <div class="flex h-24 md:h-[120px] items-center justify-between px-4 px-md-0 w-full max-w-[1240px] mx-auto">
-      <img class="w-20 h-20" src="/img/logo.png" />
+      <nuxt-link to="/">
+        <img class="w-20 h-20" src="/img/logo.png" />
+      </nuxt-link>
       <button class="lg:hidden" @click="open = !open">
         <Icon name="ic:round-menu" size="24px" color="#03989E" />
       </button>
@@ -10,7 +12,7 @@
           <Icon name="ic:round-close" size="24px" color="#03989E" />
         </button>
         <ul class="flex flex-col lg:flex-row lg:items-center gap-4 mt-10 lg:mt-0 lg:gap-10">
-          <li><nuxt-link to="#">Home</nuxt-link></li>
+          <li><nuxt-link to="/">Home</nuxt-link></li>
           <li><nuxt-link to="/about">About Us</nuxt-link></li>
           <li><nuxt-link to="/services">Services</nuxt-link></li>
           <li><nuxt-link to="/projects">Projects</nuxt-link></li>

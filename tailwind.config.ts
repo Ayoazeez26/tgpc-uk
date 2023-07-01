@@ -13,10 +13,12 @@ export default <Partial<Config>>{
         grey: '#1A2323',
         green: '#003D40',
         'grey-2': '#CCCECE',
-        'grey-3': '#666C6C'
+        'grey-3': '#666C6C',
+        'grey-4': '#4D5454'
       },
       backgroundImage: {
-        'hero-bg': "url('~/assets/images/hero-bg.png')"
+        'hero-bg': "url('~/assets/images/hero-bg.png')",
+        'about-bg': "url('~/assets/images/about-bg.png')"
       }
     }
   },

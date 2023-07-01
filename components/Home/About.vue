@@ -2,7 +2,7 @@
 </script>
 <template>
   <div class="flex flex-col-reverse md:flex-row justify-between items-center my-[100px] lg:my-[200px] mx-auto w-full max-w-[1240px]">
-    <div class="w-full max-w-[542px] px-4 lg:px-0 mt-6 md:mt-0">
+    <div class="w-full max-w-[542px] px-4 mt-6 md:mt-0">
       <p class="font-semibold text-primary text-sm md:text-xl uppercase">About Us</p>
       <h2 class="font-bold uppercase leading-snug text-xl md:text-3xl text-black">Who We Are: Guiding Businesses to Achieve Excellence</h2>
       <p class="text-grey/80 md:text-lg mt-3">O C Management Consultant is a leading management consulting company specializing in Tender, Grant, and Bid writing and management as well as developing quality assurance frameworks and enabling successful license applications. </p>
