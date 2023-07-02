@@ -39,7 +39,7 @@ const books = ref([
   <div class="mx-auto my-[60px] lg:my-[120px] w-full max-w-[1240px]">
     <div v-for="(book, index) in books" class="flex flex-col md:flex-row justify-between items-center my-[50px] lg:my-[100px] w-full">
       <div class="w-full max-w-[298px]">
-        <img :src="`_nuxt/assets/images/${book.image}.png`" alt="picture of people sitting having meeting" />
+        <img :src="`/img/${book.image}.png`" alt="picture of people sitting having meeting" />
       </div>
       <div class="w-full max-w-[902px] px-4 mt-6 md:mt-0">
         <p class="text-primary font-semibold text-lg uppercase mb-2">{{ book.tag }}</p>

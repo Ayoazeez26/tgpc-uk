@@ -41,7 +41,7 @@ const services = ref([
       <div v-for="(service) in services" class="border-2 border-light-green flex flex-col justify-between rounded-lg px-6 py-11 w-[380px] h-[399px]">
         <p class="text-center text-grey-4/80 mb-6">{{ service.desc }}</p>
         <div class="flex items-center gap-3">
-          <img class="w-[100px]" :src="`_nuxt/assets/images/${service.image}.png`">
+          <img class="w-[100px]" :src="`/img/${service.image}.png`">
           <div class="flex flex-col">
             <p class="text-xl font-semibold text-primary">{{ service.name }}</p>
             <p class="text-sm font-medium text-black/80 uppercase">{{ service.title }}</p>

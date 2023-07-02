@@ -139,7 +139,7 @@ watch(message, (value) => {
       </div>
       <div class="">
         <img
-          src="~/assets/images/excellence.png"
+          src="/img/excellence.png"
           alt="picture of people sitting having meeting"
         />
       </div>

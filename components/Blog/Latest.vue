@@ -6,7 +6,7 @@
     >
       <div class="w-full max-w-[612px]">
         <img
-          src="~/assets/images/support.png"
+          src="/img/support.png"
           alt="picture of people sitting having meeting"
         />
       </div>

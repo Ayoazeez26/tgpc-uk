@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="">
-      <img src="~/assets/images/excellence.png" alt="picture of people sitting having meeting" />
+      <img src="/img/excellence.png" alt="picture of people sitting having meeting" />
     </div>
   </div>
 </template>

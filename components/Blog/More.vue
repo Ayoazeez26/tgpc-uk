@@ -70,7 +70,7 @@ const blogs = ref([
     >
       <div v-for="(blog, index) in blogs" class="md:w-1/2 max-w-[588px] md:px-4 xl:px-0 mb-10 lg:mb-20">
         <img
-        :src="`_nuxt/assets/images/${blog.img}.png`"
+        :src="`/img/${blog.img}.png`"
         :alt="blog.img"
         />
         <div class="px-4 lg:px-0 mt-6">

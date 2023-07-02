@@ -31,7 +31,7 @@ const services = ref([
     </div>
     <div class="flex justify-center flex-wrap gap-10 mt-4">
       <div v-for="(service, index) in services" class="flex flex-col items-center w-[196px]">
-        <img class="" :src="`_nuxt/assets/images/${service.image}.png`">
+        <img class="" :src="`/img/${service.image}.png`">
         <p class="text-xl font-semibold text-grey uppercase my-2">{{ service.title }}</p>
         <button class="border-2 border-primary mt-2 px-6 py-3 rounded-lg">
           <p class="text-primary font-semibold">Get eBook</p>

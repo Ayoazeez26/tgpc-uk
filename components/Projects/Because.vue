@@ -4,7 +4,7 @@
   <div class="mx-auto w-full max-w-[1240px]">
     <div class="flex flex-col md:flex-row justify-between items-center my-[60px] lg:my-[120px] w-full">
       <div class="">
-        <img src="~/assets/images/excellence.png" alt="picture of people sitting having meeting" />
+        <img src="/img/excellence.png" alt="picture of people sitting having meeting" />
       </div>
       <div class="w-full max-w-[542px] px-4 mt-6 md:mt-0">
         <h2 class="font-bold uppercase leading-snug text-xl md:text-3xl text-black">Successful Tender<br>Applications</h2>

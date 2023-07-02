@@ -17,7 +17,7 @@
         <span> April 23, 2023</span>
       </div>
     </div>
-    <img class="" src="~/assets/images/living.png" alt="people working" />
+    <img class="" src="/img/living.png" alt="people working" />
     <p class="mt-6">
       When most people think of supported living, they think of group homes or
       other living arrangements for people with developmental disabilities. And
@@ -89,7 +89,7 @@
         </div>
       </div>
       <div class="w-full max-w-[523px]">
-        <img class="" src="~/assets/images/hands.png" alt="people working" />
+        <img class="" src="/img/hands.png" alt="people working" />
       </div>
     </div>
     <div
@@ -97,7 +97,7 @@
     >
       <div class="w-full max-w-[523px]">
         <img
-          src="~/assets/images/people.png"
+          src="/img/people.png"
           alt="picture of people sitting having meeting"
         />
       </div>

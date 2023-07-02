@@ -3,7 +3,7 @@
 <template>
   <div class="flex flex-col md:flex-row justify-between items-center my-[100px] lg:my-[200px] mx-auto w-full max-w-[1240px]">
     <div class="">
-      <img src="~/assets/images/invest.png" alt="picture of people sitting having meeting" />
+      <img src="/img/invest.png" alt="picture of people sitting having meeting" />
     </div>
     <div class="w-full max-w-[542px] px-4 mt-6 md:mt-0">
       <p class="font-semibold text-primary text-sm md:text-xl uppercase">Train With Us</p>

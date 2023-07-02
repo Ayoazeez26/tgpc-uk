@@ -20,12 +20,12 @@ export default <Partial<Config>>{
         'grey-7': '#E5E7E7'
       },
       backgroundImage: {
-        'hero-bg': "url('~/assets/images/hero-bg.png')",
-        'about-bg': "url('~/assets/images/about-bg.png')",
-        'services-bg': "url('~/assets/images/services-bg.png')",
-        'contact-bg': "url('~/assets/images/contact-bg.png')",
-        'blog-bg': "url('~/assets/images/blog-bg.png')",
-        'ebooks-bg': "url('~/assets/images/ebooks-bg.png')"
+        'hero-bg': "url('/img/hero-bg.png')",
+        'about-bg': "url('/img/about-bg.png')",
+        'services-bg': "url('/img/services-bg.png')",
+        'contact-bg': "url('/img/contact-bg.png')",
+        'blog-bg': "url('/img/blog-bg.png')",
+        'ebooks-bg': "url('/img/ebooks-bg.png')"
       }
     }
   },

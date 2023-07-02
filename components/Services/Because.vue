@@ -4,7 +4,7 @@
   <div class="mx-auto w-full max-w-[1240px]">
     <div class="flex flex-col md:flex-row justify-between items-center my-[60px] lg:my-[120px] w-full">
       <div class="">
-        <img src="~/assets/images/excellence.png" alt="picture of people sitting having meeting" />
+        <img src="/img/excellence.png" alt="picture of people sitting having meeting" />
       </div>
       <div class="w-full max-w-[542px] px-4 mt-6 md:mt-0">
         <p class="font-semibold text-primary text-sm md:text-lg uppercase">What ocmc can do for you</p>
@@ -20,12 +20,12 @@
         <p class="text-grey-4/80 md:text-lg mt-3">We help organizations identify and secure funding opportunities, develop winning proposals, and ensure compliance with relevant regulations and standards. Our team has a deep understanding of the funding landscape and can help you navigate the complex grant application process.</p>
       </div>
       <div class="w-full max-w-[612px]">
-        <img src="~/assets/images/excellence.png" alt="picture of people sitting having meeting" />
+        <img src="/img/excellence.png" alt="picture of people sitting having meeting" />
       </div>
     </div>
     <div class="flex flex-col md:flex-row justify-between items-center my-[60px] lg:my-[120px] w-full">
       <div class="w-full max-w-[612px]">
-        <img src="~/assets/images/excellence.png" alt="picture of people sitting having meeting" />
+        <img src="/img/excellence.png" alt="picture of people sitting having meeting" />
       </div>
       <div class="w-full max-w-[542px] px-4 mt-6 md:mt-0">
         <h2 class="font-bold uppercase leading-snug text-xl md:text-3xl text-black">03. QUALITY ASSURANCE</h2>
