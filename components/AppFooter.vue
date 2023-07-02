@@ -37,7 +37,7 @@
       </div>
     </div>
     <div class="border-t border-grey-3 py-6">
-      <p class="text-center leading-snug text-grey-2">© 2023 OC Management Consultants. All Rights Reserved.</p>
+      <p class="text-center leading-snug text-grey-2">© {{ new Date().getFullYear() }} OC Management Consultants. All Rights Reserved.</p>
     </div>
   </footer>
 </template>

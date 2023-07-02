@@ -15,13 +15,16 @@ export default <Partial<Config>>{
         'grey-2': '#CCCECE',
         'grey-3': '#666C6C',
         'grey-4': '#4D5454',
-        'grey-5': '#808484'
+        'grey-5': '#808484',
+        'grey-6': '#333B3B',
+        'grey-7': '#E5E7E7'
       },
       backgroundImage: {
         'hero-bg': "url('~/assets/images/hero-bg.png')",
         'about-bg': "url('~/assets/images/about-bg.png')",
         'services-bg': "url('~/assets/images/services-bg.png')",
-        'contact-bg': "url('~/assets/images/contact-bg.png')"
+        'contact-bg': "url('~/assets/images/contact-bg.png')",
+        'blog-bg': "url('~/assets/images/blog-bg.png')"
       }
     }
   },

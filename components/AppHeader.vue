@@ -4,7 +4,7 @@
       <nuxt-link to="/">
         <img class="w-20 h-20" src="/img/logo.png" />
       </nuxt-link>
-      <button class="lg:hidden" @click="open = !open">
+      <button ref="hamburger" class="lg:hidden" @click="open = !open">
         <Icon name="ic:round-menu" size="24px" color="#03989E" />
       </button>
       <ul class="navbar-links flex items-start" :class="{ 'navbar-links--navopen': open }" v-click-outside="close">
@@ -12,12 +12,12 @@
           <Icon name="ic:round-close" size="24px" color="#03989E" />
         </button>
         <ul class="flex flex-col lg:flex-row lg:items-center gap-4 mt-10 lg:mt-0 lg:gap-10">
-          <li><nuxt-link to="/">Home</nuxt-link></li>
-          <li><nuxt-link to="/about">About Us</nuxt-link></li>
-          <li><nuxt-link to="/services">Services</nuxt-link></li>
-          <li><nuxt-link to="/projects">Projects</nuxt-link></li>
-          <li><nuxt-link to="/contact">Contact Us</nuxt-link></li>
-          <li><nuxt-link to="/blog">Blog</nuxt-link></li>
+          <li @click="open = !open"><nuxt-link to="/">Home</nuxt-link></li>
+          <li @click="open = !open"><nuxt-link to="/about">About Us</nuxt-link></li>
+          <li @click="open = !open"><nuxt-link to="/services">Services</nuxt-link></li>
+          <li @click="open = !open"><nuxt-link to="/projects">Projects</nuxt-link></li>
+          <li @click="open = !open"><nuxt-link to="/contact">Contact Us</nuxt-link></li>
+          <li @click="open = !open"><nuxt-link to="/blog">Blog</nuxt-link></li>
           <div class="flex flex-col lg:flex-row lg:items-center gap-6">
             <button class="border-2 border-primary font-semibold px-10 py-3 rounded-lg text-primary">eBooks</button>
             <button class="bg-primary border-2 border-primary font-semibold px-10 py-3 rounded-lg text-white">Training</button>        
@@ -32,8 +32,10 @@
 import { ref } from 'vue';
 
 const open = ref(false);
-const close = () => {
-  open.value = false;
+const close = (e:HTMLInputElement) => {
+  if (e.target.tagName !== 'svg' && e.target.tagName !== 'path') {
+    open.value = false;
+  }
 };
 </script>
 
