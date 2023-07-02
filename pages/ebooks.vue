@@ -1,10 +1,7 @@
 <template>
   <div class="text-grey/80">
-    <AboutHero />
-    <AboutBecause />
-    <AboutMission />
-    <AboutTestimonials />
-    <AboutEnroll />
+    <EbooksHero />
+    <EbooksBecause />
   </div>
 </template>
 

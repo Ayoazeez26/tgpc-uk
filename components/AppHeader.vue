@@ -19,7 +19,7 @@
           <li @click="open = !open"><nuxt-link to="/contact">Contact Us</nuxt-link></li>
           <li @click="open = !open"><nuxt-link to="/blog">Blog</nuxt-link></li>
           <div class="flex flex-col lg:flex-row lg:items-center gap-6">
-            <button class="border-2 border-primary font-semibold px-10 py-3 rounded-lg text-primary">eBooks</button>
+            <nuxt-link to="/ebooks" class="border-2 border-primary font-semibold px-10 py-3 rounded-lg text-primary">eBooks</nuxt-link>
             <button class="bg-primary border-2 border-primary font-semibold px-10 py-3 rounded-lg text-white">Training</button>        
           </div>
         </ul>

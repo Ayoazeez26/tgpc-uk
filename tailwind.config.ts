@@ -24,7 +24,8 @@ export default <Partial<Config>>{
         'about-bg': "url('~/assets/images/about-bg.png')",
         'services-bg': "url('~/assets/images/services-bg.png')",
         'contact-bg': "url('~/assets/images/contact-bg.png')",
-        'blog-bg': "url('~/assets/images/blog-bg.png')"
+        'blog-bg': "url('~/assets/images/blog-bg.png')",
+        'ebooks-bg': "url('~/assets/images/ebooks-bg.png')"
       }
     }
   },
