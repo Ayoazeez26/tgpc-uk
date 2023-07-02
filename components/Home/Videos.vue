@@ -20,7 +20,7 @@ const services = ref([
 ])
 </script>
 <template>
-  <div class="flex flex-col items-center mb-[100px] lg:mb-[200px] mx-auto px-4 px-sm-0 w-full max-w-[1240px]">
+  <div class="flex flex-col items-center mb-[100px] lg:mb-[200px] mx-auto px-4 md:px-0 w-full max-w-[1240px]">
     <div class="flex flex-col md:flex-row items-center justify-between w-full">
       <div class="w-full">
         <p class="font-semibold text-primary text-sm md:text-xl uppercase">Videos that simplify complex concepts</p>

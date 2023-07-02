@@ -1,7 +1,7 @@
 <script setup lang="ts">
 </script>
 <template>
-  <div class="bg-about-bg bg-center bg-no-repeat bg-cover bg-black/75 bg-blend-multiply h-40vh] md:h-[16vh] py-28 w-full mt-24 md:mt-[120px]">
+  <div class="bg-about-bg bg-top bg-no-repeat bg-cover bg-black/75 bg-blend-multiply h-40vh] md:h-[30vh] py-28 w-full mt-24 md:mt-[120px]">
     <div class="w-full max-w-[1240px] flex h-full items-center text-center justify-center px-4 px-md-0 mx-auto">
       <div class="text-white w-full max-w-[874px]">
         <h1 class="font-bold uppercase text-primary leading-snug text-2xl lg:text-4xl mb-3">About Us</h1>
@@ -11,11 +11,4 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
-// .bg-hero-bg {
-//   background-position: center;
-//   @media screen and (max-width: 768px) {
-//     background-position: center left -350px;
-//   }
-// }
-</style>
+<style lang="scss" scoped></style>

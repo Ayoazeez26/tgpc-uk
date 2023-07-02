@@ -24,7 +24,7 @@ const services = ref([
 ])
 </script>
 <template>
-  <div class="flex flex-col lg:mb-[200px] mx-auto px-4 w-full max-w-[1240px]">
+  <div class="flex flex-col lg:mb-[200px] mx-auto px-4 lg:px-0 w-full max-w-[1240px]">
     <div class="flex flex-col lg:flex-row lg:items-center justify-between w-full">
       <div class="">
         <p class="font-semibold text-primary text-sm md:text-xl uppercase">Our Services</p>
