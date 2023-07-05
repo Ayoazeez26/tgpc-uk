@@ -28,11 +28,11 @@
           <a href="#" target="_blank" class="mb-4">Twitter</a>
           <a href="#" target="_blank">Instagram</a>
         </div>
-        <div class="flex flex-col text-grey-2">
+        <div class="flex flex-col text-grey-2 w-full max-w-[200px]">
           <h6 class="text-xl font-semibold uppercase text-white mb-4">Contact Us</h6>
-          <p class="mb-4">Company's Number</p>
-          <p class="mb-4">Company's Email Address</p>
-          <p class="mb-4">Company's Address</p>
+          <p class="mb-4">+44 2074 594519 / +44 7720 185252</p>
+          <p class="mb-4 break-words">hello@ocmanagementconsultants.co.uk</p>
+          <!-- <p class="mb-4">Company's Address</p> -->
         </div>
       </div>
     </div>

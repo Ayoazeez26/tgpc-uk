@@ -24,7 +24,7 @@ const services = ref([
     <div class="flex flex-col md:flex-row items-center justify-between w-full">
       <div class="w-full">
         <p class="font-semibold text-primary text-sm md:text-xl uppercase">Download our Exclusive Ebooks</p>
-        <h2 class="font-bold uppercase leading-snug text-xl md:text-3xl text-black">Enhance Your Expertise with Our UPCOMING eBooks</h2>
+        <h2 class="font-bold uppercase leading-snug text-xl md:text-3xl text-black">Enhance Your Expertise with Our eBooks</h2>
       </div>
       <nuxt-link to="/ebooks" class="flex min-w-max gap-2 items-center self-start mt-2 lg:mt-0">
         <p class="text-primary font-semibold">See All</p>
