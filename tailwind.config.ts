@@ -21,7 +21,9 @@ export default <Partial<Config>>{
       },
       backgroundImage: {
         'hero-bg': "url('/img/hero-bg.png')",
+        'hero-bg-mob': "url('/img/hero-bg-mob.png')",
         'about-bg': "url('/img/about-bg.png')",
+        'about-bg-mob': "url('/img/about-bg-mob.png')",
         'services-bg': "url('/img/services-bg.png')",
         'contact-bg': "url('/img/contact-bg.png')",
         'blog-bg': "url('/img/blog-bg.png')",
