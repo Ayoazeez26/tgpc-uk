@@ -25,7 +25,9 @@ export default <Partial<Config>>{
         'about-bg': "url('/img/about-bg.png')",
         'about-bg-mob': "url('/img/about-bg-mob.png')",
         'services-bg': "url('/img/services-bg.png')",
+        'services-bg-mob': "url('/img/excellence.png')",
         'contact-bg': "url('/img/contact-bg.png')",
+        'contact-bg-mob': "url('/img/contact-bg-mob.png')",
         'blog-bg': "url('/img/blog-bg.png')",
         'ebooks-bg': "url('/img/ebooks-bg.png')"
       }

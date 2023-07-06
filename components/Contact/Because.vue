@@ -44,11 +44,11 @@ watch(message, (value) => {
     >
       <div class="w-full max-w-[542px] px-4 mt-6 md:mt-0">
         <h2
-          class="font-bold uppercase leading-snug text-xl md:text-3xl text-black"
+          class="font-semibold uppercase leading-snug text-2xl md:text-3xl text-black"
         >
           Reach out to our expert team
         </h2>
-        <p class="text-grey-4/80 md:text-lg mt-3">
+        <p class="text-grey-4/80 text-lg mt-3">
           Fill out the form below, and our dedicated consultants will promptly
           get in touch with you. We look forward to connecting with you and
           exploring how we can assist you in achieving your goals.
@@ -60,7 +60,7 @@ watch(message, (value) => {
         >
           
           <div class="w-full mt-6">
-            <label for="firstName" class="text-black font-semibold mb-2"
+            <label for="firstName" class="text-black font-medium mb-2"
               >Name</label
             >
             <input
@@ -84,7 +84,7 @@ watch(message, (value) => {
           </div>
           <div class="flex w-full mt-3">
             <div class="flex flex-col w-full">
-              <label for="email" class="text-black font-semibold mb-2">Email Address</label>
+              <label for="email" class="text-black font-medium mb-2">Email Address</label>
               <input
                 id="email"
                 v-model="email"
@@ -105,7 +105,7 @@ watch(message, (value) => {
           </div>
           <div class="flex w-full mt-3">
             <div class="flex flex-col w-full">
-              <label for="message" class="text-black font-semibold mb-2">Message</label>
+              <label for="message" class="text-black font-medium mb-2">Message</label>
               <textarea
                 id="message"
                 v-model="message"
@@ -127,10 +127,10 @@ watch(message, (value) => {
               </p> -->
             </div>
           </div>
-          <div>
+          <div class="w-full md:w-auto">
             <button
               type="submit"
-              class="liquor-btn min-w-max py-3 px-8 rounded-lg text-sm sm:text-base bg-primary text-white w-full hover:bg-primary/90"
+              class="liquor-btn min-w-max py-4 md:py-3 px-8 rounded-lg text-sm sm:text-base bg-primary text-white w-full hover:bg-primary/90"
               >
               Send Message
             </button>

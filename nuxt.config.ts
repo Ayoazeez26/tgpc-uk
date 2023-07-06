@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     }
   },
   css: ['~/assets/main.scss'],
-  modules: ['@nuxtjs/tailwindcss', 'nuxt-icon', '@nuxtjs/google-fonts'],
+  modules: ['@nuxtjs/tailwindcss', 'nuxt-icon', '@nuxtjs/google-fonts', 'nuxt-swiper'],
   vite: {
     css: {
       preprocessorOptions: {

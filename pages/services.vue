@@ -2,7 +2,7 @@
   <div class="text-grey/80">
     <ServicesHero />
     <ServicesBecause />
-    <ServicesTestimonials />
+    <AboutTestimonials />
     <ServicesEnroll />
   </div>
 </template>

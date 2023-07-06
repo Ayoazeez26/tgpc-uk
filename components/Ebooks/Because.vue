@@ -47,15 +47,18 @@ const books = ref([
   <div class="mx-auto my-[60px] lg:my-[120px] w-full max-w-[1240px]">
     <div v-for="(book, index) in books" class="flex flex-col md:flex-row justify-between items-center my-[50px] lg:my-[100px] w-full">
       <div class="w-full max-w-[330px]">
-        <img :src="`/img/${book.image}.png`" alt="picture of people sitting having meeting" />
+        <img class="hidden md:block" :src="`/img/${book.image}.png`" alt="picture of people sitting having meeting" />
+        <img class="md:hidden block" :src="`/img/${book.image}-mob.png`" alt="picture of people sitting having meeting" />
       </div>
       <div class="w-full max-w-[902px] px-4 mt-6 md:mt-0">
-        <p class="text-primary font-semibold text-lg uppercase mb-2">{{ book.tag }}</p>
-        <h2 class="font-bold uppercase leading-snug text-xl md:text-3xl text-black">{{ book.title }}</h2>
-        <p class="text-grey-4 font-semibold uppercase text-lg mt-2">{{ book.author }}</p>
+        <p class="text-primary font-semibold md:text-xl uppercase mb-2">{{ book.tag }}</p>
+        <h2 class="font-semibold uppercase leading-snug text-2xl md:text-3xl text-black">{{ book.title }}</h2>
+        <p class="text-grey-4 font-semibold uppercase md:text-lg mt-2">{{ book.author }}</p>
         <p class="text-grey/80 md:text-lg md:leading-8 mt-2 mb-5">{{ book.desc }}</p>
-        <a :href="book.link" class="border-2 border-primary font-semibold px-5 py-3 rounded-lg text-primary">Coming Soon</a>
-      </div>
+        <div class="flex w-full md:w-auto">
+          <a :href="book.link" class="border-2 border-primary text-center font-semibold px-5 py-4 md:py-3 rounded-lg text-primary w-full md:w-auto">Coming Soon</a>
+        </div>
+        </div>
     </div>
   </div>
 </template>

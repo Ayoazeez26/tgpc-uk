@@ -47,7 +47,7 @@ watch(message, (value) => {
       <div class="w-full max-w-[500px]">
         <p class="mt-3 text-lg leading-relaxed uppercase">Post a comment</p>
         <h2
-          class="font-semibold uppercase leading-snug text-xl md:text-3xl text-white"
+          class="font-semibold uppercase leading-snug text-2xl md:text-3xl text-white"
         >
           Share your thoughts and join the discussion!
         </h2>

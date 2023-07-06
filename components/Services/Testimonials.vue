@@ -25,8 +25,8 @@ const services = ref([
   <div class="flex flex-col lg:mb-[200px] mx-auto px-4 w-full max-w-[1240px]">
     <div class="flex lg:items-center justify-between w-full">
       <div class="">
-        <p class="font-semibold text-primary text-sm md:text-lg uppercase">our clients’ testimonials</p>
-        <h2 class="font-bold uppercase leading-snug text-xl md:text-3xl text-black w-full max-w-[497px]">real stories, real results.</h2>
+        <p class="font-semibold text-primary md:text-lg uppercase">our clients’ testimonials</p>
+        <h2 class="font-bold uppercase leading-snug text-2xl md:text-3xl text-black w-full max-w-[497px]">real stories, real results.</h2>
       </div>
       <div class="flex">
         <button class="flex min-w-max gap-2 items-center self-start mt-2">

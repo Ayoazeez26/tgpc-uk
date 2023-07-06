@@ -3,7 +3,7 @@
     <div class="flex flex-col md:flex-row justify-between w-full max-w-[1240px] mx-auto">
       <div class="">
         <nuxt-link to="/">
-          <img class="w-[154px]" src="/img/logo-footer.png" />
+          <img class="w-[85px] md:w-[154px]" src="/img/logo-footer.png" />
         </nuxt-link>
         <h5 class="text-grey-2 text-lg w-full max-w-[310px] mt-4 font-normal">At O C Management Consultant, we transform challenges into opportunities and we guide you to achieve operational excellence.</h5>
       </div>

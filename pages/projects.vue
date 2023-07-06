@@ -4,7 +4,7 @@
     <ProjectsBecause />
     <ProjectsMission />
     <ProjectsInfo />
-    <ProjectsTestimonials />
+    <AboutTestimonials />
   </div>
 </template>
 

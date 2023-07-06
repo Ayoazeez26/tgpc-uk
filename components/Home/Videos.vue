@@ -23,7 +23,7 @@ const services = ref([
   <div class="flex flex-col items-center mb-[100px] lg:mb-[200px] mx-auto px-4 md:px-0 w-full max-w-[1240px]">
     <div class="flex flex-col md:flex-row items-center justify-between w-full">
       <div class="w-full">
-        <p class="font-semibold text-primary text-sm md:text-xl uppercase">Videos that simplify complex concepts</p>
+        <p class="font-semibold text-primary md:text-xl uppercase">Videos that simplify complex concepts</p>
         <h2 class="font-bold uppercase leading-snug text-2xl md:text-3xl text-black">Discover key concepts through captivating explainer videos</h2>
       </div>
       <nuxt-link to="/" class="hidden md:flex min-w-max gap-2 items-center self-start mt-2">

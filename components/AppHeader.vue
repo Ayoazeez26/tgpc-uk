@@ -1,8 +1,8 @@
 <template>
-  <div class="fixed bg-whiter right-0 left-0 font-medium text-black/70 ">
+  <div class="fixed bg-whiter right-0 left-0 font-medium text-black/70 z-10">
     <div class="flex h-24 md:h-[120px] items-center justify-between px-4 px-md-0 w-full max-w-[1240px] mx-auto">
       <nuxt-link to="/">
-        <img class="w-20 h-20" src="/img/logo.png" />
+        <img class="w-[50px] md:w-20 h-[50px] md:h-20" src="/img/logo.png" />
       </nuxt-link>
       <button ref="hamburger" class="lg:hidden" @click="open = !open">
         <Icon name="ic:round-menu" size="24px" color="#03989E" />

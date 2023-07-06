@@ -27,7 +27,7 @@ const services = ref([
       class="flex flex-col md:flex-row items-center justify-between w-full px-4"
     >
       <div class="w-full">
-        <p class="font-semibold text-primary text-sm md:text-xl uppercase">
+        <p class="font-semibold text-primary md:text-xl uppercase">
           Download our Exclusive Ebooks
         </p>
         <h2
