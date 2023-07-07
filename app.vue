@@ -1,3 +1,18 @@
+<script setup lang="ts">
+useHead({
+  title: 'O.C. Management Consulting',
+  meta: [
+    { name: 'description', content: 'Experience the power of our comprehensive approach, where we seamlessly handle tenders, grants, and license applications.'}
+  ]
+})
+useSeoMeta({
+  title: 'O.C. Management Consulting',
+  ogTitle: 'O.C. Management Consulting',
+  description: 'Leading management consulting company specializing in Tender, Grant, and Bid writing and management as well as developing quality assurance frameworks and enabling successful license applications.',
+  ogDescription: 'Leading management consulting company specializing in Tender, Grant, and Bid writing and management as well as developing quality assurance frameworks and enabling successful license applications.',
+  ogImage: '/img/logo.png'
+})
+</script>
 <template>
   <div class="body">
     <AppHeader />
