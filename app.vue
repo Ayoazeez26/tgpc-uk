@@ -1,10 +1,16 @@
 <script setup lang="ts">
-useSeoMeta({
+const seoData = reactive({
   title: 'O.C. Management Consulting',
-  ogTitle: 'O.C. Management Consulting',
   description: 'Leading management consulting company specializing in Tender, Grant, and Bid writing and management as well as developing quality assurance frameworks and enabling successful license applications.',
-  ogDescription: 'Leading management consulting company specializing in Tender, Grant, and Bid writing and management as well as developing quality assurance frameworks and enabling successful license applications.',
-  ogImage: '/img/logo.png'
+  img: '/img/logo.png'
+});
+
+useSeoMeta({
+  title: seoData.title,
+  ogTitle: seoData.title,
+  description: seoData.description,
+  ogDescription: seoData.description,
+  ogImage: seoData.img
 })
 </script>
 <template>
