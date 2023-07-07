@@ -14,12 +14,16 @@
           Experience the power of our comprehensive approach, where we
           seamlessly handle tenders, grants, and license applications.
         </p>
-        <button
-          class="bg-primary flex gap-2 items-center mt-4 px-6 py-3 rounded-lg"
-        >
-          <Icon name="mdi:youtube" size="24px" />
-          <p class="text-white font-semibold">Watch Our Story</p>
-        </button>
+        <div class="flex">
+          <a
+            href="https://youtu.be/s5J4na-rGCM"
+            target="_blank"
+            class="bg-primary flex gap-2 items-center mt-4 px-6 py-3 rounded-lg"
+          >
+            <Icon name="mdi:youtube" size="24px" />
+            <p class="text-white font-semibold">Watch Our Story</p>
+          </a>
+        </div>
       </div>
       <div
         class="flex md:hidden flex-col md:flex-row justify-between items-center mx-auto w-full"
@@ -36,14 +40,17 @@
             seamlessly handle tenders, grants, and license applications.
           </p>
         </div>
-        <div class="bg-hero-bg-mob bg-contain bg-black/40 bg-blend-multiply flex items-end justify-stretch w-full mt-4 p-4 h-[249px]">
-          <button
+        <div
+          class="bg-hero-bg-mob bg-contain bg-black/40 bg-blend-multiply flex items-end justify-stretch w-full mt-4 p-4 h-[249px]"
+        >
+          <a
+            href="https://youtu.be/s5J4na-rGCM"
+            target="_blank"
             class="bg-primary flex gap-2 justify-center items-center mt-4 px-6 py-3 w-full rounded-lg"
           >
             <Icon name="mdi:youtube" size="24px" color="#FFFFFF" />
             <p class="text-white font-semibold">Watch Our Story</p>
-          </button>
-          
+          </a>
         </div>
       </div>
     </div>

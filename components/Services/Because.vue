@@ -16,7 +16,7 @@
       <div class="w-full max-w-[542px] px-4 mb-6 md:mb-0">
         <h2 class="font-bold uppercase leading-snug text-2xl md:text-3xl text-black">01. GRANTS</h2>
         <p class="text-grey-4/80 text-lg mt-3">We help organizations identify and secure funding opportunities, develop winning proposals, and ensure compliance with relevant regulations and standards. Our team has a deep understanding of the funding landscape and can help you navigate the complex grant application process.</p>
-        <h2 class="font-bold uppercase leading-snug text-2xl mt-6 md:text-3xl text-black">02. BIDS/TENURE PROCUREMENT</h2>
+        <h2 class="font-bold uppercase leading-snug text-2xl mt-6 md:text-3xl text-black">02. BIDS/TENDERS PROCUREMENT</h2>
         <p class="text-grey-4/80 text-lg mt-3">We help organizations identify and secure funding opportunities, develop winning proposals, and ensure compliance with relevant regulations and standards. Our team has a deep understanding of the funding landscape and can help you navigate the complex grant application process.</p>
       </div>
       <div class="w-full max-w-[612px]">

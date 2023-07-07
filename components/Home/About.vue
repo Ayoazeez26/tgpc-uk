@@ -10,10 +10,10 @@
         <nuxt-link to="/about" class="border-2 border-primary bg-primary flex gap-2 items-center justify-center mt-4 px-10 py-3 rounded-lg">
           <p class="text-white font-semibold">Read More</p>
         </nuxt-link>
-        <button class="border-2 border-primary flex gap-2 items-center justify-center mt-4 px-6 py-3 rounded-lg">
+        <a href="https://youtu.be/s5J4na-rGCM" target="_blank" class="border-2 border-primary flex gap-2 items-center justify-center mt-4 px-6 py-3 rounded-lg">
           <Icon name="mdi:youtube" size="24px" color="#03989E" />
           <p class="text-primary font-semibold">Watch Our Story</p>
-        </button>
+        </a>
       </div>
     </div>
     <div class="mt-6 md:mt-0">

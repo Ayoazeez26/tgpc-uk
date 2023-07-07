@@ -11,7 +11,7 @@
       <p class="text-grey-4/80 text-base md:text-lg mt-3">Experience training videos that deliver measurable outcomes, empowering you to apply newly acquired skills effectively. <span class="hidden md:inline-block">Invest in your professional success with our trusted training programs that have empowered countless individuals and organizations.</span></p>
       <div class="flex w-full md:w-auto">
         <nuxt-link to="/about" class="border-2 border-primary bg-primary flex justify-center gap-2 items-center mt-4 px-10 py-3 rounded-lg w-full md:w-auto">
-          <p class="text-white font-semibold">Enroll Now</p>
+          <p class="text-white font-semibold">Coming Soon</p>
         </nuxt-link>
       </div>
     </div>
