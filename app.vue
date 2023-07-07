@@ -1,10 +1,4 @@
 <script setup lang="ts">
-useHead({
-  title: 'O.C. Management Consulting',
-  meta: [
-    { name: 'description', content: 'Experience the power of our comprehensive approach, where we seamlessly handle tenders, grants, and license applications.'}
-  ]
-})
 useSeoMeta({
   title: 'O.C. Management Consulting',
   ogTitle: 'O.C. Management Consulting',
