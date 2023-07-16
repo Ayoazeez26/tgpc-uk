@@ -24,10 +24,10 @@ const services = ref([
     <div class="flex justify-center md:justify-start flex-wrap gap-3 mt-11">
       <div v-for="(service) in services" class="border-2 border-light-green flex flex-col justify-center rounded-lg px-6 w-full md:w-[390px] h-[125px]">
         <div class="flex break-words relative items-center gap-3">
-          <img class="w-[40px]" :src="`_nuxt/assets/icons/${service.image}.svg`">
+          <img class="w-[40px]" :src="`/svg/${service.image}.svg`">
           <div class="flex flex-col w-full pr-6 md:pr-0">
             <p class="text-xl font-semibold uppercase text-black">{{ service.name }}</p>
-            <p class="text-lg font-medium break-words text-grey">{{ service.title }}</p>
+            <p class="text-lg font-medium break-words pr-10 text-grey">{{ service.title }}</p>
           </div>
         </div>
       </div>
