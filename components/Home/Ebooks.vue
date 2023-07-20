@@ -54,12 +54,12 @@ const services = ref([
         class="flex flex-col items-center w-5/12 md:w-[284px]"
       >
         <img class="" :src="`/img/${service.image}.png`" />
-        <p class="text-lg font-semibold text-grey text-center my-2">
+        <!-- <p class="text-lg font-semibold text-grey text-center my-2">
           {{ service.title }}
-        </p>
-        <nuxt-link to="/ebooks" class="border-2 border-primary mt-2 px-6 py-3 rounded-lg">
+        </p> -->
+        <!-- <nuxt-link to="/ebooks" class="border-2 border-primary mt-2 px-6 py-3 rounded-lg">
           <p class="text-primary font-semibold">Coming Soon</p>
-        </nuxt-link>
+        </nuxt-link> -->
       </div>
     </div>
     <div class="flex w-full px-4 md:hidden">
