@@ -11,7 +11,7 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: 'Leading management consulting company specializing in Tender, Grant, and Bid writing and management as well as developing quality assurance frameworks and enabling successful license applications.' }
+        { name: 'description', content: 'We\'re here to support you in reclaiming freedom, connecting with your community, and reaching your full potential. No matter your age or situation, we believe in unlocking boundless adventures for all.' }
       ],
       script: [
         {

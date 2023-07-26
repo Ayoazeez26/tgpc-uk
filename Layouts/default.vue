@@ -1,10 +1,10 @@
 <script setup lang="ts"></script>
 <template>
-  <AppHeader />
-  <main>
+  <div>
     <slot />
-  </main>
-  <AppFooter />
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+</style>
