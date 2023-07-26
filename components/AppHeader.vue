@@ -21,7 +21,7 @@
           <li class="lg:hidden" @click="open = !open"><nuxt-link to="#about">About Us</nuxt-link></li>
           <li class="lg:hidden" @click="open = !open"><nuxt-link to="#services">Services<Icon name="ic:round-keyboard-arrow-down" size="24px" color="#FFFFFF" /></nuxt-link></li>
           <li @click="open = !open"><nuxt-link to="/team">Join Our Team</nuxt-link></li>
-          <li @click="open = !open"><nuxt-link to="/blog">Blog</nuxt-link></li>
+          <li @click="open = !open"><nuxt-link to="#">Blog</nuxt-link></li>
           <div class="flex flex-col lg:flex-row lg:items-center gap-6">
             <button class="bg-light-blue border-2 border-light-blue font-semibold p-5 text-neutral">Get In Touch</button>        
           </div>
