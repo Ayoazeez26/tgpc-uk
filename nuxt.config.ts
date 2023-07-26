@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
     head: {
-      title: 'O.C. Management Consulting',
+      title: 'Crystallize Care Services',
       link: [
         { rel: "icon", type: "image/png", href: "/favicon.ico"}
       ],
@@ -23,7 +23,7 @@ export default defineNuxtConfig({
       ]
     }
   },
-  css: ['~/assets/main.scss'],
+  css: ['~/assets/main.scss', '~/assets/fonts/fonts.css'],
   modules: ['@nuxtjs/tailwindcss', 'nuxt-icon', '@nuxtjs/google-fonts', 'nuxt-swiper'],
   vite: {
     css: {

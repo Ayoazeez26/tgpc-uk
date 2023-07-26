@@ -1,11 +1,51 @@
 body {
-  font-family: Epilogue, sans-serif;
+  font-family: 'Gilroy', sans-serif;
 }
-.router-link-exact-active {
-  color: $primary;
+* {
+  scrollbar-width: 16px;
+  scrollbar-color: #FFF $grey;
+  scroll-behavior: smooth;
 }
+
+body {
+  scrollbar-width: 16px;
+  scrollbar-color: #FFF $grey;
+}
+
+/* Works on Chrome/Edge/Safari */
+// ::-webkit-scrollbar {
+//   -webkit-appearance: none;
+//   -webkit-overflow-scrolling: touch;
+// }
+*::-webkit-scrollbar:vertical {
+  -moz-width: 0.6em; /* Firefox 2+ */
+  -ms-width: 0.6em;
+  width: 0.6em;
+}
+*::-webkit-scrollbar:horizontal {
+  height: 1em;
+}
+*::-webkit-scrollbar-track {
+  -moz-background: #FFF; /* Firefox 2+ */
+  -ms-background: #FFF;
+  background: #FFF;
+}
+*::-webkit-scrollbar-thumb {
+  border-radius: 1em;
+  background-color: $grey;
+  border: 3px solid #FFF;
+  -moz-border-radius: 1em; /* Firefox 2+ */
+  -ms-border-radius: 1em;
+  -moz-background-color: $grey; /* Firefox 2+ */
+  -ms-background-color: $grey;
+  -moz-border: 3px solid #FFF; /* Firefox 2+ */
+  -ms-border: 3px solid #FFF;
+}
+// .router-link-exact-active {
+//   color: $primary;
+// }
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'League Spartan', sans-serif;
+  font-family: 'Rebond Grotesque', sans-serif;
 }
 .swiper {
   width: 100%;
@@ -19,7 +59,7 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: "Epilogue", sans-serif;
+    font-family: "Gilroy", sans-serif;
     @media screen and (max-width: 768px) {
       width: 100% !important;
     }

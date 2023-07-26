@@ -6,18 +6,24 @@ export default <Partial<Config>>{
     extend: {
       colors: {
         black: '#000A0A',
-        primary: '#03989E',
-        white: '#FAFFFF',
-        whiter: '#FFFFFF',
+        primary: '#800020',
         'light-green': '#CDEAEC',
-        grey: '#1A2323',
+        'light-blue': '#E9F3F6',
+        'light-red': '#FFF8F7',
+        'red-1': '#FFE9E7',
+        'blue-2': '#F8FBFC',
+        grey: '#2A2E2F',
         green: '#003D40',
-        'grey-2': '#CCCECE',
-        'grey-3': '#666C6C',
+        blue: '#BEDCE4',
+        neutral: '#151718',
+        'neutral-2': '#FBFBFB',
+        'grey-2': '#535C5F',
+        'grey-3': '#7E8A8D',
         'grey-4': '#4D5454',
         'grey-5': '#808484',
         'grey-6': '#333B3B',
-        'grey-7': '#E5E7E7'
+        'grey-7': '#E5E7E7',
+        'bg-blur': '#0B181B'
       },
       backgroundImage: {
         'hero-bg': "url('/img/hero-bg.png')",

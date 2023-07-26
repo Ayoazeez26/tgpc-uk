@@ -1,56 +1,26 @@
 <script setup lang="ts"></script>
 <template>
   <div
-    class="md:bg-hero-bg md:bg-no-repeat md:bg-cover md:bg-black/40 md:bg-blend-multiply md:h-[85vh] pt-20 md:py-28 w-full md:mt-[120px]"
+    class="bg-hero-bg bg-no-repeat bg-cover bg-center bg-bg-blur/60 bg-blend-multiply h-screen pt-20 px-4 xl:px-0 md:py-28 w-full"
   >
     <div
-      class="w-full max-w-[1240px] flex h-full items-end justify-end mx-auto"
+      class="w-full max-w-[1240px] flex h-full items-end justify-start mx-auto"
     >
-      <div class="hidden md:block text-white w-full max-w-[542px]">
-        <h1 class="font-bold uppercase leading-snug text-2xl lg:text-4xl">
-          Ignite Growth & Success with Expert Management Consulting.
+      <div class="block text-neutral-2 w-full max-w-[750px]">
+        <p class="text-lg font-semibold mb-4">Welcome to Crystallisecare</p>
+        <h1 class="font-bold leading-snug text-[40px] lg:leading-snug lg:text-[80px]">
+          Excellence in Care and Family Services
         </h1>
-        <p class="font-medium text-white/80 lg:text-lg md:w-11/12">
-          Experience the power of our comprehensive approach, where we
-          seamlessly handle tenders, grants, and license applications.
+        <p class="font-medium text-white/80 mt-6 text-lg md:w-11/12">
+          Welcome to Crystalize Care Services, where we are committed to excellence in healthcare. Better Health, Better You.
         </p>
-        <div class="flex">
-          <a
-            href="https://youtu.be/s5J4na-rGCM"
-            target="_blank"
-            class="bg-primary flex gap-2 items-center mt-4 px-6 py-3 rounded-lg"
+        <div class="flex mt-10 mb-24 md:mb-0">
+          <nuxt-link
+            to="#footer"
+            class="bg-primary mt-4 p-6 w-full md:w-auto text-center"
           >
-            <Icon name="mdi:youtube" size="24px" />
-            <p class="text-white font-semibold">Watch Our Story</p>
-          </a>
-        </div>
-      </div>
-      <div
-        class="flex md:hidden flex-col md:flex-row justify-between items-center mx-auto w-full"
-      >
-        <div class="w-full px-4 mt-6 md:mt-0">
-          <h2
-            class="font-bold uppercase leading-snug text-2xl md:text-3xl text-black"
-          >
-            Ignite Growth & Success with
-            <span class="text-primary">Expert Management Consulting.</span>
-          </h2>
-          <p class="text-grey/80 md:text-lg mt-3">
-            Experience the power of our comprehensive approach, where we
-            seamlessly handle tenders, grants, and license applications.
-          </p>
-        </div>
-        <div
-          class="bg-hero-bg-mob bg-contain bg-black/40 bg-blend-multiply flex items-end justify-stretch w-full mt-4 p-4 h-[249px]"
-        >
-          <a
-            href="https://youtu.be/s5J4na-rGCM"
-            target="_blank"
-            class="bg-primary flex gap-2 justify-center items-center mt-4 px-6 py-3 w-full rounded-lg"
-          >
-            <Icon name="mdi:youtube" size="24px" color="#FFFFFF" />
-            <p class="text-white font-semibold">Watch Our Story</p>
-          </a>
+            <p class="text-white font-semibold">Book Assessment Now</p>
+        </nuxt-link>
         </div>
       </div>
     </div>

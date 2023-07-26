@@ -1,30 +1,22 @@
 <template>
-  <div class="fixed right-0 left-0 font-medium text-black/70 z-10" :class="scrolled ? 'bg-neutral' : 'bg-transparent'">
-    <div class="flex h-24 md:h-[120px] items-center justify-between px-4 px-md-0 text-neutral-2 w-full max-w-[1240px] mx-auto">
+  <div class="fixed right-0 left-0 font-medium bg-transparent text-black/70 z-10">
+    <div class="bg-light-red my-6 flex h-24 rounded-2xl md:h-20 items-center justify-between px-4 md:px-10 text-white lg:text-grey-2 w-full max-w-[1240px] mx-auto">
       <nuxt-link to="/">
-        <img class="w-[135px] h-[40px]" src="/img/logo.png" />
+        <img class="w-[135px] h-[40px]" src="/img/team-logo.png" />
       </nuxt-link>
       <button ref="hamburger" class="lg:hidden" @click="open = !open">
-        <Icon name="ic:round-menu" size="24px" color="#FFF" />
+        <Icon name="ic:round-menu" size="24px" color="#800020" />
       </button>
-      <ul class="hidden lg:flex flex-col lg:flex-row lg:items-center gap-4 mt-10 lg:mt-0 lg:gap-10">
-          <!-- <li @click="open = !open"><nuxt-link to="/">Home</nuxt-link></li> -->
-          <li @click="open = !open"><nuxt-link to="#about">About Us</nuxt-link></li>
-          <li @click="open = !open"><nuxt-link to="#services">Services<Icon name="ic:round-keyboard-arrow-down" size="24px" color="#FFFFFF" /></nuxt-link></li>
-        </ul>
       <ul class="navbar-links flex items-start" :class="{ 'navbar-links--navopen': open }" v-click-outside="close">
         <button class="lg:hidden absolute right-3" @click="open = !open">
-          <Icon name="ic:round-close" size="24px" color="#FFF" />
+          <Icon name="ic:round-close" size="24px" color="#800020" />
         </button>
-        <ul class="flex flex-col lg:flex-row lg:items-center gap-4 mt-10 lg:mt-0 lg:gap-10">
+        <ul class="flex flex-col lg:flex-row lg:items-center gap-4 mt-10 lg:mt-0 lg:gap-8">
           <!-- <li @click="open = !open"><nuxt-link to="/">Home</nuxt-link></li> -->
-          <li class="lg:hidden" @click="open = !open"><nuxt-link to="#about">About Us</nuxt-link></li>
-          <li class="lg:hidden" @click="open = !open"><nuxt-link to="#services">Services<Icon name="ic:round-keyboard-arrow-down" size="24px" color="#FFFFFF" /></nuxt-link></li>
-          <li @click="open = !open"><nuxt-link to="/team">Join Our Team</nuxt-link></li>
-          <li @click="open = !open"><nuxt-link to="/blog">Blog</nuxt-link></li>
-          <div class="flex flex-col lg:flex-row lg:items-center gap-6">
-            <button class="bg-light-blue border-2 border-light-blue font-semibold p-5 text-neutral">Get In Touch</button>        
-          </div>
+          <li @click="open = !open"><nuxt-link to="/#about">About Us</nuxt-link></li>
+          <li @click="open = !open"><nuxt-link to="/#services">Services</nuxt-link></li>
+          <li @click="open = !open"><nuxt-link to="#">Join Our Team</nuxt-link></li>
+          <li @click="open = !open"><nuxt-link to="#">Blog</nuxt-link></li>
         </ul>
       </ul>
     </div>
@@ -60,18 +52,18 @@ if (typeof window !== 'undefined') {
     &__item {
       margin: 0;
       a:not([data-type=button]) {
-        color: $primary;
+        color: $grey-2;
         text-decoration: none;
         &:hover {
           opacity: 0.9;
-          color: $primary;
+          color: $grey-2;
         }
         @media screen and (min-width: 768px) {
           padding-left: 15px;
           padding-right: 15px;
         }
         &.drop {
-          color: $primary;
+          color: $grey-2;
           padding: 0;
         }
       }

@@ -15,11 +15,9 @@
 </script>
 <template>
   <div class="body">
-    <AppHeader />
-    <main>
+    <NuxtLayout>
       <NuxtPage />
-    </main>
-    <AppFooter />
+    </NuxtLayout>
   </div>
 </template>
 <style lang="scss">

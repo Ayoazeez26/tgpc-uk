@@ -1,12 +1,12 @@
 <template>
-  <div class="text-grey/80">
+  <main class="">
     <HomeHero />
-    <HomeAbout />
+    <HomeSponsor />
+    <HomeCompassion />
     <HomeServices />
-    <HomeEnroll />
-    <HomeEbooks />
     <HomeVideos />
-  </div>
+    <HomeTestimonials />
+  </main>
 </template>
 
 <script setup lang="ts">
