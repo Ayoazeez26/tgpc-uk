@@ -45,13 +45,13 @@
             <a href="#" target="_blank"><Icon name="ri:instagram-fill" size="24px" color="#FFFFFF" /></a>
           </div>
         </div>
-        <div class="flex flex-wrap text-white text-center md:text-left text-lg items-start gap-14 md:gap-[114px]">
+        <div class="flex flex-wrap text-white text-center md:text-left text-lg items-start gap-14 md:w-[500px] md:gap-[114px]">
           <div class="flex flex-col gap-4 w-full md:w-auto">
             <h6 class="text-xl font-semibold text-red-1 ">COMPANY</h6>
             <nuxt-link to="/">Home</nuxt-link>
-            <nuxt-link to="/about">About Us</nuxt-link>
-            <nuxt-link class="min-w-max" to="/projects">Join Our Team</nuxt-link>
-            <nuxt-link to="/services">Services<Icon name="ic:round-keyboard-arrow-down" size="24px" color="#FFFFFF" /></nuxt-link>
+            <nuxt-link to="#about">About Us</nuxt-link>
+            <nuxt-link class="min-w-max" to="/team">Join Our Team</nuxt-link>
+            <nuxt-link to="#services">Services<Icon name="ic:round-keyboard-arrow-down" size="24px" color="#FFFFFF" /></nuxt-link>
           </div>
           <!-- <div class="flex flex-col">
             <h6 class="text-xl font-semibold text-white ">Social Media</h6>
@@ -60,7 +60,7 @@
             <a href="#" target="_blank">Twitter</a>
             <a href="#" target="_blank">Instagram</a>
           </div> -->
-          <div class="flex flex-col gap-4 w-full md:max-w-[200px]">
+          <div class="flex flex-col gap-4 w-full md:max-w-[210px]">
             <h6 class="text-xl font-semibold text-red-1 uppercase ">Contact Us</h6>
             <p>01708555599</p>
             <p>07484939652</p>
