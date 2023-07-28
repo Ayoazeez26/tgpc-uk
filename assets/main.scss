@@ -12,6 +12,11 @@ body {
   scrollbar-color: #FFF $grey;
 }
 
+*::marker {
+  display: flex !important;
+  align-items: center;
+}
+
 /* Works on Chrome/Edge/Safari */
 // ::-webkit-scrollbar {
 //   -webkit-appearance: none;

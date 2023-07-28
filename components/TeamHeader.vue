@@ -16,7 +16,7 @@
           <li @click="open = !open"><nuxt-link to="/#about">About Us</nuxt-link></li>
           <li @click="open = !open"><nuxt-link to="/#services">Services</nuxt-link></li>
           <li @click="open = !open"><nuxt-link to="#">Join Our Team</nuxt-link></li>
-          <li @click="open = !open"><nuxt-link to="#">Blog</nuxt-link></li>
+          <li @click="open = !open"><nuxt-link to="/">Blog</nuxt-link></li>
         </ul>
       </ul>
     </div>
@@ -42,6 +42,9 @@ if (typeof window !== 'undefined') {
 </script>
 
 <style lang="scss" scoped>
+.router-link-exact-active {
+  color: $primary;
+}
 .navbar {
 
   &-links {

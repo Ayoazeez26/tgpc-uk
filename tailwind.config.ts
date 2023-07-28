@@ -19,7 +19,7 @@ export default <Partial<Config>>{
         'neutral-2': '#FBFBFB',
         'grey-2': '#535C5F',
         'grey-3': '#7E8A8D',
-        'grey-4': '#4D5454',
+        'grey-4': '#FFFDF3',
         'grey-5': '#808484',
         'grey-6': '#333B3B',
         'grey-7': '#E5E7E7',

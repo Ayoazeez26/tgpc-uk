@@ -5,30 +5,35 @@ const roles = ref([
     title: "Product Designer",
     category: "Design",
     type: 'Remote',
+    to: '/job',
     duration: 'Contract',
   },
   {
     title: "Engineering Manager",
     category: "Software Development",
     type: 'Semi-Remote',
+    to: '/job',
     duration: 'Part-time',
   },
   {
     title: "Customer Success Manager",
     category: "Customer Success",
     type: 'On-site',
+    to: '/job',
     duration: 'Full-time',
   },
   {
     title: "Account Executive",
     category: "Sales",
     type: 'Remote',
+    to: '/job',
     duration: 'Part-time',
   },
   {
     title: "SEO Marketing Manager",
     category: "Marketing",
     type: 'Semi-Remote',
+    to: '/job',
     duration: 'Full-time',
   },
 ]);
@@ -43,7 +48,7 @@ const displayRoles = computed(() => {
 </script>
 <template>
   <div class="w-full max-w-[853px] mx-auto pb-[60px] md:pb-[120px] overflow-x-hidden relative">
-    <div class="flex mx-4 md:mx-0 md:justify-center gap-x-2 my-8 max-w-[828px] w-full relative overflow-x-scroll lg:py-[64px]">
+    <div class="flex mx-4 md:mx-0 md:justify-center gap-x-2 my-8 max-w-[828px] w-full relative overflow-x-auto lg:py-[64px]">
       <button
         class="font-semibold min-w-max px-[14px] py-[10px] tracking-wide rounded-lg cursor-pointer"
         :class="active === 'all' ? 'text-primary bg-red-1' : 'text-grey-3'"
@@ -93,7 +98,7 @@ const displayRoles = computed(() => {
       <div v-for="(role, index) in displayRoles" :key="index" class="p-6 rounded-2xl border border-primary w-full max-w-[768px]">
         <div class="flex justify-between mb-2">
           <p class="text-primary font-medium tracking-wide">{{ role.category }}</p>
-          <nuxt-link to="#" class="text-primary font-semibold tracking-wide"
+          <nuxt-link :to="role.to" class="text-primary font-semibold tracking-wide"
             >Apply
             <Icon
               name="material-symbols:arrow-right-alt"
