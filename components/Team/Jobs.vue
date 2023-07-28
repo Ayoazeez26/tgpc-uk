@@ -2,40 +2,40 @@
 const active = ref("all");
 const roles = ref([
   {
-    title: "Product Designer",
-    category: "Design",
-    type: 'Remote',
+    title: "Mental Health Home Care Registered Manager",
+    category: "Service",
+    type: 'On Site',
     to: '/job',
-    duration: 'Contract',
+    duration: 'Full Time',
   },
-  {
-    title: "Engineering Manager",
-    category: "Software Development",
-    type: 'Semi-Remote',
-    to: '/job',
-    duration: 'Part-time',
-  },
-  {
-    title: "Customer Success Manager",
-    category: "Customer Success",
-    type: 'On-site',
-    to: '/job',
-    duration: 'Full-time',
-  },
-  {
-    title: "Account Executive",
-    category: "Sales",
-    type: 'Remote',
-    to: '/job',
-    duration: 'Part-time',
-  },
-  {
-    title: "SEO Marketing Manager",
-    category: "Marketing",
-    type: 'Semi-Remote',
-    to: '/job',
-    duration: 'Full-time',
-  },
+  // {
+  //   title: "Engineering Manager",
+  //   category: "Software Development",
+  //   type: 'Semi-Remote',
+  //   to: '/job',
+  //   duration: 'Part-time',
+  // },
+  // {
+  //   title: "Customer Success Manager",
+  //   category: "Customer Success",
+  //   type: 'On-site',
+  //   to: '/job',
+  //   duration: 'Full-time',
+  // },
+  // {
+  //   title: "Account Executive",
+  //   category: "Sales",
+  //   type: 'Remote',
+  //   to: '/job',
+  //   duration: 'Part-time',
+  // },
+  // {
+  //   title: "SEO Marketing Manager",
+  //   category: "Marketing",
+  //   type: 'Semi-Remote',
+  //   to: '/job',
+  //   duration: 'Full-time',
+  // },
 ]);
 
 const displayRoles = computed(() => {
@@ -47,8 +47,8 @@ const displayRoles = computed(() => {
 })
 </script>
 <template>
-  <div class="w-full max-w-[853px] mx-auto pb-[60px] md:pb-[120px] overflow-x-hidden relative">
-    <div class="flex mx-4 md:mx-0 md:justify-center gap-x-2 my-8 max-w-[828px] w-full relative overflow-x-auto lg:py-[64px]">
+  <div class="w-full max-w-[853px] mx-auto py-[60px] md:py-[120px] overflow-x-hidden relative">
+    <!-- <div class="flex mx-4 md:mx-0 md:justify-center gap-x-2 my-8 max-w-[828px] w-full relative overflow-x-auto lg:py-[64px]">
       <button
         class="font-semibold min-w-max px-[14px] py-[10px] tracking-wide rounded-lg cursor-pointer"
         :class="active === 'all' ? 'text-primary bg-red-1' : 'text-grey-3'"
@@ -93,7 +93,7 @@ const displayRoles = computed(() => {
       >
         Marketing
       </button>
-    </div>
+    </div> -->
     <div class="flex flex-col items-center gap-6 px-4 md:px-0">
       <div v-for="(role, index) in displayRoles" :key="index" class="p-6 rounded-2xl border border-primary w-full max-w-[768px]">
         <div class="flex justify-between mb-2">
