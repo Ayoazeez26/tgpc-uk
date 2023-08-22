@@ -5,7 +5,7 @@
       <div class="flex flex-col md:flex-row justify-between items-center w-full max-w-[1240px]">
         <img
           class="w-full max-w-[612px]"
-          src="/img/Content.png"
+          src="/img/content.png"
           alt="content"
         />
         <div class="flex flex-col w-full max-w-[572px]">
