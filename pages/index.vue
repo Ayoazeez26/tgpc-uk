@@ -1,20 +1,19 @@
 <template>
-  <main class="">
-    <AppHeader />
-    <HomeHero />
-    <HomeSponsor />
+  <div class="body">
+    <main class="text-primary">
+      <AppHeader />
+      <HomeHero />
+      <HomeServices />
+      <HomeTeam />
+      <HomeTestimonials />
+      <!-- <HomeSponsor />
     <HomeCompassion />
-    <HomeServices />
-    <HomeVideos />
-    <HomeTestimonials />
+    <HomeVideos /> -->
+    </main>
     <AppFooter />
-  </main>
+  </div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts"></script>
 
-</script>
-
-<style scoped>
-
-</style>
+<style scoped></style>

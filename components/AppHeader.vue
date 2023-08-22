@@ -1,29 +1,30 @@
 <template>
-  <div class="fixed right-0 left-0 font-medium text-black/70 z-10" :class="scrolled ? 'bg-neutral' : 'bg-transparent'">
-    <div class="flex h-24 md:h-[120px] items-center justify-between px-4 px-md-0 text-neutral-2 w-full max-w-[1240px] mx-auto">
+  <div class="fixed right-0 left-0 font-medium text-grey z-10 bg-white">
+    <div class="flex h-24 md:h-[120px] items-center justify-between px-4 px-md-0 w-full max-w-[1240px] mx-auto">
       <nuxt-link to="/">
-        <img class="w-[135px] h-[40px]" src="/img/logo.png" />
+        <img class="w-[170px] h-[40px]" src="/img/logo.png" />
       </nuxt-link>
       <button ref="hamburger" class="lg:hidden" @click="open = !open">
-        <Icon name="ic:round-menu" size="24px" color="#FFF" />
+        <Icon name="ic:round-menu" size="24px" color="#1B5588" />
       </button>
       <ul class="hidden lg:flex flex-col lg:flex-row lg:items-center gap-4 mt-10 lg:mt-0 lg:gap-10">
-          <!-- <li @click="open = !open"><nuxt-link to="/">Home</nuxt-link></li> -->
-          <li @click="open = !open"><nuxt-link to="#about">About Us</nuxt-link></li>
-          <li @click="open = !open"><nuxt-link to="#services">Services<Icon name="ic:round-keyboard-arrow-down" size="24px" color="#FFFFFF" /></nuxt-link></li>
+          <li @click="open = !open"><nuxt-link to="/">Home</nuxt-link></li>
+          <li @click="open = !open"><nuxt-link to="/about">About Us</nuxt-link></li>
+          <li @click="open = !open"><nuxt-link to="/service">Services</nuxt-link></li>
+          <li @click="open = !open"><nuxt-link to="#services">Find Jobs<Icon name="ic:round-keyboard-arrow-down" size="24px" color="#5A5A59" /></nuxt-link></li>
         </ul>
       <ul class="navbar-links flex items-start" :class="{ 'navbar-links--navopen': open }" v-click-outside="close">
         <button class="lg:hidden absolute right-3" @click="open = !open">
-          <Icon name="ic:round-close" size="24px" color="#FFF" />
+          <Icon name="ic:round-close" size="24px" color="#1B5588" />
         </button>
         <ul class="flex flex-col lg:flex-row lg:items-center gap-4 mt-10 lg:mt-0 lg:gap-10">
-          <!-- <li @click="open = !open"><nuxt-link to="/">Home</nuxt-link></li> -->
-          <li class="lg:hidden" @click="open = !open"><nuxt-link to="#about">About Us</nuxt-link></li>
-          <li class="lg:hidden" @click="open = !open"><nuxt-link to="#services">Services<Icon name="ic:round-keyboard-arrow-down" size="24px" color="#FFFFFF" /></nuxt-link></li>
-          <li @click="open = !open"><nuxt-link to="/team">Join Our Team</nuxt-link></li>
-          <li @click="open = !open"><nuxt-link to="#">Blog</nuxt-link></li>
-          <div class="flex flex-col lg:flex-row lg:items-center gap-6">
-            <button class="bg-light-blue border-2 border-light-blue font-semibold p-5 text-neutral">Get In Touch</button>        
+          <li class="lg:hidden" @click="open = !open"><nuxt-link to="/">Home</nuxt-link></li>
+          <li class="lg:hidden" @click="open = !open"><nuxt-link to="/about">About Us</nuxt-link></li>
+          <li class="lg:hidden" @click="open = !open"><nuxt-link to="/service">Services<Icon name="ic:round-keyboard-arrow-down" size="24px" color="#FFFFFF" /></nuxt-link></li>
+          <li class="lg:hidden" @click="open = !open"><nuxt-link to="/team">Find Jobs</nuxt-link></li>
+          <div class="flex flex-col lg:flex-row lg:items-center gap-4">
+            <button class="bg-white border-2 border-secondary font-semibold px-4 py-3 w-[160px] rounded-lg text-secondary">Book Staff</button>        
+            <button class="bg-secondary border-2 border-secondary font-semibold px-4 py-3 w-[160px] rounded-lg text-white">Register Now!</button>        
           </div>
         </ul>
       </ul>
@@ -107,7 +108,7 @@ if (typeof window !== 'undefined') {
       right: 0;
       width: 500px;
       max-width: 100vw;
-      background-color: $neutral;
+      background-color: white;
       z-index: 100;
       &__toggle {
         display: none;

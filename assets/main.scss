@@ -50,7 +50,7 @@ body {
 //   color: $primary;
 // }
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Rebond Grotesque', sans-serif;
+  color: $head;
 }
 .swiper {
   width: 100%;
@@ -82,4 +82,28 @@ h1, h2, h3, h4, h5, h6 {
       border: 1px solid black;
     }
   }
+}
+.carousel__item {
+  min-height: 200px;
+  width: 100%;
+  background-color: white;
+  font-size: 20px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel__slide {
+  padding: 10px;
+}
+
+.carousel__prev,
+.carousel__next {
+  border-radius: 8px;
+  border: 1px solid #d7d7d6;
+  background: #fff;
+  padding: 6px;
+  width: auto;
+  height: auto;
 }

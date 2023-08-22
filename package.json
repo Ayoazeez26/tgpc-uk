@@ -19,6 +19,7 @@
   "dependencies": {
     "click-outside-vue3": "^4.0.1",
     "nuxt-swiper": "^1.1.1",
-    "sass": "^1.63.6"
+    "sass": "^1.63.6",
+    "vue3-carousel-nuxt": "^1.1.0"
   }
 }

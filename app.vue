@@ -14,7 +14,7 @@
 // })
 </script>
 <template>
-  <div class="body">
+  <div>
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>

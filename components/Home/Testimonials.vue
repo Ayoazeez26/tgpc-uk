@@ -2,76 +2,89 @@
 import { ref } from "vue";
 const prevClicked = ref(false);
 const nextClicked = ref(false);
-
-const services = ref([
+const testimoinials = ref([
   {
-    title: "Gary. G Essex - Domicillary care",
-    desc: "“Highly recommended! Crystalize Care Services excelled in communication, personalized care, and building a strong rapport with my Aunt. They went above and beyond, showing genuine care and dedication to their job.”",
-    image: "gary",
+    img: "jessie",
+    title: "Senior Nurse",
+    name: "Jessie Reyez",
+    desc: "Wana Services helped me find a job that perfectly matched my skills and preferences. I am grateful for their support and highly recommend their serviecs.",
+    stars: 5,
   },
   {
-    title: "Gary. G Essex - Domicillary care",
-    desc: "“Highly recommended! Crystalize Care Services excelled in communication, personalized care, and building a strong rapport with my Aunt. They went above and beyond, showing genuine care and dedication to their job.”",
-    image: "essex",
-  },
-  {
-    title: "Gary. G Essex - Domicillary care",
-    desc: "“Highly recommended! Crystalize Care Services excelled in communication, personalized care, and building a strong rapport with my Aunt. They went above and beyond, showing genuine care and dedication to their job.”",
-    image: "carer",
+    img: "jessie",
+    title: "Senior Nurse",
+    name: "Jessie Reyez",
+    desc: "Wana Services helped me find a job that perfectly matched my skills and preferences. I am grateful for their support and highly recommend their serviecs.",
+    stars: 5,
   },
 ]);
-
-const getSlidesPerView = computed(() => {
-  if (window.innerWidth <= 768) {
-    return 1;
-  } else if (window.innerWidth <= 1190) {
-    return 2;
-  } else {
-    return 3;
-  }
-});
-
-const getSpaceBetween = computed(() => {
-  if (window.innerWidth >= 768) {
-    return 20;
-  } else {
-    return undefined;
-  }
-});
-
-const resetBtnValues = () => {
-  prevClicked.value = false;
-  nextClicked.value = false;
+const carousel = ref(null);
+const next = () => {
+  carousel.value.next();
 };
+
+const prev = () => {
+  carousel.value.prev();
+}
 </script>
 <template>
-  <div class="bg-light-red py-[60px] lg:py-[120px] relative">
-    <img class="absolute top-0 right-0 z-0" src="/svg/arrowhead.svg" alt="arrow head">
+  <div class="py-[120px] lg:pb-[240px] relative">
     <div class="flex flex-col mx-auto px-4 xl:px-0 w-full max-w-[1240px]">
-      <div class="flex lg:items-center justify-between w-full mb-6 md:mb-24">
-        <div class="">
-          <h2
-            class="font-semibold leading-snug text-2xl md:text-3xl lg:text-5xl text-black mb-3 w-full max-w-[497px]"
-          >
-            Patients Have Said
-          </h2>
-          <div class="hidden gap-6 md:flex">
+      <div class="flex flex-col justify-between lg:flex-row lg:items-center w-full">
+        <div class="md:w-[572px] relative">
+          <div class="absolute bottom-0 right-0 gap-4 flex z-[1]">
             <button
-              @click="prevClicked = true"
-              class="flex min-w-max bg-red-1 w-20 h-20 rounded-full items-center justify-center mt-2"
+              @click="prev"
+              class="flex min-w-max bg-white border border-grey-3 w-14 md:w-16 h-14 md:h-16 rounded-lg items-center justify-center mt-2"
             >
-              <img src="/svg/left.svg" alt="right icon" />
+              <Icon name="mdi:arrow-left" size="28" />
             </button>
             <button
-              @click="nextClicked = true"
-              class="flex min-w-max bg-red-1 w-20 h-20 rounded-full items-center justify-center mt-2"
+              @click="next"
+              class="flex min-w-max bg-white border border-grey-3 w-14 md:w-16 h-14 md:h-16 rounded-lg items-center justify-center mt-2"
             >
-              <img src="/svg/right.svg" alt="right icon" />
+              <Icon name="mdi:arrow-right" size="28"/>
             </button>
           </div>
+          <Carousel ref="carousel" :items-to-show="1" class="w-full">
+            <Slide v-for="(person, index) in testimoinials" :key="index">
+              <div
+                class="carousel__item max-w-[528px] flex flex-col items-start"
+              >
+                <img class="w-16" src="/img/quote.png" alt="quote">
+                <p class="text-xl leading-[32px] md:text-[22px] mt-10 font-semibold">{{ person.desc }}</p>
+                <div class="flex mt-6 mb-10 gap-2">
+                  <div class="" v-for="star in person.stars" :key="star">
+                    <img class="w-6" src="/svg/star.svg" alt="star" />
+                  </div>
+                </div>
+                <div class="flex gap-4">
+                  <div class="relative max-w-fit">
+                    <img class="w-[56px]" :src="`/img/${person.img}.png`" />
+                  </div>
+                  <div class="flex flex-col gap-2">
+                    <p class="font-bold text-base">
+                      {{ person.name }}
+                    </p>
+                    <p class="text-sm">
+                      {{ person.title }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </Slide>
+            <template #addons>
+              <Navigation class="invisible" />
+            </template>
+          </Carousel>
         </div>
+        <img
+          class="w-full my-10 md:mt-0 max-w-[612px]"
+          src="/img/care-group.png"
+          alt="care group"
+        />
       </div>
-      <Swiper
+      <!-- <Swiper
         :modules="[SwiperFreeMode]"
         :height="400"
         :loop="true"
@@ -89,16 +102,11 @@ const resetBtnValues = () => {
           >
             <div class="relative max-w-fit">
               <img class="w-[64px]" :src="`/img/${service.image}.png`" />
-              <img
-                class="absolute -right-3 top-5 w-6"
-                src="/img/quotes.png"
-                alt="quotes"
-              />
             </div>
             <p class="text-lg font-medium text-grey mt-6">
               {{ service.title }}
             </p>
-            <p class="text-grey-2 text-lg mt-2">{{ service.desc }}</p>
+            <p class="mt-2">{{ service.desc }}</p>
           </div>
         </SwiperSlide>
         <SwiperControls
@@ -121,9 +129,14 @@ const resetBtnValues = () => {
             <img src="/svg/right.svg" alt="right icon" />
           </button>
         </div>
-      </Swiper>
+      </Swiper> -->
     </div>
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.carousel__item {
+  align-items: start;
+  text-align: left;
+}
+</style>

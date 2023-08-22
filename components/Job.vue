@@ -38,184 +38,229 @@ const roles = ref([
   },
 ]);
 
-const displayRoles = computed(() => {
-  if (active.value === "all") {
-    return roles.value;
+const submitForm = () => {
+  console.log("submitting form");
+};
+
+const errorMsg = reactive({});
+const firstname = ref("");
+const lastname = ref("");
+const company = ref("");
+const email = ref("");
+const message = ref("");
+const subject = ref("");
+const phone = ref("");
+
+const validateEmail = (email) => {
+  if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+    errorMsg.email = "";
   } else {
-    return roles.value.filter((val) => active.value === val.category);
+    errorMsg.email = "Invalid Email Address";
   }
+};
+
+const validateInput = (input, value) => {
+  if (value) {
+    errorMsg[input] = "";
+  } else {
+    errorMsg[input] = "Required";
+  }
+};
+
+watch(name, (value) => {
+  validateInput("name", value);
+});
+
+watch(email, (value) => {
+  validateEmail(value);
+});
+
+watch(message, (value) => {
+  validateInput("message", value);
 });
 </script>
 <template>
   <div
-    class="w-full max-w-[1240px] mx-auto py-[60px] md:py-[180px] text-grey-2 overflow-x-hidden relative"
+    class="w-full max-w-[1240px] mx-auto py-[150px] md:py-[180px] overflow-x-hidden relative"
   >
-    <div class="w-full flex flex-col md:flex-row justify-between lg:gap-[120px]">
-      <div class="flex flex-col mx-4 xl:mx-0 gap-x-2 max-w-[717px] w-full">
-        <h1 class="text-grey font-medium text-[40px]">
-          Mental Health Home Care Registered Manager
-        </h1>
-        <div class="flex gap-4 mt-5">
-          <div
-            class="border border-primary rounded-full gap-2 flex items-center px-3 py-2"
-          >
-            <img src="/svg/pin.svg" alt="pin" />
-            <p class="text-primary font-medium pt-1 tracking-wide">
-              Location: Rainham, Essex
-            </p>
-          </div>
-          <div
-            class="border border-primary rounded-full gap-2 flex items-center px-3 py-2"
-          >
-            <img src="/svg/currency.svg" alt="pin" />
-            <p class="text-primary font-medium pt-1 tracking-wide">
-              Salary: £35k
-            </p>
-          </div>
-        </div>
-        <div
-          class="border border-primary rounded-full gap-2 flex items-center px-3 py-2 mt-4 max-w-max"
-        >
-          <img src="/svg/time.svg" alt="pin" />
-          <p class="text-primary font-medium pt-1 tracking-wide">
-            Full time, 40 hours per week, flexible with some weekend and on-call
-            duties
-          </p>
-        </div>
-        <p class="mt-5 text-lg tracking-wide">
-          Crystalize Care Services is a leading provider of high quality home
-          care services for people with mental health needs in Essex. We are
-          looking for a passionate, dedicated and experienced registered manager
-          to join our team and lead the delivery of our services.
+    <div
+      class="w-full flex items-start justify-between lg:gap-[56px]"
+    >
+      <div class="flex flex-col mx-4 xl:mx-0 gap-x-2 md:px-16 max-w-[592px] w-full">
+        <h1 class="text-head font-medium text-[40px]">Get In Touch</h1>
+        <p class="mt-1 text-lg tracking-wide">
+          Our friendly team would love to hear from you
         </p>
-        <div class="mt-10 w-full">
-          <h2 class="text-3xl font-medium">Responsibilities</h2>
-          <p class="mt-5 mb-8 text-lg tracking-wide">
-            As a registered manager, you will be responsible for:
-          </p>
-          <ul class="text-lg tracking-wide list-outside image">
-            <li class="mb-3">
-              Ensuring the delivery of safe, effective and person-centered care
-              in accordance with the Care Quality Commission standards,
-              legislation and best practice guidelines.
-            </li>
-            <li class="mb-3">
-              Managing the day-to-day operations of the service, including
-              budgeting, staffing, quality assurance, risk management and
-              compliance.
-            </li>
-            <li class="mb-3">
-              Developing and .maintaining positive relationships with service
-              users, their families, carers and other professionals involved in
-              their care.
-            </li>
-            <li class="mb-3">
-              Recruiting, training, supervising and appraising staff and
-              ensuring they have the skills, knowledge and support they need to
-              perform their roles.
-            </li>
-            <li class="mb-3">
-              Promoting a culture of continuous improvement, innovation and
-              learning within the service and the organisation.
-            </li>
-            <li class="mb-3">
-              Representing Crystalize Care Services in the local community and
-              building partnerships with other agencies and stakeholders.
-            </li>
-          </ul>
-        </div>
-        <div class="mt-10 w-full">
-          <h2 class="text-3xl font-medium">Qualifications</h2>
-          <p class="mt-5 mb-8 text-lg tracking-wide">
-            To be successful in this role, you will need:
-          </p>
-          <ul class="text-lg tracking-wide list-outside image">
-            <li class="mb-3">
-              A QCF Level 5 in Leadership for Health and Social Care Services or
-              equivalent qualification recognised by the Care Quality
-              Commission, or be willing to attain one.
-            </li>
-            <li class="mb-3">
-              Previous experience of managing a home care service for people
-              with mental health needs.
-            </li>
-            <li class="mb-3">
-              Excellent communication, leadership and organisational skills.
-            </li>
-            <li class="mb-3">
-              A strong commitment to person-centred care and recovery-oriented
-              practice.
-            </li>
-            <li class="mb-3">
-              A good understanding of the mental health legislation,
-              safeguarding procedures and regulatory frameworks.
-            </li>
-            <li class="mb-3">
-              A full UK driving licence and access to your own vehicle.
-            </li>
-          </ul>
-          <p class="mt-5 mb-8 text-lg tracking-wide">
-            If you are interested in this exciting opportunity, please apply by
-            sending your CV and a covering letter to
-            <a
-              class="text-primary font-semibold"
-              href="mailto:crystalizecaretraining@gmail.com"
-              >crystalizecaretraining@gmail.com</a
-            >
-            by 31st August 2023.
-          </p>
-          <p class="mt-5 mb-8 text-lg tracking-wide">
-            Crystalize Care Services is an equal opportunities employer and
-            welcomes applications from all sections of the community.
-          </p>
-        </div>
-      </div>
-      <div
-        class="flex flex-col items-center gap-y-10 px-4 md:px-0 w-full md:max-w-[403px]"
-      >
-        <div
-          class="px-8 py-10 rounded-2xl border border-primary bg-blue-2 w-full"
-        >
-          <div class="flex flex-col items-center justify-between mb-2">
-            <h5 class="text-grey text-xl font-semibold mb-6">
-              Sounds like a match?
-            </h5>
-            <nuxt-link
-              to="/"
-              class="text-grey-4 bg-primary p-6 w-full text-center font-semibold"
-              >Apply Now</nuxt-link
-            >
-          </div>
-        </div>
-        <div
-          class="px-8 py-10 rounded-2xl border border-primary bg-blue-2 w-full"
-        >
-          <div class="flex flex-col items-center justify-between mb-2">
-            <h5 class="text-grey text-xl font-semibold mb-6">Share this job</h5>
-            <div class="flex justify-center md:justify-start gap-3">
-              <a href="#" target="_blank"
-                ><Icon name="ic:round-facebook" size="24px" color="#800020"
-              /></a>
-              <a href="#" target="_blank"
-                ><Icon name="mdi:linkedin" size="24px" color="#800020"
-              /></a>
-              <a href="#" target="_blank"
-                ><Icon name="mdi:twitter-box" size="24px" color="#800020"
-              /></a>
-              <a href="#" target="_blank"
-                ><Icon name="ri:instagram-fill" size="24px" color="#800020"
-              /></a>
+
+        <div class="w-full mt-10">
+          <form
+            id="getLicense"
+            class="w-full flex flex-col items-start"
+            @submit.prevent="submitForm"
+          >
+            <div class="w-full flex flex-col md:flex-row md:gap-4">
+              <div class="w-full">
+                <label for="firstName" class="mb-2">First Name</label>
+                <input
+                  id="firstName"
+                  v-model="firstname"
+                  type="text"
+                  name="firstName"
+                  required
+                  class="border border-grey-6 bg-transparent rounded-lg py-4 pl-6 pr-2 focus:outline-none w-full h-12"
+                  :class="errorMsg.name ? 'border border-red-500' : ''"
+                  placeholder="Enter your full name"
+                />
+                <span v-if="errorMsg.name" class="text-red-500 text-xs mt-1">{{
+                  errorMsg.name
+                }}</span>
+                <span v-else class="text-transparent text-xs mt-1"
+                  >There is no error message</span
+                >
+              </div>
+              <div class="w-full">
+                <label for="firstName" class="mb-2">Last Name</label>
+                <input
+                  id="firstName"
+                  v-model="lastname"
+                  type="text"
+                  name="firstName"
+                  required
+                  class="border border-grey-6 bg-transparent rounded-lg py-4 pl-6 pr-2 focus:outline-none w-full h-12"
+                  :class="errorMsg.name ? 'border border-red-500' : ''"
+                  placeholder="Enter your full name"
+                />
+                <span v-if="errorMsg.name" class="text-red-500 text-xs mt-1">{{
+                  errorMsg.name
+                }}</span>
+                <span v-else class="text-transparent text-xs mt-1"
+                  >There is no error message</span
+                >
+              </div>
             </div>
-          </div>
+            <div class="w-full">
+              <label for="companyName" class="mb-2">Company Name</label>
+              <input
+                id="companyName"
+                v-model="company"
+                type="text"
+                name="companyName"
+                required
+                class="border border-grey-6 bg-transparent rounded-lg py-4 pl-6 pr-2 focus:outline-none w-full h-12"
+                :class="errorMsg.name ? 'border border-red-500' : ''"
+                placeholder="john doe internationals"
+              />
+              <span v-if="errorMsg.name" class="text-red-500 text-xs mt-1">{{
+                errorMsg.name
+              }}</span>
+              <span v-else class="text-transparent text-xs mt-1"
+                >There is no error message</span
+              >
+            </div>
+            <div class="w-full">
+              <label for="phone" class="mb-2">Phone number</label>
+              <input
+                id="phone"
+                v-model="phone"
+                type="text"
+                name="phone"
+                required
+                class="border border-grey-6 bg-transparent rounded-lg py-4 pl-6 pr-2 focus:outline-none w-full h-12"
+                :class="errorMsg.name ? 'border border-red-500' : ''"
+                placeholder="+1(555) 000-000"
+              />
+              <span v-if="errorMsg.name" class="text-red-500 text-xs mt-1">{{
+                errorMsg.name
+              }}</span>
+              <span v-else class="text-transparent text-xs mt-1"
+                >There is no error message</span
+              >
+            </div>
+            <div class="flex w-full mt-3">
+              <div class="flex flex-col w-full">
+                <label for="email" class="mb-2">Email Address</label>
+                <input
+                  id="email"
+                  v-model="email"
+                  type="email"
+                  name="email"
+                  required
+                  class="border border-grey-6 bg-transparent rounded-lg py-4 pl-6 pr-2 focus:outline-none h-12"
+                  :class="errorMsg.email ? 'border border-red-500' : ''"
+                  placeholder="Enter your email address"
+                />
+                <span v-if="errorMsg.email" class="text-red-500 text-xs mt-1">{{
+                  errorMsg.email
+                }}</span>
+                <span v-else class="text-transparent text-xs mt-1"
+                  >There is no error message</span
+                >
+              </div>
+            </div>
+            <div class="w-full">
+              <label for="subject" class="mb-2">Subject</label>
+              <input
+                id="subject"
+                v-model="subject"
+                type="text"
+                name="subject"
+                required
+                class="border border-grey-6 bg-transparent rounded-lg py-4 pl-6 pr-2 focus:outline-none w-full h-12"
+                :class="errorMsg.name ? 'border border-red-500' : ''"
+                placeholder="Subject"
+              />
+              <span v-if="errorMsg.name" class="text-red-500 text-xs mt-1">{{
+                errorMsg.name
+              }}</span>
+              <span v-else class="text-transparent text-xs mt-1"
+                >There is no error message</span
+              >
+            </div>
+            <div class="flex w-full mt-3">
+              <div class="flex flex-col w-full">
+                <label for="message" class="mb-2">Message</label>
+                <textarea
+                  id="message"
+                  v-model="message"
+                  name="message"
+                  rows="5"
+                  cols="30"
+                  class="border border-grey-6 bg-transparent rounded-lg py-4 px-6 focus:outline-none"
+                  placeholder="Leave us a message"
+                  maxlength="500"
+                />
+                <span
+                  v-if="errorMsg.message"
+                  class="text-red-500 text-xs mt-1"
+                  >{{ errorMsg.message }}</span
+                >
+                <span v-else class="text-transparent text-xs mt-1"
+                  >There is no error message</span
+                >
+                <!-- <p class="text-grey-4 italic">
+                * Please limit your message to 500 characters
+              </p> -->
+              </div>
+            </div>
+            <div class="w-full mt-6">
+              <button
+                type="submit"
+                class="liquor-btn min-w-max py-3 px-10 leading-none rounded-lg text-sm sm:text-base bg-secondary text-white w-full hover:bg-secondary/90"
+              >
+                Get Started
+              </button>
+            </div>
+          </form>
         </div>
       </div>
+      <img class="w-full hidden lg:block max-w-[592px]" src="/img/touch.png" alt="touch" />
     </div>
   </div>
 </template>
 
 <style scoped>
 li {
-  background: url("/svg/list.svg") no-repeat left top+5px;
+  background: url("/svg/list.svg") no-repeat left top + 5px;
   padding: 3px 0 3px 40px;
   list-style: none;
   margin: 0;

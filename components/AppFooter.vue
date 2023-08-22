@@ -1,78 +1,63 @@
 <template>
   <footer
     id="footer"
-    class="bg-neutral min-h-[747px] py-20 flex flex-col justify-between px-4"
+    class="bg-blue-3 text-white min-h-[575px] py-20 flex flex-col justify-between px-4"
   >
     <div class="w-full max-w-[1240px] mx-auto">
       <div
-        class="bg-blue-2 flex flex-col items-center text-center rounded-2xl py-8 md:py-10 px-8 w-full"
+        class="bg-blue-2 flex flex-col items-center md:justify-between md:flex-row rounded-2xl p-12 md:p-16 -mt-[180px] md:-mt-[calc(80px+10%)] px-8 w-full"
       >
-        <h3 class="text-2xl md:text-4xl font-semibold text-grey">
-          Want To Book An Assessment Session?
-        </h3>
-        <div class="mt-6 flex flex-col md:flex-row gap-4 md:gap-0 justify-center w-full md:w-auto">
-          <input
-            id="email"
-            v-model="email"
-            type="email"
-            name="email"
-            required
-            class="border border-grey-7 text-white/70 bg-transparent p-6 pr-2 focus:outline-none w-full md:w-[373px]"
-            placeholder="Enter your email address"
-          />
-          <button
-            class="bg-primary p-6 w-full md:w-[140px]"
-          >
-            <p class="text-white font-semibold">Get Started</p>
-        </button>
-        </div>
-      </div>
-      <div class="flex flex-col-reverse md:flex-row items-center justify-between my-20 w-full">
-        <div class="mt-24 md:mt-0">
-          <nuxt-link to="/">
-            <img class="w-[243px]" src="/img/logo-footer.png" />
-          </nuxt-link>
-          <p class="text-light-red/70 text-lg w-full flex flex-col gap-3 max-w-full md:max-w-[310px] mt-6 text-center md:text-left font-medium">
-            <span>6 Celtic Farm Road</span>
-            <span>Rainham</span>
-            <span>Essex</span>
-            <span>RM13 9GP, UK</span>
+        <div class="">
+          <h3 class="text-2xl md:text-[28px] text-white font-semibold">
+            Find Your Dream Healthcare Job
+          </h3>
+          <p class="font-medium mt-3">
+            Join over 500+ people passionate about helping and taking care of
+            people
           </p>
-          <div class="mt-6 flex justify-center md:justify-start gap-3">
-            <a href="#" target="_blank"><Icon name="ic:round-facebook" size="24px" color="#FFFFFF" /></a>
-            <a href="#" target="_blank"><Icon name="mdi:linkedin" size="24px" color="#FFFFFF" /></a>
-            <a href="#" target="_blank"><Icon name="mdi:twitter-box" size="24px" color="#FFFFFF" /></a>
-            <a href="#" target="_blank"><Icon name="ri:instagram-fill" size="24px" color="#FFFFFF" /></a>
-          </div>
         </div>
-        <div class="flex flex-wrap text-white text-center md:text-left text-lg items-start gap-14 md:w-[500px] md:gap-[114px]">
-          <div class="flex flex-col gap-4 w-full md:w-auto">
-            <h6 class="text-xl font-semibold text-red-1 ">COMPANY</h6>
+        <div class="flex flex-col lg:flex-row lg:items-center mt-6 md:mt-0 w-full md:w-auto items-stretch gap-4">
+          <button class="bg-white border-2 border-secondary font-semibold px-4 py-3 md:w-[160px] rounded-lg text-secondary">Learn More</button>        
+          <button class="bg-secondary border-2 border-secondary font-semibold px-4 py-3 md:w-[160px] rounded-lg text-white">Contact</button>        
+          </div>
+      </div>
+      <div
+        class="flex flex-col-reverse md:flex-row items-center justify-center md:mt-[120px] w-full"
+      >
+        <div class="flex flex-col items-center mt-24 md:mt-10">
+          <nuxt-link to="/">
+            <img class="w-[170px]" src="/img/logo.png" />
+          </nuxt-link>
+          <div
+            class="text-sm w-full flex flex-col md:flex-row gap-10 max-w-full md:max-w-[333px] mt-10 md:mt-6 text-center md:text-left font-medium"
+          >
             <nuxt-link to="/">Home</nuxt-link>
             <nuxt-link to="#about">About Us</nuxt-link>
-            <nuxt-link class="min-w-max" to="/team">Join Our Team</nuxt-link>
-            <nuxt-link to="#services">Services<Icon name="ic:round-keyboard-arrow-down" size="24px" color="#FFFFFF" /></nuxt-link>
+            <nuxt-link class="min-w-max" to="/team">Find Jobs</nuxt-link>
+            <nuxt-link class="min-w-max" to="/team">Services</nuxt-link>
           </div>
-          <!-- <div class="flex flex-col">
-            <h6 class="text-xl font-semibold text-white ">Social Media</h6>
-            <a href="#" target="_blank">LinkedIn</a>
-            <a href="#" target="_blank">Facebook</a>
-            <a href="#" target="_blank">Twitter</a>
-            <a href="#" target="_blank">Instagram</a>
+          <!-- <div class="mt-6 flex justify-center md:justify-start gap-3">
+            <a href="#" target="_blank"
+              ><Icon name="ic:round-facebook" size="24px" color="#FFFFFF"
+            /></a>
+            <a href="#" target="_blank"
+              ><Icon name="mdi:linkedin" size="24px" color="#FFFFFF"
+            /></a>
+            <a href="#" target="_blank"
+              ><Icon name="mdi:twitter-box" size="24px" color="#FFFFFF"
+            /></a>
+            <a href="#" target="_blank"
+              ><Icon name="ri:instagram-fill" size="24px" color="#FFFFFF"
+            /></a>
           </div> -->
-          <div class="flex flex-col gap-4 w-full md:max-w-[210px]">
-            <h6 class="text-xl font-semibold text-red-1 uppercase ">Contact Us</h6>
-            <p>01708555599</p>
-            <p>07484939652</p>
-            <p class=" break-words"><a class="underline break-words" href="mailto:info@crystalizecare.co.uk">info@crystalizecare.co.uk</a></p>
-            <!-- <p class="">Company's Address</p> -->
-          </div>
         </div>
       </div>
-      <div class="border-t border-white py-6">
-        <p class="text-center leading-snug text-white text-lg font-medium">
-          © {{ new Date().getFullYear() }} Crystallise Care Services l All CCS Rights
-          Reserved.
+      <div class="border-t border-white mt-10 text-sm pt-10">
+        <p class="text-center leading-snug font-medium mb-4">
+          Designed by TGPC Media
+        </p>
+        <p class="text-center leading-snug font-medium">
+          © {{ new Date().getFullYear() }} Wana Services. All Rights Reserved.
         </p>
       </div>
     </div>
@@ -80,7 +65,7 @@
 </template>
 
 <script setup lang="ts">
-const email = ref('');
+const email = ref("");
 </script>
 
 <style scoped></style>

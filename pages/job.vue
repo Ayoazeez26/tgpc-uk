@@ -1,12 +1,11 @@
 <template>
-  <nuxt-layout name="team">
+  <div class="body text-primary">
     <main>
-      <TeamHeader />
+      <AppHeader />
       <Job />
-      <HomeTestimonials />
-      <AppFooter />
     </main>
-  </nuxt-layout>
+    <AppFooter />
+  </div>
 </template>
 
 <script setup lang="ts"></script>
