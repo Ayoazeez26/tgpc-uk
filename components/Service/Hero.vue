@@ -3,11 +3,11 @@
   <div class="pt-20 px-4 xl:px-0 md:pt-28 w-full">
     <div class="w-full max-w-[1240px] flex mx-auto">
       <div class="flex flex-col md:flex-row justify-between items-center w-full max-w-[1240px]">
-        <img
+        <!-- <img
           class="w-full max-w-[612px]"
           src="/img/content.png"
           alt="content"
-        />
+        /> -->
         <div class="flex flex-col w-full max-w-[572px]">
           <h1
             class="font-semibold text-head leading-snug text-[38px] lg:leading-snug lg:text-[48px]"
