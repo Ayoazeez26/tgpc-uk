@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
     head: {
-      title: "Crystallize Care Services",
+      title: "Wana Services",
       link: [{ rel: "icon", type: "image/png", href: "/favicon.ico" }],
       meta: [
         { charset: "utf-8" },
@@ -12,7 +12,7 @@ export default defineNuxtConfig({
         {
           name: "description",
           content:
-            "We're here to support you in reclaiming freedom, connecting with your community, and reaching your full potential. No matter your age or situation, we believe in unlocking boundless adventures for all.",
+            "we specialize in sourcing local job opportunities for Nurses, Care Assistants, Support Workers, and Social Workers. Our mission is to help healthcare professionals find fulfilling careers in their own communities.",
         },
       ],
       script: [
