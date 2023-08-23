@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const values = ref([
   {
-    title: "Core and Passion",
+    title: "Respect and Fairness",
     desc: "Everyone deserves to be treated with respect and fairness, and that our clients and candidates are essential to their success.",
   },
   {
@@ -25,7 +25,9 @@ const values = ref([
 <template>
   <div class="bg-grey-4 px-4 xl:px-0 py-14 w-full">
     <div class="w-full max-w-[1240px] flex mx-auto">
-      <div class="flex flex-col items-center justify-center w-full max-w-[1240px]">
+      <div
+        class="flex flex-col items-center justify-center w-full max-w-[1240px]"
+      >
         <div class="flex flex-col text-center w-full max-w-[612px]">
           <h1
             class="font-semibold text-head leading-snug text-[38px] lg:leading-snug lg:text-[48px] w-full max-w-[572px]"
@@ -40,8 +42,10 @@ const values = ref([
         <div class="mt-14 flex gap-6 justify-center flex-wrap w-full">
           <div v-for="(value, index) in values" :key="index" class="card">
             <div class="flex justify-between w-full items-center">
-              <p class="text-head text-lg font-semibold leading-[34px]">{{ value.title }}</p>
-              <img src="/svg/spark.svg" alt="spark">
+              <p class="text-head text-lg font-semibold leading-[34px]">
+                {{ value.title }}
+              </p>
+              <img src="/svg/spark.svg" alt="spark" />
             </div>
             <p class="leading-[28px] text-left">{{ value.desc }}</p>
           </div>
