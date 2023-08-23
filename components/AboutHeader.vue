@@ -23,7 +23,7 @@
           <nuxt-link to="/service">Services</nuxt-link>
         </li>
         <li @click="open = !open">
-          <nuxt-link to="#services"
+          <nuxt-link to="/job"
             >Find Jobs<Icon
               name="ic:round-keyboard-arrow-down"
               size="24px"
@@ -57,7 +57,7 @@
             /></nuxt-link>
           </li>
           <li class="lg:hidden" @click="open = !open">
-            <nuxt-link to="/team">Find Jobs</nuxt-link>
+            <nuxt-link to="/job">Find Jobs</nuxt-link>
           </li>
           <div class="flex flex-col lg:flex-row lg:items-center gap-4">
             <button
