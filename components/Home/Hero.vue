@@ -1,8 +1,8 @@
 <script setup lang="ts"></script>
 <template>
   <div class="pt-20 px-4 xl:px-0 md:py-28 w-full">
-    <img class="hidden lg:block" src="/img/video.png" alt="video image" />
-    <img class="lg:hidden" src="/img/video-mob.png" alt="video image" />
+    <img class="hidden lg:block" src="/img/hero-img.png" alt="video image" />
+    <img class="lg:hidden" src="/img/hero-img-mob.png" alt="video image" />
     <div
       class="w-full max-w-[1240px] flex mx-auto mt-10 lg:mt-[68px]"
     >
