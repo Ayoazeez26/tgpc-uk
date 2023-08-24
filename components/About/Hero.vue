@@ -5,7 +5,7 @@
       class="w-full max-w-[1240px] flex mx-auto mt-10 lg:mt-[68px]"
     >
       <div class="flex justify-center w-full max-w-[1240px]">
-        <div class="flex flex-col text-center w-full max-w-[612px]">
+        <div class="flex flex-col text-center w-full max-w-[612px] lg:pr-4 xl:pr-0">
           <h1
             class="font-semibold text-head leading-snug text-[38px] lg:leading-snug lg:text-[48px] w-full max-w-[572px]"
           >

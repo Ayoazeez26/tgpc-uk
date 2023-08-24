@@ -1,6 +1,6 @@
 <script setup lang="ts"></script>
 <template>
-  <div class="pt-20 px-4 xl:px-0 md:pt-28 w-full">
+  <div class="py-20 px-4 xl:px-0 md:pt-28 md:pb-[120px] w-full">
     <div class="w-full max-w-[1240px] flex mx-auto">
       <div class="flex flex-col md:flex-row justify-between items-center w-full max-w-[1240px]">
         <img

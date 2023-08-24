@@ -1,17 +1,8 @@
 <script setup lang="ts">
-// const seoData = reactive({
-//   title: 'O.C. Management Consulting',
-//   description: 'Leading management consulting company specializing in Tender, Grant, and Bid writing and management as well as developing quality assurance frameworks and enabling successful license applications.',
-//   img: '/img/logo.png'
-// });
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// useSeoMeta({
-//   title: seoData.title,
-//   ogTitle: seoData.title,
-//   description: seoData.description,
-//   ogDescription: seoData.description,
-//   ogImage: seoData.img
-// })
+gsap.registerPlugin(ScrollTrigger);
 </script>
 <template>
   <div>
