@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 const tooltip = ref(null);
 const secondsection = ref(null);
+const placeImg = ref(null);
 const lastImg = ref(null);
 const imgUrls = ref([
   "/img/service.png",
@@ -15,6 +16,7 @@ const classNameToAdd = "absolute";
 const classNameToRemove = "hidden";
 
 onMounted(() => {
+  placeImg.value.src = "/img/service.png";
   mm.add("(min-width: 1024px)", () => {
     ScrollTrigger.create({
       trigger: secondsection.value,
@@ -125,8 +127,8 @@ onMounted(() => {
               workers, Cleaners, Porters, Domestic staff.
             </p>
           </div>
-          <div ref="tooltip" class="max-w-[612px] right-4 top-0">
-            <img class="tooltip-img w-full" src="/img/service.png" />
+          <div ref="tooltip" class="max-w-[612px] right-0 top-0">
+            <img ref="placeImg" class="tooltip-img w-full" src="/img/service.png" />
           </div>
         </div>
       </div>
