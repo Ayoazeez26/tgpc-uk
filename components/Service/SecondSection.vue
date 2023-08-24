@@ -57,7 +57,7 @@ onMounted(() => {
           trigger: section,
           start: "top-=50% center-=250",
           end: "bottom center-=200",
-          markers: true,
+          // markers: true,
           onEnter: () => {
             console.log(index);
             tooltip.value.classList.add(classNameToAdd);
