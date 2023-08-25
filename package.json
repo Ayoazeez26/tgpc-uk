@@ -21,6 +21,7 @@
     "gsap": "^3.12.2",
     "nuxt-swiper": "^1.1.1",
     "sass": "^1.63.6",
+    "smooth-scrollbar": "^8.8.4",
     "vue3-carousel-nuxt": "^1.1.0"
   }
 }
