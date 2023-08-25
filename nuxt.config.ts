@@ -48,4 +48,7 @@ export default defineNuxtConfig({
       "League+Spartan": [400, 500, 600, 700],
     },
   },
+  build: {
+    transpile: ['gsap']
+  }
 });

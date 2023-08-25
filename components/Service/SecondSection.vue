@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+const { $gsap, $ScrollTrigger } = useNuxtApp();
 const tooltip = ref(null);
 const secondsection = ref(null);
 const placeImg = ref(null);
@@ -11,14 +10,14 @@ const imgUrls = ref([
   "/img/medicals.png",
   "/img/find.png",
 ]);
-const mm = gsap.matchMedia();
+const mm = $gsap.matchMedia();
 const classNameToAdd = "absolute";
 const classNameToRemove = "hidden";
 
 onMounted(() => {
   placeImg.value.src = "/img/service.png";
   mm.add("(min-width: 1024px)", () => {
-    ScrollTrigger.create({
+    $ScrollTrigger.create({
       trigger: secondsection.value,
       pin: tooltip.value,
       // Trigger Scroller
@@ -31,14 +30,14 @@ onMounted(() => {
 
     sections.forEach((section, index) => {
       if (index === 3) {
-        ScrollTrigger.create({
+        $ScrollTrigger.create({
           trigger: section,
           start: "top-=50% center-=250",
           end: "top+=20 center-=200",
           // markers: true,
           onEnter: () => {
             console.log(index);
-            gsap.set(".tooltip-img", {
+            $gsap.set(".tooltip-img", {
               attr: { src: imgUrls.value[index] },
             });
           },
@@ -49,13 +48,13 @@ onMounted(() => {
           onEnterBack: () => {
             tooltip.value.classList.remove(classNameToRemove);
             lastImg.value.classList.add(classNameToRemove);
-            gsap.set(".tooltip-img", {
+            $gsap.set(".tooltip-img", {
               attr: { src: imgUrls.value[index] },
             });
           },
         });
       } else if (index !== 0) {
-        ScrollTrigger.create({
+        $ScrollTrigger.create({
           trigger: section,
           start: "top-=50% center-=250",
           end: "bottom center-=200",
@@ -63,18 +62,18 @@ onMounted(() => {
           onEnter: () => {
             console.log(index);
             tooltip.value.classList.add(classNameToAdd);
-            gsap.set(".tooltip-img", {
+            $gsap.set(".tooltip-img", {
               attr: { src: imgUrls.value[index] },
             });
           },
           onEnterBack: () => {
-            gsap.set(".tooltip-img", {
+            $gsap.set(".tooltip-img", {
               attr: { src: imgUrls.value[index] },
             });
           },
         });
       } else {
-        ScrollTrigger.create({
+        $ScrollTrigger.create({
           trigger: section,
           start: "top center-=250",
           end: "bottom center-=200",
@@ -82,12 +81,12 @@ onMounted(() => {
           onEnter: () => {
             console.log(index);
             tooltip.value.classList.add(classNameToAdd);
-            gsap.set(".tooltip-img", {
+            $gsap.set(".tooltip-img", {
               attr: { src: imgUrls.value[index] },
             });
           },
           onEnterBack: () => {
-            gsap.set(".tooltip-img", {
+            $gsap.set(".tooltip-img", {
               attr: { src: imgUrls.value[index] },
             });
           },
@@ -128,7 +127,11 @@ onMounted(() => {
             </p>
           </div>
           <div ref="tooltip" class="max-w-[612px] right-0 top-0">
-            <img ref="placeImg" class="tooltip-img w-full" src="/img/service.png" />
+            <img
+              ref="placeImg"
+              class="tooltip-img w-full"
+              src="/img/service.png"
+            />
           </div>
         </div>
       </div>
@@ -215,10 +218,7 @@ onMounted(() => {
             class="hidden w-full max-w-[612px]"
             src="/img/find.png"
           />
-          <img
-            class="lg:hidden w-full max-w-[612px]"
-            src="/img/find.png"
-          />
+          <img class="lg:hidden w-full max-w-[612px]" src="/img/find.png" />
         </div>
       </div>
     </div>
