@@ -204,7 +204,7 @@ onMounted(() => {
     <!-- <div ref="tooltip" class=" max-w-[612px] absolute right-0">
       <img class="tooltip-img w-full" src="/img/service.png" />
     </div> -->
-    <div class="scroller grid grid-cols-2 pb-[10rem] gap-10">
+    <div class="scroller lg:grid lg:grid-cols-2 pb-[10rem] lg:gap-10">
       <div class="scrollable h-fit max-w-fit flex flex-col mx-auto">
         <!-- <div
           class="text-wrap relative overflow-hidden w-full max-w-[572px] lg:max-w-[420px] xl:max-w-[572px] h-[80vh]"
@@ -303,7 +303,7 @@ onMounted(() => {
             class="section flex flex-col justify-between lg:flex-row lg:items-center py-[80px] md:py-[120px] lg:py-0 w-full"
           >
             <div
-              class="flex flex-col w-full mb-10 md:mb-0 max-w-[572px] lg:max-w-[420px] xl:max-w-[572px] py-[80px]"
+              class="flex flex-col w-full mb-10 md:mb-0 max-w-[572px] lg:max-w-[420px] xl:max-w-[572px]"
             >
               <p
                 class="text-brown font-semibold text-[56px] leading-[72px] md:leading-[80px] md:text-[64px]"
@@ -332,7 +332,7 @@ onMounted(() => {
             class="section flex flex-col justify-between lg:flex-row lg:items-center py-[80px] md:py-[120px] lg:py-0 w-full"
           >
             <div
-              class="flex flex-col w-full mb-10 md:mb-0 max-w-[572px] lg:max-w-[420px] xl:max-w-[572px] py-[80px]"
+              class="flex flex-col w-full mb-10 md:mb-0 max-w-[572px] lg:max-w-[420px] xl:max-w-[572px]"
             >
               <p
                 class="text-brown font-semibold text-[56px] leading-[72px] md:leading-[80px] md:text-[64px]"
@@ -353,7 +353,7 @@ onMounted(() => {
             </div>
             <img
               class="w-full lg:hidden max-w-[612px]"
-              src="/img/service.png"
+              src="/img/find.png"
             />
           </div>
         </div>
@@ -362,7 +362,7 @@ onMounted(() => {
             class="section flex flex-col justify-between lg:flex-row lg:items-center py-[80px] md:py-[120px] lg:py-0 w-full"
           >
             <div
-              class="flex flex-col w-full mb-10 md:mb-0 max-w-[572px] lg:max-w-[420px] xl:max-w-[572px] py-[80px]"
+              class="flex flex-col w-full mb-10 md:mb-0 max-w-[572px] lg:max-w-[420px] xl:max-w-[572px]"
             >
               <p
                 class="text-brown font-semibold text-[56px] leading-[72px] md:leading-[80px] md:text-[64px]"
@@ -383,7 +383,7 @@ onMounted(() => {
             </div>
             <img
               class="w-full lg:hidden max-w-[612px]"
-              src="/img/service.png"
+              src="/img/medicals.png"
             />
           </div>
         </div>
@@ -392,7 +392,7 @@ onMounted(() => {
             class="section flex flex-col justify-between lg:flex-row lg:items-center py-[80px] md:py-[120px] lg:py-0 w-full"
           >
             <div
-              class="flex flex-col w-full mb-10 md:mb-0 max-w-[572px] lg:max-w-[420px] xl:max-w-[572px] py-[80px]"
+              class="flex flex-col w-full mb-10 md:mb-0 max-w-[572px] lg:max-w-[420px] xl:max-w-[572px]"
             >
               <p
                 class="text-brown font-semibold text-[56px] leading-[72px] md:leading-[80px] md:text-[64px]"
