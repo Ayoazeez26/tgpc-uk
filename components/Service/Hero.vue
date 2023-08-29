@@ -19,7 +19,7 @@
             nurses, Speciality nurses, Healthcare Assistants, Support workers,
             Cleaners, Porters, Domestic staff. Our Target market is the NHS,
             Private hospitals, Care homes, nursing homes, Days centres, Respite
-            homes, Home care/domiciliary care, Supported Live in.
+            homes, Home care/domiciliary care, Supported Living.
           </p>
           <button
               class="bg-secondary border-2 border-secondary font-semibold px-4 py-3 md:w-[160px] rounded-lg text-white"
