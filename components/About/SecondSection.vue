@@ -28,7 +28,7 @@ const breakpoints = ref({
   <div class="py-20 px-4 xl:px-0 md:py-28 w-full max-w-[1240px] mx-auto">
     <div class="w-full flex mx-auto">
       <div
-        class="flex flex-col justify-between lg:flex-row lg:items-center w-full max-w-[1240px]"
+        class="flex flex-col justify-between gap-10 lg:flex-row lg:items-center w-full max-w-[1240px]"
       >
         <img class="w-full max-w-[612px]" src="/img/medicals.png" />
         <div class="flex flex-col w-full mt-10 md:mt-0 max-w-[572px]">

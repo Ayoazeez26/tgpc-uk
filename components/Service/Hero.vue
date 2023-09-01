@@ -2,7 +2,7 @@
 <template>
   <div class="py-20 px-4 xl:px-0 md:pt-28 md:pb-[120px] w-full">
     <div class="w-full max-w-[1240px] flex mx-auto">
-      <div class="flex flex-col md:flex-row justify-between items-center w-full max-w-[1240px]">
+      <div class="flex flex-col lg:flex-row gap-10 justify-between lg:items-center w-full max-w-[1240px]">
         <img
           class="w-full max-w-[612px]"
           src="/img/service-people.png"

@@ -115,11 +115,11 @@ onMounted(() => {
   //   .to(text, { duration: 0.33, opacity: 0, y: '0%' }, 0.66)
   // })
   ctx.add(() => {
-    $gsap.to(tooltip.value, {
-      opacity: 1,
-    });
     // placeImg.value.src = "/img/service.png";
     mm.add("(min-width: 1024px)", () => {
+      $gsap.to(tooltip.value, {
+        opacity: 1,
+      });
       $ScrollTrigger.create({
         trigger: secondsection.value,
         pin: tooltip.value,
@@ -217,7 +217,7 @@ onMounted(() => {
           class="text-wrap relative overflow-hidden w-full max-w-[572px] lg:max-w-[420px] xl:max-w-[572px] h-[80vh]"
         >
           <div
-            class="text-wrap-text flex flex-col mb-10 md:mb-0 absolute left-0 top-0 right-0 bottom-0 z-[1] w-full h-full tranlate-y-full opacity-0"
+            class="text-wrap-text flex flex-col mb-10 lg:mb-0 absolute left-0 top-0 right-0 bottom-0 z-[1] w-full h-full tranlate-y-full opacity-0"
           >
             <p
               class="text-brown font-semibold text-[56px] leading-[72px] md:leading-[80px] md:text-[64px]"
@@ -237,7 +237,7 @@ onMounted(() => {
             </p>
           </div>
           <div
-            class="text-wrap-text flex flex-col mb-10 md:mb-0 absolute left-0 top-0 right-0 bottom-0 z-[1] w-full h-full tranlate-y-full opacity-0"
+            class="text-wrap-text flex flex-col mb-10 lg:mb-0 absolute left-0 top-0 right-0 bottom-0 z-[1] w-full h-full tranlate-y-full opacity-0"
           >
             <p
               class="text-brown font-semibold text-[56px] leading-[72px] md:leading-[80px] md:text-[64px]"
@@ -257,7 +257,7 @@ onMounted(() => {
             </p>
           </div>
           <div
-            class="text-wrap-text flex flex-col mb-10 md:mb-0 absolute left-0 top-0 right-0 bottom-0 z-[1] w-full h-full tranlate-y-full opacity-0"
+            class="text-wrap-text flex flex-col mb-10 lg:mb-0 absolute left-0 top-0 right-0 bottom-0 z-[1] w-full h-full tranlate-y-full opacity-0"
           >
             <p
               class="text-brown font-semibold text-[56px] leading-[72px] md:leading-[80px] md:text-[64px]"
@@ -277,7 +277,7 @@ onMounted(() => {
             </p>
           </div>
           <div
-            class="text-wrap-text flex flex-col mb-10 md:mb-0 absolute left-0 top-0 right-0 bottom-0 z-[1] w-full h-full tranlate-y-full opacity-0"
+            class="text-wrap-text flex flex-col mb-10 lg:mb-0 absolute left-0 top-0 right-0 bottom-0 z-[1] w-full h-full tranlate-y-full opacity-0"
           >
             <p
               class="text-brown font-semibold text-[56px] leading-[72px] md:leading-[80px] md:text-[64px]"
@@ -310,7 +310,7 @@ onMounted(() => {
             class="section flex flex-col justify-between lg:flex-row lg:items-center py-[80px] md:py-[120px] lg:py-0 w-full"
           >
             <div
-              class="flex flex-col w-full mb-10 lg:py-20 md:mb-0 max-w-[572px] lg:max-w-[420px] xl:max-w-[572px]"
+              class="flex flex-col w-full mb-10 lg:py-20 lg:mb-0 max-w-[572px] lg:max-w-[420px] xl:max-w-[572px]"
             >
               <p
                 class="text-brown font-semibold text-[56px] leading-[72px] md:leading-[80px] md:text-[64px]"
@@ -343,7 +343,7 @@ onMounted(() => {
             class="section flex flex-col justify-between lg:flex-row lg:items-center py-[80px] md:py-[120px] lg:py-0 w-full"
           >
             <div
-              class="flex flex-col w-full mb-10 lg:py-20 md:mb-0 max-w-[572px] lg:max-w-[420px] xl:max-w-[572px]"
+              class="flex flex-col w-full mb-10 lg:py-20 lg:mb-0 max-w-[572px] lg:max-w-[420px] xl:max-w-[572px]"
             >
               <p
                 class="text-brown font-semibold text-[56px] leading-[72px] md:leading-[80px] md:text-[64px]"
@@ -374,7 +374,7 @@ onMounted(() => {
             class="section flex flex-col justify-between lg:flex-row lg:items-center py-[80px] md:py-[120px] lg:py-0 w-full"
           >
             <div
-              class="flex flex-col w-full mb-10 lg:py-20 md:mb-0 max-w-[572px] lg:max-w-[420px] xl:max-w-[572px]"
+              class="flex flex-col w-full mb-10 lg:py-20 lg:mb-0 max-w-[572px] lg:max-w-[420px] xl:max-w-[572px]"
             >
               <p
                 class="text-brown font-semibold text-[56px] leading-[72px] md:leading-[80px] md:text-[64px]"
@@ -406,7 +406,7 @@ onMounted(() => {
             class="section flex flex-col justify-between lg:flex-row lg:items-center py-[80px] md:py-[120px] lg:py-0 w-full"
           >
             <div
-              class="flex flex-col w-full mb-10 lg:py-20 md:mb-0 max-w-[572px] lg:max-w-[420px] xl:max-w-[572px]"
+              class="flex flex-col w-full mb-10 lg:py-20 lg:mb-0 max-w-[572px] lg:max-w-[420px] xl:max-w-[572px]"
             >
               <p
                 class="text-brown font-semibold text-[56px] leading-[72px] md:leading-[80px] md:text-[64px]"
@@ -442,7 +442,7 @@ onMounted(() => {
       <!-- <div ref="tooltip" class=""> -->
       <img
         ref="tooltip"
-        class="tooltip-img w-full max-w-[612px] h-fit right-0 top-0"
+        class="tooltip-img hidden lg:block w-full max-w-[612px] h-fit right-0 top-0"
         src="/img/employability.png"
       />
       <!-- </div> -->

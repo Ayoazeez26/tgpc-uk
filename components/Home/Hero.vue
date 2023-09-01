@@ -26,7 +26,7 @@
     <div
       class="w-full max-w-[1240px] flex mx-auto mt-20 md:mt-[120px]"
     >
-      <div class="flex flex-col justify-between lg:flex-row lg:items-center w-full max-w-[1240px]">
+      <div class="flex flex-col justify-between lg:flex-row lg:items-center gap-10 w-full max-w-[1240px]">
         <img class="w-full max-w-[612px]" src="/img/find.png">
         <div class="flex flex-col w-full mt-10 md:mt-0 max-w-[572px]">
           <h2 class="font-semibold text-[26px] md:text-[32px] leading-[42px] md:leading-[48px]">Find Local Jobs in Your City or Town with Wana Services</h2>
