@@ -46,21 +46,21 @@
             <p class="mt-2 mb-3">
               Our dedicated team understands the importance of finding work in your city or town, and we are here to help you every step of the way.
             </p>  
-            <nuxt-link class="text-secondary font-bold py-2 text-sm" to="#">Register as a Candidate <Icon name="mdi:arrow-right" size="20"></Icon></nuxt-link>
+            <nuxt-link to="/jobCandidate" class="text-secondary font-bold py-2 text-sm">Register as a Candidate <Icon name="mdi:arrow-right" size="20"></Icon></nuxt-link>
           </div>
           <div class="w-full pl-6 py-4 -translate-x-1">
             <h2 class="font-semibold text-xl leading-[48px]">Talented Healthcare Professionals</h2>
             <p class="mt-2 mb-3">
               Schedule appointments with qualified healthcare providers to address your health concerns.
             </p>  
-            <nuxt-link class="text-secondary font-bold py-2 text-sm" to="#">Book Staff <Icon name="mdi:arrow-right" size="20"></Icon></nuxt-link>
+            <nuxt-link to="/jobClient" class="text-secondary font-bold py-2 text-sm">Book Staff <Icon name="mdi:arrow-right" size="20"></Icon></nuxt-link>
           </div>
           <div class="w-full pl-6 py-4 -translate-x-1">
             <h2 class="font-semibold text-xl leading-[48px]">Flexible Job Opportunities</h2>
             <p class="mt-2 mb-3">
               If you’re a qualified nurse, midwife, or care assistant looking for bank work, Wana Services can help you find flexible shifts with 24/7 support.
             </p>  
-            <nuxt-link class="text-secondary font-bold py-2 text-sm" to="#">Apply Now <Icon name="mdi:arrow-right" size="20"></Icon></nuxt-link>
+            <nuxt-link to="/applyNow" class="text-secondary font-bold py-2 text-sm">Apply Now <Icon name="mdi:arrow-right" size="20"></Icon></nuxt-link>
           </div>
         </div>
         <img class="w-full max-w-[612px]" src="/img/staff.png">

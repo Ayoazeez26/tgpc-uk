@@ -3,52 +3,58 @@
 
 const { $gsap, $ScrollTrigger } = useNuxtApp();
 const tooltip = ref(null);
+const tooltipImg = ref(null);
 const secondsection = ref(null);
 const secondsectionbody = ref(null);
 const placeImg = ref(null);
 const lastImg = ref(null);
 const imgUrls = ref([
+  "/img/employability.png",
   "/img/service.png",
-  "/img/find.png",
-  "/img/medicals.png",
-  "/img/find.png",
+  "/img/staff-supply.png",
+  "/img/dcs-care.png",
 ]);
-// const mm = $gsap.matchMedia();
+const mm = $gsap.matchMedia();
 const classNameToAdd = "absolute";
 const classNameToRemove = "hidden";
-
+const ctx = $gsap.context(() => {});
+onUnmounted(() => {
+  ctx.revert();
+});
 onMounted(() => {
-
-  const imageElements = document.querySelectorAll('.pinned-panel img');
-  $gsap.utils.toArray(".scrollable1").forEach((section, index) => {
-    const pinnedPanelImg = document.querySelector(".pinned-panel img");
-    $gsap.fromTo(
-      pinnedPanelImg,
-      { opacity: 0 }, // Start with opacity 0
-      {
-        scrollTrigger: {
-          // @ts-ignore
-          trigger: section,
-          start: "top center+=200px",
-          // end: "bottom center+=500px",
-          onEnter: () => {
-            imageElements[index].classList.toggle("show");
-            console.log(index, "check the current section index here");
-          },
-          onLeaveBack: () => {
-            imageElements[index].classList.toggle("show");
-            console.log(index, "check the current section index here leaving");
-          },
-          onEnterBack: () => {
-            imageElements[index].classList.toggle("show");
-            console.log(index, "check the current section index here");
-          },
-        },
-        opacity: 1, // Reset opacity for next animation
-      }
-    );
-  });
-
+  setTimeout(() => {
+    $ScrollTrigger.refresh();
+  }, 600);
+  // const imageElements = document.querySelectorAll('.pinned-panel img');
+  // $gsap.utils.toArray(".scrollable1").forEach((section, index) => {
+  //   const pinnedPanelImg = document.querySelector(".pinned-panel img");
+  //   $gsap.fromTo(
+  //     pinnedPanelImg,
+  //     { opacity: 0 }, // Start with opacity 0
+  //     {
+  //       scrollTrigger: {
+  //         // @ts-ignore
+  //         trigger: section,
+  //         start: "top center+=200px",
+  //         end: "bottom center+=500px",
+  //         // markers: true,
+  //         onEnter: () => {
+  //           imageElements[index].classList.toggle("show");
+  //           console.log(index, "check the current section index here");
+  //         },
+  //         onLeaveBack: () => {
+  //           imageElements[index].classList.toggle("show");
+  //           console.log(index, "check the current section index here leaving");
+  //         },
+  //         onEnterBack: () => {
+  //           imageElements[index].classList.toggle("show");
+  //           console.log(index, "check the current section index here");
+  //         },
+  //       },
+  //       opacity: 1, // Reset opacity for next animation
+  //     }
+  //   );
+  // });
 
   // Scrollbar.init(document.querySelector('.secondsection'));
   // let bodyScrollBar = Scrollbar.init(document.body, {
@@ -108,92 +114,93 @@ onMounted(() => {
   //   .to(text, { duration: 0.33, opacity: 1, y: '50%' })
   //   .to(text, { duration: 0.33, opacity: 0, y: '0%' }, 0.66)
   // })
+  ctx.add(() => {
+    $gsap.to(tooltip.value, {
+      opacity: 1,
+    });
+    // placeImg.value.src = "/img/service.png";
+    mm.add("(min-width: 1024px)", () => {
+      $ScrollTrigger.create({
+        trigger: secondsection.value,
+        pin: tooltip.value,
+        // Trigger Scroller
+        start: "top center-=250",
+        end: "bottom center-=200",
+        // markers: true,
+      });
 
-  // $gsap.to(tooltip.value, {
-  //   opacity: 1,
-  // });
-  // placeImg.value.src = "/img/service.png";
-  // mm.add("(min-width: 1024px)", () => {
-  // $ScrollTrigger.create({
-  //   trigger: secondsection.value,
-  //   pin: tooltip.value,
-  //   // Trigger Scroller
-  //   start: "top center-=250",
-  //   end: "bottom center-=200",
-  //   markers: true,
-  // });
+      const sections = document.querySelectorAll(".section");
 
-  // const sections = document.querySelectorAll(".section");
+      sections.forEach((section, index) => {
+        if (index === 3) {
+          $ScrollTrigger.create({
+            trigger: section,
+            start: "top-=50% center-=250",
+            end: "top+=20 center-=200",
+            // markers: true,
+            onEnter: () => {
+              // console.log(index);
+              $gsap.set(".tooltip-img", {
+                attr: { src: imgUrls.value[index] },
+              });
+            },
+            onLeave: () => {
+              tooltip.value.classList.add(classNameToRemove);
+              lastImg.value.classList.remove(classNameToRemove);
+            },
+            onEnterBack: () => {
+              lastImg.value.classList.add(classNameToRemove);
+              tooltip.value.classList.remove(classNameToRemove);
+              $gsap.set(".tooltip-img", {
+                attr: { src: imgUrls.value[index] },
+              });
+            },
+          });
+        } else if (index !== 0) {
+          $ScrollTrigger.create({
+            trigger: section,
+            start: "top-=50% center-=250",
+            end: "bottom center-=200",
+            markers: true,
+            onEnter: () => {
+              // console.log(index);
+              tooltip.value.classList.add(classNameToAdd);
+              $gsap.set(".tooltip-img", {
+                attr: { src: imgUrls.value[index] },
+              });
+            },
+            onEnterBack: () => {
+              console.log(index);
+              $gsap.set(".tooltip-img", {
+                attr: { src: imgUrls.value[index] },
+              });
+            },
+          });
+        } else {
+          $ScrollTrigger.create({
+            trigger: section,
+            start: "top center-=250",
+            end: "bottom center-=200",
+            markers: true,
+            onEnter: () => {
+              // console.log(index);
+              tooltip.value.classList.add(classNameToAdd);
+              $gsap.set(".tooltip-img", {
+                attr: { src: imgUrls.value[index] },
+              });
+            },
+            onEnterBack: () => {
+              console.log(index);
 
-  // sections.forEach((section, index) => {
-  //   if (index === 3) {
-  //     $ScrollTrigger.create({
-  //       trigger: section,
-  //       start: "top-=50% center-=250",
-  //       end: "top+=20 center-=200",
-  //       // markers: true,
-  //       onEnter: () => {
-  //         // console.log(index);
-  //         $gsap.set(".tooltip-img", {
-  //           attr: { src: imgUrls.value[index] },
-  //         });
-  //       },
-  //       onLeave: () => {
-  //         tooltip.value.classList.add(classNameToRemove);
-  //         lastImg.value.classList.remove(classNameToRemove);
-  //       },
-  //       onEnterBack: () => {
-  //         tooltip.value.classList.remove(classNameToRemove);
-  //         lastImg.value.classList.add(classNameToRemove);
-  //         $gsap.set(".tooltip-img", {
-  //           attr: { src: imgUrls.value[index] },
-  //         });
-  //       },
-  //     });
-  //   } else if (index !== 0) {
-  //     $ScrollTrigger.create({
-  //       trigger: section,
-  //       start: "top-=50% center-=250",
-  //       end: "bottom center-=200",
-  //       // markers: true,
-  //       onEnter: () => {
-  //         // console.log(index);
-  //         tooltip.value.classList.add(classNameToAdd);
-  //         $gsap.set(".tooltip-img", {
-  //           attr: { src: imgUrls.value[index] },
-  //         });
-  //       },
-  //       onEnterBack: () => {
-  //         console.log(index);
-  //         $gsap.set(".tooltip-img", {
-  //           attr: { src: imgUrls.value[index] },
-  //         });
-  //       },
-  //     });
-  //   } else {
-  //     $ScrollTrigger.create({
-  //       trigger: section,
-  //       start: "top center-=250",
-  //       end: "bottom center-=200",
-  //       // markers: true,
-  //       onEnter: () => {
-  //         // console.log(index);
-  //         tooltip.value.classList.add(classNameToAdd);
-  //         $gsap.set(".tooltip-img", {
-  //           attr: { src: imgUrls.value[index] },
-  //         });
-  //       },
-  //       onEnterBack: () => {
-  //         console.log(index);
-
-  //         $gsap.set(".tooltip-img", {
-  //           attr: { src: imgUrls.value[index] },
-  //         });
-  //       },
-  //     });
-  //   }
-  // });
-  // });
+              $gsap.set(".tooltip-img", {
+                attr: { src: imgUrls.value[index] },
+              });
+            },
+          });
+        }
+      });
+    });
+  });
 });
 </script>
 <template>
@@ -204,8 +211,8 @@ onMounted(() => {
     <!-- <div ref="tooltip" class=" max-w-[612px] absolute right-0">
       <img class="tooltip-img w-full" src="/img/service.png" />
     </div> -->
-    <div class="scroller lg:grid lg:grid-cols-2 pb-[10rem] lg:gap-10">
-      <div class="scrollable h-fit max-w-fit flex flex-col mx-auto">
+    <div class="scroller flex w-full pb-[10rem] lg:gap-10">
+      <div class="scrollable h-fit w-full flex flex-col items-start mx-auto">
         <!-- <div
           class="text-wrap relative overflow-hidden w-full max-w-[572px] lg:max-w-[420px] xl:max-w-[572px] h-[80vh]"
         >
@@ -303,7 +310,7 @@ onMounted(() => {
             class="section flex flex-col justify-between lg:flex-row lg:items-center py-[80px] md:py-[120px] lg:py-0 w-full"
           >
             <div
-              class="flex flex-col w-full mb-10 md:mb-0 max-w-[572px] lg:max-w-[420px] xl:max-w-[572px]"
+              class="flex flex-col w-full mb-10 lg:py-20 md:mb-0 max-w-[572px] lg:max-w-[420px] xl:max-w-[572px]"
             >
               <p
                 class="text-brown font-semibold text-[56px] leading-[72px] md:leading-[80px] md:text-[64px]"
@@ -316,15 +323,19 @@ onMounted(() => {
                 Employability Training
               </h2>
               <p class="mt-2 md:mt-6 leading-[28px]">
-                We recruit Healthcare professionals. We recruit general staff
-                nurses, Speciality nurses, Healthcare Assistants, Support
-                workers, Cleaners, Porters, Domestic nurses, Healthcare
-                Assistants, Support workers, Cleaners, Porters, Domestic staff.
+                Our employability training is designed to help you develop the
+                skills and knowledge you need to succeed in the healthcare
+                industry. Our employability training is delivered by experienced
+                healthcare professionals who are passionate about helping you
+                succeed.
               </p>
             </div>
-            <!-- <div ref="tooltip" class=" max-w-[612px] right-0 top-0"> -->
-            <img class="lg:hidden tooltip-img w-full" src="/img/service.png" />
-            <!-- </div> -->
+            <div ref="tooltip" class="max-w-[612px] right-0 top-0">
+              <img
+                class="lg:hidden tooltip-img w-full"
+                src="/img/employability.png"
+              />
+            </div>
           </div>
         </div>
         <div class="scrollable1 lg:h-[70vh]">
@@ -332,7 +343,7 @@ onMounted(() => {
             class="section flex flex-col justify-between lg:flex-row lg:items-center py-[80px] md:py-[120px] lg:py-0 w-full"
           >
             <div
-              class="flex flex-col w-full mb-10 md:mb-0 max-w-[572px] lg:max-w-[420px] xl:max-w-[572px]"
+              class="flex flex-col w-full mb-10 lg:py-20 md:mb-0 max-w-[572px] lg:max-w-[420px] xl:max-w-[572px]"
             >
               <p
                 class="text-brown font-semibold text-[56px] leading-[72px] md:leading-[80px] md:text-[64px]"
@@ -345,15 +356,16 @@ onMounted(() => {
                 Health Care Mandatory Courses
               </h2>
               <p class="mt-2 md:mt-6 leading-[28px]">
-                We recruit Healthcare professionals. We recruit general staff
-                nurses, Speciality nurses, Healthcare Assistants, Support
-                workers, Cleaners, Porters, Domestic nurses, Healthcare
-                Assistants, Support workers, Cleaners, Porters, Domestic staff.
+                Healthcare mandatory courses are essential for anyone working in
+                the healthcare industry. These courses cover a variety of topics
+                that are essential for providing safe and effective care to
+                patients. Our courses are delivered by experienced instructors
+                who are passionate about helping you learn.
               </p>
             </div>
             <img
               class="w-full lg:hidden max-w-[612px]"
-              src="/img/find.png"
+              src="/img/service.png"
             />
           </div>
         </div>
@@ -362,7 +374,7 @@ onMounted(() => {
             class="section flex flex-col justify-between lg:flex-row lg:items-center py-[80px] md:py-[120px] lg:py-0 w-full"
           >
             <div
-              class="flex flex-col w-full mb-10 md:mb-0 max-w-[572px] lg:max-w-[420px] xl:max-w-[572px]"
+              class="flex flex-col w-full mb-10 lg:py-20 md:mb-0 max-w-[572px] lg:max-w-[420px] xl:max-w-[572px]"
             >
               <p
                 class="text-brown font-semibold text-[56px] leading-[72px] md:leading-[80px] md:text-[64px]"
@@ -375,24 +387,26 @@ onMounted(() => {
                 Staff Supply to NHS and Private Care Providers
               </h2>
               <p class="mt-2 md:mt-6 leading-[28px]">
-                We recruit Healthcare professionals. We recruit general staff
-                nurses, Speciality nurses, Healthcare Assistants, Support
-                workers, Cleaners, Porters, Domestic nurses, Healthcare
-                Assistants, Support workers, Cleaners, Porters, Domestic staff.
+                Wana Health Care Services is a leading provider of staff supply
+                to the NHS and private care providers. We have a wide network of
+                qualified and experienced healthcare professionals who can be
+                deployed quickly and flexibly to meet your staffing needs. We
+                are committed to providing our clients with the highest quality
+                staffing solutions.
               </p>
             </div>
             <img
               class="w-full lg:hidden max-w-[612px]"
-              src="/img/medicals.png"
+              src="/img/staff-supply.png"
             />
           </div>
         </div>
-        <div class="scrollable1 lg:h-[70vh]">
+        <div class="scrollable1 w-full lg:h-[70vh]">
           <div
             class="section flex flex-col justify-between lg:flex-row lg:items-center py-[80px] md:py-[120px] lg:py-0 w-full"
           >
             <div
-              class="flex flex-col w-full mb-10 md:mb-0 max-w-[572px] lg:max-w-[420px] xl:max-w-[572px]"
+              class="flex flex-col w-full mb-10 lg:py-20 md:mb-0 max-w-[572px] lg:max-w-[420px] xl:max-w-[572px]"
             >
               <p
                 class="text-brown font-semibold text-[56px] leading-[72px] md:leading-[80px] md:text-[64px]"
@@ -405,27 +419,39 @@ onMounted(() => {
                 DCS Care
               </h2>
               <p class="mt-2 md:mt-6 leading-[28px]">
-                We recruit Healthcare professionals. We recruit general staff
-                nurses, Speciality nurses, Healthcare Assistants, Support
-                workers, Cleaners, Porters, Domestic nurses, Healthcare
-                Assistants, Support workers, Cleaners, Porters, Domestic staff.
+                DCS CARE is a healthcare recruitment agency that specializes in
+                sourcing local jobs for local people. We are a team of highly
+                motivated and passionate healthcare professionals who have
+                worked in the industry for over 10 years. We value our
+                candidates as real partners and assets, and we offer fair charge
+                rates.
               </p>
             </div>
-            <!-- <img
+            <img
               ref="lastImg"
-              class="hidden w-full max-w-[612px]"
-              src="/img/find.png"
+              class="hidden w-full max-w-[612px] h-fit"
+              src="/img/dcs-care.png"
+            />
+            <!-- <img
+              class="lg:hidden w-full max-w-[612px]"
+              src="/img/dcs-care.png"
             /> -->
-            <img class="lg:hidden w-full max-w-[612px]" src="/img/find.png" />
           </div>
         </div>
       </div>
-      <div class="pinned-panel hidden lg:block sticky self-start w-full top-[20rem] h-[35rem]">
+      <!-- <div ref="tooltip" class=""> -->
+      <img
+        ref="tooltip"
+        class="tooltip-img w-full max-w-[612px] h-fit right-0 top-0"
+        src="/img/employability.png"
+      />
+      <!-- </div> -->
+      <!-- <div class="pinned-panel hidden lg:block sticky self-start w-full top-[20rem] h-[35rem]">
+        <img class="w-full h-full object-cover" src="/img/employability.png" />
         <img class="w-full h-full object-cover" src="/img/service.png" />
-        <img class="w-full h-full object-cover" src="/img/find.png" />
-        <img class="w-full h-full object-cover" src="/img/medicals.png" />
-        <img class="w-full h-full object-cover" src="/img/find.png" />
-      </div>
+        <img class="w-full h-full object-cover" src="/img/staff-supply.png" />
+        <img class="w-full h-full object-cover" src="/img/dcs-care.png" />
+      </div> -->
     </div>
   </div>
 </template>
@@ -465,5 +491,4 @@ onMounted(() => {
   opacity: 1;
   z-index: 1;
 }
-
 </style>

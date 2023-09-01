@@ -1,30 +1,137 @@
 <template>
   <div class="fixed right-0 left-0 font-medium text-grey z-10 bg-white">
-    <div class="flex h-24 md:h-[120px] items-center justify-between px-4 px-md-0 w-full max-w-[1240px] mx-auto">
+    <div
+      class="flex h-24 md:h-[120px] items-center justify-between px-4 px-md-0 w-full max-w-[1240px] mx-auto"
+    >
       <nuxt-link to="/">
         <img class="w-[170px] h-[40px]" src="/img/logo.png" />
       </nuxt-link>
       <button ref="hamburger" class="lg:hidden" @click="open = !open">
         <Icon name="ic:round-menu" size="24px" color="#1B5588" />
       </button>
-      <ul class="hidden lg:flex flex-col lg:flex-row lg:items-center gap-4 mt-10 lg:mt-0 lg:gap-10">
-          <li @click="open = !open"><nuxt-link to="/">Home</nuxt-link></li>
-          <li @click="open = !open"><nuxt-link to="/about">About Us</nuxt-link></li>
-          <li @click="open = !open"><nuxt-link to="/service">Services</nuxt-link></li>
-          <li @click="open = !open"><nuxt-link to="#services">Find Jobs<Icon name="ic:round-keyboard-arrow-down" size="24px" color="#5A5A59" /></nuxt-link></li>
+      <div class="hidden lg:block relative">
+        <ul
+          class="hidden lg:flex flex-col lg:flex-row lg:items-center gap-4 mt-10 lg:mt-0 lg:gap-10"
+        >
+          <li @click="dataStore.job = false">
+            <nuxt-link
+              class="hover:text-secondary hover:font-semibold cursor-pointer"
+              :class="
+                route.name === 'index' ? 'text-secondary font-semibold' : ''
+              "
+              to="/"
+              >Home</nuxt-link
+            >
+          </li>
+          <li @click="dataStore.job = false">
+            <nuxt-link
+              class="hover:text-secondary hover:font-semibold cursor-pointer"
+              :class="
+                route.name === 'about' ? 'text-secondary font-semibold' : ''
+              "
+              to="/about"
+              >About Us</nuxt-link
+            >
+          </li>
+          <li @click="dataStore.job = false">
+            <nuxt-link
+              class="hover:text-secondary hover:font-semibold cursor-pointer"
+              :class="
+                route.name === 'service' ? 'text-secondary font-semibold' : ''
+              "
+              to="/service"
+              >Services</nuxt-link
+            >
+          </li>
+          <li @click="jobToggled">
+            <p
+              class="hover:text-secondary hover:font-semibold cursor-pointer"
+              :class="
+                route.name === 'jobCandidate' ||
+                route.name === 'jobClient' ||
+                route.name === 'applyNow'
+                  ? 'text-secondary font-semibold'
+                  : ''
+              "
+            >
+              Find Jobs<Icon
+                name="ic:round-keyboard-arrow-down"
+                size="24px"
+                color="#5A5A59"
+              />
+            </p>
+          </li>
         </ul>
-      <ul class="navbar-links flex items-start" :class="{ 'navbar-links--navopen': open }" v-click-outside="close">
-        <button class="lg:hidden absolute right-3" @click="open = !open">
-          <Icon name="ic:round-close" size="24px" color="#1B5588" />
-        </button>
-        <ul class="flex flex-col lg:flex-row lg:items-center gap-4 mt-10 lg:mt-0 lg:gap-10">
-          <li class="lg:hidden" @click="open = !open"><nuxt-link to="/">Home</nuxt-link></li>
-          <li class="lg:hidden" @click="open = !open"><nuxt-link to="/about">About Us</nuxt-link></li>
-          <li class="lg:hidden" @click="open = !open"><nuxt-link to="/service">Services<Icon name="ic:round-keyboard-arrow-down" size="24px" color="#FFFFFF" /></nuxt-link></li>
-          <li class="lg:hidden" @click="open = !open"><nuxt-link to="/team">Find Jobs</nuxt-link></li>
-          <div class="flex flex-col lg:flex-row lg:items-center gap-4">
-            <button class="bg-white border-2 border-secondary font-semibold px-4 py-3 w-[160px] rounded-lg text-secondary">Book Staff</button>        
-            <button class="bg-secondary border-2 border-secondary font-semibold px-4 py-3 w-[160px] rounded-lg text-white">Register Now!</button>        
+        <JobDropdown
+          class="absolute hidden lg:block top-20 right-0"
+          v-if="dataStore.job"
+        />
+      </div>
+      <ul
+        class="navbar-links flex items-start"
+        :class="{ 'navbar-links--navopen overflow-y-auto pb-8': open }"
+        v-click-outside="close"
+      >
+        <div
+          class="hidden lg:flex flex-col w-full lg:w-auto lg:flex-row lg:items-center gap-4"
+        >
+          <nuxt-link
+            to="/jobClient"
+            class="bg-white text-center border-2 border-secondary font-semibold px-4 py-3 lg:w-[160px] rounded-lg text-secondary"
+          >
+            Book Staff
+          </nuxt-link>
+          <nuxt-link
+            to="/jobCandidate"
+            class="bg-secondary text-center border-2 border-secondary font-semibold px-4 py-3 lg:w-[160px] rounded-lg text-white"
+          >
+            Register Now!
+          </nuxt-link>
+        </div>
+        <div class="flex w-full mt-3 lg:hidden justify-between items-center">
+          <nuxt-link to="/">
+            <img class="w-[102px]" src="/img/logo.png" />
+          </nuxt-link>
+          <button class="" @click="open = !open">
+            <Icon name="ic:round-close" size="24px" color="#1B5588" />
+          </button>
+        </div>
+        <ul
+          class="flex lg:hidden flex-col lg:flex-row lg:items-center w-full gap-4 mt-10 lg:mt-0 lg:gap-10"
+        >
+          <li class="cursor-pointer py-3" @click="open = !open">
+            <nuxt-link to="/">Home</nuxt-link>
+          </li>
+          <li class="cursor-pointer py-3" @click="open = !open">
+            <nuxt-link to="/about">About Us</nuxt-link>
+          </li>
+          <li class="cursor-pointer py-3" @click="open = !open">
+            <nuxt-link to="/service"
+              >Services<Icon
+                name="ic:round-keyboard-arrow-down"
+                size="24px"
+                color="#FFFFFF"
+            /></nuxt-link>
+          </li>
+          <li class="cursor-pointer py-3" @click="jobToggled">
+            <p>Find Jobs</p>
+          </li>
+          <JobDropdown class="lg:hidden" v-if="dataStore.job" />
+          <div
+            class="flex flex-col w-full lg:w-auto lg:flex-row lg:items-center gap-4"
+          >
+            <nuxt-link
+              to="/jobClient"
+              class="bg-white text-center border-2 border-secondary font-semibold px-4 py-3 lg:w-[160px] rounded-lg text-secondary"
+            >
+              Book Staff
+            </nuxt-link>
+            <nuxt-link
+              to="/jobCandidate"
+              class="bg-secondary text-center border-2 border-secondary font-semibold px-4 py-3 lg:w-[160px] rounded-lg text-white"
+            >
+              Register Now!
+            </nuxt-link>
           </div>
         </ul>
       </ul>
@@ -33,26 +140,33 @@
 </template>
 
 <script setup lang="ts">
+import { useDataStore } from "@/stores/data";
+const dataStore = useDataStore();
+const route = useRoute();
+console.log(route.name);
 const scrolled = ref(false);
 const open = ref(false);
-const close = (e:HTMLInputElement) => {
-  if (e.target.tagName !== 'svg' && e.target.tagName !== 'path') {
+const close = (e: HTMLInputElement) => {
+  if (e.target.tagName !== "svg" && e.target.tagName !== "path") {
     open.value = false;
   }
 };
 
 const handleScroll = () => {
-  scrolled.value = window.scrollY > 0
-}
+  scrolled.value = window.scrollY > 0;
+};
 
-if (typeof window !== 'undefined') {
-  window.addEventListener('scroll', handleScroll);
+const jobToggled = () => {
+  dataStore.job = !dataStore.job;
+};
+
+if (typeof window !== "undefined") {
+  window.addEventListener("scroll", handleScroll);
 }
 </script>
 
 <style lang="scss" scoped>
 .navbar {
-
   &-links {
     display: flex;
     // align-items: center;
@@ -60,7 +174,7 @@ if (typeof window !== 'undefined') {
 
     &__item {
       margin: 0;
-      a:not([data-type=button]) {
+      a:not([data-type="button"]) {
         color: $primary;
         text-decoration: none;
         &:hover {
@@ -97,12 +211,12 @@ if (typeof window !== 'undefined') {
       transform: translateX(500px);
       // pointer-events: none;
       position: fixed;
-      transition: transform .2s ease-out;
+      transition: transform 0.2s ease-out;
       display: flex;
       flex-direction: column;
       padding-top: 20px;
-      padding-left: 30px !important;
-      padding-right: 30px;
+      padding-left: 20px !important;
+      padding-right: 20px;
       top: 0;
       bottom: 0;
       right: 0;

@@ -1,11 +1,8 @@
 <template>
-  <div class="body">
-    <main class="text-primary">
+  <div class="body text-primary">
+    <main>
       <AppHeader />
-      <!-- <JobDropdown v-if="dataStore.job" /> -->
-      <ServiceHero />
-      <ServiceSecondSection />
-      <ServiceDiscover />
+      <JobApply />
       <ServiceTrust />
     </main>
     <AppFooter />

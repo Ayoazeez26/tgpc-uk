@@ -1,17 +1,17 @@
 <script setup lang="ts">
 const values = ref([
   {
-    img: "discover",
+    img: "info",
     title: "Fill in information",
     desc: "Share your details, skills, and aspirations. This helps us understand you better for a tailored job match.",
   },
   {
-    img: "discover",
+    img: "upload",
     title: "Upload CV",
     desc: "Showcase your experience by submitting your CV. It's a key snapshot of your professional journey.",
   },
   {
-    img: "discover",
+    img: "send",
     title: "Submit",
     desc: 'Click "Submit" to send us your information. Our dedicated team will review your details and start finding your ideal healthcare role.',
   }
@@ -33,7 +33,7 @@ const values = ref([
           </div>
           <div class="mt-20 flex gap-6 flex-wrap w-full">
             <div v-for="(value, index) in values" :key="index" class="card">
-              <img class="w-[64px]" src="/img/discover.png" alt="discover" />
+              <img class="w-[64px]" :src="`/svg/${value.img}.svg`" :alt="value.img" />
               <p class="text-head mt-8 mb-2 text-lg font-semibold">
                 {{ value.title }}
               </p>

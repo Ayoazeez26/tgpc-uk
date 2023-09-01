@@ -176,9 +176,9 @@ watch(message, (value) => {
                 >There is no error message</span
               >
             </div>
-            <div class="flex w-full mt-3">
+            <div class="w-full">
               <div class="flex flex-col w-full">
-                <label for="email" class="mb-2">Email Address</label>
+                <label for="email">Email Address</label>
                 <input
                   id="email"
                   v-model="email"
@@ -216,9 +216,9 @@ watch(message, (value) => {
                 >There is no error message</span
               >
             </div>
-            <div class="flex w-full mt-3">
+            <div class="flex w-full">
               <div class="flex flex-col w-full">
-                <label for="message" class="mb-2">Message</label>
+                <label for="message">Message</label>
                 <textarea
                   id="message"
                   v-model="message"

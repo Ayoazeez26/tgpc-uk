@@ -5,7 +5,7 @@
   >
     <div class="w-full max-w-[1240px] mx-auto">
       <div
-        class="bg-blue-2 flex flex-col items-center md:justify-between md:flex-row rounded-2xl p-12 md:p-16 -mt-[180px] md:-mt-[calc(80px+10%)] px-8 w-full"
+        class="bg-blue-2 flex flex-col items-center md:justify-between md:flex-row rounded-2xl p-12 md:p-16 -mt-[180px] md:-mt-[calc(80px+10%)] px-8 w-full z-[2]"
       >
         <div class="">
           <h3 class="text-2xl md:text-[28px] text-white font-semibold">
@@ -16,10 +16,22 @@
             people
           </p>
         </div>
-        <div class="flex flex-col lg:flex-row lg:items-center mt-6 md:mt-0 w-full md:w-auto items-stretch gap-4">
-          <button class="bg-white border-2 border-secondary font-semibold px-4 py-3 md:w-[160px] rounded-lg text-secondary">Learn More</button>        
-          <button class="bg-secondary border-2 border-secondary font-semibold px-4 py-3 md:w-[160px] rounded-lg text-white">Contact</button>        
-          </div>
+        <div
+          class="flex flex-col lg:flex-row lg:items-center mt-6 md:mt-0 w-full md:w-auto items-stretch gap-4"
+        >
+          <nuxt-link
+            to="/about"
+            class="bg-white border-2 border-secondary font-semibold px-4 py-3 md:w-[160px] rounded-lg text-center text-secondary"
+          >
+            Learn More
+          </nuxt-link>
+          <nuxt-link
+            to="/contact"
+            class="bg-secondary border-2 border-secondary font-semibold px-4 py-3 md:w-[160px] rounded-lg text-center text-white"
+          >
+            Contact
+          </nuxt-link>
+        </div>
       </div>
       <div
         class="flex flex-col-reverse md:flex-row items-center justify-center md:mt-[120px] w-full"

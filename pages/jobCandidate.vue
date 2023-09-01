@@ -1,12 +1,11 @@
 <template>
-  <div class="body">
-    <main class="text-primary">
-      <AboutHeader />
+  <div class="body text-primary">
+    <main>
+      <AppHeader />
       <!-- <JobDropdown v-if="dataStore.job" /> -->
-      <AboutHero />
-      <AboutSecondSection />
-      <AboutValues />
-      <HomeTestimonials />
+      <JobCandidateFirst v-if="!dataStore.candidateStart"/>
+      <JobCandidateSecond v-else/>
+      <ServiceTrust />
     </main>
     <AppFooter />
   </div>

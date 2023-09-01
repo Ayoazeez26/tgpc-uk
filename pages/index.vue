@@ -2,6 +2,7 @@
   <div class="body">
     <main class="text-primary">
       <AppHeader />
+      <!-- <JobDropdown v-if="dataStore.job" /> -->
       <HomeHero />
       <HomeServices />
       <HomeTeam />
@@ -14,6 +15,10 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useDataStore } from '@/stores/data'
+
+const dataStore = useDataStore();
+</script>
 
 <style scoped></style>

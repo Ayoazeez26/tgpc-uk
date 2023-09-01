@@ -17,9 +17,11 @@
     "nuxt-icon": "^0.4.1"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.4.11",
     "click-outside-vue3": "^4.0.1",
     "gsap": "^3.12.2",
     "nuxt-swiper": "^1.1.1",
+    "pinia": "^2.1.6",
     "sass": "^1.63.6",
     "smooth-scrollbar": "^8.8.4",
     "vue3-carousel-nuxt": "^1.1.0"
