@@ -17,6 +17,7 @@ const imgUrls = ref([
 const mm = $gsap.matchMedia();
 const classNameToAdd = "absolute";
 const classNameToRemove = "hidden";
+const lastClassNameToRemove = "lg:block";
 const ctx = $gsap.context(() => {});
 onUnmounted(() => {
   ctx.revert();
@@ -145,12 +146,14 @@ onMounted(() => {
               });
             },
             onLeave: () => {
-              tooltip.value.classList.add(classNameToRemove);
+              // tooltip.value.classList.add(classNameToRemove);
+              tooltip.value.classList.remove(lastClassNameToRemove);
               lastImg.value.classList.remove(classNameToRemove);
             },
             onEnterBack: () => {
               lastImg.value.classList.add(classNameToRemove);
-              tooltip.value.classList.remove(classNameToRemove);
+              tooltip.value.classList.add(lastClassNameToRemove);
+              // tooltip.value.classList.remove(classNameToRemove);
               $gsap.set(".tooltip-img", {
                 attr: { src: imgUrls.value[index] },
               });
