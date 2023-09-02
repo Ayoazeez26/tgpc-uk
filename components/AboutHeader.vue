@@ -1,13 +1,10 @@
 <template>
-  <div
-    class="fixed right-0 left-0 font-medium text-grey z-10"
-    :class="scrolled ? 'bg-white' : 'bg-grey-4'"
-  >
+  <div class="fixed right-0 left-0 font-medium text-primary bg-white z-10">
     <div
       class="flex h-24 md:h-[120px] items-center justify-between px-4 px-md-0 w-full max-w-[1240px] mx-auto"
     >
       <nuxt-link to="/">
-        <img class="w-[170px] h-[40px]" src="/img/logo.png" />
+        <img class="w-[170px]" src="/img/logo.png" />
       </nuxt-link>
       <button ref="hamburger" class="lg:hidden" @click="open = !open">
         <Icon name="ic:round-menu" size="24px" color="#1B5588" />
@@ -16,7 +13,7 @@
         <ul
           class="hidden lg:flex flex-col lg:flex-row lg:items-center gap-4 mt-10 lg:mt-0 lg:gap-10"
         >
-          <li @click="dataStore.job = false">
+          <li @click="open = !open">
             <nuxt-link
               class="hover:text-secondary hover:font-semibold cursor-pointer"
               :class="
@@ -26,17 +23,17 @@
               >Home</nuxt-link
             >
           </li>
-          <li @click="dataStore.job = false">
+          <li @click="open = !open">
             <nuxt-link
               class="hover:text-secondary hover:font-semibold cursor-pointer"
               :class="
                 route.name === 'about' ? 'text-secondary font-semibold' : ''
               "
               to="/about"
-              >About Us</nuxt-link
+              >About us</nuxt-link
             >
           </li>
-          <li @click="dataStore.job = false">
+          <li @click="open = !open">
             <nuxt-link
               class="hover:text-secondary hover:font-semibold cursor-pointer"
               :class="
@@ -46,29 +43,7 @@
               >Services</nuxt-link
             >
           </li>
-          <li @click="jobToggled">
-            <p
-              class="hover:text-secondary hover:font-semibold cursor-pointer"
-              :class="
-                route.name === 'jobCandidate' ||
-                route.name === 'jobClient' ||
-                route.name === 'applyNow'
-                  ? 'text-secondary font-semibold'
-                  : ''
-              "
-            >
-              Find Jobs<Icon
-                name="ic:round-keyboard-arrow-down"
-                size="24px"
-                color="#5A5A59"
-              />
-            </p>
-          </li>
         </ul>
-        <JobDropdown
-          class="absolute hidden lg:block top-20 right-0"
-          v-if="dataStore.job"
-        />
       </div>
       <ul
         class="navbar-links flex items-start"
@@ -79,16 +54,10 @@
           class="hidden lg:flex flex-col w-full lg:w-auto lg:flex-row lg:items-center gap-4"
         >
           <nuxt-link
-            to="/jobClient"
-            class="bg-white text-center border-2 border-secondary font-semibold px-4 py-3 lg:w-[160px] rounded-lg text-secondary"
+            to="/"
+            class="bg-secondary border-2 border-secondary font-semibold py-3 px-10 rounded-lg text-white"
           >
-            Book Staff
-          </nuxt-link>
-          <nuxt-link
-            to="/jobCandidate"
-            class="bg-secondary text-center border-2 border-secondary font-semibold px-4 py-3 lg:w-[160px] rounded-lg text-white"
-          >
-            Register Now!
+            Get in Touch
           </nuxt-link>
         </div>
         <div class="flex w-full mt-3 lg:hidden justify-between items-center">
@@ -106,7 +75,7 @@
             <nuxt-link to="/">Home</nuxt-link>
           </li>
           <li class="cursor-pointer py-3" @click="open = !open">
-            <nuxt-link to="/about">About Us</nuxt-link>
+            <nuxt-link to="/about">About us</nuxt-link>
           </li>
           <li class="cursor-pointer py-3" @click="open = !open">
             <nuxt-link to="/service"
@@ -116,24 +85,14 @@
                 color="#FFFFFF"
             /></nuxt-link>
           </li>
-          <li class="cursor-pointer py-3" @click="jobToggled">
-            <p>Find Jobs</p>
-          </li>
-          <JobDropdown class="lg:hidden" v-if="dataStore.job" />
           <div
             class="flex flex-col w-full lg:w-auto lg:flex-row lg:items-center gap-4"
           >
             <nuxt-link
-              to="/jobClient"
-              class="bg-white text-center border-2 border-secondary font-semibold px-4 py-3 lg:w-[160px] rounded-lg text-secondary"
+              to="/"
+              class="bg-secondary border-2 border-secondary font-semibold py-3 px-10 rounded-lg text-white"
             >
-              Book Staff
-            </nuxt-link>
-            <nuxt-link
-              to="/jobCandidate"
-              class="bg-secondary text-center border-2 border-secondary font-semibold px-4 py-3 lg:w-[160px] rounded-lg text-white"
-            >
-              Register Now!
+              Get in Touch
             </nuxt-link>
           </div>
         </ul>
@@ -143,8 +102,6 @@
 </template>
 
 <script setup lang="ts">
-import { useDataStore } from "@/stores/data";
-const dataStore = useDataStore();
 const route = useRoute();
 const scrolled = ref(false);
 const open = ref(false);
@@ -156,10 +113,6 @@ const close = (e: HTMLInputElement) => {
 
 const handleScroll = () => {
   scrolled.value = window.scrollY > 0;
-};
-
-const jobToggled = () => {
-  dataStore.job = !dataStore.job;
 };
 
 if (typeof window !== "undefined") {

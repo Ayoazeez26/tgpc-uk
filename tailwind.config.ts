@@ -5,9 +5,8 @@ export default <Partial<Config>>{
   theme: {
     extend: {
       colors: {
-        black: "#000A0A",
-        primary: "#404976",
-        secondary: "#2575BB",
+        primary: "#001D40",
+        secondary: "#244AB4",
         head: "#343B5C",
         brown: "#BA8827",
         "light-green": "#CDEAEC",
