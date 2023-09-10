@@ -25,63 +25,70 @@ const breakpoints = ref({
 });
 </script>
 <template>
-  <div class="py-20 px-4 xl:px-0 md:py-28 w-full max-w-[1240px] mx-auto">
-    <div class="w-full flex mx-auto">
-      <div
-        class="flex flex-col justify-between gap-10 lg:flex-row lg:items-center w-full max-w-[1240px]"
+  <div class="px-4 xl:px-0 py-20 w-full max-w-[1240px] mx-auto">
+    <div class="w-full">
+      <img src="/img/about-img.png" alt="about image" />
+    </div>
+    <div class="flex flex-col w-full mt-16 md:mt-[120px]">
+      <p class="mb-4 text-secondary">Our Values</p>
+      <h2
+        class="font-semibold text-[26px] md:text-[32px] leading-[42px] md:leading-[48px]"
       >
-        <img class="w-full max-w-[612px]" src="/img/medicals.png" />
-        <div class="flex flex-col w-full mt-10 md:mt-0 max-w-[572px]">
-          <h2
-            class="font-semibold text-[26px] md:text-[32px] leading-[42px] md:leading-[48px]"
-          >
-            Begin your Health Care Service Journey Today!
-          </h2>
-          <p class="mt-2 md:mt-6 leading-[28px]">
-            Our dedicated team understands the importance of finding work in
-            your city or town, and we are here to help you every step of the
-            way. Whether you’re a nurse, care assistant, support worker, or
-            social worker, we have the connections and expertise to get you to
-            work in your desired location anywhere in the UK.
+        We’re an ambitious and smart team with a shared mission
+      </h2>
+      <p class="mt-6">
+        Our shared values keep us connected and guide us as one team.
+      </p>
+      <div class="flex flex-col mt-14 lg:flex-row lg:justify-between">
+        <div class="flex flex-col w-full max-w-[592px]">
+          <p class="leading-[28px]">
+            At Dependable Health Care Limited, our journey began with a mission
+            to revolutionize home health care. Established as a domiciliary care
+            provider, we set out to deliver quality care and unwavering support
+            to service-users in the warmth of their own familiar environments.
+          </p>
+          <p class="mt-6 md:mt- leading-[28px]">
+            Regulated by the Care Quality Commission and aligned with the Health
+            and Social Care Act 2008 (Regulated Activities) Regulations 2014
+            (Fundamental Standards), we take pride in upholding the highest
+            standards of care.
+          </p>
+        </div>
+        <div class="flex flex-col w-full mt-6 lg:mt-0 max-w-[584px]">
+          <p class="leading-[28px]">
+            Our commitment to compliance ensures that we exceed expectations and
+            provide unparalleled services to our cherished clients. Through our
+            comprehensive statement of purpose, we establish clear standards
+            that guide service users, their families, and representatives,
+            empowering them to understand and expect excellence in every aspect
+            of our care.
+          </p>
+          <p class="mt-6 md:mt- leading-[28px]">
+            Dependable Health Care Limited is more than a care provider; we are
+            a trusted companion, supporting our clients through every step of
+            their wellness journey, all while celebrating the beauty of home and
+            community-based care.
           </p>
         </div>
       </div>
     </div>
-    <div class="w-full pt-16">
-      <p class="text-center">We are trusted by amazing companies</p>
-      <Carousel ref="carousel" :breakpoints="breakpoints" class="w-full">
-        <Slide v-for="(service, index) in services" :key="index">
-          <div class="carousel__item h-14">
-            <img class="h-14 w-auto" :src="`/img/${service}.png`" alt="" />
-          </div>
-        </Slide>
-        <template #addons>
-          <Navigation class="invisible md:visible" />
-        </template>
-      </Carousel>
-      <div class="flex md:hidden gap-6 justify-center">
-        <button
-          @click="prev"
-          class="flex min-w-max bg-white border border-grey-3 w-16 h-16 rounded-lg items-center justify-center mt-2"
-        >
-          <Icon name="mdi:arrow-left" size="32" />
-        </button>
-        <button
-          @click="next"
-          class="flex min-w-max bg-white border border-grey-3 w-16 h-16 rounded-lg items-center justify-center mt-2"
-        >
-          <Icon name="mdi:arrow-right" size="32" />
-        </button>
-      </div>
-    </div>
-    <div class="flex flex-col lg:flex-row lg:justify-between w-full mt-16 md:mt-10">
+    <div
+      class="bg-grey-2 px-6 md:px-24 py-8 md:py-14 flex flex-col items-center text-center gap-y-6 mt-[120px]"
+    >
       <h2
         class="font-semibold text-[26px] md:text-[32px] leading-[42px] md:leading-[48px]"
       >
-        We're all About Standing Out
+        Our Mission
       </h2>
-      <p class="mt-6 md:mt-0 leading-[28px] w-full max-w-[612px]">
-        We are unique in a way that our candidates are not just temporary staff but real partners and assets to Wana Services. We support you all the way so even you have never done a care job before, you will enjoy working with us as our representatives will offer you ongoing support to ensure you gain confidence and succeed in work placement.  We are not a rip-off agency like many out there. Our candidates take a lion’s share in charge rates because we value them as ones that goes out to the clients to represent Wana Services.
+      <p class="leading-[28px] w-full max-w-[822px]">
+        At Dependable, our unwavering mission is to safeguard and uplift the
+        lives of children and individuals in need of care and support. We value
+        their choices and preferences, promoting independence to enhance their
+        quality of life. With unwavering dignity and respect, we empower them to
+        actively participate in their community, fostering a sense of
+        self-reliance and achievement. Through person-centered planning, we
+        ensure their voices are heard, fostering a compassionate and inclusive
+        environment that enables them to thrive and do things for themselves.
       </p>
     </div>
   </div>

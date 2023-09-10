@@ -5,8 +5,9 @@
       <!-- <JobDropdown v-if="dataStore.job" /> -->
       <HomeHero />
       <HomeServices />
-      <HomeTeam />
-      <HomeTestimonials />
+      <HomeInfo />
+      <HomeCTA />
+      <!-- <HomeTestimonials /> -->
       <!-- <HomeSponsor />
     <HomeCompassion />
     <HomeVideos /> -->

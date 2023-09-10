@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
     head: {
-      title: "Wana Services",
+      title: "Dependable Health Care",
       link: [{ rel: "icon", type: "image/png", href: "/favicon.ico" }],
       meta: [
         { charset: "utf-8" },
@@ -12,7 +12,7 @@ export default defineNuxtConfig({
         {
           name: "description",
           content:
-            "we specialize in sourcing local job opportunities for Nurses, Care Assistants, Support Workers, and Social Workers. Our mission is to help healthcare professionals find fulfilling careers in their own communities.",
+            "We are a domiciliary care provider established to offer home based quality care and support to service-users who require care and support in their own familiar environment and surroundings.",
         },
       ],
       // script: [
@@ -32,7 +32,7 @@ export default defineNuxtConfig({
     "@nuxtjs/google-fonts",
     "nuxt-swiper",
     "vue3-carousel-nuxt",
-    "@pinia/nuxt"
+    "@pinia/nuxt",
   ],
   vite: {
     css: {
@@ -50,6 +50,6 @@ export default defineNuxtConfig({
     },
   },
   build: {
-    transpile: ['gsap']
-  }
+    transpile: ["gsap"],
+  },
 });

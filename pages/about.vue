@@ -6,7 +6,8 @@
       <AboutHero />
       <AboutSecondSection />
       <AboutValues />
-      <HomeTestimonials />
+      <AboutCTA/>
+      <HomeCTA />
     </main>
     <AppFooter />
   </div>

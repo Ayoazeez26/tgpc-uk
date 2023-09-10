@@ -1,12 +1,12 @@
 <template>
   <div class="body">
     <main class="text-primary">
-      <AppHeader />
+      <AboutHeader />
       <!-- <JobDropdown v-if="dataStore.job" /> -->
       <ServiceHero />
-      <ServiceSecondSection />
+      <!-- <ServiceSecondSection /> -->
       <ServiceDiscover />
-      <ServiceTrust />
+      <HomeCTA />
     </main>
     <AppFooter />
   </div>

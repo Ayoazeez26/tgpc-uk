@@ -1,13 +1,13 @@
 <template>
-  <div class="fixed right-0 left-0 font-medium text-primary bg-white z-10">
+  <div class="fixed right-0 left-0 font-medium text-white bg-blue-2 z-10">
     <div
       class="flex h-24 md:h-[120px] items-center justify-between px-4 px-md-0 w-full max-w-[1240px] mx-auto"
     >
       <nuxt-link to="/">
-        <img class="w-[170px]" src="/img/logo.png" />
+        <img class="w-[170px]" src="/svg/logo-footer.svg" alt="logo" />
       </nuxt-link>
       <button ref="hamburger" class="lg:hidden" @click="open = !open">
-        <Icon name="ic:round-menu" size="24px" color="#1B5588" />
+        <Icon name="ic:round-menu" size="24px" color="#FFF" />
       </button>
       <div class="hidden lg:block relative">
         <ul
@@ -15,9 +15,9 @@
         >
           <li @click="open = !open">
             <nuxt-link
-              class="hover:text-secondary hover:font-semibold cursor-pointer"
+              class="hover:text-blue hover:font-semibold cursor-pointer"
               :class="
-                route.name === 'index' ? 'text-secondary font-semibold' : ''
+                route.name === 'index' ? 'text-blue font-semibold' : ''
               "
               to="/"
               >Home</nuxt-link
@@ -25,9 +25,9 @@
           </li>
           <li @click="open = !open">
             <nuxt-link
-              class="hover:text-secondary hover:font-semibold cursor-pointer"
+              class="hover:text-blue hover:font-semibold cursor-pointer"
               :class="
-                route.name === 'about' ? 'text-secondary font-semibold' : ''
+                route.name === 'about' ? 'text-blue font-semibold' : ''
               "
               to="/about"
               >About us</nuxt-link
@@ -35,9 +35,9 @@
           </li>
           <li @click="open = !open">
             <nuxt-link
-              class="hover:text-secondary hover:font-semibold cursor-pointer"
+              class="hover:text-blue hover:font-semibold cursor-pointer"
               :class="
-                route.name === 'service' ? 'text-secondary font-semibold' : ''
+                route.name === 'service' ? 'text-blue font-semibold' : ''
               "
               to="/service"
               >Services</nuxt-link

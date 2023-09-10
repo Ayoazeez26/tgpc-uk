@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed right-0 left-0 font-medium text-grey z-10 bg-white">
+  <div class="fixed right-0 left-0 font-medium text-grey-3 z-10 bg-white">
     <div
       class="flex h-24 md:h-[120px] items-center justify-between px-4 px-md-0 w-full max-w-[1240px] mx-auto"
     >
@@ -55,7 +55,7 @@
         >
           <nuxt-link
             to="/"
-            class="bg-secondary border-2 border-secondary font-semibold py-3 px-10 rounded-lg text-white"
+            class="bg-secondary border-2 border-secondary font-medium py-3 px-10 rounded-lg text-white"
           >
             Get in Touch
           </nuxt-link>

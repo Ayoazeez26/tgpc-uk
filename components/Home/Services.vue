@@ -1,75 +1,81 @@
-<script setup lang="ts">
-const services = ref([
-  {
-    img: "care",
-    name: "Health Care Assistance",
-  },
-  {
-    img: "carers",
-    name: "Carers",
-  },
-]);
-const breakpoints = ref({
-  150: {
-    itemsToShow: 1,
-    snapAlign: 'center'
-  },
-  1000: {
-    itemsToShow: 2,
-    snapAlign: 'center'
-  }
-});
-
-const carousel = ref(null);
-const next = () => {
-  carousel.value.next();
-};
-
-const prev = () => {
-  carousel.value.prev();
-}
-</script>
+<script setup lang="ts"></script>
 <template>
-  <div class="w-full pt-[80px] lg:pt-[64px]">
+  <div class="bg-grey-2 w-full py-[80px] lg:py-[120px]">
     <div class="flex flex-col mx-auto w-full max-w-[1240px]">
       <div class="w-full flex flex-col items-center text-center px-4">
-        <div class="w-full mb-14 max-w-[434px]">
-          <h2 class="text-2xl lg:text-[32px] font-semibold mb-4">
-            Our Recruitment Services
+        <div class="w-full mb-10">
+          <h2 class="text-2xl lg:text-[48px] lg:leading-[56px] font-semibold">
+            Our Services
           </h2>
-          <p>
-            You can Recruit or Become Nurse, Care Assistants, Support Workers,
-            and Social Workers
-          </p>
         </div>
-        <div class="w-full">
-          <Carousel ref="carousel" :breakpoints="breakpoints" class="w-full">
-            <Slide v-for="(service, index) in services" :key="index">
-              <div class="carousel__item max-w-[528px]">
-                <div class="md:p-6 flex flex-col">
-                  <img :src="`/img/${service.img}.png`" alt="" />
-                  <p class="mt-8">{{ service.name }}</p>
-                </div>
-              </div>
-            </Slide>
-            <template #addons>
-              <Navigation class="invisible md:visible" />
-            </template>
-          </Carousel>
-          <div class="flex md:hidden gap-6 mt-5 justify-center">
-            <button
-              @click="prev"
-              class="flex min-w-max bg-white border border-grey-3 w-16 h-16 rounded-lg items-center justify-center mt-2"
-            >
-              <Icon name="mdi:arrow-left" size="32" />
-            </button>
-            <button
-              @click="next"
-              class="flex min-w-max bg-white border border-grey-3 w-16 h-16 rounded-lg items-center justify-center mt-2"
-            >
-              <Icon name="mdi:arrow-right" size="32"/>
-            </button>
+        <div
+          class="flex flex-col lg:flex-row md:flex-wrap gap-4 items-center lg:justify-center w-full text-start"
+        >
+          <div
+            class="bg-lime py-10 overflow-x-hidden md:py-14 px-6 md:px-10 flex flex-col gap-10 relative rounded-lg w-full max-w-[512px]"
+          >
+            <div class="flex flex-col gap-4">
+              <h3 class="text-2xl font-semibold leading-8">Assisted Living</h3>
+              <p class="md:text-lg leading-7">
+                Our live-in care service provides 24/7 support for individuals
+                with diverse needs, so you can stay in your own home.
+              </p>
+            </div>
+            <img
+              class="w-full md:block hidden self-end md:max-w-[399px] z-[1]"
+              src="/img/assisted-img.png"
+              alt="assisted"
+            />
+            <img
+              class="w-full md:hidden z-[1]"
+              src="/img/assisted-img-mob.png"
+              alt="assisted"
+            />
+            <img
+              class="absolute bottom-0 z-0"
+              src="/img/lines.png"
+              alt="lines"
+            />
           </div>
+          <div
+            class="bg-brown overflow-x-hidden py-10 md:py-14 px-6 md:px-10 flex flex-col gap-10 relative rounded-lg w-full max-w-[512px]"
+          >
+            <div class="flex flex-col gap-4">
+              <h3 class="text-2xl font-semibold leading-8">
+                Domicilliary Care
+              </h3>
+              <p class="md:text-lg leading-7">
+                Our domiciliary care services help people of all ages and
+                abilities thrive in their own homes with the help of skilled,
+                visiting carers.
+              </p>
+            </div>
+            <img
+              class="w-full self-end md:block hidden max-w-[399px] z-[1]"
+              src="/img/domiciliary-img.png"
+              alt="domiciliary"
+            />
+            <img
+              class="w-full md:hidden z-[1]"
+              src="/img/domiciliary-img-mob.png"
+              alt="domiciliary"
+            />
+            <img
+              class="absolute bottom-0 z-0"
+              src="/img/lines.png"
+              alt="lines"
+            />
+          </div>
+        </div>
+        <div
+          class="flex flex-col w-full mt-10 md:w-auto md:flex-row md:items-center"
+        >
+          <nuxt-link
+            to="/"
+            class="bg-secondary border-2 border-secondary font-medium py-3 px-10 rounded-lg text-white"
+          >
+            Learn More
+          </nuxt-link>
         </div>
       </div>
     </div>

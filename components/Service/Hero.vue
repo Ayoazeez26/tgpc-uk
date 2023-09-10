@@ -1,31 +1,24 @@
 <script setup lang="ts"></script>
 <template>
-  <div class="py-20 px-4 xl:px-0 md:pt-28 md:pb-[120px] w-full">
-    <div class="w-full max-w-[1240px] flex mx-auto">
-      <div class="flex flex-col lg:flex-row gap-10 justify-between lg:items-center w-full max-w-[1240px]">
-        <img
-          class="w-full max-w-[612px]"
-          src="/img/service-people.png"
-          alt="content"
-        />
-        <div class="flex flex-col w-full max-w-[572px]">
-          <h1
-            class="font-semibold text-head leading-snug text-[38px] lg:leading-snug lg:text-[48px]"
-          >
-            Wana Services is your staffing and skills acquisition solution
-          </h1>
-          <p class="mt-6 mb-10 leading-[28px]">
-            We recruit Healthcare professionals. We recruit general staff
-            nurses, Speciality nurses, Healthcare Assistants, Support workers,
-            Cleaners, Porters, Domestic staff. Our Target market is the NHS,
-            Private hospitals, Care homes, nursing homes, Days centres, Respite
-            homes, Home care/domiciliary care, Supported Living.
-          </p>
-          <button
-              class="bg-secondary border-2 border-secondary font-semibold px-4 py-3 md:w-[160px] rounded-lg text-white"
+  <div class="py-20 bg-blue-2 px-4 xl:px-0 md:py-28 w-full text-white">
+    <div class="w-full max-w-[1240px] flex mx-auto mt-10 lg:mt-[68px]">
+      <div class="flex justify-center w-full max-w-[1240px]">
+        <div
+          class="flex flex-col lg:flex-row lg:justify-between lg:items-end w-full lg:pr-4 xl:pr-0"
+        >
+          <div class="flex flex-col gap-3">
+            <p class="leading-[28px] w-full max-w-[507px]">Nice to meet you</p>
+            <h1
+              class="font-semibold leading-snug text-[32px] lg:leading-snug lg:text-[40px]"
             >
-              Register
-            </button>
+              What Makes Us Dependable
+            </h1>
+          </div>
+          <p class="mt-6 lg:mt-0 leading-[28px] w-full max-w-[507px]">
+            We're not just a care team; we're your happiness accomplices! Our
+            mission is simple - to serve you with unparalleled excellence and
+            genuine compassion.
+          </p>
         </div>
       </div>
     </div>

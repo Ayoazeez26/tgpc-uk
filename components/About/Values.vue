@@ -1,53 +1,69 @@
 <script setup lang="ts">
 const values = ref([
   {
-    title: "Respect and Fairness",
-    desc: "Everyone deserves to be treated with respect and fairness, and that our clients and candidates are essential to their success.",
+    title: "Respect",
+    desc: "We emphasize empathy, kindness, and understanding in all interactions.",
   },
   {
-    title: "Mutual success",
-    desc: "When our candidates and clients succeed, we also succeed. We’re dedicated to providing excellent services to everyone we work with.",
+    title: "Commitment",
+    desc: "We have an unwavering dedication to our mission and those we serve.",
   },
   {
-    title: "Diversity and inclusion",
-    desc: "Everyone has something to offer, and are committed to creating a workplace where everyone is welcome and valued.",
+    title: "Compassion",
+    desc: "With the heart of our care, fostering empathy and kindness for all.",
   },
   {
-    title: "Self-motivation",
-    desc: "We are a team of passionate professionals who are always looking for new ways to improve",
+    title: "Dignity",
+    desc: "We honor and uphold the inherent worth and value of every individual.",
   },
   {
-    title: "Listening and communication",
-    desc: "We believe that it is important to understand the needs of our candidates and clients, and to communicate effectively with them",
+    title: "Integrity",
+    desc: "We make sure to uphold honesty, ethics, and trust in all that we do.",
+  },
+  {
+    title: "Involvement",
+    desc: "We engage, empower, and value everyone's active participation.",
+  },
+  {
+    title: "Independence",
+    desc: "We Foster self-reliance, empowering lives on their unique paths.",
+  },
+  {
+    title: "Equality",
+    desc: "We embrace diversity, ensuring fairness, and empowering all.",
+  },
+  {
+    title: "Safety",
+    desc: "We Prioritize well-being, creating secure environments, and trust.",
   },
 ]);
 </script>
 <template>
-  <div class="bg-grey-4 px-4 xl:px-0 py-14 w-full">
+  <div class="px-4 xl:px-0 py-14 w-full">
     <div class="w-full max-w-[1240px] flex mx-auto">
       <div
         class="flex flex-col items-center justify-center w-full max-w-[1240px]"
       >
         <div class="flex flex-col text-center w-full max-w-[612px]">
-          <h1
-            class="font-semibold text-head leading-snug text-[38px] lg:leading-snug lg:text-[48px] w-full max-w-[572px]"
+          <p class="text-secondary mb-4">Our Values</p>
+          <h3
+            class="text-2xl lg:text-[32px] font-semibold leading-8 w-full max-w-[572px]"
           >
-            Our Core Values
-          </h1>
+            We're an ambitious and smart team with a shared mission
+          </h3>
           <p class="mt-4 leading-[28px]">
-            What do we value? All sorts of things we particularly pride
-            ourselves on:
+            Our shared values keep us connected and guide us as one team.
           </p>
         </div>
         <div class="mt-14 flex gap-6 justify-center flex-wrap w-full">
-          <div v-for="(value, index) in values" :key="index" class="card">
-            <div class="flex justify-between w-full items-center">
-              <p class="text-head text-lg font-semibold leading-[34px]">
-                {{ value.title }}
-              </p>
-              <img src="/svg/spark.svg" alt="spark" />
+          <div v-for="(value, index) in values" :key="index" class="card border border-secondary bg-white flex flex-col rounded-lg items-center p-6 w-[384px] h-[224px] text-center">
+            <div class="w-14 h-14 flex items-center justify-center" :class="index % 2 === 0 ? 'bg-lime' : 'bg-brown'">
+              <img class="w-6" src="/svg/blue-star.svg" alt="blue star">
             </div>
-            <p class="leading-[28px] text-left">{{ value.desc }}</p>
+              <h4 class="text-head text-2xl font-semibold leading-[34px]">
+                {{ value.title }}
+              </h4>
+            <p class="leading-[28px]">{{ value.desc }}</p>
           </div>
         </div>
       </div>
@@ -57,14 +73,6 @@ const values = ref([
 
 <style lang="scss" scoped>
 .card {
-  background: #fff;
-  box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.08);
-  display: flex;
-  width: 397.333px;
-  height: 234px;
-  padding: 32px 24px;
-  flex-direction: column;
-  align-items: flex-start;
   gap: 16px;
 }
 </style>
