@@ -32,7 +32,7 @@
             <h6 class="text-xl font-semibold uppercase text-white mb-4">Quick Links</h6>
             <nuxt-link class="mb-4" to="/">Home</nuxt-link>
             <nuxt-link class="mb-4" to="/about">About Us</nuxt-link>
-            <nuxt-link class="mb-4" to="/services">Services</nuxt-link>
+            <nuxt-link class="mb-4" to="/service">Services</nuxt-link>
           </div>
           <div class="flex flex-col text-center items-center">
             <h6 class="text-xl font-semibold uppercase text-white mb-4">Contact Us</h6>
