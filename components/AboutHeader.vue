@@ -16,9 +16,7 @@
           <li @click="open = !open">
             <nuxt-link
               class="hover:text-blue hover:font-semibold cursor-pointer"
-              :class="
-                route.name === 'index' ? 'text-blue font-semibold' : ''
-              "
+              :class="route.name === 'index' ? 'text-blue font-semibold' : ''"
               to="/"
               >Home</nuxt-link
             >
@@ -26,9 +24,7 @@
           <li @click="open = !open">
             <nuxt-link
               class="hover:text-blue hover:font-semibold cursor-pointer"
-              :class="
-                route.name === 'about' ? 'text-blue font-semibold' : ''
-              "
+              :class="route.name === 'about' ? 'text-blue font-semibold' : ''"
               to="/about"
               >About us</nuxt-link
             >
@@ -36,9 +32,7 @@
           <li @click="open = !open">
             <nuxt-link
               class="hover:text-blue hover:font-semibold cursor-pointer"
-              :class="
-                route.name === 'service' ? 'text-blue font-semibold' : ''
-              "
+              :class="route.name === 'service' ? 'text-blue font-semibold' : ''"
               to="/service"
               >Services</nuxt-link
             >
@@ -62,10 +56,10 @@
         </div>
         <div class="flex w-full mt-3 lg:hidden justify-between items-center">
           <nuxt-link to="/">
-            <img class="w-[102px]" src="/img/logo.png" />
+            <img class="w-[102px]" src="/svg/logo-footer.svg" />
           </nuxt-link>
           <button class="" @click="open = !open">
-            <Icon name="ic:round-close" size="24px" color="#1B5588" />
+            <Icon name="ic:round-close" size="24px" color="#FFF" />
           </button>
         </div>
         <ul
@@ -78,19 +72,14 @@
             <nuxt-link to="/about">About us</nuxt-link>
           </li>
           <li class="cursor-pointer py-3" @click="open = !open">
-            <nuxt-link to="/service"
-              >Services<Icon
-                name="ic:round-keyboard-arrow-down"
-                size="24px"
-                color="#FFFFFF"
-            /></nuxt-link>
+            <nuxt-link to="/service">Services</nuxt-link>
           </li>
           <div
             class="flex flex-col w-full lg:w-auto lg:flex-row lg:items-center gap-4"
           >
             <nuxt-link
               to="/"
-              class="bg-secondary border-2 border-secondary font-semibold py-3 px-10 rounded-lg text-white"
+              class="bg-secondary border-2 border-secondary text-center font-semibold py-3 px-10 rounded-lg text-white"
             >
               Get in Touch
             </nuxt-link>
@@ -177,7 +166,7 @@ if (typeof window !== "undefined") {
       right: 0;
       width: 500px;
       max-width: 100vw;
-      background-color: white;
+      background-color: $blue-2;
       z-index: 100;
       &__toggle {
         display: none;

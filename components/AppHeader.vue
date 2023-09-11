@@ -90,7 +90,7 @@
           >
             <nuxt-link
               to="/"
-              class="bg-secondary border-2 border-secondary font-semibold py-3 px-10 rounded-lg text-white"
+              class="bg-secondary border-2 border-secondary text-center font-semibold py-3 px-10 rounded-lg text-white"
             >
               Get in Touch
             </nuxt-link>
