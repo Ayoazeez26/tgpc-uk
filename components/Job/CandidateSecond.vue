@@ -347,7 +347,7 @@ const drop = (e) => {
 </script>
 <template>
   <div
-    class="w-full max-w-[1240px] mx-auto py-[150px] md:py-[180px] overflow-x-hidden relative"
+    class="w-full max-w-[1296px] mx-auto py-[150px] md:py-[180px] overflow-x-hidden relative"
   >
     <div
       class="w-full flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-[56px]"
@@ -642,7 +642,8 @@ const drop = (e) => {
           Your registration has been successfully sent
         </h1>
         <p class="text-lg mt-3">
-          Our team will review your message and get back to you soon. Keep exploring Wana!
+          Our team will review your message and get back to you soon. Keep
+          exploring Wana!
         </p>
         <div class="w-full flex text-center mt-6">
           <nuxt-link

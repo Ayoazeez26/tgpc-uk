@@ -25,7 +25,7 @@ const breakpoints = ref({
 });
 </script>
 <template>
-  <div class="py-20 md:py-16 mx-auto w-full max-w-[1240px] px-4 xl:px-0">
+  <div class="py-20 md:py-16 mx-auto w-full max-w-[1296px] px-4 xl:px-0">
     <div class="w-full pb-36">
       <p class="text-center">We are trusted by amazing companies</p>
       <Carousel ref="carousel" :breakpoints="breakpoints" class="w-full">

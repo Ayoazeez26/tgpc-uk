@@ -40,9 +40,9 @@ const values = ref([
 </script>
 <template>
   <div class="px-4 xl:px-0 py-14 w-full">
-    <div class="w-full max-w-[1240px] flex mx-auto">
+    <div class="w-full max-w-[1296px] flex mx-auto">
       <div
-        class="flex flex-col items-center justify-center w-full max-w-[1240px]"
+        class="flex flex-col items-center justify-center w-full max-w-[1296px]"
       >
         <div class="flex flex-col text-center w-full max-w-[612px]">
           <p class="text-secondary mb-4">Our Values</p>
@@ -56,13 +56,20 @@ const values = ref([
           </p>
         </div>
         <div class="mt-14 flex gap-6 justify-center flex-wrap w-full">
-          <div v-for="(value, index) in values" :key="index" class="card border border-secondary bg-white flex flex-col rounded-lg items-center p-6 w-[384px] h-[224px] text-center">
-            <div class="w-14 h-14 flex items-center justify-center" :class="index % 2 === 0 ? 'bg-lime' : 'bg-brown'">
-              <img class="w-6" src="/svg/blue-star.svg" alt="blue star">
+          <div
+            v-for="(value, index) in values"
+            :key="index"
+            class="card border border-secondary bg-white flex flex-col rounded-lg items-center p-6 w-[384px] h-[224px] text-center"
+          >
+            <div
+              class="w-14 h-14 flex items-center justify-center"
+              :class="index % 2 === 0 ? 'bg-lime' : 'bg-brown'"
+            >
+              <img class="w-6" src="/svg/blue-star.svg" alt="blue star" />
             </div>
-              <h4 class="text-head text-2xl font-semibold leading-[34px]">
-                {{ value.title }}
-              </h4>
+            <h4 class="text-head text-2xl font-semibold leading-[34px]">
+              {{ value.title }}
+            </h4>
             <p class="leading-[28px]">{{ value.desc }}</p>
           </div>
         </div>

@@ -25,7 +25,7 @@ const breakpoints = ref({
 });
 </script>
 <template>
-  <div class="px-4 xl:px-0 py-20 w-full max-w-[1240px] mx-auto">
+  <div class="px-4 xl:px-0 py-20 w-full max-w-[1296px] mx-auto">
     <div class="w-full">
       <img src="/img/about-img.png" alt="about image" />
     </div>

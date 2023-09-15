@@ -14,7 +14,7 @@ const email = ref("");
 const message = ref("");
 const subject = ref("");
 const phone = ref("");
-const applyAs = ref("nurse")
+const applyAs = ref("nurse");
 
 const validateEmail = (email) => {
   if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
@@ -50,7 +50,7 @@ const getStarted = () => {
 </script>
 <template>
   <div
-    class="w-full max-w-[1240px] mx-auto py-[150px] md:py-[180px] overflow-x-hidden relative"
+    class="w-full max-w-[1296px] mx-auto py-[150px] md:py-[180px] overflow-x-hidden relative"
   >
     <div
       class="w-full flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-[56px]"

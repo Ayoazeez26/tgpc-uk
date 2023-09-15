@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useDataStore } from '@/stores/data';
+import { useDataStore } from "@/stores/data";
 
 const dataStore = useDataStore();
 const submitForm = () => {
@@ -45,11 +45,11 @@ watch(message, (value) => {
 
 const getStarted = () => {
   dataStore.candidateStart = true;
-}
+};
 </script>
 <template>
   <div
-    class="w-full max-w-[1240px] mx-auto py-[150px] md:py-[180px] overflow-x-hidden relative"
+    class="w-full max-w-[1296px] mx-auto py-[150px] md:py-[180px] overflow-x-hidden relative"
   >
     <div
       class="w-full flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-[56px]"
@@ -64,15 +64,21 @@ const getStarted = () => {
           health and social care professionals.
         </p>
         <div class="mt-10 flex items-center gap-x-4">
-          <img class="w-[130px]" src="/img/avatars.png" alt="avatars">
+          <img class="w-[130px]" src="/img/avatars.png" alt="avatars" />
           <p class="text-sm font-semibold">Join our massive community</p>
         </div>
-        <img class="w-[172px] hidden xl:block absolute -right-[172px] bottom-10" src="/svg/squigly.svg" alt="squigly">
+        <img
+          class="w-[172px] hidden xl:block absolute -right-[172px] bottom-10"
+          src="/svg/squigly.svg"
+          alt="squigly"
+        />
       </div>
       <div
         class="bg-grey-5 flex flex-col mx-4 xl:mx-0 gap-x-2 px-4 md:px-10 py-14 lg:rounded-3xl lg:max-w-[440px] w-full"
       >
-        <h1 class="text-head font-semibold text-center text-[28px]">Register as a candidate</h1>
+        <h1 class="text-head font-semibold text-center text-[28px]">
+          Register as a candidate
+        </h1>
         <div class="w-full mt-10">
           <form
             id="getLicense"

@@ -45,7 +45,7 @@ export default defineNuxtConfig({
   },
   googleFonts: {
     families: {
-      Epilogue: [400, 500, 600, 700],
+      Sora: [200, 400, 500, 600, 700],
       Poppins: [400, 500, 600, 700],
     },
   },

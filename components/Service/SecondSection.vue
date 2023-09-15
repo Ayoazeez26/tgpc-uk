@@ -209,7 +209,7 @@ onMounted(() => {
 <template>
   <div
     ref="secondsection"
-    class="px-4 xl:px-0 w-full max-w-[1240px] mx-auto relative"
+    class="px-4 xl:px-0 w-full max-w-[1296px] mx-auto relative"
   >
     <!-- <div ref="tooltip" class=" max-w-[612px] absolute right-0">
       <img class="tooltip-img w-full" src="/img/service.png" />

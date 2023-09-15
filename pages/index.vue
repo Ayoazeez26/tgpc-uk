@@ -1,16 +1,11 @@
 <template>
   <div class="body">
-    <main class="text-primary">
+    <main class="text-primary bg-grey-3">
       <AppHeader />
-      <!-- <JobDropdown v-if="dataStore.job" /> -->
       <HomeHero />
-      <HomeServices />
-      <HomeInfo />
+      <HomeSearch />
       <HomeCTA />
-      <!-- <HomeTestimonials /> -->
-      <!-- <HomeSponsor />
-    <HomeCompassion />
-    <HomeVideos /> -->
+      <HomeQandA />
     </main>
     <AppFooter />
   </div>

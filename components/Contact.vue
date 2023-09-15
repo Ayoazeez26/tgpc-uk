@@ -81,12 +81,12 @@ watch(message, (value) => {
 </script>
 <template>
   <div
-    class="w-full max-w-[1240px] mx-auto py-[150px] md:py-[180px] overflow-x-hidden relative"
+    class="w-full max-w-[1296px] mx-auto py-[150px] md:py-[180px] overflow-x-hidden relative"
   >
-    <div
-      class="w-full flex items-start justify-between lg:gap-[56px]"
-    >
-      <div class="flex flex-col mx-4 xl:mx-0 gap-x-2 md:px-16 max-w-[592px] w-full">
+    <div class="w-full flex items-start justify-between lg:gap-[56px]">
+      <div
+        class="flex flex-col mx-4 xl:mx-0 gap-x-2 md:px-16 max-w-[592px] w-full"
+      >
         <h1 class="text-head font-medium text-[40px]">Get In Touch</h1>
         <p class="mt-1 text-lg tracking-wide">
           Our friendly team would love to hear from you
@@ -253,7 +253,11 @@ watch(message, (value) => {
           </form>
         </div>
       </div>
-      <img class="w-full hidden lg:block max-w-[592px]" src="/img/touch.png" alt="touch" />
+      <img
+        class="w-full hidden lg:block max-w-[592px]"
+        src="/img/touch.png"
+        alt="touch"
+      />
     </div>
   </div>
 </template>

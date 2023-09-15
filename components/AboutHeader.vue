@@ -1,7 +1,7 @@
 <template>
   <div class="fixed right-0 left-0 font-medium text-white bg-blue-2 z-10">
     <div
-      class="flex h-24 md:h-[120px] items-center justify-between px-4 px-md-0 w-full max-w-[1240px] mx-auto"
+      class="flex h-24 md:h-[120px] items-center justify-between px-4 px-md-0 w-full max-w-[1296px] mx-auto"
     >
       <nuxt-link to="/">
         <img class="w-[170px]" src="/svg/logo-footer.svg" alt="logo" />

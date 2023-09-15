@@ -347,7 +347,7 @@ const drop = (e) => {
 </script>
 <template>
   <div
-    class="w-full max-w-[1240px] mx-auto py-[150px] md:py-[180px] overflow-x-hidden relative"
+    class="w-full max-w-[1296px] mx-auto py-[150px] md:py-[180px] overflow-x-hidden relative"
   >
     <div
       class="w-full flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-[56px]"
@@ -458,24 +458,24 @@ const drop = (e) => {
               >
             </div>
             <div class="w-full">
-                <label for="address" class="mb-2">Street Address</label>
-                <input
-                  id="address"
-                  v-model="address"
-                  type="text"
-                  name="address"
-                  required
-                  class="border border-grey-6 bg-white rounded-lg py-4 pl-6 pr-2 focus:outline-none w-full h-12"
-                  :class="errorMsg.name ? 'border border-red-500' : ''"
-                  placeholder="e.g 5331 Rexford Court, Montgomery AL 36116"
-                />
-                <span v-if="errorMsg.name" class="text-red-500 text-xs mt-1">{{
-                  errorMsg.name
-                }}</span>
-                <span v-else class="text-transparent text-xs mt-1"
-                  >There is no error message</span
-                >
-              </div>
+              <label for="address" class="mb-2">Street Address</label>
+              <input
+                id="address"
+                v-model="address"
+                type="text"
+                name="address"
+                required
+                class="border border-grey-6 bg-white rounded-lg py-4 pl-6 pr-2 focus:outline-none w-full h-12"
+                :class="errorMsg.name ? 'border border-red-500' : ''"
+                placeholder="e.g 5331 Rexford Court, Montgomery AL 36116"
+              />
+              <span v-if="errorMsg.name" class="text-red-500 text-xs mt-1">{{
+                errorMsg.name
+              }}</span>
+              <span v-else class="text-transparent text-xs mt-1"
+                >There is no error message</span
+              >
+            </div>
             <div class="w-full flex flex-col md:flex-row md:gap-4">
               <div class="w-full">
                 <label for="city" class="mb-2">City</label>
@@ -532,7 +532,6 @@ const drop = (e) => {
             class="w-full flex flex-col items-start"
             @submit.prevent="submitForm"
           >
-            
             <div class="w-full">
               <p>Staff Needed</p>
               <div class="type flex gap-5 flex-wrap flex-col md:flex-row my-3">
@@ -693,7 +692,8 @@ const drop = (e) => {
           Your registration has been successfully sent
         </h1>
         <p class="text-lg mt-3">
-          Our team will review your message and get back to you soon. Keep exploring Wana!
+          Our team will review your message and get back to you soon. Keep
+          exploring Wana!
         </p>
         <div class="w-full flex text-center mt-6">
           <nuxt-link

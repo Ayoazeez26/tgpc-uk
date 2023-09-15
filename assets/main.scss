@@ -1,5 +1,5 @@
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Moderat', sans-serif;
 }
 * {
   scrollbar-width: 16px;
@@ -50,60 +50,12 @@ body {
 //   color: $primary;
 // }
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Epilogue', sans-serif;
-}
-.swiper {
-  width: 100%;
-  &-3d {
-    width: 1210px !important;
-  }
-  &-slide {
-    width: 380px !important;
-    font-size: 18px !important;
-    line-height: 1.7rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Poppins', sans-serif;
-    @media screen and (max-width: 768px) {
-      width: 100% !important;
-    }
-  }
-  &-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: space-between !important;
-  }
-  &-cards {
-    width: 240px;
-    height: 240px;
-    & .swiper-slide {
-      border-radius: 6px;
-      border: 1px solid black;
-    }
-  }
-}
-.carousel__item {
-  min-height: 200px;
-  width: 100%;
-  background-color: white;
-  font-size: 20px;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-family: 'Sora', sans-serif;
 }
 
-.carousel__slide {
-  padding: 10px;
-}
-
-.carousel__prev,
-.carousel__next {
-  border-radius: 8px;
-  border: 1px solid #d7d7d6;
-  background: #fff;
-  padding: 6px;
-  width: auto;
-  height: auto;
+.clamp {
+  display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 2;
+align-self: stretch;
 }

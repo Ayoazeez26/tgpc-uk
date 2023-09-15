@@ -1,49 +1,17 @@
 <template>
-  <div class="fixed right-0 left-0 font-medium text-grey-3 z-10 bg-white">
+  <div class="fixed right-0 left-0 border-b border-grey-4 font-medium bg-grey-3 backdrop-blur-[28px] z-10">
     <div
-      class="flex h-24 md:h-[120px] items-center justify-between px-4 px-md-0 w-full max-w-[1240px] mx-auto"
+      class="flex h-24 md:h-[110px] items-center justify-between px-4 px-md-0 w-full max-w-[1296px] mx-auto"
     >
       <nuxt-link to="/">
-        <img class="w-[170px]" src="/img/logo.png" />
+        <img class="w-[63px]" src="/svg/logo.svg" />
       </nuxt-link>
       <button ref="hamburger" class="lg:hidden" @click="open = !open">
-        <Icon name="ic:round-menu" size="24px" color="#1B5588" />
+        <Icon name="ic:round-menu" size="24px" color="#0A0A0A" />
       </button>
-      <div class="hidden lg:block relative">
-        <ul
-          class="hidden lg:flex flex-col lg:flex-row lg:items-center gap-4 mt-10 lg:mt-0 lg:gap-10"
-        >
-          <li @click="open = !open">
-            <nuxt-link
-              class="hover:text-secondary hover:font-semibold cursor-pointer"
-              :class="
-                route.name === 'index' ? 'text-secondary font-semibold' : ''
-              "
-              to="/"
-              >Home</nuxt-link
-            >
-          </li>
-          <li @click="open = !open">
-            <nuxt-link
-              class="hover:text-secondary hover:font-semibold cursor-pointer"
-              :class="
-                route.name === 'about' ? 'text-secondary font-semibold' : ''
-              "
-              to="/about"
-              >About us</nuxt-link
-            >
-          </li>
-          <li @click="open = !open">
-            <nuxt-link
-              class="hover:text-secondary hover:font-semibold cursor-pointer"
-              :class="
-                route.name === 'service' ? 'text-secondary font-semibold' : ''
-              "
-              to="/service"
-              >Services</nuxt-link
-            >
-          </li>
-        </ul>
+      <div class="hidden lg:block relative max-w-full w-[686px]">
+        <Icon name="ic:baseline-search" size="24px" color="#0A0A0A" class="absolute top-4 left-6" />
+        <input type="text" name="search" id="search" class="px-6 pl-14 border text-sm border-grey-2 rounded py-4 w-full" placeholder="Search Tenders & Contracts">
       </div>
       <ul
         class="navbar-links flex items-start"
@@ -51,14 +19,27 @@
         v-click-outside="close"
       >
         <div
-          class="hidden lg:flex flex-col w-full lg:w-auto lg:flex-row lg:items-center gap-4"
+          class="hidden lg:flex text-sm flex-col w-full lg:w-auto lg:flex-row lg:items-center gap-4"
         >
           <nuxt-link
-            to="/"
-            class="bg-secondary border-2 border-secondary font-medium py-3 px-10 rounded-lg text-white"
+            to="/login"
+            class="bg-transparent font-medium py-4 px-8 rounded text-secondary"
           >
-            Get in Touch
+            Login
           </nuxt-link>
+          <nuxt-link
+            to="/register"
+            class="bg-secondary border-2 border-secondary font-medium min-w-max py-4 px-8 rounded text-white"
+          >
+            Try TGPC now
+          </nuxt-link>
+          <button
+            ref="hamburger"
+            class="p-4 bg-grey border border-grey-2 rounded-full"
+            @click="open = !open"
+          >
+            <Icon name="ic:round-menu" size="24px" color="#1B5588" />
+          </button>
         </div>
         <div class="flex w-full mt-3 lg:hidden justify-between items-center">
           <nuxt-link to="/">

@@ -1,8 +1,8 @@
 <script setup lang="ts"></script>
 <template>
   <div class="py-20 bg-blue-2 px-4 xl:px-0 md:py-28 w-full text-white">
-    <div class="w-full max-w-[1240px] flex mx-auto mt-10 lg:mt-[68px]">
-      <div class="flex justify-center w-full max-w-[1240px]">
+    <div class="w-full max-w-[1296px] flex mx-auto mt-10 lg:mt-[68px]">
+      <div class="flex justify-center w-full max-w-[1296px]">
         <div
           class="flex flex-col lg:flex-row lg:justify-between lg:items-end w-full lg:pr-4 xl:pr-0"
         >

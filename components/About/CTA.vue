@@ -29,7 +29,7 @@ const prev = () => {
 </script>
 <template>
   <div class="pt-10 lg:py-[80px] relative">
-    <div class="flex flex-col mx-auto px-4 xl:px-0 w-full max-w-[1240px]">
+    <div class="flex flex-col mx-auto px-4 xl:px-0 w-full max-w-[1296px]">
       <div
         class="flex flex-col justify-between lg:flex-row lg:items-center w-full"
       >
