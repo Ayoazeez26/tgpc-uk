@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { useDataStore } from "@/stores/data";
+
+const data = useDataStore();
+const router = useRouter();
 const email = ref("");
 const errorMsg = reactive({});
 
@@ -9,6 +13,15 @@ const validateEmail = (email) => {
     errorMsg.email = "Invalid Email Address";
   }
 };
+
+const goToRegister = () => {
+  if (errorMsg.email === "") {
+    data.email = email.value;
+    router.push('/register');
+  } else {
+    errorMsg.email = "Invalid Email Address";
+  }
+}
 
 watch(email, (value) => {
   validateEmail(value);
@@ -56,12 +69,12 @@ watch(email, (value) => {
             >
           </div>
           <div class="flex flex-col w-full lg:items-center gap-4">
-            <nuxt-link
-              to="/"
+            <button
+              @click="goToRegister"
               class="bg-grey-6 border-2 border-grey-6 font-medium py-4 px-8 h-[62px] rounded text-white w-full"
             >
               Continue with email
-            </nuxt-link>
+            </button>
           </div>
           <h6 class="mt-6 text-sm text-grey-5 font-light">
             By continuing, you agree to TGPC's

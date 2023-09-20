@@ -19,7 +19,7 @@
         </div>
         <div class="flex flex-col md:w-auto md:flex-row md:items-center">
           <nuxt-link
-            to="/"
+            to="/tender/one"
             class="bg-secondary border-2 border-secondary flex items-center gap-2 font-medium py-2 px-8 rounded text-white"
           >
             <p class="leading-[30px] tracking-[0.028px]">View now</p>

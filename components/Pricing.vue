@@ -464,8 +464,5 @@ const containsItem = computed(() => {
 </template>
 
 <style lang="scss">
-.pro {
-  // border: 1px solid #FFF;
-  background: linear-gradient(110deg, #d16ca3 27%, #f6af54 100%);
-}
+
 </style>

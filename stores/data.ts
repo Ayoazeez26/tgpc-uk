@@ -1,9 +1,7 @@
 import { defineStore } from 'pinia'
 
 export const useDataStore = defineStore('data', () => {
-  const job = ref(false);
-  const clientStart = ref(false);
-  const candidateStart = ref(false);
+  const userEmail = ref("");
 
-  return { job, clientStart, candidateStart }
+  return { userEmail }
 })

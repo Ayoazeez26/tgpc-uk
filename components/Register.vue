@@ -1,5 +1,11 @@
 <script setup lang="ts">
+import { useDataStore } from "@/stores/data";
+
 const email = ref("");
+const data = useDataStore();
+if (data.email) {
+  email.value = data.email;
+}
 const password = ref("");
 const errorMsg = reactive({});
 const togglePasswordVisibility = (e) => {

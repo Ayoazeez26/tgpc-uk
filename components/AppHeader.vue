@@ -11,7 +11,7 @@
       </button>
       <div class="hidden lg:block relative max-w-full w-[686px]">
         <Icon name="ic:baseline-search" size="24px" color="#0A0A0A" class="absolute top-4 left-6" />
-        <input type="text" name="search" id="search" class="px-6 pl-14 border text-sm border-grey-2 rounded py-4 w-full" placeholder="Search Tenders & Contracts">
+        <input type="text" name="search" id="search" class="px-6 pl-14 border focus:outline-none text-sm focus:ring-grey-2 focus:ring-1 border-grey-2 rounded py-4 w-full" placeholder="Search Tenders & Contracts">
       </div>
       <ul
         class="navbar-links flex items-start"

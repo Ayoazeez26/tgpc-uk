@@ -1,43 +1,17 @@
 <template>
-  <div class="fixed right-0 left-0 font-medium text-white bg-blue-2 z-10">
+  <div class="fixed right-0 left-0 border-b border-grey-4 font-medium bg-grey-3 backdrop-blur-[28px] z-10">
     <div
-      class="flex h-24 md:h-[120px] items-center justify-between px-4 px-md-0 w-full max-w-[1296px] mx-auto"
+      class="flex h-24 md:h-[110px] items-center justify-between px-4 px-md-0 w-full max-w-[1296px] mx-auto"
     >
       <nuxt-link to="/">
-        <img class="w-[170px]" src="/svg/logo-footer.svg" alt="logo" />
+        <img class="w-[63px]" src="/svg/logo.svg" />
       </nuxt-link>
       <button ref="hamburger" class="lg:hidden" @click="open = !open">
-        <Icon name="ic:round-menu" size="24px" color="#FFF" />
+        <Icon name="ic:round-menu" size="24px" color="#0A0A0A" />
       </button>
-      <div class="hidden lg:block relative">
-        <ul
-          class="hidden lg:flex flex-col lg:flex-row lg:items-center gap-4 mt-10 lg:mt-0 lg:gap-10"
-        >
-          <li @click="open = !open">
-            <nuxt-link
-              class="hover:text-blue hover:font-semibold cursor-pointer"
-              :class="route.name === 'index' ? 'text-blue font-semibold' : ''"
-              to="/"
-              >Home</nuxt-link
-            >
-          </li>
-          <li @click="open = !open">
-            <nuxt-link
-              class="hover:text-blue hover:font-semibold cursor-pointer"
-              :class="route.name === 'about' ? 'text-blue font-semibold' : ''"
-              to="/about"
-              >About us</nuxt-link
-            >
-          </li>
-          <li @click="open = !open">
-            <nuxt-link
-              class="hover:text-blue hover:font-semibold cursor-pointer"
-              :class="route.name === 'service' ? 'text-blue font-semibold' : ''"
-              to="/service"
-              >Services</nuxt-link
-            >
-          </li>
-        </ul>
+      <div class="hidden lg:block relative max-w-full w-[686px]">
+        <Icon name="ic:baseline-search" size="24px" color="#0A0A0A" class="absolute top-4 left-6" />
+        <input type="text" name="search" id="search" class="px-6 pl-14 border focus:outline-none text-sm focus:ring-grey-2 focus:ring-1 border-grey-2 rounded py-4 w-full" placeholder="Search Tenders & Contracts">
       </div>
       <ul
         class="navbar-links flex items-start"
@@ -45,21 +19,32 @@
         v-click-outside="close"
       >
         <div
-          class="hidden lg:flex flex-col w-full lg:w-auto lg:flex-row lg:items-center gap-4"
+          class="hidden lg:flex text-sm flex-col w-full lg:w-auto lg:flex-row lg:items-center gap-4"
         >
-          <nuxt-link
-            to="/"
-            class="bg-secondary border-2 border-secondary font-semibold py-3 px-10 rounded-lg text-white"
+          <div class="pro flex items-center text-grey-5 gap-2 h-[38px] px-4">
+            <div class="italic font-black uppercase">pro</div>
+            <div class="flex gap-1 items-center">
+              <img src="/svg/coins.svg" alt="coins">
+              <p class="text-sm font-bold">15</p>
+            </div>
+          </div>
+          <button
+            ref="hamburger"
+            class="p-2 bg-grey border flex gap-3 items-center border-grey-2 rounded-full"
+            @click="open = !open"
           >
-            Get in Touch
-          </nuxt-link>
+            <div class="bg-secondary p-2 w-[38px] h-[38px] flex items-center justify-center rounded-full">
+              <p class="text-white font-medium text-[28px] tracking-[0.056px] uppercase">c</p>
+            </div>
+            <Icon name="ic:round-menu" size="24px" color="#1B5588" />
+          </button>
         </div>
         <div class="flex w-full mt-3 lg:hidden justify-between items-center">
           <nuxt-link to="/">
-            <img class="w-[102px]" src="/svg/logo-footer.svg" />
+            <img class="w-[102px]" src="/img/logo.png" />
           </nuxt-link>
           <button class="" @click="open = !open">
-            <Icon name="ic:round-close" size="24px" color="#FFF" />
+            <Icon name="ic:round-close" size="24px" color="#1B5588" />
           </button>
         </div>
         <ul
@@ -72,7 +57,12 @@
             <nuxt-link to="/about">About us</nuxt-link>
           </li>
           <li class="cursor-pointer py-3" @click="open = !open">
-            <nuxt-link to="/service">Services</nuxt-link>
+            <nuxt-link to="/service"
+              >Services<Icon
+                name="ic:round-keyboard-arrow-down"
+                size="24px"
+                color="#FFFFFF"
+            /></nuxt-link>
           </li>
           <div
             class="flex flex-col w-full lg:w-auto lg:flex-row lg:items-center gap-4"
@@ -91,7 +81,10 @@
 </template>
 
 <script setup lang="ts">
+import { useDataStore } from "@/stores/data";
+const dataStore = useDataStore();
 const route = useRoute();
+console.log(route.name);
 const scrolled = ref(false);
 const open = ref(false);
 const close = (e: HTMLInputElement) => {
@@ -102,6 +95,10 @@ const close = (e: HTMLInputElement) => {
 
 const handleScroll = () => {
   scrolled.value = window.scrollY > 0;
+};
+
+const jobToggled = () => {
+  dataStore.job = !dataStore.job;
 };
 
 if (typeof window !== "undefined") {
@@ -159,14 +156,14 @@ if (typeof window !== "undefined") {
       display: flex;
       flex-direction: column;
       padding-top: 20px;
-      padding-left: 30px !important;
-      padding-right: 30px;
+      padding-left: 20px !important;
+      padding-right: 20px;
       top: 0;
       bottom: 0;
       right: 0;
       width: 500px;
       max-width: 100vw;
-      background-color: $blue-2;
+      background-color: white;
       z-index: 100;
       &__toggle {
         display: none;
