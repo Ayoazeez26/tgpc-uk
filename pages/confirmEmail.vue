@@ -1,7 +1,7 @@
 <template>
   <div class="body">
     <main class="text-primary bg-grey-3 w-full h-full relative">
-      <Register />
+      <ConfirmEmail />
     </main>
     <AppFooter />
   </div>

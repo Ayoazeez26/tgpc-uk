@@ -62,3 +62,13 @@ align-self: stretch;
 .pro {
   background: linear-gradient(110deg, #d16ca3 27%, #f6af54 100%);
 }
+.loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.input:-internal-autofill-selected {
+  background-color: $grey !important;
+}

@@ -4,15 +4,15 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
     head: {
-      title: "Dependable Health Care",
-      link: [{ rel: "icon", type: "image/png", href: "/favicon.ico" }],
+      title: 'Dependable Health Care',
+      link: [{ rel: 'icon', type: 'image/png', href: '/favicon.ico' }],
       meta: [
-        { charset: "utf-8" },
-        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         {
-          name: "description",
+          name: 'description',
           content:
-            "We are a domiciliary care provider established to offer home based quality care and support to service-users who require care and support in their own familiar environment and surroundings.",
+            'We are a domiciliary care provider established to offer home based quality care and support to service-users who require care and support in their own familiar environment and surroundings.',
         },
       ],
       // script: [
@@ -25,14 +25,18 @@ export default defineNuxtConfig({
       // ],
     },
   },
-  css: ["~/assets/main.scss", "~/assets/fonts/fonts.css"],
+  css: [
+    '~/assets/main.scss',
+    '~/assets/fonts/fonts.css',
+    '~/assets/notification.scss',
+  ],
   modules: [
-    "@nuxtjs/tailwindcss",
-    "nuxt-icon",
-    "@nuxtjs/google-fonts",
-    "nuxt-swiper",
-    "vue3-carousel-nuxt",
-    "@pinia/nuxt",
+    '@nuxtjs/tailwindcss',
+    'nuxt-icon',
+    '@nuxtjs/google-fonts',
+    'nuxt-swiper',
+    'vue3-carousel-nuxt',
+    '@pinia/nuxt',
   ],
   vite: {
     css: {
@@ -50,6 +54,11 @@ export default defineNuxtConfig({
     },
   },
   build: {
-    transpile: ["gsap"],
+    transpile: ['gsap', 'vue-toastification'],
+  },
+  runtimeConfig: {
+    public: {
+      baseUrl: process.env.BASE_URL,
+    },
   },
 });

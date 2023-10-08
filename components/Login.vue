@@ -1,6 +1,13 @@
 <script setup lang="ts">
-const email = ref("");
-const password = ref("");
+import { useDialogStore } from '~/stores/dialog';
+import { UserLoginInput } from '~/types';
+import { successToast, errorToast } from '~/plugins/vue3-toastify';
+
+const { $api } = useNuxtApp();
+const dialog = useDialogStore();
+const router = useRouter();
+const email = ref('');
+const password = ref('');
 const errorMsg = reactive({});
 const togglePasswordVisibility = (e) => {
   isPasswordVisible.value = !isPasswordVisible.value;
@@ -8,15 +15,36 @@ const togglePasswordVisibility = (e) => {
 const isPasswordVisible = ref(false);
 const validateEmail = (email) => {
   if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-    errorMsg.email = "";
+    errorMsg.email = '';
   } else {
-    errorMsg.email = "Invalid Email Address";
+    errorMsg.email = 'Invalid Email Address';
   }
 };
 
 watch(email, (value) => {
   validateEmail(value);
 });
+
+const login = async (): Promise<void> => {
+  dialog.isLoading = true;
+  const payload: UserLoginInput = {
+    email: email.value,
+    password: password.value,
+  };
+  try {
+    const response = await $api.auth.login(payload);
+    dialog.isLoading = false;
+    successToast('Account created successfully');
+    console.log('Account created successfully');
+    router.push('/dashboard');
+    console.log(response);
+  } catch (err) {
+    dialog.isLoading = false;
+    errorToast(err.data.message);
+    console.log(err.data.message);
+  }
+};
+
 const containsItem = computed(() => {
   if (loginData.value.email.length > 0 && loginData.value.password.length > 0) {
     return false;
@@ -27,7 +55,9 @@ const containsItem = computed(() => {
 </script>
 <template>
   <div class="w-full relative">
-    <div class="border-b border-grey-4 w-full py-6 flex items-center justify-center">
+    <div
+      class="border-b border-grey-4 w-full py-6 flex items-center justify-center"
+    >
       <nuxt-link to="/">
         <img class="w-[63px]" src="/svg/logo.svg" />
       </nuxt-link>
@@ -54,9 +84,11 @@ const containsItem = computed(() => {
               :class="errorMsg.email ? 'border border-red-500' : ''"
               placeholder="Enter Email Address"
             />
-            <span v-if="errorMsg.email" class="text-red-500 self-start text-xs mt-1">{{
-              errorMsg.email
-            }}</span>
+            <span
+              v-if="errorMsg.email"
+              class="text-red-500 self-start text-xs mt-1"
+              >{{ errorMsg.email }}</span
+            >
             <span v-else class="text-transparent self-start text-xs mt-1"
               >There is no error message</span
             >
@@ -70,7 +102,7 @@ const containsItem = computed(() => {
               name="username"
               placeholder="z$!a.*gt#@7&g%"
             />
-            <div class="absolute bottom-4 right-2">
+            <div class="absolute bottom-5 right-4">
               <button
                 type="button"
                 v-if="isPasswordVisible"
@@ -89,12 +121,12 @@ const containsItem = computed(() => {
             </div>
           </div>
           <div class="flex flex-col w-full lg:items-center gap-4">
-            <nuxt-link
-              to="/"
+            <button
+              @click="login"
               class="bg-black border-2 border-grey-6 font-medium py-4 px-8 h-[62px] rounded text-white w-full"
             >
               Continue with email
-            </nuxt-link>
+            </button>
           </div>
           <p class="mt-6 text-sm text-grey-8 font-light">
             By continuing, you agree to TGPC's
@@ -102,7 +134,7 @@ const containsItem = computed(() => {
           </p>
           <p class="mt-6 text-sm text-grey-8 font-light">
             Don't have an account?
-            <span class="underline">Register</span>
+            <nuxt-link to="/register" class="underline">Register</nuxt-link>
           </p>
         </div>
       </div>

@@ -3,9 +3,14 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
+
+import { useDialogStore } from '@/stores/dialog';
+
+const dialogStore = useDialogStore();
 </script>
 <template>
   <div>
+    <Loading v-if="dialogStore.isLoading" class="loader" />
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>

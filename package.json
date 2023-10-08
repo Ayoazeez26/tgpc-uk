@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "nuxt dev --dotenv .env",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
@@ -21,9 +21,12 @@
     "click-outside-vue3": "^4.0.1",
     "gsap": "^3.12.2",
     "nuxt-swiper": "^1.1.1",
+    "ofetch": "^1.3.3",
     "pinia": "^2.1.6",
+    "postinstall": "^0.8.0",
     "sass": "^1.63.6",
     "smooth-scrollbar": "^8.8.4",
-    "vue3-carousel-nuxt": "^1.1.0"
+    "vue3-carousel-nuxt": "^1.1.0",
+    "vue3-toastify": "^0.1.13"
   }
 }
