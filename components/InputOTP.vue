@@ -26,7 +26,7 @@ const handlePaste = (e) => {
 watch(
   () => data,
   (newVal) => {
-    console.log(newVal.value);
+    // console.log(newVal.value);
     if (
       newVal.value.length != 0 &&
       newVal.value.length === props.fields &&

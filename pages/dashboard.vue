@@ -12,9 +12,14 @@
 </template>
 
 <script setup lang="ts">
-import { useDataStore } from '@/stores/data'
+import { useDataStore } from '~/stores/data';
+const data = useDataStore();
 
-const dataStore = useDataStore();
+const getUserData = () => {
+  const userData = data.getUser();
+}
+
+getUserData();
 </script>
 
 <style scoped></style>

@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import { useDialogStore } from '~/stores/dialog';
+import { useAuthStore } from '~/stores/auth';
 import { UserLoginInput } from '~/types';
-import { successToast, errorToast } from '~/plugins/vue3-toastify';
 
-const { $api } = useNuxtApp();
-const dialog = useDialogStore();
-const router = useRouter();
+const auth = useAuthStore();
 const email = ref('');
 const password = ref('');
 const errorMsg = reactive({});
@@ -26,23 +24,12 @@ watch(email, (value) => {
 });
 
 const login = async (): Promise<void> => {
-  dialog.isLoading = true;
+
   const payload: UserLoginInput = {
     email: email.value,
     password: password.value,
   };
-  try {
-    const response = await $api.auth.login(payload);
-    dialog.isLoading = false;
-    successToast('Account created successfully');
-    console.log('Account created successfully');
-    router.push('/dashboard');
-    console.log(response);
-  } catch (err) {
-    dialog.isLoading = false;
-    errorToast(err.data.message);
-    console.log(err.data.message);
-  }
+  auth.login(payload);
 };
 
 const containsItem = computed(() => {

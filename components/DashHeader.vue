@@ -21,7 +21,7 @@
         <div
           class="hidden lg:flex text-sm flex-col w-full lg:w-auto lg:flex-row lg:items-center gap-4"
         >
-          <div class="pro flex items-center text-grey-5 gap-2 h-[38px] px-4">
+          <div @click="logout" class="pro flex items-center text-grey-5 gap-2 h-[38px] px-4">
             <div class="italic font-black uppercase">pro</div>
             <div class="flex gap-1 items-center">
               <img src="/svg/coins.svg" alt="coins">
@@ -82,7 +82,9 @@
 
 <script setup lang="ts">
 import { useDataStore } from "@/stores/data";
+import { useAuthStore } from "~/stores/auth";
 const dataStore = useDataStore();
+const auth = useAuthStore();
 const route = useRoute();
 console.log(route.name);
 const scrolled = ref(false);
@@ -100,6 +102,10 @@ const handleScroll = () => {
 const jobToggled = () => {
   dataStore.job = !dataStore.job;
 };
+
+const logout = () => {
+  auth.logout();
+}
 
 if (typeof window !== "undefined") {
   window.addEventListener("scroll", handleScroll);

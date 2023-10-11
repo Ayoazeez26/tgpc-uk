@@ -37,6 +37,7 @@ export default defineNuxtConfig({
     'nuxt-swiper',
     'vue3-carousel-nuxt',
     '@pinia/nuxt',
+    '@pinia-plugin-persistedstate/nuxt'
   ],
   vite: {
     css: {

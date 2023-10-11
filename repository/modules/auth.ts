@@ -1,4 +1,4 @@
-import { FetchOptions } from 'ofetch';
+import { FetchOptions, ofetch } from 'ofetch';
 import { AsyncDataOptions } from 'nuxt/app';
 
 import FetchFactory from '../factory';
@@ -7,11 +7,11 @@ import {
   UserCreateResponse,
   UserLoginResponse,
   UserEmailOTPInput,
+  UserEmailOTPResponse
 } from '~/types';
 
 class AuthModule extends FetchFactory {
   private RESOURCE = '';
-
   async signup(credentials: UserLoginInput): Promise<UserCreateResponse> {
     return await this.call<UserCreateResponse>(
       'POST',
@@ -30,8 +30,8 @@ class AuthModule extends FetchFactory {
 
   async verifyEmail(
     credentials: UserEmailOTPInput
-  ): Promise<UserLoginResponse> {
-    return await this.call<UserLoginResponse>(
+  ): Promise<UserEmailOTPResponse> {
+    return await this.call<UserEmailOTPResponse>(
       'POST',
       `${this.RESOURCE}/verifyEmail`,
       credentials

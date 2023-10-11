@@ -1,15 +1,14 @@
 <script setup lang="ts">
-import { useDataStore } from '@/stores/data';
 import { useDialogStore } from '@/stores/dialog';
-import { UserLoginInput } from '~/types';
-import { successToast, errorToast } from '~/plugins/vue3-toastify';
-// import { useToast } from 'vue-toastification';
+import { useAuthStore } from '~/stores/auth';
+import { UserEmailOTPInput } from '~/types';
 
 const { $api } = useNuxtApp();
+const auth = useAuthStore();
 const dialog = useDialogStore();
 const router = useRouter();
 
-const code = ref(null);
+const code = ref<number | null>(null);
 const timerCount = ref(60);
 
 watch(
@@ -26,24 +25,12 @@ watch(
   { immediate: true }
 );
 
-// const registerUser = async (): Promise<void> => {
-//   dialog.isLoading = true;
-//   const payload: UserLoginInput = {
-//     email: email.value,
-//     password: password.value,
-//   };
-//   try {
-//     const response = await $api.auth.signup(payload);
-//     dialog.isLoading = false;
-//     successToast('Account created successfully');
-//     console.log('Account created successfully');
-//     console.log(response);
-//   } catch (err) {
-//     dialog.isLoading = false;
-//     errorToast(err.data.message);
-//     console.log(err.data.message);
-//   }
-// };
+const confirmEmail = async (): Promise<void> => {
+  const payload: UserEmailOTPInput = {
+    code: code.value,
+  };
+  auth.verifyEmail(payload);
+};
 </script>
 <template>
   <div class="w-full h-full relative">
@@ -70,9 +57,10 @@ watch(
           >
         </h5>
         <div class="w-full mt-10 max-w-[422px]">
-          <InputOTP v-model="code" :fields="5" />
+          <InputOTP v-model="code" :fields="6" />
           <div class="flex flex-col w-full lg:items-center mt-10 gap-4">
             <button
+              @click="confirmEmail"
               class="bg-black disabled:bg-black/50 disabled:border-grey disabled:text-white/70 border-2 border-grey-6 font-medium py-4 px-8 h-[62px] rounded text-white w-full"
               :disabled="code ? false : true"
             >

@@ -16,7 +16,7 @@ const validateEmail = (email) => {
 
 const goToRegister = () => {
   if (errorMsg.email === "") {
-    data.email = email.value;
+    data.userEmail = email.value;
     router.push('/register');
   } else {
     errorMsg.email = "Invalid Email Address";

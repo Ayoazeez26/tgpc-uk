@@ -12,8 +12,8 @@ const data = useDataStore();
 const dialog = useDialogStore();
 const auth = useAuthStore();
 const router = useRouter();
-if (data.email) {
-  email.value = data.email;
+if (data.userEmail) {
+  email.value = data.userEmail;
 }
 const password = ref('');
 const errorMsg = reactive({});
@@ -34,23 +34,10 @@ watch(email, (value) => {
 });
 
 const registerUser = async (): Promise<void> => {
-  // dialog.isLoading = true;
   const payload: UserLoginInput = {
     email: email.value,
     password: password.value,
   };
-  // try {
-  //   const response = await $api.auth.signup(payload);
-  //   dialog.isLoading = false;
-  //   successToast('Account created successfully');
-  //   console.log('Account created successfully');
-  //   console.log(response);
-  //   router.push('/confirmEmail')
-  // } catch (err) {
-  //   dialog.isLoading = false;
-  //   errorToast(err.data.message);
-  //   console.log(err.data.message);
-  // }
   auth.signup(payload);
 };
 const containsItem = computed(() => {

@@ -15,5 +15,9 @@ export interface UserLoginResponse {
 }
 
 export interface UserEmailOTPInput {
-  code: number
+  code: number | null
+}
+
+export interface UserEmailOTPResponse {
+  message: string;
 }

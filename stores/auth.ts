@@ -1,32 +1,82 @@
 import { defineStore } from 'pinia';
-import { UserLoginInput } from '~/types';
-import { successToast, errorToast } from '~/plugins/vue3-toastify';
+import { UserEmailOTPInput, UserLoginInput } from '~/types';
+import { successToast } from '~/plugins/vue3-toastify';
 import { useDialogStore } from './dialog';
 
-export const useAuthStore = defineStore('auth', () => {
-  const { $api } = useNuxtApp();
-  const router = useRouter();
-  const dialog = useDialogStore();
-  const token = ref<string | null>(JSON.parse(localStorage.getItem('token')));
+export const useAuthStore = defineStore(
+  'auth',
+  () => {
+    const { $api } = useNuxtApp();
+    // const { token } = useProfile();
+    const router = useRouter();
+    const dialog = useDialogStore();
+    const authenticated = ref(false);
+    const token = ref<string | null>(localStorage.getItem('user-token'));
 
-  const signup = (payload: UserLoginInput) => {
-    dialog.isLoading = true;
-    return new Promise((resolve, reject) => {
-      $api.auth
-        .signup(payload)
-        .then((res) => {
-          dialog.isLoading = false;
-          console.log(res);
-          successToast('Account created successfully!');
-          router.push('/confirmEmail');
-        })
-        .catch((err) => {
-          dialog.isLoading = false;
-          errorToast(err.data.message);
-          console.log(err.data.message);
-        });
-    });
-  };
+    const signup = (payload: UserLoginInput) => {
+      dialog.isLoading = true;
+      return new Promise((resolve, reject) => {
+        $api.auth
+          .signup(payload)
+          .then((res) => {
+            dialog.isLoading = false;
+            console.log(res.token);
+            // useProfile().setToken(res.token);
+            // const token = useCookie('token');
+            // token.value = null;
+            token.value = res.token;
+            authenticated.value = true;
+            localStorage.setItem('user-token', res.token);
+            successToast('Account created successfully!');
+            router.push('/confirmEmail');
+          })
+      });
+    };
 
-  return { token, signup };
-});
+    const login = (payload: UserLoginInput) => {
+      dialog.isLoading = true;
+      return new Promise((resolve, reject) => {
+        $api.auth
+          .login(payload)
+          .then((res) => {
+            dialog.isLoading = false;
+            token.value = res.token;
+            authenticated.value = true;
+            localStorage.setItem('user-token', res.token);
+            // successToast('Account created successfully!');
+            router.push('/dashboard');
+          })
+      });
+    };
+
+    const verifyEmail = (payload: UserEmailOTPInput) => {
+      dialog.isLoading = true;
+      // const token = useCookie('token');
+      // console.log(token);
+      console.log(token);
+      return new Promise((resolve, reject) => {
+        $api.auth
+          .verifyEmail(payload)
+          .then((res) => {
+            dialog.isLoading = false;
+            console.log(res);
+            successToast(res.message);
+            router.push('/dashboard');
+          })
+      });
+    };
+
+    const logout = () => {
+      // const token = useCookie('token');
+      token.value = null;
+      router.push('/login');
+    };
+
+    return { signup, logout, verifyEmail, authenticated, token, login };
+  },
+  {
+    persist: {
+      storage: persistedState.localStorage,
+    },
+  }
+);
