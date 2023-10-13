@@ -60,6 +60,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       baseUrl: process.env.BASE_URL,
+      tenderBaseUrl: process.env.TENDER_BASE_URL
     },
   },
 });
