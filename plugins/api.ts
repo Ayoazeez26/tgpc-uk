@@ -38,12 +38,13 @@ export default defineNuxtPlugin((nuxtApp) => {
         console.log('Not authenticated');
       }
     },
-    onRequestError({ error }) {
+    onResponseError(error) {
+      console.log('dialog is =>', dialog);
       dialog.isLoading = false;
       console.log(error);
       errorToast(
-        error.data && error.data.message
-          ? error.data.message
+        error.response && error.response._data
+          ? error.response._data.message
           : 'Something went wrong, try again!'
       );
     },
