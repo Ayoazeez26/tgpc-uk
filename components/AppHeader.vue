@@ -43,7 +43,7 @@
         </div>
         <div class="flex w-full mt-3 lg:hidden justify-between items-center">
           <nuxt-link to="/">
-            <img class="w-[102px]" src="/img/logo.svg" />
+            <img class="w-[102px]" src="/svg/logo.svg" />
           </nuxt-link>
           <button class="" @click="open = !open">
             <Icon name="ic:round-close" size="24px" color="#1B5588" />
