@@ -77,7 +77,7 @@ const currentTab = ref("adultCare");
         </div>
         <div class="flex w-full mt-10">
           <div
-            class="filter text-secondary flex flex-col gap-y-6 pt-8 pr-6 items-start w-[272px]"
+            class="filter text-secondary hidden md:flex flex-col gap-y-6 pt-8 pr-6 items-start w-[272px]"
           >
             <h4 class="font-semibold leading-8">Filter Tenders</h4>
             <button
@@ -129,7 +129,7 @@ const currentTab = ref("adultCare");
             </div>
           </div>
           <div
-            class="flex flex-col text-left gap-4 pl-6 border-l border-grey-7 w-[calc(100%-272px)]"
+            class="flex flex-col text-left gap-4 md:pl-6 md:border-l border-grey-7 w-full md:w-[calc(100%-272px)]"
           >
             <!-- <template>
               <div v-for="(item, index) in 5" :key="index"> -->

@@ -15,7 +15,7 @@
           </nuxt-link>
         </div>
         <div
-          class="flex flex-col md:flex-row flex-wrap items-center mb-14 lg:mb-0 lg:pt-5 md:items-start gap-y-10 gap-x-[64px]"
+          class="flex flex-col md:flex-row flex-wrap items-center mb-10 lg:mb-0 mt-10 md:mt-0 lg:pt-5 md:items-start gap-y-10 gap-x-[64px]"
         >
           <div class="flex flex-col md:flex-row text-center gap-6 items-center">
             <nuxt-link to="/">Pricing</nuxt-link>
@@ -24,7 +24,7 @@
           </div>
         </div>
       </div>
-      <div class="mt-6 flex flex-col items-center md:flex-row gap-4 justify-center text-sm pt-10">
+      <div class="md:mt-6 flex flex-col items-center md:flex-row gap-4 justify-center text-sm border-t border-grey-1/25 pt-10">
         <p class="text-center leading-snug font-medium">
           Designed by TGPC Media
         </p>

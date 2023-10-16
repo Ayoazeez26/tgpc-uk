@@ -20,9 +20,11 @@ export default defineNuxtRouteMiddleware((to, from) => {
 
   if (to?.name !== 'login' && !token) {
     if (to?.name !== 'confirmEmail') {
-      if (to?.name !== 'index') {
-        abortNavigation();
-        return navigateTo('/');
+      if (to?.name !== 'register') {
+        if (to?.name !== 'index') {
+          abortNavigation();
+          return navigateTo('/login');
+        }
       }
     }
   }

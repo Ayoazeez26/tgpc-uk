@@ -50,14 +50,14 @@ watch(email, (value) => {
           <span class="font-extralight">Browsing Tenders</span>
         </h5>
         <div class="w-full mt-10 max-w-[422px]">
-          <div class="flex flex-col w-full">
+          <div class="flex flex-col items-start w-full">
             <input
               id="email"
               v-model="email"
               type="email"
               name="email"
               required
-              class="border border-grey-6 bg-transparent rounded py-4 px-6 text-grey-5 focus:outline-none h-[62px]"
+              class="border border-grey-6 bg-transparent rounded w-full py-4 px-6 text-grey-5 focus:outline-none h-[62px]"
               :class="errorMsg.email ? 'border border-red-500' : ''"
               placeholder="Enter Email Address"
             />
@@ -68,7 +68,7 @@ watch(email, (value) => {
               >There is no error message</span
             >
           </div>
-          <div class="flex flex-col w-full lg:items-center gap-4">
+          <div class="flex flex-col w-full mt-3 lg:items-center gap-4">
             <button
               @click="goToRegister"
               class="bg-grey-6 border-2 border-grey-6 font-medium py-4 px-8 h-[62px] rounded text-white w-full"

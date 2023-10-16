@@ -1,22 +1,29 @@
 <script setup lang="ts">
-const currentTab = ref("description");
+const currentTab = ref('description');
 </script>
 <template>
-  <div class="mt-[174px] mb-10 mx-auto w-full max-w-[1296px]">
+  <div
+    class="mt-32 md:mt-[174px] mb-10 mx-auto w-full px-4 xl:px-0 max-w-[1296px]"
+  >
     <div class="flex">
       <nuxt-link
         to="/dashboard"
         class="py-3 flex items-center justify-center w-auto"
       >
-        <Icon name="mdi:arrow-left" /><span class="ml-1">Dashboard</span>
+        <Icon name="mdi:arrow-left" size="24" /><span
+          class="ml-1 font-bold text-sm"
+          >Dashboard</span
+        >
       </nuxt-link>
     </div>
     <div class="flex flex-col justify-between lg:flex-row mt-10">
       <div class="flex flex-col w-full max-w-[920px]">
-        <div class="card flex flex-col gap-10">
-          <div class="flex flex-col gap-y-6 w-full">
+        <div class="card flex flex-col gap-10 mb-10">
+          <div class="flex flex-col gap-y-8 md:gap-y-6 w-full">
             <div class="flex justify-between items-center">
-              <div class="flex gap-6">
+              <div
+                class="flex w-full md:w-auto justify-between md:justify-start gap-6"
+              >
                 <div class="flex items-center gap-[10px]">
                   <div class="w-6 h-6 rounded-full bg-grey-9" />
                   <p class="text-grey-8 text-sm">Leicester</p>
@@ -27,37 +34,103 @@ const currentTab = ref("description");
                 </div>
               </div>
             </div>
-            <h3 class="text-secondary text-[28px] font-medium leading-[44px]">
+            <h3
+              class="text-secondary text-xl md:text-[28px] font-semibold md:font-medium leading-[34px] md:leading-[44px]"
+            >
               ASC0236 - Provision of intrauterine devices and systems (IUD/S) &
               provision of sub-dermal Implants (SDI) for contraception and the
               provision of IUS for non-contraceptive purposes
             </h3>
-            <div class="flex text-sm font-light gap-4">
+            <div class="flex flex-wrap text-sm font-light gap-4">
               <button
-                class="flex items-center text-grey-8 gap-2 py-2 px-4 border border-grey-2 bg-grey rounded-full justify-center"
+                class="flex items-center min-w-max text-grey-8 gap-2 py-2 px-4 border border-grey-2 bg-grey rounded-full justify-center"
               >
                 <p>Adult's Social Care</p>
               </button>
               <button
-                class="flex items-center text-grey-8 gap-2 py-2 px-4 border border-grey-2 bg-grey rounded-full justify-center"
+                class="flex items-center min-w-max text-grey-8 gap-2 py-2 px-4 border border-grey-2 bg-grey rounded-full justify-center"
               >
                 <p>Home Care</p>
               </button>
               <button
-                class="flex items-center text-grey-8 gap-2 py-2 px-4 border border-grey-2 bg-grey rounded-full justify-center"
+                class="flex items-center min-w-max text-grey-8 gap-2 py-2 px-4 border border-grey-2 bg-grey rounded-full justify-center"
               >
                 <p>Supported Living</p>
               </button>
             </div>
-            <div class="mt-4 flex items-center gap-4 text-right">
+            <div
+              class="mt-4 flex flex-col md:flex-row items-center gap-4 text-right"
+            >
               <p class="text-grey-8 text-sm font-light">Value:</p>
               <p class="text-secondary text-[28px] font-bold leading-[26px]">
                 NGN 2,000,000
               </p>
             </div>
+            <div
+              class="border-t border-grey-2 pt-10 md:hidden mt-4 flex flex-col items-center gap-10 w-full"
+            >
+              <div class="flex flex-col w-5/6 mx-auto md:items-center">
+                <button
+                  class="bg-grey border-2 border-grey flex items-center rounded-lg justify-center w-full gap-2 font-medium py-2 px-8 text-secondary"
+                >
+                  <h6 class="leading-[32px] tracking-[0.028px] uppercase">
+                    timeline
+                  </h6>
+                </button>
+              </div>
+              <div
+                class="border-b border-grey-2 pb-6 flex justify-between w-full"
+              >
+                <div class="flex items-center justify-between w-full gap-4">
+                  <div class="flex flex-col gap-1">
+                    <p class="text-grey-8 text-sm font-light">Date Created</p>
+                    <p
+                      class="text-secondary text-lg font-medium leading-[36px]"
+                    >
+                      23/09/2023
+                    </p>
+                  </div>
+                  <span>-</span>
+                  <div class="flex flex-col gap-1">
+                    <p class="text-grey-8 text-sm font-light">Closing Date</p>
+                    <p
+                      class="text-secondary text-lg font-medium leading-[36px]"
+                    >
+                      23/10/2024
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="flex justify-between w-full">
+                <div
+                  class="flex text-secondary flex-col items-center text-center"
+                >
+                  <h5 class="text-[32px] font-semibold leading-[48px]">212:</h5>
+                  <h6 class="text-xs font-light">Days</h6>
+                </div>
+                <div
+                  class="flex text-secondary flex-col items-center text-center"
+                >
+                  <h5 class="text-[32px] font-semibold leading-[48px]">20:</h5>
+                  <h6 class="text-xs font-light">Hours</h6>
+                </div>
+                <div
+                  class="flex text-secondary flex-col items-center text-center"
+                >
+                  <h5 class="text-[32px] font-semibold leading-[48px]">15:</h5>
+                  <h6 class="text-xs font-light">Minutes</h6>
+                </div>
+                <div
+                  class="flex text-secondary flex-col items-center text-center"
+                >
+                  <h5 class="text-[32px] font-semibold leading-[48px]">18</h5>
+                  <h6 class="text-xs font-light">Seconds</h6>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="mt-14 w-full bg-white border border-grey-2 rounded-lg">
+        <div class="mt-14 mb-10 md:mb-0 w-full bg-white border border-grey-2 rounded-lg">
           <div
             class="flex overflow-x-auto relative w-full lg:w-auto self-start lg:self-center"
           >
@@ -211,7 +284,7 @@ const currentTab = ref("description");
             </nuxt-link>
             <nuxt-link
               to="/tender/one"
-              class="bg-grey-5 border-2 border-grey-5 flex items-center justify-center w-full gap-2 font-medium py-4 px-8 rounded text-secondary" 
+              class="bg-grey-5 border-2 border-grey-5 flex items-center justify-center w-full gap-2 font-medium py-4 px-8 rounded text-secondary"
             >
               <p class="leading-[30px] tracking-[0.028px]">
                 Request Tender Writer
@@ -219,66 +292,70 @@ const currentTab = ref("description");
             </nuxt-link>
           </div>
         </div>
-        <div class="flex flex-col w-5/6 mx-auto md:items-center">
-          <button
-            class="bg-grey border-2 border-grey flex items-center rounded-lg justify-center w-full gap-2 font-medium py-2 px-8 text-secondary"
-          >
-            <h6 class="leading-[32px] tracking-[0.028px] uppercase">
-              timeline
-            </h6>
-          </button>
-        </div>
-        <div class="border-b border-grey-2 pb-6 flex justify-between w-full">
-          <div class="flex items-center justify-between w-full gap-4">
-            <div class="flex flex-col gap-1">
-              <p class="text-grey-8 text-sm font-light">Date Created</p>
-              <p class="text-secondary text-lg font-medium leading-[36px]">
-                23/09/2023
-              </p>
+        <div class="hidden md:flex flex-col items-center gap-10 w-full">
+          <div class="flex flex-col w-5/6 mx-auto md:items-center">
+            <button
+              class="bg-grey border-2 border-grey flex items-center rounded-lg justify-center w-full gap-2 font-medium py-2 px-8 text-secondary"
+            >
+              <h6 class="leading-[32px] tracking-[0.028px] uppercase">
+                timeline
+              </h6>
+            </button>
+          </div>
+          <div class="border-b border-grey-2 pb-6 flex justify-between w-full">
+            <div class="flex items-center justify-between w-full gap-4">
+              <div class="flex flex-col gap-1">
+                <p class="text-grey-8 text-sm font-light">Date Created</p>
+                <p class="text-secondary text-lg font-medium leading-[36px]">
+                  23/09/2023
+                </p>
+              </div>
+              <span>-</span>
+              <div class="flex flex-col gap-1">
+                <p class="text-grey-8 text-sm font-light">Closing Date</p>
+                <p class="text-secondary text-lg font-medium leading-[36px]">
+                  23/10/2024
+                </p>
+              </div>
             </div>
-            <span>-</span>
-            <div class="flex flex-col gap-1">
-              <p class="text-grey-8 text-sm font-light">Closing Date</p>
-              <p class="text-secondary text-lg font-medium leading-[36px]">
-                23/10/2024
-              </p>
+          </div>
+          <div class="flex justify-between w-full">
+            <div class="flex text-secondary flex-col items-center text-center">
+              <h5 class="text-[32px] font-semibold leading-[48px]">212:</h5>
+              <h6 class="text-xs font-light">Days</h6>
             </div>
-          </div>
-        </div>
-        <div class="flex justify-between w-full">
-          <div class="flex text-secondary flex-col items-center text-center">
-            <h5 class="text-[32px] font-semibold leading-[48px]">212:</h5>
-            <h6 class="text-xs font-light">Days</h6>
-          </div>
-          <div class="flex text-secondary flex-col items-center text-center">
-            <h5 class="text-[32px] font-semibold leading-[48px]">20:</h5>
-            <h6 class="text-xs font-light">Hours</h6>
-          </div>
-          <div class="flex text-secondary flex-col items-center text-center">
-            <h5 class="text-[32px] font-semibold leading-[48px]">15:</h5>
-            <h6 class="text-xs font-light">Minutes</h6>
-          </div>
-          <div class="flex text-secondary flex-col items-center text-center">
-            <h5 class="text-[32px] font-semibold leading-[48px]">18</h5>
-            <h6 class="text-xs font-light">Seconds</h6>
+            <div class="flex text-secondary flex-col items-center text-center">
+              <h5 class="text-[32px] font-semibold leading-[48px]">20:</h5>
+              <h6 class="text-xs font-light">Hours</h6>
+            </div>
+            <div class="flex text-secondary flex-col items-center text-center">
+              <h5 class="text-[32px] font-semibold leading-[48px]">15:</h5>
+              <h6 class="text-xs font-light">Minutes</h6>
+            </div>
+            <div class="flex text-secondary flex-col items-center text-center">
+              <h5 class="text-[32px] font-semibold leading-[48px]">18</h5>
+              <h6 class="text-xs font-light">Seconds</h6>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="w-full flex flex-col md:flex-row justify-between items-center gap-6 bg-grey mt-20 py-6 px-8">
+    <div
+      class="w-full flex flex-col md:flex-row justify-between items-center gap-6 bg-grey mt-10 md:mt-20 py-6 px-8"
+    >
       <h3 class="text-secondary text-xl font-medium leading-[44px]">
-              Would you like to request consultancy?
-            </h3>
-            <div class="flex flex-col gap-2 w-full md:w-auto md:items-center">
-            <nuxt-link
-              to="/tender/one"
-              class="bg-grey-5 border-2 border-grey-2 flex items-center justify-center w-full gap-2 font-medium py-4 px-8 rounded text-secondary" 
-            >
-              <p class="leading-[30px] text-sm font-bold tracking-[0.028px]">
-                Contact us
-              </p>
-            </nuxt-link>
-          </div>
+        Would you like to request consultancy?
+      </h3>
+      <div class="flex flex-col gap-2 w-full md:w-auto md:items-center">
+        <nuxt-link
+          to="/tender/one"
+          class="bg-grey-5 border-2 border-grey-2 flex items-center justify-center w-full gap-2 font-medium py-4 px-8 rounded text-secondary"
+        >
+          <p class="leading-[30px] text-sm font-bold tracking-[0.028px]">
+            Contact us
+          </p>
+        </nuxt-link>
+      </div>
     </div>
   </div>
 </template>

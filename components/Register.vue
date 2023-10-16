@@ -49,7 +49,7 @@ const containsItem = computed(() => {
 });
 </script>
 <template>
-  <div class="w-full h-full relative">
+  <div class="w-full h-full relative px-4 md:px-0">
     <div
       class="border-b border-grey-4 w-full py-6 flex items-center justify-center"
     >

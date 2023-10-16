@@ -41,7 +41,7 @@ const containsItem = computed(() => {
 });
 </script>
 <template>
-  <div class="w-full relative">
+  <div class="w-full relative px-4 md:px-0">
     <div
       class="border-b border-grey-4 w-full py-6 flex items-center justify-center"
     >
@@ -54,7 +54,7 @@ const containsItem = computed(() => {
     >
       <div class="flex flex-col gap-2 items-center text-center">
         <h5
-          class="text-2xl text-black md:text-[32px] max-w-[422px] font-semibold md:leading-[48px]"
+          class=" text-black text-[32px] max-w-[422px] font-semibold leading-[48px]"
         >
           Login To Continue
           <span class="font-extralight">Browsing Tenders</span>

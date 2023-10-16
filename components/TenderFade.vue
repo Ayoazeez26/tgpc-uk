@@ -3,10 +3,11 @@
   <div
     class="card flex flex-col pt-8 gap-10 overflow-hidden h-[125px] bg-white border-border-grey-7 rounded-lg relative"
   >
-    <img class="absolute top-0" src="/img/fade.png" alt="fade">
+    <!-- <img class="absolute top-0" src="/img/fade.png" alt="fade"> -->
+    <div class="bg-fade-bg bg-cover absolute top-0 bg-center z-[1] left-0 w-full h-full" />
     <div class="flex flex-col px-10 gap-y-6 w-full">
       <div class="flex justify-between items-center">
-        <div class="flex gap-4">
+        <div class="flex justify-between md:justify-start md:w-auto w-full gap-4">
           <div class="flex items-center gap-[10px]">
             <div class="w-6 h-6 rounded-full bg-grey-9" />
             <p class="text-grey-8 text-sm">Leicester</p>
@@ -18,7 +19,7 @@
             <Icon name="mdi:information-outline" />
           </button>
         </div>
-        <div class="flex flex-col md:w-auto md:flex-row md:items-center">
+        <div class="hidden md:flex flex-col md:w-auto md:flex-row md:items-center">
           <nuxt-link
             to="/"
             class="bg-secondary border-2 border-secondary flex items-center gap-2 font-medium py-2 px-8 rounded text-white"
