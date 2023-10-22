@@ -17,6 +17,7 @@ const data = useDataStore();
 
 const getUserData = () => {
   const userData = data.getUser();
+
 }
 
 getUserData();

@@ -31,6 +31,7 @@ export default <Partial<Config>>{
         'grey-7': '#9CA5AF',
         'grey-8': '#525252',
         'grey-9': '#D9D9D9',
+        'grey-10': '#F3F3F3',
         'bg-blur': '#0B181B',
         yellow: '#F6AF54',
       },

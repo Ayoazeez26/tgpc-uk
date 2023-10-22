@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const currentTab = ref("adultCare");
+
 </script>
 <template>
   <div class="pt-[80px] mx-auto w-full max-w-[1296px]">

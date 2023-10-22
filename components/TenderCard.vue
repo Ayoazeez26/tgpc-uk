@@ -1,4 +1,17 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useDataStore } from '~/stores/data';
+import moment from 'moment';
+
+const router = useRouter();
+const dataStore = useDataStore();
+const props = defineProps<{ tender: any }>();
+
+const goToTender = () => {
+  console.log('tender props is => ', props.tender)
+  dataStore.singleTender = props.tender;
+  router.push(`/tender/${props.tender._id}`);
+}
+</script>
 <template>
   <div
     class="card flex flex-col py-8 gap-10 bg-white border-border-grey-7 rounded-lg"
@@ -18,21 +31,19 @@
           </button>
         </div>
         <div class="hidden md:flex flex-col md:w-auto md:flex-row md:items-center">
-          <nuxt-link
-            to="/tender/one"
+          <button
+            @click="goToTender"
             class="bg-secondary border-2 border-secondary flex items-center gap-2 font-medium py-2 px-8 rounded text-white"
           >
             <p class="leading-[30px] tracking-[0.028px]">View now</p>
             <Icon name="material-symbols:arrow-forward-rounded" size="24" />
-          </nuxt-link>
+          </button>
         </div>
       </div>
       <h3
         class="clamp overflow-hidden text-ellipsis text-lg font-medium leading-[36px]"
       >
-        ASC0236 - Provision of intrauterine devices and systems (IUD/S) &
-        provision of sub-dermal Implants (SDI) for contraception and the
-        provision of IUS for non-contraceptive purposes
+        {{ props.tender._source.Title }}
       </h3>
       <div class="flex flex-wrap font-light gap-4">
         <button
@@ -64,7 +75,7 @@
         <div class="flex flex-col gap-1">
           <p class="text-grey-8 text-sm font-light">Closing Date</p>
           <p class="text-secondary text-xl font-bold leading-[36px]">
-            23/10/2024
+            {{  moment(props.tender._source.EndDate).format('DD/MM/YYYY') }}
           </p>
         </div>
       </div>
@@ -72,17 +83,17 @@
       <div class="py-7 flex flex-col gap-1 px-4 md:px-0 text-center md:text-right">
         <p class="text-grey-8 text-sm font-light">Value</p>
         <p class="text-secondary text-[28px] font-bold leading-[26px]">
-          NGN 2,000,000
+          {{ props.tender._source.Currency }} {{ Number(props.tender._source.Value).toLocaleString() }}
         </p>
       </div>
       <div class="md:hidden flex flex-col md:w-auto md:flex-row md:items-center px-4">
-          <nuxt-link
-            to="/tender/one"
+          <button
+            @click="goToTender"
             class="bg-secondary border-2 border-secondary flex items-center justify-center gap-2 font-medium py-2 px-8 rounded text-white"
           >
             <p class="leading-[30px] tracking-[0.028px]">View now</p>
             <Icon name="material-symbols:arrow-forward-rounded" size="24" />
-          </nuxt-link>
+          </button>
         </div>
     </div>
   </div>

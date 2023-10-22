@@ -37,7 +37,7 @@ export default defineNuxtConfig({
     'nuxt-swiper',
     'vue3-carousel-nuxt',
     '@pinia/nuxt',
-    '@pinia-plugin-persistedstate/nuxt'
+    '@pinia-plugin-persistedstate/nuxt',
   ],
   vite: {
     css: {
@@ -60,7 +60,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       baseUrl: process.env.BASE_URL,
-      tenderBaseUrl: process.env.TENDER_BASE_URL
+      tenderBaseUrl: process.env.TENDER_BASE_URL,
     },
   },
 });

@@ -1,5 +1,11 @@
 <script setup lang="ts">
+import moment from 'moment';
+import { useDataStore } from '~/stores/data';
+
+const dataStore = useDataStore();
 const currentTab = ref('description');
+const tender = dataStore.singleTender;
+console.log(tender);
 </script>
 <template>
   <div
@@ -35,11 +41,9 @@ const currentTab = ref('description');
               </div>
             </div>
             <h3
-              class="text-secondary text-xl md:text-[28px] font-semibold md:font-medium leading-[34px] md:leading-[44px]"
+              class="clamp overflow-hidden text-ellipsis text-secondary text-xl md:text-[28px] font-semibold md:font-medium leading-[34px] md:leading-[44px]"
             >
-              ASC0236 - Provision of intrauterine devices and systems (IUD/S) &
-              provision of sub-dermal Implants (SDI) for contraception and the
-              provision of IUS for non-contraceptive purposes
+              {{ tender._source.Title }}
             </h3>
             <div class="flex flex-wrap text-sm font-light gap-4">
               <button
@@ -63,7 +67,7 @@ const currentTab = ref('description');
             >
               <p class="text-grey-8 text-sm font-light">Value:</p>
               <p class="text-secondary text-[28px] font-bold leading-[26px]">
-                NGN 2,000,000
+                {{ tender._source.Currency }} {{ Number(tender._source.Value).toLocaleString() }}
               </p>
             </div>
             <div
@@ -96,7 +100,7 @@ const currentTab = ref('description');
                     <p
                       class="text-secondary text-lg font-medium leading-[36px]"
                     >
-                      23/10/2024
+                      {{  moment(tender._source.EndDate).format('DD/MM/YYYY') }}
                     </p>
                   </div>
                 </div>
@@ -167,52 +171,9 @@ const currentTab = ref('description');
             class="w-full px-10 pt-6 pb-16 mt-10 text-grey-8 font-light leading-[32px]"
           >
             <template v-if="currentTab === 'description'">
-              <p>
-                Leicester City Council (the Council) commissions the provision
-                of intrauterine devices and systems (IUD/S) &provision of
-                sub-dermal Implants(SDI) for contraception and the provision of
-                IUS for non-contraceptive purposes (through a Section 75
-                agreement with Leicester City Clinical Commissioning Group
-                LCCCG) These services are for patients registered with GP
-                practices in Leicester and who meet the criteria i.e. a resident
-                within the local authority area).
-              </p>
-
+              
               <p class="mt-6">
-                This is a replacement advertisement for the authorisation scheme
-                described below as the link to the attachments mentioned below
-                in the previous advert has recently become unavailable.
-              </p>
-
-              <p class="mt-6">
-                The Council hereby advertises an authorisation scheme for
-                appropriately registered organisations, for the provision of
-                intrauterine devices and systems (IUD/S) &provision of
-                sub-dermal Implants (SDI) for contraception and the provision of
-                IUS for non contraceptive purposes for patients registered with
-                GP practices in Leicester and who are resident within the local
-                authority area.
-              </p>
-
-              <p class="mt-6">
-                These services specifically include (1) the provision of
-                intrauterine devices and systems (IUD/S) & provision of
-                sub-dermal Implants (SDI) for contraception commissioned by
-                Leicester City Council and IUS for non contraceptive purposes
-                commissioned by Leicester City Council under a section 75
-                agreement.
-              </p>
-
-              <p class="mt-6">
-                Organisations wishing to provide the services under the
-                Authorisation Scheme should apply by downloading the forms and
-                other key documents from East Midlands Tender:
-                https://procontract.due-north.com/Advert?advertId=d182c855-5025-e911-80f2-005056b64545
-              </p>
-
-              <p class="mt-6">
-                The Council reserves the right to terminate the Authorisation
-                Scheme at any point should it deem this necessary.
+                {{ tender._source.Description }}
               </p>
             </template>
             <template v-else>
@@ -314,7 +275,7 @@ const currentTab = ref('description');
               <div class="flex flex-col gap-1">
                 <p class="text-grey-8 text-sm font-light">Closing Date</p>
                 <p class="text-secondary text-lg font-medium leading-[36px]">
-                  23/10/2024
+                  {{  moment(tender._source.EndDate).format('DD/MM/YYYY')}}
                 </p>
               </div>
             </div>

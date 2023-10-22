@@ -7,46 +7,39 @@ import { useDialogStore } from '~/stores/dialog';
 
 interface IApiInstance {
   auth: AuthModule;
-  data: DataModule
+  data: DataModule;
 }
 
 export default defineNuxtPlugin((nuxtApp) => {
   const config = useRuntimeConfig();
   const dialog = useDialogStore();
-  // // const { token } = useProfile();
-
-  // const fetchOptions: FetchOptions = {
-  //   baseURL: config.public.baseUrl,
-  //   // headers: {
-  //   //   Authorization: token.value ? `Bearer ${token.value}` : '',
-  //   // },
-  // };
-
-  // // console.log(token.value, fetchOptions);
-
-  // const apiFetcher = $fetch.create(fetchOptions);
-
+  const router = useRouter();
   const fetchOptions: FetchOptions = {
     baseURL: config.public.baseUrl,
     onRequest({ request, options }) {
       const authStore = useAuthStore();
-      console.log('something is being logged');
       if (authStore.authenticated) {
         options.headers = { Authorization: `${authStore.token}` };
-        console.log(options);
       } else {
         console.log('Not authenticated');
       }
     },
     onResponseError(error) {
+      const authStore = useAuthStore();
       console.log('dialog is =>', dialog);
       dialog.isLoading = false;
       console.log(error);
-      errorToast(
-        error.response && error.response._data
-          ? error.response._data.message
-          : 'Something went wrong, try again!'
-      );
+      if (error.response._data.message === 'jwt expired') {
+        console.log('jwt has expired innit');
+        errorToast('Session has expired, please login again!');
+        authStore.logout();
+      } else {
+        errorToast(
+          error.response && error.response._data
+            ? error.response._data.message
+            : 'Something went wrong, try again!'
+        );
+      }
     },
   };
 
@@ -54,7 +47,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   const modules: IApiInstance = {
     auth: new AuthModule(apiFetcher),
-    data: new DataModule(apiFetcher)
+    data: new DataModule(apiFetcher),
   };
 
   return {

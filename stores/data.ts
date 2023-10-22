@@ -7,6 +7,8 @@ export const useDataStore = defineStore(
     const { $api } = useNuxtApp();
     const dialog = useDialogStore();
     const userEmail = ref('');
+    const allTenders = ref([]);
+    const singleTender = ref({});
 
     const getUser = () => {
       dialog.isLoading = true;
@@ -14,16 +16,35 @@ export const useDataStore = defineStore(
         $api.data.getUser().then((res) => {
           dialog.isLoading = false;
           console.log(res)
-          // token.value = res.token;
-          // authenticated.value = true;
-          // localStorage.setItem('user-token', res.token);
-          // successToast('Account created successfully!');
-          // router.push('/dashboard');
         });
       });
     };
 
-    return { userEmail, getUser };
+    const getTenders = (data: string) => {
+      dialog.isLoading = true;
+      return new Promise((resolve, reject) => {
+        $api.data.searchTenders(data).then((res) => {
+          dialog.isLoading = false;
+          console.log('tender response is =>', res);
+          allTenders.value = res.data;
+          resolve(res.data);
+        })
+      })
+    }
+
+    const searchTenders = (data: string) => {
+      dialog.isLoading = true;
+      return new Promise((resolve, reject) => {
+        $api.data.searchTenders(data).then((res) => {
+          dialog.isLoading = false;
+          console.log('tender response is =>', res);
+          allTenders.value = res.data;
+          resolve(res.data);
+        });
+      });
+    };
+
+    return { userEmail, getUser, searchTenders, getTenders, allTenders, singleTender };
   },
   {
     persist: {
