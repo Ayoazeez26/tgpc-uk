@@ -1,6 +1,16 @@
 <script setup lang="ts">
+import _ from 'lodash'
+import { useDataStore } from '~/stores/data';
+const dataStore = useDataStore();
 const currentTab = ref("adultCare");
+const page = ref(1);
+const payload = ref('The')
+const getTenders = _.debounce(async () => {
+  await dataStore.getTenders(`?search=${payload.value}&page=1`);
+  // dataStore.allTenders = allTenders;
+}, 500)
 
+getTenders();
 </script>
 <template>
   <div class="pt-[80px] mx-auto w-full max-w-[1296px]">
@@ -132,15 +142,12 @@ const currentTab = ref("adultCare");
           <div
             class="flex flex-col text-left gap-4 md:pl-6 md:border-l border-grey-7 w-full md:w-[calc(100%-272px)]"
           >
-            <!-- <template>
-              <div v-for="(item, index) in 5" :key="index"> -->
-                <TenderCard />
-                <TenderCard />
-                <TenderCard />
-                <TenderCard />
-                <TenderFade />
-              <!-- </div>
-            </template> -->
+            <template v-if="dataStore.allTenders.length !== 0">
+              <div v-for="(item, index) in 5" :key="index">
+                <TenderCard :tender="dataStore.allTenders[index]" />
+              </div>
+              <TenderFade />
+            </template>
           </div>
         </div>
         
