@@ -135,10 +135,6 @@ const handleScroll = () => {
   scrolled.value = window.scrollY > 0;
 };
 
-const jobToggled = () => {
-  dataStore.job = !dataStore.job;
-};
-
 const logout = () => {
   auth.logout();
 };
@@ -146,7 +142,6 @@ const logout = () => {
 if (typeof window !== 'undefined') {
   window.addEventListener('scroll', handleScroll);
 }
-const payload = ref('The');
 const searchTerm = ref('');
 const tenders = ref([]);
 
@@ -158,22 +153,18 @@ watch(searchTerm, (value) => {
 });
 
 const getTenders = _.debounce(async () => {
-  if (searchTerm.value !== '') {
-    payload.value = searchTerm.value;
-  }
   console.log('getting user data');
   const searchResults = await dataStore.searchTenders(
-    `?search=${payload.value}&page=2`
+    `?search=${searchTerm.value}&page=1`
   );
   // dataStore.allTenders = allTenders;
   tenders.value = searchResults;
 }, 500);
 
 const goToTender = (tender) => {
-  console.log('tender props is => ', tender)
   dataStore.singleTender = tender;
   router.push(`/tender/${tender._id}`);
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -293,7 +284,6 @@ const goToTender = (tender) => {
   }
 }
 .shadow {
-
-box-shadow: 0px 20px 24px 0px rgba(0, 0, 0, 0.04);
+  box-shadow: 0px 20px 24px 0px rgba(0, 0, 0, 0.04);
 }
 </style>

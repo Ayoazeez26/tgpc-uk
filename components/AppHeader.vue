@@ -1,5 +1,7 @@
 <template>
-  <div class="fixed right-0 left-0 border-b border-grey-4 font-medium bg-grey-3 backdrop-blur-[28px] z-10">
+  <div
+    class="fixed right-0 left-0 border-b border-grey-4 font-medium bg-grey-3 backdrop-blur-[28px] z-10"
+  >
     <div
       class="flex h-24 md:h-[110px] items-center justify-between px-4 px-md-0 w-full max-w-[1296px] mx-auto"
     >
@@ -10,8 +12,33 @@
         <Icon name="ic:round-menu" size="24px" color="#0A0A0A" />
       </button>
       <div class="hidden lg:block relative max-w-full w-[686px]">
-        <Icon name="ic:baseline-search" size="24px" color="#0A0A0A" class="absolute top-4 left-6" />
-        <input type="text" name="search" id="search" class="px-6 pl-14 border focus:outline-none text-sm focus:ring-grey-2 focus:ring-1 border-grey-2 rounded py-4 w-full" placeholder="Search Tenders & Contracts">
+        <Icon
+          name="ic:baseline-search"
+          size="24px"
+          color="#0A0A0A"
+          class="absolute top-4 left-6"
+        />
+        <input
+          v-model="searchTerm"
+          type="text"
+          name="search"
+          id="search"
+          class="px-6 pl-14 border focus:outline-none text-sm focus:ring-grey-2 focus:ring-1 border-grey-2 rounded py-4 w-full"
+          placeholder="Search Tenders & Contracts"
+        />
+        <div
+          v-if="tenders.length !== 0"
+          class="shadow absolute w-full bg-grey-3 z-10 h-40 overflow-y-auto top-16 p-2"
+        >
+          <template v-for="(tender, index) in tenders" :key="index">
+            <button
+              @click="goToTender(tender)"
+              class="bg-white clamp text-left w-full overflow-hidden text-ellipsis font-semibold text-sm p-3 border border-grey-2 rounded-lg mb-2"
+            >
+              {{ tender._source.Title }}
+            </button>
+          </template>
+        </div>
       </div>
       <ul
         class="navbar-links flex items-start"
@@ -83,14 +110,16 @@
 </template>
 
 <script setup lang="ts">
-import { useDataStore } from "@/stores/data";
+import _ from 'lodash';
+import { useDataStore } from '~/stores/data';
+import { useAuthStore } from '~/stores/auth';
 const dataStore = useDataStore();
-const route = useRoute();
-console.log(route.name);
+const auth = useAuthStore();
+const router = useRouter();
 const scrolled = ref(false);
 const open = ref(false);
 const close = (e: HTMLInputElement) => {
-  if (e.target.tagName !== "svg" && e.target.tagName !== "path") {
+  if (e.target.tagName !== 'svg' && e.target.tagName !== 'path') {
     open.value = false;
   }
 };
@@ -103,9 +132,33 @@ const jobToggled = () => {
   dataStore.job = !dataStore.job;
 };
 
-if (typeof window !== "undefined") {
-  window.addEventListener("scroll", handleScroll);
+if (typeof window !== 'undefined') {
+  window.addEventListener('scroll', handleScroll);
 }
+
+const searchTerm = ref('');
+const tenders = ref([]);
+
+watch(searchTerm, (value) => {
+  // setTimeout(() => {
+  getTenders();
+  // }, 500);
+  // validateInput("name", value);
+});
+
+const getTenders = _.debounce(async () => {
+  console.log('getting user data');
+  const searchResults = await dataStore.searchTenders(
+    `?search=${searchTerm.value}&page=1`
+  );
+  // dataStore.allTenders = allTenders;
+  tenders.value = searchResults;
+}, 500);
+
+const goToTender = (tender) => {
+  dataStore.singleTender = tender;
+  router.push(`/tender/${tender._id}`);
+};
 </script>
 
 <style lang="scss" scoped>
@@ -117,7 +170,7 @@ if (typeof window !== "undefined") {
 
     &__item {
       margin: 0;
-      a:not([data-type="button"]) {
+      a:not([data-type='button']) {
         color: $primary;
         text-decoration: none;
         &:hover {
@@ -223,5 +276,8 @@ if (typeof window !== "undefined") {
     background-color: $grey-2 !important;
     // background-color: transparent !important;
   }
+}
+.shadow {
+  box-shadow: 0px 20px 24px 0px rgba(0, 0, 0, 0.04);
 }
 </style>
