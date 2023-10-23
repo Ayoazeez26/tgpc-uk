@@ -67,7 +67,7 @@ const containsItem = computed(() => {
           Register To Continue
           <span class="font-extralight">Browsing Tenders</span>
         </h5>
-        <div class="w-full mt-10 max-w-[422px]">
+        <div class="w-full my-10 max-w-[422px]">
           <div class="flex flex-col w-full">
             <input
               id="email"

@@ -56,7 +56,7 @@ const confirmEmail = async (): Promise<void> => {
             >Enter the OTP that was sent to your email</span
           >
         </h5>
-        <div class="w-full mt-10 max-w-[422px]">
+        <div class="w-full my-10 max-w-[422px]">
           <InputOTP v-model="code" :fields="6" />
           <div class="flex flex-col w-full lg:items-center mt-10 gap-4">
             <button

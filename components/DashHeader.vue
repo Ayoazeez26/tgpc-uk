@@ -28,7 +28,7 @@
         />
         <div
           v-if="tenders.length !== 0"
-          class="shadow absolute w-full bg-grey-3 z-10 h-40 overflow-y-auto top-16 p-2"
+          class="shadow absolute w-full bg-grey-3 z-10 h-auto max-h-40 overflow-y-auto top-16 p-2"
         >
           <template v-for="(tender, index) in tenders" :key="index">
             <button

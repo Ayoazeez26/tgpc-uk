@@ -74,13 +74,13 @@ console.log(tender);
               class="border-t border-grey-2 pt-10 md:hidden mt-4 flex flex-col items-center gap-10 w-full"
             >
               <div class="flex flex-col w-5/6 mx-auto md:items-center">
-                <button
+                <div
                   class="bg-grey border-2 border-grey flex items-center rounded-lg justify-center w-full gap-2 font-medium py-2 px-8 text-secondary"
                 >
                   <h6 class="leading-[32px] tracking-[0.028px] uppercase">
                     timeline
                   </h6>
-                </button>
+                </div>
               </div>
               <div
                 class="border-b border-grey-2 pb-6 flex justify-between w-full"
@@ -255,13 +255,13 @@ console.log(tender);
         </div>
         <div class="hidden md:flex flex-col items-center gap-10 w-full">
           <div class="flex flex-col w-5/6 mx-auto md:items-center">
-            <button
+            <div
               class="bg-grey border-2 border-grey flex items-center rounded-lg justify-center w-full gap-2 font-medium py-2 px-8 text-secondary"
             >
               <h6 class="leading-[32px] tracking-[0.028px] uppercase">
                 timeline
               </h6>
-            </button>
+            </div>
           </div>
           <div class="border-b border-grey-2 pb-6 flex justify-between w-full">
             <div class="flex items-center justify-between w-full gap-4">

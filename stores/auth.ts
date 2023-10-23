@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 import { UserEmailOTPInput, UserLoginInput } from '~/types';
 import { successToast } from '~/plugins/vue3-toastify';
 import { useDialogStore } from './dialog';
+import { useDataStore } from './data';
 
 export const useAuthStore = defineStore(
   'auth',
@@ -10,6 +11,7 @@ export const useAuthStore = defineStore(
     // const { token } = useProfile();
     const router = useRouter();
     const dialog = useDialogStore();
+    const dataStore = useDataStore();
     const authenticated = ref(false);
     const token = ref<string | null>(localStorage.getItem('user-token'));
 
@@ -69,6 +71,7 @@ export const useAuthStore = defineStore(
     const logout = () => {
       // const token = useCookie('token');
       token.value = null;
+      dataStore.loggedIn = false;
       router.push('/login');
     };
 
