@@ -68,7 +68,7 @@ const goToTender = () => {
         <div class="flex flex-col gap-1">
           <p class="text-grey-8 text-sm font-light">Date Created</p>
           <p class="text-secondary text-xl font-bold leading-[36px]">
-            23/09/2023
+            {{  moment(props.tender._source.Date).format('DD/MM/YYYY') }}
           </p>
         </div>
         <span>-</span>
