@@ -3,9 +3,36 @@ import moment from 'moment';
 import { useDataStore } from '~/stores/data';
 
 const dataStore = useDataStore();
+const days = ref(0);
+const hours = ref(0);
+const minutes = ref(0);
+const seconds = ref(0);
 const currentTab = ref('description');
 const tender = dataStore.singleTender;
 console.log(tender);
+const endDate = dataStore.singleTender._source.EndDate;
+let endDateInMilli = new Date(endDate).getTime();
+
+setInterval(() => {
+  let currentDateInMilli = new Date().getTime();
+  var delta = Math.abs(endDateInMilli - currentDateInMilli) / 1000;
+  // console.log(delta);
+  
+  // calculate (and subtract) whole days
+  days.value = Math.floor(delta / 86400);
+  delta -= days.value * 86400;
+
+  // calculate (and subtract) whole hours
+  hours.value = Math.floor(delta / 3600) % 24;
+  delta -= hours.value * 3600;
+
+  // calculate (and subtract) whole minutes
+  minutes.value = Math.floor(delta / 60) % 60;
+  delta -= minutes.value * 60;
+
+  // what's left is seconds
+  seconds.value = Math.floor(delta % 60); // in theory the modulus is not required
+}, 1000);
 </script>
 <template>
   <div
@@ -67,7 +94,8 @@ console.log(tender);
             >
               <p class="text-grey-8 text-sm font-light">Value:</p>
               <p class="text-secondary text-[28px] font-bold leading-[26px]">
-                {{ tender._source.Currency }} {{ Number(tender._source.Value).toLocaleString() }}
+                {{ tender._source.Currency }}
+                {{ Number(tender._source.Value).toLocaleString() }}
               </p>
             </div>
             <div
@@ -91,7 +119,7 @@ console.log(tender);
                     <p
                       class="text-secondary text-lg font-medium leading-[36px]"
                     >
-                      {{  moment(tender._source.Date).format('DD/MM/YYYY') }}
+                      {{ moment(tender._source.Date).format('DD/MM/YYYY') }}
                     </p>
                   </div>
                   <span>-</span>
@@ -100,7 +128,7 @@ console.log(tender);
                     <p
                       class="text-secondary text-lg font-medium leading-[36px]"
                     >
-                      {{  moment(tender._source.EndDate).format('DD/MM/YYYY') }}
+                      {{ moment(tender._source.EndDate).format('DD/MM/YYYY') }}
                     </p>
                   </div>
                 </div>
@@ -109,32 +137,42 @@ console.log(tender);
                 <div
                   class="flex text-secondary flex-col items-center text-center"
                 >
-                  <h5 class="text-[32px] font-semibold leading-[48px]">212:</h5>
+                  <h5 class="text-[32px] font-semibold leading-[48px]">
+                    {{ days }}:
+                  </h5>
                   <h6 class="text-xs font-light">Days</h6>
                 </div>
                 <div
                   class="flex text-secondary flex-col items-center text-center"
                 >
-                  <h5 class="text-[32px] font-semibold leading-[48px]">20:</h5>
+                  <h5 class="text-[32px] font-semibold leading-[48px]">
+                    {{ hours }}:
+                  </h5>
                   <h6 class="text-xs font-light">Hours</h6>
                 </div>
                 <div
                   class="flex text-secondary flex-col items-center text-center"
                 >
-                  <h5 class="text-[32px] font-semibold leading-[48px]">15:</h5>
+                  <h5 class="text-[32px] font-semibold leading-[48px]">
+                    {{ minutes }}:
+                  </h5>
                   <h6 class="text-xs font-light">Minutes</h6>
                 </div>
                 <div
                   class="flex text-secondary flex-col items-center text-center"
                 >
-                  <h5 class="text-[32px] font-semibold leading-[48px]">18</h5>
+                  <h5 class="text-[32px] font-semibold leading-[48px]">
+                    {{ seconds }}
+                  </h5>
                   <h6 class="text-xs font-light">Seconds</h6>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="mt-14 mb-10 md:mb-0 w-full bg-white border border-grey-2 rounded-lg">
+        <div
+          class="mt-14 mb-10 md:mb-0 w-full bg-white border border-grey-2 rounded-lg"
+        >
           <div
             class="flex overflow-x-auto relative w-full lg:w-auto self-start lg:self-center"
           >
@@ -171,7 +209,6 @@ console.log(tender);
             class="w-full px-10 pt-6 pb-16 mt-10 text-grey-8 font-light leading-[32px]"
           >
             <template v-if="currentTab === 'description'">
-              
               <p class="mt-6">
                 {{ tender._source.Description }}
               </p>
@@ -268,33 +305,41 @@ console.log(tender);
               <div class="flex flex-col gap-1">
                 <p class="text-grey-8 text-sm font-light">Date Created</p>
                 <p class="text-secondary text-lg font-medium leading-[36px]">
-                  {{  moment(tender._source.Date).format('DD/MM/YYYY') }}
+                  {{ moment(tender._source.Date).format('DD/MM/YYYY') }}
                 </p>
               </div>
               <span>-</span>
               <div class="flex flex-col gap-1">
                 <p class="text-grey-8 text-sm font-light">Closing Date</p>
                 <p class="text-secondary text-lg font-medium leading-[36px]">
-                  {{  moment(tender._source.EndDate).format('DD/MM/YYYY')}}
+                  {{ moment(tender._source.EndDate).format('DD/MM/YYYY') }}
                 </p>
               </div>
             </div>
           </div>
           <div class="flex justify-between w-full">
             <div class="flex text-secondary flex-col items-center text-center">
-              <h5 class="text-[32px] font-semibold leading-[48px]">212:</h5>
+              <h5 class="text-[32px] font-semibold leading-[48px]">
+                {{ days }}:
+              </h5>
               <h6 class="text-xs font-light">Days</h6>
             </div>
             <div class="flex text-secondary flex-col items-center text-center">
-              <h5 class="text-[32px] font-semibold leading-[48px]">20:</h5>
+              <h5 class="text-[32px] font-semibold leading-[48px]">
+                {{ hours }}:
+              </h5>
               <h6 class="text-xs font-light">Hours</h6>
             </div>
             <div class="flex text-secondary flex-col items-center text-center">
-              <h5 class="text-[32px] font-semibold leading-[48px]">15:</h5>
+              <h5 class="text-[32px] font-semibold leading-[48px]">
+                {{ minutes }}:
+              </h5>
               <h6 class="text-xs font-light">Minutes</h6>
             </div>
             <div class="flex text-secondary flex-col items-center text-center">
-              <h5 class="text-[32px] font-semibold leading-[48px]">18</h5>
+              <h5 class="text-[32px] font-semibold leading-[48px]">
+                {{ seconds }}
+              </h5>
               <h6 class="text-xs font-light">Seconds</h6>
             </div>
           </div>
