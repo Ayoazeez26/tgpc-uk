@@ -1,16 +1,27 @@
 <script setup lang="ts">
-import _ from 'lodash'
+import _ from 'lodash';
 import { useDataStore } from '~/stores/data';
 const dataStore = useDataStore();
-const currentTab = ref("adultCare");
+const currentTab = ref('adultCare');
 const page = ref(1);
-const payload = ref('The')
+const payload = ref('The');
+const totalPages = ref(10);
+const perPage = ref(10);
+const total = ref(100);
+const currentPage = ref(1);
+const hasMorePages = ref(true);
 const getTenders = _.debounce(async () => {
-  await dataStore.getTenders(`?search=${payload.value}&page=1`);
+  await dataStore.getTenders(`?search=${payload.value}&page=${page.value}`);
   // dataStore.allTenders = allTenders;
-}, 500)
+}, 500);
 
 getTenders();
+
+const showMore = (newPage: number) => {
+  page.value = newPage;
+  currentPage.value = newPage;
+  getTenders();
+};
 </script>
 <template>
   <div class="py-[80px] mx-auto w-full max-w-[1296px]">
@@ -146,10 +157,17 @@ getTenders();
               <div v-for="(tender, index) in dataStore.allTenders" :key="index">
                 <TenderCard :tender="tender" />
               </div>
+              <Pagination
+                :total-pages="totalPages"
+                :total="total"
+                :per-page="perPage"
+                :current-page="currentPage"
+                :has-more-pages="hasMorePages"
+                @pagechanged="showMore"
+              />
             </template>
           </div>
         </div>
-        
       </div>
     </div>
     <div id="about" />

@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
     head: {
-      title: 'Dependable Health Care',
+      title: 'HSCT',
       link: [{ rel: 'icon', type: 'image/png', href: '/favicon.ico' }],
       meta: [
         { charset: 'utf-8' },
@@ -12,7 +12,7 @@ export default defineNuxtConfig({
         {
           name: 'description',
           content:
-            'We are a domiciliary care provider established to offer home based quality care and support to service-users who require care and support in their own familiar environment and surroundings.',
+            'TGPC UK Portal',
         },
       ],
       // script: [
