@@ -18,7 +18,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     baseURL: config.public.baseUrl,
     onRequest({ request, options }) {
       const authStore = useAuthStore();
-      if (authStore.authenticated) {
+      if (authStore.authenticated && authStore.token) {
         options.headers = { Authorization: `Bearer ${authStore.token}` };
       } else {
         console.log('Not authenticated');
