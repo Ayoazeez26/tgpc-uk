@@ -120,7 +120,7 @@ const goToTender = (tender) => {
         <div
           class="hidden lg:flex text-sm flex-col w-full lg:w-auto lg:flex-row lg:items-center gap-4"
         >
-          <div
+          <!-- <div
             @click="logout"
             class="pro flex items-center text-grey-5 gap-2 h-[38px] px-4"
           >
@@ -129,13 +129,14 @@ const goToTender = (tender) => {
               <img src="/svg/coins.svg" alt="coins" />
               <p class="text-sm font-bold">15</p>
             </div>
-          </div>
+          </div> -->
           <button
             ref="hamburger"
             class="p-2 bg-grey border flex gap-3 items-center border-grey-2 rounded-full"
             @click="open = !open"
           >
             <div
+              @click="logout"
               class="bg-secondary p-2 w-[38px] h-[38px] flex items-center justify-center rounded-full"
             >
               <p

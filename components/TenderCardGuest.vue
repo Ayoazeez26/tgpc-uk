@@ -23,12 +23,12 @@ const goToTender = () => {
             <div class="w-6 h-6 rounded-full bg-grey-9" />
             <p class="text-grey-8 text-sm">{{ props.tender?.Location }}</p>
           </div>
-          <button
+          <!-- <button
             class="flex items-center text-grey-8 gap-2 py-2 px-4 border border-grey-2 bg-grey rounded-full justify-center"
           >
             <p class="uppercase">eligibility status</p>
             <Icon name="mdi:information-outline" />
-          </button>
+          </button> -->
         </div>
         <div class="hidden md:flex flex-col md:w-auto md:flex-row md:items-center">
           <a
@@ -45,7 +45,7 @@ const goToTender = () => {
       >
         {{ props.tender.Title }}
       </h3>
-      <div class="flex flex-wrap font-light gap-4">
+      <!-- <div class="flex flex-wrap font-light gap-4">
         <button
           class="flex items-center min-w-max text-grey-8 gap-2 py-2 px-4 border border-grey-2 bg-grey rounded-full justify-center"
         >
@@ -61,7 +61,7 @@ const goToTender = () => {
         >
           <p>Supported Living</p>
         </button>
-      </div>
+      </div> -->
     </div>
     <div class="border-t border-grey-2 flex flex-col md:flex-row justify-between md:px-10">
       <div class="py-7 flex items-center gap-4 px-4 md:px-0 justify-between">
