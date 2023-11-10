@@ -34,6 +34,7 @@ watch(email, (value) => {
     >
       <div class="flex flex-col gap-2 items-center text-center">
         <div
+          id="signUp"
           class="bg-white px-8 py-4 border border-grey-2 rounded -translate-y-20 flex gap-2 items-center"
         >
           <img src="/svg/lock.svg" alt="lock" />

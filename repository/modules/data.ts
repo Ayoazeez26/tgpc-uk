@@ -15,7 +15,7 @@ class DataModule extends FetchFactory {
   async searchTenders(credentials: string): Promise {
     return await this.call(
       'GET',
-      `${this.RESOURCE}/searchTenders${credentials}`
+      `${this.RESOURCE}/tenders/search${credentials}`
     );
   }
 }

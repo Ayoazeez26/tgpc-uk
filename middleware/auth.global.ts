@@ -32,7 +32,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
   //     }
   //   }
   // }
-  if (!loggedIn && to?.name === 'dashboard') {
+  if (!authenticated && to?.name === 'dashboard') {
     abortNavigation();
     return navigateTo('/login');
   }

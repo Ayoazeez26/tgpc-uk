@@ -7,7 +7,7 @@ const currentTab = ref("adultCare");
 const page = ref(1);
 const payload = ref('The')
 const getTenders = _.debounce(async () => {
-  await dataStore.getTenders(`?search=${payload.value}&page=1`);
+  await dataStore.getTenders(`?searchTerm=${payload.value}&size=10`);
   // dataStore.allTenders = allTenders;
 }, 500)
 
@@ -140,7 +140,7 @@ onMounted(() => {
                   <Icon name="ic:baseline-arrow-forward-ios" size="12" />
                 </div>
               </div>
-              <div class="flex justify-between items-center py-2 w-full">
+              <!-- <div class="flex justify-between items-center py-2 w-full">
                 <div class="flex gap-3 items-center">
                   <img src="/svg/file.svg" alt="file" />
                   <p>Contract Type</p>
@@ -149,7 +149,7 @@ onMounted(() => {
                   <p class="text-grey-6">40</p>
                   <Icon name="ic:baseline-arrow-forward-ios" size="12" />
                 </div>
-              </div>
+              </div> -->
               <div class="flex justify-between items-center py-2 w-full">
                 <div class="flex gap-3 items-center">
                   <Icon name="material-symbols:date-range-outline" size="24" />
@@ -175,7 +175,7 @@ onMounted(() => {
           >
             <template v-if="dataStore.allTenders.length !== 0">
               <div v-for="(item, index) in 5" :key="index">
-                <TenderCard :tender="dataStore.allTenders[index]" />
+                <TenderCardGuest :tender="dataStore.allTenders[index]" />
               </div>
               <TenderFade />
             </template>

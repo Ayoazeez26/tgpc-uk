@@ -10,7 +10,7 @@ const seconds = ref(0);
 const currentTab = ref('description');
 const tender = dataStore.singleTender;
 console.log(tender);
-const endDate = dataStore.singleTender._source.EndDate;
+const endDate = dataStore.singleTender.EndDate;
 let endDateInMilli = new Date(endDate).getTime();
 
 setInterval(() => {
@@ -70,7 +70,7 @@ setInterval(() => {
             <h3
               class="clamp overflow-hidden text-ellipsis text-secondary text-xl md:text-[28px] font-semibold md:font-medium leading-[34px] md:leading-[44px]"
             >
-              {{ tender._source.Title }}
+              {{ tender.Title }}
             </h3>
             <div class="flex flex-wrap text-sm font-light gap-4">
               <button
@@ -94,8 +94,8 @@ setInterval(() => {
             >
               <p class="text-grey-8 text-sm font-light">Value:</p>
               <p class="text-secondary text-[28px] font-bold leading-[26px]">
-                {{ tender._source.Currency }}
-                {{ Number(tender._source.Value).toLocaleString() }}
+                {{ tender.Currency }}
+                {{ Number(tender.Value).toLocaleString() }}
               </p>
             </div>
             <div
@@ -119,7 +119,7 @@ setInterval(() => {
                     <p
                       class="text-secondary text-lg font-medium leading-[36px]"
                     >
-                      {{ moment(tender._source.Date).format('DD/MM/YYYY') }}
+                      {{ moment(tender.Date).format('DD/MM/YYYY') }}
                     </p>
                   </div>
                   <span>-</span>
@@ -128,7 +128,7 @@ setInterval(() => {
                     <p
                       class="text-secondary text-lg font-medium leading-[36px]"
                     >
-                      {{ moment(tender._source.EndDate).format('DD/MM/YYYY') }}
+                      {{ moment(tender.EndDate).format('DD/MM/YYYY') }}
                     </p>
                   </div>
                 </div>
@@ -210,7 +210,7 @@ setInterval(() => {
           >
             <template v-if="currentTab === 'description'">
               <p class="mt-6">
-                {{ tender._source.Description }}
+                {{ tender.Description }}
               </p>
             </template>
             <template v-else>
@@ -305,14 +305,14 @@ setInterval(() => {
               <div class="flex flex-col gap-1">
                 <p class="text-grey-8 text-sm font-light">Date Created</p>
                 <p class="text-secondary text-lg font-medium leading-[36px]">
-                  {{ moment(tender._source.Date).format('DD/MM/YYYY') }}
+                  {{ moment(tender.Date).format('DD/MM/YYYY') }}
                 </p>
               </div>
               <span>-</span>
               <div class="flex flex-col gap-1">
                 <p class="text-grey-8 text-sm font-light">Closing Date</p>
                 <p class="text-secondary text-lg font-medium leading-[36px]">
-                  {{ moment(tender._source.EndDate).format('DD/MM/YYYY') }}
+                  {{ moment(tender.EndDate).format('DD/MM/YYYY') }}
                 </p>
               </div>
             </div>

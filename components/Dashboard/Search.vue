@@ -14,7 +14,7 @@ const hasMorePages = ref(true);
 const showDatePicker = ref(false);
 const date = ref();
 const getTenders = _.debounce(async () => {
-  await dataStore.getTenders(`?search=${payload.value}&page=${page.value}`);
+  await dataStore.getTenders(`?searchTerm=${payload.value}&size=${perPage.value}`);
   // dataStore.allTenders = allTenders;
 }, 500);
 
@@ -153,7 +153,7 @@ onMounted(() => {
                   <Icon name="ic:baseline-arrow-forward-ios" size="12" />
                 </div>
               </div>
-              <div class="flex justify-between items-center py-2 w-full">
+              <!-- <div class="flex justify-between items-center py-2 w-full">
                 <div class="flex gap-3 items-center">
                   <img src="/svg/file.svg" alt="file" />
                   <p>Contract Type</p>
@@ -162,7 +162,7 @@ onMounted(() => {
                   <p class="text-grey-6">40</p>
                   <Icon name="ic:baseline-arrow-forward-ios" size="12" />
                 </div>
-              </div>
+              </div> -->
               <div
                 @click="showDatePicker = !showDatePicker"
                 class="flex justify-between cursor-pointer items-center py-2 w-full"

@@ -10,6 +10,7 @@ export const useAuthStore = defineStore(
     const { $api } = useNuxtApp();
     // const { token } = useProfile();
     const router = useRouter();
+    let { loggedIn } = useDataStore();
     const dialog = useDialogStore();
     const dataStore = useDataStore();
     const authenticated = ref(false);
@@ -51,6 +52,7 @@ export const useAuthStore = defineStore(
             token.value = res.accessToken;
             user.value = res;
             authenticated.value = true;
+            loggedIn = true;
             localStorage.setItem('user-token', res.accessToken);
             router.push('/dashboard');
           })

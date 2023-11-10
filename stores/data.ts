@@ -7,7 +7,7 @@ export const useDataStore = defineStore(
     const { $api } = useNuxtApp();
     const dialog = useDialogStore();
     const userEmail = ref('');
-    const loggedIn = ref(false);
+    let loggedIn = ref(false);
     const allTenders = ref([]);
     const singleTender = ref({});
 
@@ -16,9 +16,9 @@ export const useDataStore = defineStore(
       return new Promise((resolve, reject) => {
         $api.data.searchTenders(data).then((res) => {
           dialog.isLoading = false;
-          // console.log('tender response is =>', res);
-          allTenders.value = res.data;
-          resolve(res.data);
+          console.log('tender response is =>', res);
+          allTenders.value = res;
+          resolve(res);
         })
       })
     }
@@ -30,7 +30,7 @@ export const useDataStore = defineStore(
           dialog.isLoading = false;
           // console.log('tender response is =>', res);
           // allTenders.value = res.data;
-          resolve(res.data);
+          resolve(res);
         });
       });
     };

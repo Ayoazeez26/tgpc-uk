@@ -13,6 +13,7 @@
       </button>
       <div class="hidden lg:block relative max-w-full w-[686px]">
         <Icon
+          @click="showSearchBar = true"
           name="ic:baseline-search"
           size="24px"
           color="#0A0A0A"
@@ -27,7 +28,7 @@
           placeholder="Search Tenders & Contracts"
         />
         <div
-          v-if="tenders.length !== 0"
+          v-if="tenders.length !== 0 && !closeModal"
           class="shadow absolute w-full bg-grey-3 z-10 h-40 overflow-y-auto top-16 p-2"
         >
           <template v-for="(tender, index) in tenders" :key="index">
@@ -35,7 +36,7 @@
               @click="goToTender(tender)"
               class="bg-white clamp text-left w-full overflow-hidden text-ellipsis font-semibold text-sm p-3 border border-grey-2 rounded-lg mb-2"
             >
-              {{ tender._source.Title }}
+              {{ tender.Title }}
             </button>
           </template>
         </div>
@@ -138,26 +139,28 @@ if (typeof window !== 'undefined') {
 
 const searchTerm = ref('');
 const tenders = ref([]);
+const closeModal = ref(false);
 
 watch(searchTerm, (value) => {
-  // setTimeout(() => {
-  getTenders();
-  // }, 500);
-  // validateInput("name", value);
+  if (value === '') {
+    closeModal.value = true;
+    getTenders('The');
+  } else {
+    closeModal.value = false;
+    getTenders(value);
+  }
 });
 
-const getTenders = _.debounce(async () => {
-  console.log('getting user data');
+const getTenders = _.debounce(async (search: string) => {
   const searchResults = await dataStore.searchTenders(
-    `?search=${searchTerm.value}&page=1`
+    `?searchTerm=${search}&size=20`
   );
-  // dataStore.allTenders = allTenders;
   tenders.value = searchResults;
 }, 500);
 
 const goToTender = (tender) => {
   dataStore.singleTender = tender;
-  router.push(`/tender/${tender._id}`);
+  router.push(`/tender/${tender.ID}`);
 };
 </script>
 
