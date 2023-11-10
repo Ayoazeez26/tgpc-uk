@@ -18,6 +18,13 @@ class DataModule extends FetchFactory {
       `${this.RESOURCE}/tenders/search${credentials}`
     );
   }
+
+  async searchTendersByLocation(credentials: string): Promise {
+    return await this.call(
+      'GET',
+      `${this.RESOURCE}/tenders/location-search${credentials}`
+    );
+  }
 }
 
 export default DataModule;

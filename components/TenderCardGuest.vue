@@ -21,7 +21,7 @@ const goToTender = () => {
         <div class="flex md:gap-4 w-full justify-between md:justify-start md:w-auto">
           <div class="flex items-center gap-2 md:gap-[10px]">
             <div class="w-6 h-6 rounded-full bg-grey-9" />
-            <p class="text-grey-8 text-sm">Leicester</p>
+            <p class="text-grey-8 text-sm">{{ props.tender?.Location }}</p>
           </div>
           <button
             class="flex items-center text-grey-8 gap-2 py-2 px-4 border border-grey-2 bg-grey rounded-full justify-center"

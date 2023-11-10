@@ -12,13 +12,31 @@ const total = ref(100);
 const currentPage = ref(1);
 const hasMorePages = ref(true);
 const showDatePicker = ref(false);
+const showLocationSearch = ref(false);
+const searchTerm = ref('');
 const date = ref();
 const getTenders = _.debounce(async () => {
-  await dataStore.getTenders(`?searchTerm=${payload.value}&size=${perPage.value}`);
+  await dataStore.getTenders(
+    `?searchTerm=${payload.value}&size=${perPage.value}`
+  );
   // dataStore.allTenders = allTenders;
 }, 500);
 
 getTenders();
+
+watch(searchTerm, (value) => {
+  if (value === '') {
+    getTenders('The');
+  } else {
+    getTendersByLocation(value);
+  }
+});
+
+const getTendersByLocation = _.debounce(async () => {
+  await dataStore.searchTendersByLocation(
+    `?searchTerm=${searchTerm.value}&size=10&from=0`
+  );
+}, 500);
 
 const showMore = (newPage: number) => {
   page.value = newPage;
@@ -31,18 +49,17 @@ const pinnedElement = ref(null);
 
 const mm = $gsap.matchMedia();
 
-
 const ctx = $gsap.context(() => {});
 onUnmounted(() => {
   ctx.revert();
 });
 onMounted(() => {
   setTimeout(() => {
-    console.log("mounted");
+    console.log('mounted');
     $ScrollTrigger.refresh();
   }, 1000);
   ctx.add(() => {
-    mm.add("(min-width: 1024px)", () => {
+    mm.add('(min-width: 1024px)', () => {
       $ScrollTrigger.create({
         trigger: container.value,
         pin: pinnedElement.value,
@@ -50,13 +67,13 @@ onMounted(() => {
         start: 'top 10%',
         end: 'bottom 55%',
         // markers: true
-      })
+      });
     });
   });
 });
 </script>
 <template>
-  <div class="py-[80px] mx-auto w-full max-w-[1296px]">
+  <div class="pt-20 px-4 xl:px-0 md:pt-28 mx-auto w-full max-w-[1296px]">
     <div class="flex flex-col">
       <div class="w-full flex flex-col items-center text-center px-4">
         <div class="w-full max-w-[822px] mb-10">
@@ -143,15 +160,34 @@ onMounted(() => {
               >
             </button>
             <div class="flex flex-col w-full gap-4">
-              <div class="flex justify-between items-center py-2 w-full">
+              <div
+                @click="showLocationSearch = !showLocationSearch"
+                class="flex justify-between cursor-pointer items-center py-2 w-full"
+              >
                 <div class="flex gap-3 items-center">
                   <Icon name="material-symbols:location-on-outline" size="24" />
                   <p>Location</p>
                 </div>
                 <div class="flex gap-2 items-center">
-                  <p class="text-grey-6">100</p>
+                  <!-- <p class="text-grey-6">100</p> -->
                   <Icon name="ic:baseline-arrow-forward-ios" size="12" />
                 </div>
+              </div>
+              <div v-if="showLocationSearch" class="relative w-full">
+                <Icon
+                  name="ic:baseline-search"
+                  size="24px"
+                  color="#0A0A0A"
+                  class="absolute top-4 left-2"
+                />
+                <input
+                  type="text"
+                  name="search"
+                  v-model="searchTerm"
+                  id="search"
+                  class="px-6 pl-8 border focus:outline-none text-sm focus:ring-grey-2 focus:ring-1 border-grey-2 rounded py-4 w-full"
+                  placeholder="Search by Location"
+                />
               </div>
               <!-- <div class="flex justify-between items-center py-2 w-full">
                 <div class="flex gap-3 items-center">
@@ -173,11 +209,15 @@ onMounted(() => {
                 </div>
                 <div class="flex gap-2 items-center">
                   <Icon name="ic:baseline-arrow-forward-ios" size="12" />
-                  
                 </div>
               </div>
               <div v-if="showDatePicker">
-                <VueDatePicker v-model="date" :range="true" inline auto-apply></VueDatePicker>
+                <VueDatePicker
+                  v-model="date"
+                  :range="true"
+                  inline
+                  auto-apply
+                ></VueDatePicker>
               </div>
               <div class="flex justify-between items-center py-2 w-full">
                 <div class="flex gap-3 items-center">
@@ -205,6 +245,14 @@ onMounted(() => {
                 :has-more-pages="hasMorePages"
                 @pagechanged="showMore"
               />
+            </template>
+            <template v-else>
+              <img class="w-4/5 mx-auto" src="/svg/empty.svg" alt="empty svg" />
+              <h3
+                class="text-2xl lg:text-[30px] capitalize lg:leading-[48px] text-center mt-5 font-semibold"
+              >
+                >No results found
+              </h3>
             </template>
           </div>
         </div>

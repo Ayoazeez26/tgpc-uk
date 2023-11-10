@@ -1,3 +1,56 @@
+<script setup lang="ts">
+import _ from 'lodash';
+import { useDataStore } from '~/stores/data';
+import { useAuthStore } from '~/stores/auth';
+const dataStore = useDataStore();
+const auth = useAuthStore();
+const router = useRouter();
+const scrolled = ref(false);
+const open = ref(false);
+const showSearchBar = ref(false);
+const close = (e: HTMLInputElement) => {
+  if (e.target.tagName !== 'svg' && e.target.tagName !== 'path') {
+    open.value = false;
+  }
+};
+
+const handleScroll = () => {
+  scrolled.value = window.scrollY > 0;
+};
+
+const logout = () => {
+  auth.logout();
+};
+
+if (typeof window !== 'undefined') {
+  window.addEventListener('scroll', handleScroll);
+}
+const searchTerm = ref('');
+const tenders = ref([]);
+const closeModal = ref(false);
+
+watch(searchTerm, (value) => {
+  if (value === '') {
+    closeModal.value = true;
+    getTenders('The');
+  } else {
+    closeModal.value = false;
+    getTenders(value);
+  }
+});
+
+const getTenders = _.debounce(async () => {
+  const searchResults = await dataStore.searchTenders(
+    `?searchTerm=${searchTerm.value}&size=20`
+  );
+  tenders.value = searchResults;
+}, 500);
+
+const goToTender = (tender) => {
+  dataStore.singleTender = tender;
+  router.push(`/tender/${tender.ID}`);
+};
+</script>
 <template>
   <div
     class="fixed right-0 left-0 border-b border-grey-4 font-medium bg-grey-3 backdrop-blur-[28px] z-10"
@@ -5,7 +58,7 @@
     <div
       class="flex h-24 md:h-[110px] items-center justify-between px-4 px-md-0 w-full max-w-[1296px] mx-auto"
     >
-      <nuxt-link to="/">
+      <nuxt-link to="/dashboard">
         <img class="w-[63px]" src="/svg/logo.svg" />
       </nuxt-link>
       <div class="flex items-center gap-4 lg:hidden" @click="open = !open">
@@ -134,60 +187,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import _ from 'lodash';
-import { useDataStore } from '~/stores/data';
-import { useAuthStore } from '~/stores/auth';
-const dataStore = useDataStore();
-const auth = useAuthStore();
-const router = useRouter();
-const scrolled = ref(false);
-const open = ref(false);
-const showSearchBar = ref(false);
-const close = (e: HTMLInputElement) => {
-  if (e.target.tagName !== 'svg' && e.target.tagName !== 'path') {
-    open.value = false;
-  }
-};
-
-const handleScroll = () => {
-  scrolled.value = window.scrollY > 0;
-};
-
-const logout = () => {
-  auth.logout();
-};
-
-if (typeof window !== 'undefined') {
-  window.addEventListener('scroll', handleScroll);
-}
-const searchTerm = ref('');
-const tenders = ref([]);
-const closeModal = ref(false);
-
-watch(searchTerm, (value) => {
-  if (value === '') {
-    closeModal.value = true;
-    getTenders('The');
-  } else {
-    closeModal.value = false;
-    getTenders(value);
-  }
-});
-
-const getTenders = _.debounce(async () => {
-  const searchResults = await dataStore.searchTenders(
-    `?searchTerm=${searchTerm.value}&size=20`
-  );
-  tenders.value = searchResults;
-}, 500);
-
-const goToTender = (tender) => {
-  dataStore.singleTender = tender;
-  router.push(`/tender/${tender.ID}`);
-};
-</script>
 
 <style lang="scss" scoped>
 .navbar {

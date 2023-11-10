@@ -59,7 +59,7 @@ setInterval(() => {
               >
                 <div class="flex items-center gap-[10px]">
                   <div class="w-6 h-6 rounded-full bg-grey-9" />
-                  <p class="text-grey-8 text-sm">Leicester</p>
+                  <p class="text-grey-8 text-sm">{{ tender?.Location }}</p>
                 </div>
                 <div class="flex items-center gap-[10px]">
                   <div class="w-2 h-2 rounded-full bg-grey-9" />

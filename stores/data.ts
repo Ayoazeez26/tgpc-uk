@@ -19,9 +19,9 @@ export const useDataStore = defineStore(
           console.log('tender response is =>', res);
           allTenders.value = res;
           resolve(res);
-        })
-      })
-    }
+        });
+      });
+    };
 
     const searchTenders = (data: string) => {
       dialog.isLoading = true;
@@ -35,7 +35,27 @@ export const useDataStore = defineStore(
       });
     };
 
-    return { userEmail, searchTenders, getTenders, allTenders, singleTender, loggedIn };
+    const searchTendersByLocation = (data: string) => {
+      dialog.isLoading = true;
+      return new Promise((resolve, reject) => {
+        $api.data.searchTendersByLocation(data).then((res) => {
+          dialog.isLoading = false;
+          // console.log('tender response is =>', res);
+          allTenders.value = res;
+          resolve(res);
+        });
+      });
+    };
+
+    return {
+      userEmail,
+      searchTenders,
+      searchTendersByLocation,
+      getTenders,
+      allTenders,
+      singleTender,
+      loggedIn,
+    };
   },
   {
     persist: {

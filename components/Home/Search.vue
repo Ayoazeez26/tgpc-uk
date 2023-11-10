@@ -3,7 +3,8 @@ import _ from 'lodash'
 const { $gsap, $ScrollTrigger } = useNuxtApp();
 import { useDataStore } from '~/stores/data';
 const dataStore = useDataStore();
-const currentTab = ref("adultCare");
+const showLocationSearch = ref(false);
+const searchTerm = ref('');
 const page = ref(1);
 const payload = ref('The')
 const getTenders = _.debounce(async () => {
@@ -12,6 +13,20 @@ const getTenders = _.debounce(async () => {
 }, 500)
 
 getTenders();
+
+watch(searchTerm, (value) => {
+  if (value === '') {
+    getTenders('The');
+  } else {
+    getTendersByLocation(value);
+  }
+});
+
+const getTendersByLocation = _.debounce(async () => {
+  await dataStore.searchTendersByLocation(
+    `?searchTerm=${searchTerm.value}&size=10&from=0`
+  );
+}, 500);
 
 const container = ref(null);
 const pinnedElement = ref(null);
@@ -130,15 +145,34 @@ onMounted(() => {
               >
             </button>
             <div class="flex flex-col w-full gap-4">
-              <div class="flex justify-between items-center py-2 w-full">
+              <div
+                @click="showLocationSearch = !showLocationSearch"
+                class="flex justify-between cursor-pointer items-center py-2 w-full"
+              >
                 <div class="flex gap-3 items-center">
                   <Icon name="material-symbols:location-on-outline" size="24" />
                   <p>Location</p>
                 </div>
                 <div class="flex gap-2 items-center">
-                  <p class="text-grey-6">100</p>
+                  <!-- <p class="text-grey-6">100</p> -->
                   <Icon name="ic:baseline-arrow-forward-ios" size="12" />
                 </div>
+              </div>
+              <div v-if="showLocationSearch" class="relative w-full">
+                <Icon
+                  name="ic:baseline-search"
+                  size="24px"
+                  color="#0A0A0A"
+                  class="absolute top-4 left-2"
+                />
+                <input
+                  type="text"
+                  name="search"
+                  v-model="searchTerm"
+                  id="search"
+                  class="px-6 pl-8 border focus:outline-none text-sm focus:ring-grey-2 focus:ring-1 border-grey-2 rounded py-4 w-full"
+                  placeholder="Search by Location"
+                />
               </div>
               <!-- <div class="flex justify-between items-center py-2 w-full">
                 <div class="flex gap-3 items-center">
@@ -178,6 +212,14 @@ onMounted(() => {
                 <TenderCardGuest :tender="dataStore.allTenders[index]" />
               </div>
               <TenderFade />
+            </template>
+            <template v-else>
+              <img class="w-4/5 mx-auto" src="/svg/empty.svg" alt="empty svg" />
+              <h3
+                class="text-2xl lg:text-[30px] capitalize lg:leading-[48px] text-center mt-5 font-semibold"
+              >
+                >No results found
+              </h3>
             </template>
           </div>
         </div>
