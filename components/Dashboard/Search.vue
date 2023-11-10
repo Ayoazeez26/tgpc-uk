@@ -173,6 +173,7 @@ onMounted(() => {
                 </div>
                 <div class="flex gap-2 items-center">
                   <Icon name="ic:baseline-arrow-forward-ios" size="12" />
+                  
                 </div>
               </div>
               <div v-if="showDatePicker">
