@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import { useDialogStore } from '@/stores/dialog';
 import { useAuthStore } from '~/stores/auth';
-import { UserEmailOTPInput } from '~/types';
+import { OtpValue } from '~/types';
 
 const { $api } = useNuxtApp();
 const auth = useAuthStore();
 const dialog = useDialogStore();
 const router = useRouter();
 
-const code = ref<number | null>(null);
+
+const code = ref<string>('');
 const timerCount = ref(60);
 
 watch(
@@ -26,9 +27,10 @@ watch(
 );
 
 const confirmEmail = async (): Promise<void> => {
-  const payload: UserEmailOTPInput = {
+  const payload: OtpValue = {
     code: code.value,
   };
+  console.log(payload);
   auth.verifyEmail(payload);
 };
 </script>

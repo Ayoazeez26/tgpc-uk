@@ -8,9 +8,28 @@
       <nuxt-link to="/">
         <img class="w-[63px]" src="/svg/logo.svg" />
       </nuxt-link>
-      <button ref="hamburger" class="lg:hidden" @click="open = !open">
-        <Icon name="ic:round-menu" size="24px" color="#0A0A0A" />
-      </button>
+      <div class="flex items-center gap-4 lg:hidden">
+        <Icon
+          @click="showSearchBar = true"
+          name="ic:baseline-search"
+          size="24px"
+          color="#0A0A0A"
+          class="absolute top-4 left-6"
+        />
+        <div
+          @click="logout"
+          class="pro flex items-center text-grey-5 gap-2 h-[38px] px-4"
+        >
+          <div class="italic font-black uppercase">pro</div>
+          <div class="flex gap-1 items-center">
+            <img src="/svg/coins.svg" alt="coins" />
+            <p class="text-sm font-bold">15</p>
+          </div>
+        </div>
+        <button ref="hamburger" @click="open = !open">
+          <Icon name="ic:round-menu" size="24px" color="#0A0A0A" />
+        </button>
+      </div>
       <div class="hidden lg:block relative max-w-full w-[686px]">
         <Icon
           name="ic:baseline-search"
@@ -125,6 +144,7 @@ const auth = useAuthStore();
 const router = useRouter();
 const scrolled = ref(false);
 const open = ref(false);
+const showSearchBar = ref(false);
 const close = (e: HTMLInputElement) => {
   if (e.target.tagName !== 'svg' && e.target.tagName !== 'path') {
     open.value = false;

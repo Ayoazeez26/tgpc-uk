@@ -32,7 +32,7 @@ watch(
       newVal.value.length === props.fields &&
       !newVal.value.join('').includes(' ')
     ) {
-      emit('update:modelValue', Number(newVal.value.join('')));
+      emit('update:modelValue', newVal.value.join(''));
     } else {
       emit('update:modelValue', null);
     }

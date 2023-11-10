@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useDialogStore } from '~/stores/dialog';
 import { useAuthStore } from '~/stores/auth';
 import { UserLoginInput } from '~/types';
 
@@ -40,7 +39,9 @@ const containsItem = computed(() => {
 });
 </script>
 <template>
-  <div class="w-full relative px-4 md:px-0">
+  <div class="body">
+    <main class="text-primary bg-grey-3">
+      <div class="w-full relative px-4 md:px-0">
     <div
       class="border-b border-grey-4 w-full py-6 flex items-center justify-center"
     >
@@ -55,11 +56,11 @@ const containsItem = computed(() => {
         <h5
           class="text-black text-[32px] max-w-[422px] font-semibold leading-[48px]"
         >
-          Login To Continue
-          <span class="font-extralight">Browsing Tenders</span>
+          Reset Password
+          <!-- <span class="font-extralight">Browsing Tenders</span> -->
         </h5>
         <div class="w-full my-10 max-w-[422px]">
-          <div class="flex flex-col w-full">
+          <div class="flex flex-col w-full mb-3">
             <input
               id="email"
               v-model="email"
@@ -79,44 +80,12 @@ const containsItem = computed(() => {
               >There is no error message</span
             >
           </div>
-          <div class="userId flex flex-col items-start relative mb-3">
-            <input
-              id="userPassword"
-              v-model="password"
-              class="email py-4 px-6 bg-grey border mt-1 focus:outline-none text-grey-8 rounded focus:border-secondary focus:ring-secondary h-[62px] w-full"
-              :type="isPasswordVisible ? 'text' : 'password'"
-              name="username"
-              placeholder="z$!a.*gt#@7&g%"
-            />
-            <div class="absolute bottom-10 right-4">
-              <button
-                type="button"
-                v-if="isPasswordVisible"
-                @click.stop="togglePasswordVisibility"
-                class="show-icon"
-              >
-                <Icon name="mdi:eye-outline" size="20" color="#0A0A0A" />
-              </button>
-              <button
-                type="button"
-                v-if="!isPasswordVisible"
-                @click.stop="togglePasswordVisibility"
-              >
-                <Icon name="mdi:eye-off-outline" size="20" color="#0A0A0A" />
-              </button>
-            </div>
-            <p class="text-sm text-grey-8 text-right w-full font-light">
-              <nuxt-link to="/password/email" class="underline"
-                >Forgot password?</nuxt-link
-              >
-            </p>
-          </div>
           <div class="flex flex-col w-full lg:items-center gap-4">
             <button
               @click="login"
               class="bg-black border-2 border-grey-6 font-medium py-4 px-8 h-[62px] rounded text-white w-full"
             >
-              Continue with email
+              Submit
             </button>
           </div>
           <p class="mt-6 text-sm text-grey-8 font-light">
@@ -131,6 +100,9 @@ const containsItem = computed(() => {
       </div>
     </div>
   </div>
+    </main>
+    <AppFooter />
+  </div>
 </template>
 
-<style lang="scss"></style>
+<style scoped></style>

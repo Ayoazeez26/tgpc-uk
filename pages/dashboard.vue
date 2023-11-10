@@ -12,15 +12,15 @@
 </template>
 
 <script setup lang="ts">
-import { useDataStore } from '~/stores/data';
-const data = useDataStore();
+// import { useDataStore } from '~/stores/data';
+// const data = useDataStore();
 
-const getUserData = () => {
-  const userData = data.getUser();
+// const getUserData = () => {
+//   const userData = data.getUser();
 
-}
+// }
 
-getUserData();
+// getUserData();
 </script>
 
 <style scoped></style>

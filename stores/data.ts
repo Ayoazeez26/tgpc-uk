@@ -11,17 +11,6 @@ export const useDataStore = defineStore(
     const allTenders = ref([]);
     const singleTender = ref({});
 
-    const getUser = () => {
-      dialog.isLoading = true;
-      return new Promise((resolve, reject) => {
-        $api.data.getUser().then((res) => {
-          dialog.isLoading = false;
-          loggedIn.value = true;
-          console.log(res)
-        });
-      });
-    };
-
     const getTenders = (data: string) => {
       dialog.isLoading = true;
       return new Promise((resolve, reject) => {
@@ -46,7 +35,7 @@ export const useDataStore = defineStore(
       });
     };
 
-    return { userEmail, getUser, searchTenders, getTenders, allTenders, singleTender, loggedIn };
+    return { userEmail, searchTenders, getTenders, allTenders, singleTender, loggedIn };
   },
   {
     persist: {

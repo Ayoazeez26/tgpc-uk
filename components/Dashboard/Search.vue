@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import _ from 'lodash';
 import { useDataStore } from '~/stores/data';
+const { $gsap, $ScrollTrigger } = useNuxtApp();
 const dataStore = useDataStore();
 const currentTab = ref('adultCare');
 const page = ref(1);
@@ -10,6 +11,8 @@ const perPage = ref(10);
 const total = ref(100);
 const currentPage = ref(1);
 const hasMorePages = ref(true);
+const showDatePicker = ref(false);
+const date = ref();
 const getTenders = _.debounce(async () => {
   await dataStore.getTenders(`?search=${payload.value}&page=${page.value}`);
   // dataStore.allTenders = allTenders;
@@ -22,6 +25,35 @@ const showMore = (newPage: number) => {
   currentPage.value = newPage;
   getTenders();
 };
+
+const container = ref(null);
+const pinnedElement = ref(null);
+
+const mm = $gsap.matchMedia();
+
+
+const ctx = $gsap.context(() => {});
+onUnmounted(() => {
+  ctx.revert();
+});
+onMounted(() => {
+  setTimeout(() => {
+    console.log("mounted");
+    $ScrollTrigger.refresh();
+  }, 1000);
+  ctx.add(() => {
+    mm.add("(min-width: 1024px)", () => {
+      $ScrollTrigger.create({
+        trigger: container.value,
+        pin: pinnedElement.value,
+        // Trgger Scroller
+        start: 'top 10%',
+        end: 'bottom 55%',
+        // markers: true
+      })
+    });
+  });
+});
 </script>
 <template>
   <div class="py-[80px] mx-auto w-full max-w-[1296px]">
@@ -38,7 +70,7 @@ const showMore = (newPage: number) => {
             curated specially for your business 
           </h2>
         </div>
-        <div
+        <!-- <div
           class="flex overflow-x-auto relative w-full gap-4 lg:w-auto self-start lg:self-center"
         >
           <button
@@ -96,10 +128,11 @@ const showMore = (newPage: number) => {
           >
             Day care services
           </button>
-        </div>
-        <div class="flex w-full mt-10">
+        </div> -->
+        <div ref="container" class="flex w-full mt-10">
           <div
-            class="filter text-secondary hidden md:flex flex-col gap-y-6 pt-8 pr-6 items-start w-[272px]"
+            ref="pinnedElement"
+            class="filter text-secondary hidden lg:flex flex-col gap-y-6 pt-8 pr-6 items-start w-[272px]"
           >
             <h4 class="font-semibold leading-8">Filter Tenders</h4>
             <button
@@ -130,7 +163,10 @@ const showMore = (newPage: number) => {
                   <Icon name="ic:baseline-arrow-forward-ios" size="12" />
                 </div>
               </div>
-              <div class="flex justify-between items-center py-2 w-full">
+              <div
+                @click="showDatePicker = !showDatePicker"
+                class="flex justify-between cursor-pointer items-center py-2 w-full"
+              >
                 <div class="flex gap-3 items-center">
                   <Icon name="material-symbols:date-range-outline" size="24" />
                   <p>Date Range</p>
@@ -138,6 +174,9 @@ const showMore = (newPage: number) => {
                 <div class="flex gap-2 items-center">
                   <Icon name="ic:baseline-arrow-forward-ios" size="12" />
                 </div>
+              </div>
+              <div v-if="showDatePicker">
+                <VueDatePicker v-model="date" :range="true" inline auto-apply></VueDatePicker>
               </div>
               <div class="flex justify-between items-center py-2 w-full">
                 <div class="flex gap-3 items-center">
@@ -151,7 +190,7 @@ const showMore = (newPage: number) => {
             </div>
           </div>
           <div
-            class="flex flex-col text-left gap-4 md:pl-6 md:border-l border-grey-7 w-full md:w-[calc(100%-272px)]"
+            class="flex flex-col text-left gap-4 lg:pl-6 lg:border-l border-grey-7 w-full lg:w-[calc(100%-272px)]"
           >
             <template v-if="dataStore.allTenders.length !== 0">
               <div v-for="(tender, index) in dataStore.allTenders" :key="index">

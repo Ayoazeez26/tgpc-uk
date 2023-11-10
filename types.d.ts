@@ -4,22 +4,65 @@ export interface UserLoginInput {
 }
 
 export interface UserCreateResponse {
-  message: string;
-  code: number;
-  token: string;
+  result: {
+    [key: string]: ResultItems
+  };
+  response: {
+    [key: string]: AccountItems
+  };
+}
+
+export interface ResultItems {
+  expirationDate: string;
+  used: boolean;
+  createdAt: string;
+  updatedAt: string;
+  id: string;
+}
+
+export interface AccountItems {
+  email: string;
+  accountStatus: string;
+  createdAt: string;
+  updatedAt: string;
+  id: string;
 }
 
 export interface UserLoginResponse {
-  message: string;
-  token: string;
+  email: string;
+  accountStatus: string;
+  createdAt: string;
+  updatedAt: string;
+  id: string;
+  accessToken: string;
+  refreshToken: string;
 }
 
 export interface UserEmailOTPInput {
-  code: number | null;
+  userId: string;
+  otp: {
+    [key: string]: OTPDetails;
+  }
+}
+
+export interface OTPDetails {
+  id: string;
+  code: string;
+}
+
+export interface OtpValue {
+  code: string;
 }
 
 export interface UserEmailOTPResponse {
-  message: string;
+  validOTP: boolean;
+  email: string;
+  accountStatus: string;
+  createdAt: string;
+  updatedAt: string;
+  id: string;
+  accessToken: string;
+  refreshToken: string;
 }
 
 export interface GetUserResponse {

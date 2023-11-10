@@ -15,7 +15,7 @@ class AuthModule extends FetchFactory {
   async signup(credentials: UserLoginInput): Promise<UserCreateResponse> {
     return await this.call<UserCreateResponse>(
       'POST',
-      `${this.RESOURCE}/signup`,
+      `${this.RESOURCE}/account/register`,
       credentials
     );
   }
@@ -23,7 +23,7 @@ class AuthModule extends FetchFactory {
   async login(credentials: UserLoginInput): Promise<UserLoginResponse> {
     return await this.call<UserLoginResponse>(
       'POST',
-      `${this.RESOURCE}/login`,
+      `${this.RESOURCE}/account/login`,
       credentials
     );
   }
@@ -33,7 +33,7 @@ class AuthModule extends FetchFactory {
   ): Promise<UserEmailOTPResponse> {
     return await this.call<UserEmailOTPResponse>(
       'POST',
-      `${this.RESOURCE}/verifyEmail`,
+      `${this.RESOURCE}/account/verify-and-auth`,
       credentials
     );
   }

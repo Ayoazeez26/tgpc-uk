@@ -29,9 +29,27 @@ const validateEmail = (email) => {
   }
 };
 
+const validatePassword = (pw: string) => {
+  if (
+    /[A-Z]/.test(pw) &&
+    /[a-z]/.test(pw) &&
+    /[0-9]/.test(pw) &&
+    /[^A-Za-z0-9]/.test(pw) &&
+    pw.length > 6
+  ) {
+    errorMsg.password = '';
+  } else {
+    errorMsg.password = 'Password must contain at least one uppercase letter, lowercase letter, number, and special character'
+  }
+};
+
 watch(email, (value) => {
   validateEmail(value);
 });
+
+watch(password, (value) => {
+  validatePassword(value);
+})
 
 const registerUser = async (): Promise<void> => {
   const payload: UserLoginInput = {
@@ -97,7 +115,7 @@ const containsItem = computed(() => {
               name="username"
               placeholder="z$!a.*gt#@7&g%"
             />
-            <div class="absolute bottom-5 right-4">
+            <div class="absolute bottom-14 right-4">
               <button
                 type="button"
                 v-if="isPasswordVisible"
@@ -114,6 +132,14 @@ const containsItem = computed(() => {
                 <Icon name="mdi:eye-off-outline" size="20" color="#0A0A0A" />
               </button>
             </div>
+            <span
+              v-if="errorMsg.password"
+              class="text-red-500 self-start text-left text-xs mt-1"
+              >{{ errorMsg.password }}</span
+            >
+            <span v-else class="text-transparent self-start text-xs mt-1"
+              >There is no error message of any sort and there is nothing to worry about just so you know</span
+            >
           </div>
           <div class="flex flex-col w-full lg:items-center gap-4">
             <button

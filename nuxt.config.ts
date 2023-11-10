@@ -11,8 +11,7 @@ export default defineNuxtConfig({
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         {
           name: 'description',
-          content:
-            'TGPC UK Portal',
+          content: 'TGPC UK Portal',
         },
       ],
       // script: [
@@ -55,12 +54,11 @@ export default defineNuxtConfig({
     },
   },
   build: {
-    transpile: ['gsap', 'vue-toastification'],
+    transpile: ['gsap', 'vue-toastification', '@vuepic/vue-datepicker'],
   },
   runtimeConfig: {
     public: {
       baseUrl: process.env.BASE_URL,
-      tenderBaseUrl: process.env.TENDER_BASE_URL,
     },
   },
 });

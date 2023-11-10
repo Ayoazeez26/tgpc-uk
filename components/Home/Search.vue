@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import _ from 'lodash'
+const { $gsap, $ScrollTrigger } = useNuxtApp();
 import { useDataStore } from '~/stores/data';
 const dataStore = useDataStore();
 const currentTab = ref("adultCare");
@@ -11,6 +12,35 @@ const getTenders = _.debounce(async () => {
 }, 500)
 
 getTenders();
+
+const container = ref(null);
+const pinnedElement = ref(null);
+
+const mm = $gsap.matchMedia();
+
+
+const ctx = $gsap.context(() => {});
+onUnmounted(() => {
+  ctx.revert();
+});
+onMounted(() => {
+  setTimeout(() => {
+    console.log("mounted");
+    $ScrollTrigger.refresh();
+  }, 1000);
+  ctx.add(() => {
+    mm.add("(min-width: 1024px)", () => {
+      $ScrollTrigger.create({
+        trigger: container.value,
+        pin: pinnedElement.value,
+        // Trgger Scroller
+        start: 'top 10%',
+        end: 'bottom 55%',
+        // markers: true
+      })
+    });
+  });
+});
 </script>
 <template>
   <div class="pt-[80px] mx-auto w-full max-w-[1296px]">
@@ -27,7 +57,7 @@ getTenders();
             curated specially for your business 
           </h2>
         </div>
-        <div
+        <!-- <div
           class="flex overflow-x-auto relative w-full gap-4 lg:w-auto self-start lg:self-center"
         >
           <button
@@ -85,9 +115,10 @@ getTenders();
           >
             Day care services
           </button>
-        </div>
-        <div class="flex w-full mt-10">
+        </div> -->
+        <div ref="container" class="flex w-full mt-10">
           <div
+            ref="pinnedElement"
             class="filter text-secondary hidden md:flex flex-col gap-y-6 pt-8 pr-6 items-start w-[272px]"
           >
             <h4 class="font-semibold leading-8">Filter Tenders</h4>
