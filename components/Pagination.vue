@@ -128,7 +128,7 @@ const isPageActive = (page) => {
         </button>
       </li>
 
-      <li v-for="(page, index) in pages" class="pagination-item" :key="index">
+      <!-- <li v-for="(page, index) in pages" class="pagination-item" :key="index">
         <span
           class="rounded-sm border border-blue-100 px-3 py-2 bg-primary no-underline text-white cursor-not-allowed mx-2"
           v-if="isPageActive(page.name)"
@@ -142,13 +142,7 @@ const isPageActive = (page) => {
           role="button"
           >{{ page.name }}</a
         >
-        <!-- <button
-					type="button"
-					@click="onClickPage(page.name)"
-					:disabled="page.isDisabled"
-					:class="{ active: isPageActive(page.name) }" 
-				>{{ page.name }}</button> -->
-      </li>
+      </li> -->
 
       <li class="pagination-item">
         <button

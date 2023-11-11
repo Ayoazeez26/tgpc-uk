@@ -6,6 +6,8 @@ const { $gsap, $ScrollTrigger } = useNuxtApp();
 const dataStore = useDataStore();
 const currentTab = ref('adultCare');
 const page = ref(1);
+const from = ref(0)
+const errorMsg = reactive({});
 const payload = ref('The');
 const totalPages = ref(10);
 const perPage = ref(10);
@@ -17,10 +19,12 @@ const value = ref('');
 const hasMorePages = ref(true);
 const showDatePicker = ref(false);
 const showLocationSearch = ref(false);
+const showValueSearch = ref(false);
 const location = ref('');
 const date = ref();
 const getTenders = _.debounce(async () => {
-  const query = `?searchTerm=${payload.value}&size=${perPage.value}
+  window.scrollTo(0, 0);
+  const query = `?searchTerm=${payload.value}&size=${perPage.value}&from=${from.value}
   ${location.value !== '' ? `&location=${location.value}` : ''}
   ${startDate.value !== '' ? `&startDate=${startDate.value}` : ''}
   ${endDate.value !== '' ? `&endDate=${endDate.value}` : ''}
@@ -42,9 +46,23 @@ const getTendersByLocation = _.debounce(async () => {
   );
 }, 500);
 
+const addValueSearch = () => {
+  if (Number(value.value) && Number(value.value) !== 0) {
+    errorMsg.valueError = '';
+    getTenders();
+  } else {
+    errorMsg.valueError = 'Input a valid number';
+  }
+};
+
 const showMore = (newPage: number) => {
   page.value = newPage;
   currentPage.value = newPage;
+  if (newPage === 1) {
+    from.value = 0;
+  } else {
+    from.value = newPage * 10 - 11;
+  }
   getTenders();
 };
 
@@ -84,7 +102,7 @@ onMounted(() => {
 });
 </script>
 <template>
-  <div class="pt-20 px-4 xl:px-0 md:pt-28 mx-auto w-full max-w-[1296px]">
+  <div id="pageTop" class="pt-20 px-4 xl:px-0 md:pt-28 mx-auto w-full max-w-[1296px]">
     <div class="flex flex-col">
       <div class="w-full flex flex-col items-center text-center px-4">
         <div class="w-full max-w-[822px] mb-10">
@@ -232,7 +250,10 @@ onMounted(() => {
                   @update:model-value="handleDate"
                 ></VueDatePicker>
               </div>
-              <div class="flex justify-between items-center py-2 w-full">
+              <div
+                @click="showValueSearch = !showValueSearch"
+                class="flex justify-between cursor-pointer items-center py-2 w-full"
+              >
                 <div class="flex gap-3 items-center">
                   <img src="/svg/value.svg" alt="value" />
                   <p>Value</p>
@@ -240,6 +261,34 @@ onMounted(() => {
                 <div class="flex gap-2 items-center">
                   <Icon name="ic:baseline-arrow-forward-ios" size="12" />
                 </div>
+              </div>
+              <div v-if="showValueSearch" class="relative w-full">
+                <div class="flex gap-3">
+                  <input
+                    type="text"
+                    name="search"
+                    v-model="value"
+                    id="search"
+                    class="px-3 border focus:outline-none text-sm focus:ring-grey-2 focus:ring-1 border-grey-2 rounded py-4 w-full"
+                    placeholder="Max. Value"
+                  />
+                  <button
+                    @click="addValueSearch"
+                    class="bg-secondary border-2 border-secondary flex items-center gap-2 font-medium py-1 px-3 rounded text-white"
+                  >
+                    <p class="leading-[30px] text-sm tracking-[0.028px]">
+                      Search
+                    </p>
+                  </button>
+                </div>
+                <span
+                  v-if="errorMsg.valueError"
+                  class="text-red-500 self-start text-left text-xs mt-1"
+                  >{{ errorMsg.valueError }}</span
+                >
+                <span v-else class="text-transparent self-start text-xs mt-1"
+                  >There is no error message</span
+                >
               </div>
             </div>
           </div>
