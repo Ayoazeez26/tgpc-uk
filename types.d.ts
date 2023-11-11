@@ -75,3 +75,25 @@ export interface GetUserResponse {
   lastName: null | string;
   start_date: null | string;
 }
+
+export interface ResetPasswordEmail {
+  expirationDate: string;
+  used: boolean;
+  createdAt: string;
+  updatedAt: string;
+  id: string;
+}
+
+export interface ConfirmResetOTPInput {
+  id: string;
+  code: string;
+}
+
+export interface ConfirmResetOTPResponse {
+  validOtp: boolean
+}
+
+export interface NewPasswordInput {
+  password: string;
+  confirmPassword: string;
+}

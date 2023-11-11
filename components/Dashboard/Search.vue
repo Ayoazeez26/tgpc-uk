@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import _ from 'lodash';
+import moment from 'moment';
 import { useDataStore } from '~/stores/data';
 const { $gsap, $ScrollTrigger } = useNuxtApp();
 const dataStore = useDataStore();
@@ -10,37 +11,47 @@ const totalPages = ref(10);
 const perPage = ref(10);
 const total = ref(100);
 const currentPage = ref(1);
+const startDate = ref('');
+const endDate = ref('');
+const value = ref('');
 const hasMorePages = ref(true);
 const showDatePicker = ref(false);
 const showLocationSearch = ref(false);
-const searchTerm = ref('');
+const location = ref('');
 const date = ref();
 const getTenders = _.debounce(async () => {
-  await dataStore.getTenders(
-    `?searchTerm=${payload.value}&size=${perPage.value}`
-  );
+  const query = `?searchTerm=${payload.value}&size=${perPage.value}
+  ${location.value !== '' ? `&location=${location.value}` : ''}
+  ${startDate.value !== '' ? `&startDate=${startDate.value}` : ''}
+  ${endDate.value !== '' ? `&endDate=${endDate.value}` : ''}
+  ${value.value !== '' ? `&value=${value.value}` : ''}
+  `;
+  await dataStore.getTenders(query);
   // dataStore.allTenders = allTenders;
 }, 500);
 
 getTenders();
 
-watch(searchTerm, (value) => {
-  if (value === '') {
-    getTenders('The');
-  } else {
-    getTendersByLocation(value);
-  }
+watch(location, (value) => {
+  getTenders();
 });
 
 const getTendersByLocation = _.debounce(async () => {
   await dataStore.searchTendersByLocation(
-    `?searchTerm=${searchTerm.value}&size=10&from=0`
+    `?searchTerm=${location.value}&size=10&from=0`
   );
 }, 500);
 
 const showMore = (newPage: number) => {
   page.value = newPage;
   currentPage.value = newPage;
+  getTenders();
+};
+
+const handleDate = (modelData) => {
+  console.log(modelData);
+  startDate.value = moment(modelData[0]).format('YYYY-MM-DD');
+  endDate.value = moment(modelData[1]).format('YYYY-MM-DD');
   getTenders();
 };
 
@@ -183,7 +194,7 @@ onMounted(() => {
                 <input
                   type="text"
                   name="search"
-                  v-model="searchTerm"
+                  v-model="location"
                   id="search"
                   class="px-6 pl-8 border focus:outline-none text-sm focus:ring-grey-2 focus:ring-1 border-grey-2 rounded py-4 w-full"
                   placeholder="Search by Location"
@@ -215,8 +226,10 @@ onMounted(() => {
                 <VueDatePicker
                   v-model="date"
                   :range="true"
+                  :enable-time-picker="false"
                   inline
                   auto-apply
+                  @update:model-value="handleDate"
                 ></VueDatePicker>
               </div>
               <div class="flex justify-between items-center py-2 w-full">

@@ -26,16 +26,14 @@ watch(
   { immediate: true }
 );
 
-const confirmEmail = async (): Promise<void> => {
-  const payload: OtpValue = {
-    code: code.value,
-  };
-  console.log(payload);
-  auth.verifyEmail(payload);
+const confirmOTP = async (): Promise<void> => {
+  auth.confirmResetPassword(code.value);
 };
 </script>
 <template>
-  <div class="w-full h-full relative">
+  <div class="body">
+    <main class="text-primary bg-grey-3">
+      <div class="w-full h-full relative">
     <div
       class="border-b border-grey-4 w-full py-6 flex items-center justify-center"
     >
@@ -62,7 +60,7 @@ const confirmEmail = async (): Promise<void> => {
           <InputOTP v-model="code" :fields="6" />
           <div class="flex flex-col w-full lg:items-center mt-10 gap-4">
             <button
-              @click="confirmEmail"
+              @click="confirmOTP"
               class="bg-black disabled:bg-black/50 disabled:border-grey disabled:text-white/70 border-2 border-grey-6 font-medium py-4 px-8 h-[62px] rounded text-white w-full"
               :disabled="code ? false : true"
             >
@@ -78,6 +76,9 @@ const confirmEmail = async (): Promise<void> => {
       </div>
     </div>
   </div>
+    </main>
+    <AppFooter />
+  </div>
 </template>
 
-<style lang="scss"></style>
+<style scoped></style>

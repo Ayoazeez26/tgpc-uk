@@ -83,7 +83,7 @@ const goToTender = () => {
       <div class="py-7 flex flex-col gap-1 px-4 md:px-0 text-center md:text-right">
         <p class="text-grey-8 text-sm font-light">Value</p>
         <p class="text-secondary text-[28px] font-bold leading-[26px]">
-          {{ props.tender.Currency }} {{ Number(props.tender.Value).toLocaleString() }}
+          {{ Number(props.tender.Value) ? props.tender.Currency : '' }} {{ Number(props.tender.Value) ? Number(props.tender.Value).toLocaleString() : 'N/A' }}
         </p>
       </div>
       <div class="md:hidden flex flex-col md:w-auto md:flex-row md:items-center px-4">

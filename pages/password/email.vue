@@ -3,6 +3,7 @@ import { useAuthStore } from '~/stores/auth';
 import { UserLoginInput } from '~/types';
 
 const auth = useAuthStore();
+const router = useRouter();
 const email = ref('');
 const password = ref('');
 const errorMsg = reactive({});
@@ -22,21 +23,10 @@ watch(email, (value) => {
   validateEmail(value);
 });
 
-const login = async (): Promise<void> => {
-  const payload: UserLoginInput = {
-    email: email.value,
-    password: password.value,
-  };
-  auth.login(payload);
+const sendEmail = async (): Promise<void> => {
+  auth.resetPasswordEmail(email.value);
 };
 
-const containsItem = computed(() => {
-  if (loginData.value.email.length > 0 && loginData.value.password.length > 0) {
-    return false;
-  } else {
-    return true;
-  }
-});
 </script>
 <template>
   <div class="body">
@@ -53,11 +43,16 @@ const containsItem = computed(() => {
       class="flex pt-10 flex-col mx-auto gap-10 items-center self-stretch w-full max-w-[1296px]"
     >
       <div class="flex flex-col gap-2 items-center text-center">
+        <div @click="router.go(-1)" class="self-start cursor-pointer">
+          <Icon name="mdi:arrow-left" size="24" />
+        </div>
         <h5
           class="text-black text-[32px] max-w-[422px] font-semibold leading-[48px]"
         >
-          Reset Password
-          <!-- <span class="font-extralight">Browsing Tenders</span> -->
+          Reset Password<br />
+          <span class="font-extralight text-xl"
+            >Input your email account</span
+          >
         </h5>
         <div class="w-full my-10 max-w-[422px]">
           <div class="flex flex-col w-full mb-3">
@@ -82,7 +77,7 @@ const containsItem = computed(() => {
           </div>
           <div class="flex flex-col w-full lg:items-center gap-4">
             <button
-              @click="login"
+              @click="sendEmail"
               class="bg-black border-2 border-grey-6 font-medium py-4 px-8 h-[62px] rounded text-white w-full"
             >
               Submit

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { UserEmailOTPInput, UserLoginInput, OtpValue } from '~/types';
+import { UserEmailOTPInput, UserLoginInput, OtpValue, ConfirmResetOTPInput } from '~/types';
 import { successToast } from '~/plugins/vue3-toastify';
 import { useDialogStore } from './dialog';
 import { useDataStore } from './data';
@@ -14,6 +14,7 @@ export const useAuthStore = defineStore(
     const dialog = useDialogStore();
     const dataStore = useDataStore();
     const authenticated = ref(false);
+    const resetId = ref('');
     const user = ref(null);
     const signupData = reactive({});
     const token = ref<string | null>(localStorage.getItem('user-token'));
@@ -86,6 +87,32 @@ export const useAuthStore = defineStore(
       });
     };
 
+    const resetPasswordEmail = (payload: string) => {
+      dialog.isLoading = true;
+      return new Promise((resolve, reject) => {
+        $api.auth.resetPasswordEmail(payload).then((res) => {
+          dialog.isLoading = false;
+          successToast('An OTP has been sent to your email account');
+          resetId.value = res.id;
+          router.push('/password/emailOTP')
+        })
+      })
+    };
+
+    const confirmResetPassword = (payload: string) => {
+      dialog.isLoading = true;
+      const data = {
+        id: resetId.value,
+        code: payload
+      }
+      return new Promise((resolve, reject) => {
+        $api.auth.confirmResetPassword(data).then((res) => {
+          dialog.isLoading = false;
+          router.push('/password/newPassword');
+        })
+      })
+    }
+
     const logout = () => {
       // const token = useCookie('token');
       // token.value = null;
@@ -94,7 +121,16 @@ export const useAuthStore = defineStore(
       router.push('/login');
     };
 
-    return { signup, logout, verifyEmail, authenticated, token, login };
+    return {
+      signup,
+      logout,
+      verifyEmail,
+      authenticated,
+      token,
+      login,
+      resetPasswordEmail,
+      confirmResetPassword
+    };
   },
   {
     persist: {

@@ -7,7 +7,11 @@ import {
   UserCreateResponse,
   UserLoginResponse,
   UserEmailOTPInput,
-  UserEmailOTPResponse
+  UserEmailOTPResponse,
+  ResetPasswordEmail,
+  ConfirmResetOTPInput,
+  ConfirmResetOTPResponse,
+  NewPasswordInput,
 } from '~/types';
 
 class AuthModule extends FetchFactory {
@@ -34,6 +38,33 @@ class AuthModule extends FetchFactory {
     return await this.call<UserEmailOTPResponse>(
       'POST',
       `${this.RESOURCE}/account/verify-and-auth`,
+      credentials
+    );
+  }
+
+  async resetPasswordEmail(credentials: string): Promise<ResetPasswordEmail> {
+    return await this.call<ResetPasswordEmail>(
+      'POST',
+      `${this.RESOURCE}/account/send-otp/${credentials}`
+    );
+  }
+
+  async confirmResetPassword(
+    credentials: ConfirmResetOTPInput
+  ): Promise<ConfirmResetOTPResponse> {
+    return await this.call<ConfirmResetOTPResponse>(
+      'POST',
+      `${this.RESOURCE}/account/verify-otp`,
+      credentials
+    );
+  }
+
+  async setNewPassword(
+    credentials: NewPasswordInput
+  ): Promise<ConfirmResetOTPResponse> {
+    return await this.call<ConfirmResetOTPResponse>(
+      'POST',
+      `${this.RESOURCE}/account/reset-password`,
       credentials
     );
   }
