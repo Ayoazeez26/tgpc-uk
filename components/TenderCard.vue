@@ -40,11 +40,17 @@ const goToTender = () => {
           </button>
         </div>
       </div>
-      <h3
-        class="clamp overflow-hidden text-ellipsis text-lg font-medium leading-[36px]"
-      >
-        {{ props.tender.Title }}
-      </h3>
+      <div class="">
+
+        <h3
+          class="clamp overflow-hidden text-ellipsis text-lg font-medium leading-[36px]"
+        >
+          {{ props.tender.Title }}
+        </h3>
+        <p class="text-grey-8 clamp mt-2 overflow-hidden text-ellipsis">
+          {{ props.tender.Description }}
+        </p>
+      </div>
       <!-- <div class="flex flex-wrap font-light gap-4">
         <button
           class="flex items-center min-w-max text-grey-8 gap-2 py-2 px-4 border border-grey-2 bg-grey rounded-full justify-center"
