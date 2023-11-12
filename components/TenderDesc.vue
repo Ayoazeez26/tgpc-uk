@@ -182,7 +182,7 @@ setInterval(() => {
           >
             <button
               @click="currentTab = 'description'"
-              class="border-b-[5px] px-8 py-2 min-w-max gap-2 flex items-center justify-center leading-[30px] h-[57px] tracking-[0.028px] w-1/2"
+              class="border-b-[5px] px-8 py-2 min-w-max gap-2 flex items-center justify-center leading-[30px] h-[57px] tracking-[0.028px] w-full"
               :class="
                 currentTab === 'description'
                   ? 'border-black text-black'
@@ -194,7 +194,7 @@ setInterval(() => {
               />
               <span>Description</span>
             </button>
-            <button
+            <!-- <button
               @click="currentTab = 'eligibility'"
               class="border-b-[5px] flex items-center justify-center gap-2 px-8 py-2 min-w-max leading-[30px] h-[57px] tracking-[0.028px] w-1/2"
               :class="
@@ -207,7 +207,7 @@ setInterval(() => {
                 :color="currentTab === 'eligibility' ? '#161616' : '#606973'"
               />
               <span>Eligibility</span>
-            </button>
+            </button> -->
           </div>
           <div
             class="w-full px-10 pt-6 pb-16 mt-10 text-grey-8 font-light leading-[32px]"
