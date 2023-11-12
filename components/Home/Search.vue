@@ -6,7 +6,7 @@ const { $gsap, $ScrollTrigger } = useNuxtApp();
 const dataStore = useDataStore();
 const currentTab = ref('adultCare');
 const page = ref(1);
-const from = ref(0)
+const from = ref(0);
 const errorMsg = reactive({});
 const payload = ref('The');
 const totalPages = ref(10);
@@ -22,55 +22,94 @@ const showLocationSearch = ref(false);
 const showValueSearch = ref(false);
 const location = ref('');
 const date = ref();
-const getTenders = _.debounce(async () => {
-  window.scrollTo(0, 700);
-  const query = `?searchTerm=${payload.value}&size=${perPage.value}&from=${from.value}
+const currentFilter = ref('searchTerm');
+const getTenders = _.debounce(async (condition: boolean) => {
+  window.scrollTo(0, 0);
+  if (!condition) {
+    from.value = 0;
+    page.value = 1;
+    currentPage.value = 1;
+  }
+  const query = `?searchTerm=${payload.value}&size=${perPage.value}&from=${
+    from.value
+  }
   ${location.value !== '' ? `&location=${location.value}` : ''}
   ${startDate.value !== '' ? `&startDate=${startDate.value}` : ''}
   ${endDate.value !== '' ? `&endDate=${endDate.value}` : ''}
   ${value.value !== '' ? `&value=${value.value}` : ''}
   `;
   await dataStore.getTenders(query);
+  currentFilter.value = 'searchTerm';
+  // dataStore.allTenders = allTenders;
+}, 500);
+const getDateTenders = _.debounce(async (condition: boolean) => {
+  window.scrollTo(0, 0);
+  if (!condition) {
+    from.value = 0;
+    page.value = 1;
+    currentPage.value = 1;
+  }
+  const query = `?searchTerm=${payload.value}&size=${perPage.value}&from=${
+    from.value
+  }
+  ${startDate.value !== '' ? `&startDate=${startDate.value}` : ''}
+  ${endDate.value !== '' ? `&endDate=${endDate.value}` : ''}
+  `;
+  await dataStore.getTenders(query);
+  currentFilter.value = 'date';
+  // dataStore.allTenders = allTenders;
+}, 500);
+const getValueTenders = _.debounce(async (condition: boolean) => {
+  window.scrollTo(0, 0);
+  if (!condition) {
+    from.value = 0;
+    page.value = 1;
+    currentPage.value = 1;
+  }
+  const query = `?searchTerm=${value.value}&size=${perPage.value}&from=${from.value}
+  `;
+  await dataStore.searchTendersByValue(query);
+  currentFilter.value = 'value';
   // dataStore.allTenders = allTenders;
 }, 500);
 
 getTenders();
 
 watch(location, (value) => {
-  getTenders();
+  if (value) {
+    getTendersByLocation();
+  } else {
+    getTenders();
+  }
 });
 
-const getTendersByLocation = _.debounce(async () => {
+const getTendersByLocation = _.debounce(async (condition: boolean) => {
+  window.scrollTo(0, 0);
+  if (!condition) {
+    from.value = 0;
+    page.value = 1;
+    currentPage.value = 1;
+  }
   await dataStore.searchTendersByLocation(
-    `?searchTerm=${location.value}&size=10&from=0`
+    `?searchTerm=${location.value}&size=${perPage.value}&from=${from.value}`
   );
+  currentFilter.value = 'location';
 }, 500);
 
 const addValueSearch = () => {
   if (Number(value.value) && Number(value.value) !== 0) {
     errorMsg.valueError = '';
-    getTenders();
+    getValueTenders();
   } else {
     errorMsg.valueError = 'Input a valid number';
   }
-};
-
-const showMore = (newPage: number) => {
-  page.value = newPage;
-  currentPage.value = newPage;
-  if (newPage === 1) {
-    from.value = 0;
-  } else {
-    from.value = newPage * 10 - 11;
-  }
-  getTenders();
 };
 
 const handleDate = (modelData) => {
   console.log(modelData);
   startDate.value = moment(modelData[0]).format('YYYY-MM-DD');
   endDate.value = moment(modelData[1]).format('YYYY-MM-DD');
-  getTenders();
+  getDateTenders();
 };
 
 const container = ref(null);

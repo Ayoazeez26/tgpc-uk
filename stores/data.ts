@@ -47,6 +47,18 @@ export const useDataStore = defineStore(
       });
     };
 
+    const searchTendersByValue = (data: string) => {
+      dialog.isLoading = true;
+      return new Promise((resolve, reject) => {
+        $api.data.searchTendersByValue(data).then((res) => {
+          dialog.isLoading = false;
+          // console.log('tender response is =>', res);
+          allTenders.value = res;
+          resolve(res);
+        });
+      });
+    };
+
     return {
       userEmail,
       searchTenders,
@@ -55,6 +67,7 @@ export const useDataStore = defineStore(
       allTenders,
       singleTender,
       loggedIn,
+      searchTendersByValue
     };
   },
   {

@@ -6,7 +6,7 @@ const { $gsap, $ScrollTrigger } = useNuxtApp();
 const dataStore = useDataStore();
 const currentTab = ref('adultCare');
 const page = ref(1);
-const from = ref(0)
+const from = ref(0);
 const errorMsg = reactive({});
 const payload = ref('The');
 const totalPages = ref(10);
@@ -22,34 +22,84 @@ const showLocationSearch = ref(false);
 const showValueSearch = ref(false);
 const location = ref('');
 const date = ref();
-const getTenders = _.debounce(async () => {
+const currentFilter = ref('searchTerm');
+const getTenders = _.debounce(async (condition: boolean) => {
   window.scrollTo(0, 0);
-  const query = `?searchTerm=${payload.value}&size=${perPage.value}&from=${from.value}
+  if (!condition) {
+    from.value = 0;
+    page.value = 1;
+    currentPage.value = 1;
+  }
+  const query = `?searchTerm=${payload.value}&size=${perPage.value}&from=${
+    from.value
+  }
   ${location.value !== '' ? `&location=${location.value}` : ''}
   ${startDate.value !== '' ? `&startDate=${startDate.value}` : ''}
   ${endDate.value !== '' ? `&endDate=${endDate.value}` : ''}
   ${value.value !== '' ? `&value=${value.value}` : ''}
   `;
   await dataStore.getTenders(query);
+  currentFilter.value = 'searchTerm';
+  // dataStore.allTenders = allTenders;
+}, 500);
+const getDateTenders = _.debounce(async (condition: boolean) => {
+  window.scrollTo(0, 0);
+  if (!condition) {
+    from.value = 0;
+    page.value = 1;
+    currentPage.value = 1;
+  }
+  const query = `?searchTerm=${payload.value}&size=${perPage.value}&from=${
+    from.value
+  }
+  ${startDate.value !== '' ? `&startDate=${startDate.value}` : ''}
+  ${endDate.value !== '' ? `&endDate=${endDate.value}` : ''}
+  `;
+  await dataStore.getTenders(query);
+  currentFilter.value = 'date';
+  // dataStore.allTenders = allTenders;
+}, 500);
+const getValueTenders = _.debounce(async (condition: boolean) => {
+  window.scrollTo(0, 0);
+  if (!condition) {
+    from.value = 0;
+    page.value = 1;
+    currentPage.value = 1;
+  }
+  const query = `?searchTerm=${value.value}&size=${perPage.value}&from=${from.value}
+  `;
+  await dataStore.searchTendersByValue(query);
+  currentFilter.value = 'value';
   // dataStore.allTenders = allTenders;
 }, 500);
 
 getTenders();
 
 watch(location, (value) => {
-  getTenders();
+  if (value) {
+    getTendersByLocation();
+  } else {
+    getTenders();
+  }
 });
 
-const getTendersByLocation = _.debounce(async () => {
+const getTendersByLocation = _.debounce(async (condition: boolean) => {
+  window.scrollTo(0, 0);
+  if (!condition) {
+    from.value = 0;
+    page.value = 1;
+    currentPage.value = 1;
+  }
   await dataStore.searchTendersByLocation(
-    `?searchTerm=${location.value}&size=10&from=0`
+    `?searchTerm=${location.value}&size=${perPage.value}&from=${from.value}`
   );
+  currentFilter.value = 'location';
 }, 500);
 
 const addValueSearch = () => {
   if (Number(value.value) && Number(value.value) !== 0) {
     errorMsg.valueError = '';
-    getTenders();
+    getValueTenders();
   } else {
     errorMsg.valueError = 'Input a valid number';
   }
@@ -63,14 +113,32 @@ const showMore = (newPage: number) => {
   } else {
     from.value = newPage * 10 - 11;
   }
-  getTenders();
+  switch (currentFilter.value) {
+    case 'searchTerm':
+      getTenders(true);
+      break;
+    case 'date':
+      getDateTenders(true);
+      break;
+    case 'value':
+      getValueTenders(true);
+      break;
+    case 'location':
+      getTendersByLocation(true);
+      break;
+    default:
+      // getTenders();
+      console.log('this is the default block');
+      break;
+  }
+  // getTenders();
 };
 
 const handleDate = (modelData) => {
   console.log(modelData);
   startDate.value = moment(modelData[0]).format('YYYY-MM-DD');
   endDate.value = moment(modelData[1]).format('YYYY-MM-DD');
-  getTenders();
+  getDateTenders();
 };
 
 const container = ref(null);
@@ -102,7 +170,10 @@ onMounted(() => {
 });
 </script>
 <template>
-  <div id="pageTop" class="pt-20 px-4 xl:px-0 md:pt-28 mx-auto w-full max-w-[1296px]">
+  <div
+    id="pageTop"
+    class="pt-20 px-4 xl:px-0 md:pt-28 mx-auto w-full max-w-[1296px]"
+  >
     <div class="flex flex-col">
       <div class="w-full flex flex-col items-center text-center px-4">
         <div class="w-full max-w-[822px] mb-10">
@@ -299,14 +370,6 @@ onMounted(() => {
               <div v-for="(tender, index) in dataStore.allTenders" :key="index">
                 <TenderCard :tender="tender" />
               </div>
-              <Pagination
-                :total-pages="totalPages"
-                :total="total"
-                :per-page="perPage"
-                :current-page="currentPage"
-                :has-more-pages="hasMorePages"
-                @pagechanged="showMore"
-              />
             </template>
             <!-- <template v-if="dataStore.allTenders.length !== 0">
               <div v-for="(item, index) in 5" :key="index">
@@ -319,9 +382,17 @@ onMounted(() => {
               <h3
                 class="text-2xl lg:text-[30px] capitalize lg:leading-[48px] text-center mt-5 font-semibold"
               >
-                >No results found
+                No results found
               </h3>
             </template>
+            <Pagination
+              :total-pages="totalPages"
+              :total="total"
+              :per-page="perPage"
+              :current-page="currentPage"
+              :has-more-pages="hasMorePages"
+              @pagechanged="showMore"
+            />
           </div>
         </div>
       </div>

@@ -49,14 +49,14 @@
         <div
           class="hidden lg:flex text-sm flex-col w-full lg:w-auto lg:flex-row lg:items-center gap-4"
         >
-          <nuxt-link
+          <!-- <nuxt-link
             to="/login"
             class="bg-transparent font-medium py-4 px-8 rounded text-secondary"
           >
             Login
-          </nuxt-link>
+          </nuxt-link> -->
           <nuxt-link
-            to="/register"
+            to="/login"
             class="bg-secondary border-2 border-secondary font-medium min-w-max py-4 px-8 rounded text-white"
           >
             Try TGPC now
