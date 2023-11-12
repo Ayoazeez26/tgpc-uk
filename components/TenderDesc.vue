@@ -17,7 +17,7 @@ setInterval(() => {
   let currentDateInMilli = new Date().getTime();
   var delta = Math.abs(endDateInMilli - currentDateInMilli) / 1000;
   // console.log(delta);
-  
+
   // calculate (and subtract) whole days
   days.value = Math.floor(delta / 86400);
   delta -= days.value * 86400;
@@ -49,7 +49,7 @@ setInterval(() => {
         >
       </nuxt-link>
     </div>
-    <div class="flex flex-col justify-between lg:flex-row mt-10">
+    <div class="flex flex-col justify-between lg:flex-row gap-8 mt-10">
       <div class="flex flex-col w-full max-w-[920px]">
         <div class="card flex flex-col gap-10 mb-10">
           <div class="flex flex-col gap-y-8 md:gap-y-6 w-full">
@@ -72,7 +72,7 @@ setInterval(() => {
             >
               {{ tender.Title }}
             </h3>
-            <div class="flex flex-wrap text-sm font-light gap-4">
+            <!-- <div class="flex flex-wrap text-sm font-light gap-4">
               <button
                 class="flex items-center min-w-max text-grey-8 gap-2 py-2 px-4 border border-grey-2 bg-grey rounded-full justify-center"
               >
@@ -88,14 +88,18 @@ setInterval(() => {
               >
                 <p>Supported Living</p>
               </button>
-            </div>
+            </div> -->
             <div
               class="mt-4 flex flex-col md:flex-row items-center gap-4 text-right"
             >
               <p class="text-grey-8 text-sm font-light">Value:</p>
               <p class="text-secondary text-[28px] font-bold leading-[26px]">
-                {{ tender.Currency }}
-                {{ Number(tender.Value).toLocaleString() }}
+                {{ Number(tender.Value) ? tender.Currency : '' }}
+                {{
+                  Number(tender.Value)
+                    ? Number(tender.Value).toLocaleString()
+                    : 'N/A'
+                }}
               </p>
             </div>
             <div
@@ -171,7 +175,7 @@ setInterval(() => {
           </div>
         </div>
         <div
-          class="mt-14 mb-10 md:mb-0 w-full bg-white border border-grey-2 rounded-lg"
+          class="mt-14 mb-2 md:mb-0 w-full bg-white border border-grey-2 lg:mr-4 rounded-lg"
         >
           <div
             class="flex overflow-x-auto relative w-full lg:w-auto self-start lg:self-center"

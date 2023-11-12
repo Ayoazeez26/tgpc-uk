@@ -293,7 +293,7 @@ onMounted(() => {
             </div>
           </div>
           <div
-            class="flex flex-col text-left gap-4 lg:pl-6 lg:border-l border-grey-7 w-full lg:w-[calc(100%-272px)]"
+            class="flex flex-col text-left gap-4 pb-20 lg:pl-6 lg:border-l border-grey-7 w-full lg:w-[calc(100%-272px)]"
           >
             <template v-if="dataStore.allTenders.length !== 0">
               <div v-for="(tender, index) in dataStore.allTenders" :key="index">
@@ -308,6 +308,12 @@ onMounted(() => {
                 @pagechanged="showMore"
               />
             </template>
+            <!-- <template v-if="dataStore.allTenders.length !== 0">
+              <div v-for="(item, index) in 5" :key="index">
+                <TenderCardGuest :tender="dataStore.allTenders[index]" />
+              </div>
+              <TenderFade />
+            </template> -->
             <template v-else>
               <img class="w-4/5 mx-auto" src="/svg/empty.svg" alt="empty svg" />
               <h3
