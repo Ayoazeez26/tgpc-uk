@@ -61,13 +61,13 @@
           >
             Try TGPC now
           </nuxt-link>
-          <button
+          <!-- <button
             ref="hamburger"
             class="p-4 bg-grey border border-grey-2 rounded-full"
             @click="open = !open"
           >
             <Icon name="ic:round-menu" size="24px" color="#1B5588" />
-          </button>
+          </button> -->
         </div>
         <div class="flex w-full mt-3 lg:hidden justify-between items-center">
           <nuxt-link to="/">

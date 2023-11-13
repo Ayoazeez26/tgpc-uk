@@ -17,11 +17,11 @@
         <div
           class="flex flex-col md:flex-row flex-wrap items-center mb-10 lg:mb-0 mt-10 md:mt-0 lg:pt-5 md:items-start gap-y-10 gap-x-[64px]"
         >
-          <div class="flex flex-col md:flex-row text-center gap-6 items-center">
+          <!-- <div class="flex flex-col md:flex-row text-center gap-6 items-center">
             <nuxt-link to="/">Pricing</nuxt-link>
             <nuxt-link to="/about">How it Works</nuxt-link>
             <nuxt-link to="/service">Give Feedback</nuxt-link>
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="md:mt-6 flex flex-col items-center md:flex-row gap-4 justify-center text-sm border-t border-grey-1/25 pt-10">
