@@ -97,3 +97,9 @@ export interface NewPasswordInput {
   password: string;
   confirmPassword: string;
 }
+
+export interface RequestTenderInput {
+  email: string;
+  tenderName: string;
+  tenderTitle: string;
+}

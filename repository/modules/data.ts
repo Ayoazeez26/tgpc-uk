@@ -3,7 +3,7 @@ import { AsyncDataOptions } from 'nuxt/app';
 
 import FetchFactory from '../factory';
 
-import { GetUserResponse } from '~/types';
+import { GetUserResponse, RequestTenderInput } from '~/types';
 
 class DataModule extends FetchFactory {
   private RESOURCE = '';
@@ -30,6 +30,22 @@ class DataModule extends FetchFactory {
     return await this.call(
       'GET',
       `${this.RESOURCE}/tenders/value-search${credentials}`
+    );
+  }
+
+  async requestTender(credentials: RequestTenderInput): Promise {
+    return await this.call(
+      'POST',
+      `${this.RESOURCE}/account/request-tender`,
+      credentials
+    );
+  }
+
+  async requestWriter(credentials: RequestTenderInput): Promise {
+    return await this.call(
+      'POST',
+      `${this.RESOURCE}/account/request-writer`,
+      credentials
     );
   }
 }

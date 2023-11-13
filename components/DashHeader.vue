@@ -69,7 +69,7 @@ const goToTender = (tender) => {
           color="#0A0A0A"
           class="absolute top-4 left-6"
         />
-        <div
+        <!-- <div
           @click="logout"
           class="pro flex items-center text-grey-5 gap-2 h-[38px] px-4"
         >
@@ -78,7 +78,7 @@ const goToTender = (tender) => {
             <img src="/svg/coins.svg" alt="coins" />
             <p class="text-sm font-bold">15</p>
           </div>
-        </div>
+        </div> -->
         <button ref="hamburger" @click="open = !open">
           <Icon name="ic:round-menu" size="24px" color="#0A0A0A" />
         </button>
@@ -112,81 +112,41 @@ const goToTender = (tender) => {
           </template>
         </div>
       </div>
-      <ul
-        class="navbar-links flex items-start"
-        :class="{ 'navbar-links--navopen overflow-y-auto pb-8': open }"
-        v-click-outside="close"
-      >
-        <div
-          class="hidden lg:flex text-sm flex-col w-full lg:w-auto lg:flex-row lg:items-center gap-4"
-        >
-          <!-- <div
-            @click="logout"
-            class="pro flex items-center text-grey-5 gap-2 h-[38px] px-4"
-          >
-            <div class="italic font-black uppercase">pro</div>
-            <div class="flex gap-1 items-center">
-              <img src="/svg/coins.svg" alt="coins" />
-              <p class="text-sm font-bold">15</p>
-            </div>
-          </div> -->
-          <button
-            ref="hamburger"
-            class="p-2 bg-grey border flex gap-3 items-center border-grey-2 rounded-full"
-            @click="open = !open"
-          >
-            <div
-              @click="logout"
-              class="bg-secondary p-2 w-[38px] h-[38px] flex items-center justify-center rounded-full"
-            >
-              <p
-                class="text-white font-medium text-[28px] tracking-[0.056px] uppercase"
-              >
-                c
-              </p>
-            </div>
-            <Icon name="ic:round-menu" size="24px" color="#1B5588" />
-          </button>
-        </div>
-        <div class="flex w-full mt-3 lg:hidden justify-between items-center">
-          <nuxt-link to="/">
-            <img class="w-[102px]" src="/svg/logo.svg" />
-          </nuxt-link>
-          <button class="" @click="open = !open">
-            <Icon name="ic:round-close" size="24px" color="#1B5588" />
-          </button>
-        </div>
-        <ul
-          class="flex lg:hidden flex-col lg:flex-row lg:items-center w-full gap-4 mt-10 lg:mt-0 lg:gap-10"
-        >
-          <li class="cursor-pointer py-3" @click="open = !open">
-            <nuxt-link to="/">Home</nuxt-link>
-          </li>
-          <li class="cursor-pointer py-3" @click="open = !open">
-            <nuxt-link to="/about">About us</nuxt-link>
-          </li>
-          <li class="cursor-pointer py-3" @click="open = !open">
-            <nuxt-link to="/service"
-              >Services<Icon
-                name="ic:round-keyboard-arrow-down"
-                size="24px"
-                color="#FFFFFF"
-            /></nuxt-link>
-          </li>
-          <div
-            class="flex flex-col w-full lg:w-auto lg:flex-row lg:items-center gap-4"
-          >
-            <nuxt-link
-              to="/"
-              class="bg-secondary border-2 border-secondary text-center font-semibold py-3 px-10 rounded-lg text-white"
-            >
-              Get in Touch
-            </nuxt-link>
-          </div>
-        </ul>
-      </ul>
+      <button class="hidden lg:block" ref="hamburger" @click="open = !open">
+          <Icon name="ic:round-menu" size="24px" color="#0A0A0A" />
+        </button>
+      </div>
     </div>
-  </div>
+    <ul
+      class="navbar-links flex items-start max-h-fit"
+      :class="{ 'navbar-links--navopen overflow-y-auto pb-8': open }"
+      v-click-outside="close"
+    >
+      
+      <div class="flex w-full justify-end items-end">
+        
+        <button class="" @click="open = !open">
+          <Icon name="ic:round-close" size="24px" color="#1B5588" />
+        </button>
+      </div>
+      <ul
+        class="flex flex-col lg:items-start w-full gap-4 mt-10 lg:mt-0 lg:gap-10"
+      >
+        <li class="cursor-pointer text-grey-6 font-light text-sm py-3" @click="open = !open">
+          <nuxt-link to="/">{{ dataStore.userEmail }}</nuxt-link>
+        </li>
+        <div
+          class="flex flex-col w-full lg:w-auto lg:flex-row lg:items-center gap-4"
+        >
+          <button
+            @click="logout"
+            class=" text-center font-semibold rounded-lg text-grey-6"
+          >
+            logout
+          </button>
+        </div>
+      </ul>
+    </ul>
 </template>
 
 <style lang="scss" scoped>
@@ -231,7 +191,7 @@ const goToTender = (tender) => {
       width: 260px;
     }
 
-    @media screen and (max-width: 1023px) {
+    // @media screen and (max-width: 1023px) {
       transform: translateX(500px);
       // pointer-events: none;
       position: fixed;
@@ -241,12 +201,14 @@ const goToTender = (tender) => {
       padding-top: 20px;
       padding-left: 20px !important;
       padding-right: 20px;
-      top: 0;
+      top: 20px;
       bottom: 0;
-      right: 0;
-      width: 500px;
+      right: 20px;
+      width: 343px;
       max-width: 100vw;
-      background-color: white;
+      background-color: $grey;
+      border: 1px solid $grey-2;
+      border-radius: 12px;
       z-index: 100;
       &__toggle {
         display: none;
@@ -273,7 +235,7 @@ const goToTender = (tender) => {
             width: 100%;
           }
         }
-      }
+      // }
     }
   }
 

@@ -11,6 +11,7 @@ const dialogStore = useDialogStore();
 <template>
   <div>
     <Loading v-if="dialogStore.isLoading" class="loader" />
+    <Dialog v-if="dialogStore.showDialog" class="loader" />
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>

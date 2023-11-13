@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import moment from 'moment';
 import { useDataStore } from '~/stores/data';
+import { useDialogStore } from '~/stores/dialog';
+import { RequestTenderInput } from '~/types';
 
 const dataStore = useDataStore();
+const dialog = useDialogStore();
 const days = ref(0);
 const hours = ref(0);
 const minutes = ref(0);
@@ -33,6 +36,26 @@ setInterval(() => {
   // what's left is seconds
   seconds.value = Math.floor(delta % 60); // in theory the modulus is not required
 }, 1000);
+
+const payload: RequestTenderInput = {
+  email: dataStore.userEmail,
+  tenderName: tender.Classification,
+  tenderTitle: tender.Title
+};
+
+const requestTender = async () => {
+  const requested = await dataStore.requestTender(payload);
+  if (requested) {
+    dialog.showDialog = true;
+  }
+}
+const requestWriter = async () => {
+  console.log(payload);
+  const requested = await dataStore.requestWriter(payload);
+  if (requested) {
+    dialog.showDialog = true;
+  }
+}
 </script>
 <template>
   <div
@@ -277,21 +300,21 @@ setInterval(() => {
             Are you interested in this Tender?
           </h4>
           <div class="flex flex-col gap-2 w-full md:items-center">
-            <nuxt-link
-              to="/tender/one"
+            <button
+              @click="requestTender"
               class="bg-secondary border-2 border-secondary flex items-center justify-center w-full gap-2 font-medium py-4 px-8 rounded text-white"
             >
               <p class="leading-[30px] tracking-[0.028px]">Apply now</p>
               <img src="/svg/external.svg" alt="external" />
-            </nuxt-link>
-            <nuxt-link
-              to="/tender/one"
+            </button>
+            <button
+              @click="requestWriter"
               class="bg-grey-5 border-2 border-grey-5 flex items-center justify-center w-full gap-2 font-medium py-4 px-8 rounded text-secondary"
             >
               <p class="leading-[30px] tracking-[0.028px]">
                 Request Tender Writer
               </p>
-            </nuxt-link>
+            </button>
           </div>
         </div>
         <div class="hidden md:flex flex-col items-center gap-10 w-full">
