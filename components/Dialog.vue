@@ -7,10 +7,10 @@
         <img class="mt-10" src="/img/send.png" alt="" />
         <div class="flex flex-col mt-4">
           <h3 class="font-semibold text-[28px] leading-[44px]">
-            We've successfully sent the application link to your email
+            We've successfully processed your application request
           </h3>
           <p class="mt-3 font-light text-grey-8 leading-[32px]">
-            An email containing the application link has just been sent to
+            An email containing the details of your application has just been sent to
             <span class="text-primary underline">{{ data.userEmail }}</span>
           </p>
         </div>

@@ -204,7 +204,7 @@ const goToTender = (tender) => {
       top: 20px;
       bottom: 0;
       right: 20px;
-      width: 343px;
+      width: 300px;
       max-width: 100vw;
       background-color: $grey;
       border: 1px solid $grey-2;

@@ -182,7 +182,7 @@ onMounted(() => {
           >
             Current
             <span class="font-semibold"
-              >live tender in Health and Social Care</span
+              >live tenders in Health and Social Care</span
             >
             curated specially for your business 
           </h2>
