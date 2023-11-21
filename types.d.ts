@@ -96,6 +96,7 @@ export interface ConfirmResetOTPResponse {
 export interface NewPasswordInput {
   password: string;
   confirmPassword: string;
+  email: string;
 }
 
 export interface RequestTenderInput {

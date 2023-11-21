@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { UserEmailOTPInput, UserLoginInput, OtpValue, ConfirmResetOTPInput } from '~/types';
+import { UserEmailOTPInput, UserLoginInput, OtpValue, ConfirmResetOTPInput, NewPasswordInput } from '~/types';
 import { successToast } from '~/plugins/vue3-toastify';
 import { useDialogStore } from './dialog';
 import { useDataStore } from './data';
@@ -15,6 +15,7 @@ export const useAuthStore = defineStore(
     const dataStore = useDataStore();
     const authenticated = ref(false);
     const resetId = ref('');
+    const tempEmail = ref('');
     const user = ref(null);
     const signupData = reactive({});
     const token = ref<string | null>(localStorage.getItem('user-token'));
@@ -92,6 +93,7 @@ export const useAuthStore = defineStore(
       return new Promise((resolve, reject) => {
         $api.auth.resetPasswordEmail(payload).then((res) => {
           dialog.isLoading = false;
+          tempEmail.value = payload;
           successToast('An OTP has been sent to your email account');
           resetId.value = res.id;
           router.push('/password/emailOTP')
@@ -113,6 +115,20 @@ export const useAuthStore = defineStore(
       })
     }
 
+    const setNewPassword = (payload: NewPasswordInput) => {
+      dialog.isLoading = true;
+      // const data = {
+      //   id: resetId.value,
+      //   code: payload,
+      // };
+      return new Promise((resolve, reject) => {
+        $api.auth.setNewPassword(payload).then((res) => {
+          dialog.isLoading = false;
+          router.push('/login');
+        });
+      });
+    };
+
     const logout = () => {
       // const token = useCookie('token');
       // token.value = null;
@@ -129,7 +145,9 @@ export const useAuthStore = defineStore(
       token,
       login,
       resetPasswordEmail,
-      confirmResetPassword
+      confirmResetPassword,
+      setNewPassword,
+      tempEmail
     };
   },
   {

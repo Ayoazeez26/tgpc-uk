@@ -2,7 +2,7 @@
 import { useDataStore } from '@/stores/data';
 import { useDialogStore } from '@/stores/dialog';
 import { useAuthStore } from '~/stores/auth';
-import { UserLoginInput } from '~/types';
+import { NewPasswordInput, UserLoginInput } from '~/types';
 import { successToast, errorToast } from '~/plugins/vue3-toastify';
 // import { useToast } from 'vue-toastification';
 
@@ -56,12 +56,13 @@ watch(password, (value) => {
   validatePassword(value);
 })
 
-const registerUser = async (): Promise<void> => {
-  const payload: UserLoginInput = {
-    email: email.value,
+const resetPassword = async (): Promise<void> => {
+  const payload: NewPasswordInput = {
+    email: auth.tempEmail,
     password: password.value,
+    confirmPassword: confirmPassword.value
   };
-  auth.signup(payload);
+  auth.setNewPassword(payload);
 };
 const containsItem = computed(() => {
   if (errorMsg.password === '' && errorMsg.confirmPassword === '') {
@@ -167,7 +168,7 @@ const containsItem = computed(() => {
           </div>
           <div class="flex flex-col w-full lg:items-center gap-4">
             <button
-              @click="registerUser"
+              @click="resetPassword"
               :disabled="containsItem"
               class="bg-black disabled:bg-black/50 disabled:border-grey disabled:text-white/70 border-2 border-grey-6 font-medium py-4 px-8 h-[62px] rounded text-white w-full"
             >
