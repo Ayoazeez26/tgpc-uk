@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col md:space-y-5 space-y-2 md:w-[30%] md:border-b-none border-b-2 md:pb-0 pb-5"
+    class="flex flex-col md:space-y-5 space-y-2 md:w-[25%] md:border-b-none border-b-2 md:pb-0 pb-5 md:h-screen md:fixed"
   >
     <nuxt-link
       to="/account"

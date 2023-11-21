@@ -3,10 +3,12 @@
     <main class="text-primary bg-grey-3">
       <DashboardHeader />
       <section
-        class="flex md:flex-row flex-col md:mt-10 mt-5 md:space-y-0 space-y-5 md:space-x-20 md:px-20 px-3"
+        class="flex md:flex-row flex-col md:mt-10 mt-5 md:space-y-0 space-y-5 md:space-x-20 md:px-20 px-3 md:pt-20"
       >
-        <DashboardAccountSidebar />
-        <div class="mb-10">
+        <div class="md:w-[25%]">
+          <DashboardAccountSidebar />
+        </div>
+        <div class="mb-10 md:w-[75%]">
           <div class="bg-white rounded-md md:p-10 p-5 md:mt-0 my-7 space-y-7">
             <div class="md:space-y-5 space-y-3">
               <h3 class="font-bold md:text-2xl text-xl">Manage Plans</h3>
