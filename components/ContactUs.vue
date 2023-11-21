@@ -196,7 +196,7 @@ const submitForm = () => {
           <div class="w-full mt-6">
               <button
                 type="submit"
-                class="liquor-btn min-w-max py-3 px-10 leading-none rounded-sm  bg-secondary text-white w-full hover:bg-secondary/90"
+                class="liquor-btn min-w-max py-4 px-8 leading-none rounded-sm  bg-secondary text-white w-full hover:bg-secondary/90"
               >
                 Get In Touch
               </button>
