@@ -8,8 +8,11 @@
         <div class="md:w-[25%]">
           <DashboardAccountSidebar />
         </div>
-        <div class="md:w-[75%]">
-          <div class="bg-white rounded-md md:p-10 p-5 md:mt-0 my-7">
+        <div class="md:w-[80%]">
+          <div
+            class="bg-white rounded-md md:p-10 p-5 md:mt-0 my-7"
+            id="account"
+          >
             <div class="md:space-y-5 space-y-3">
               <h3 class="font-bold md:text-2xl text-xl">Account Settings</h3>
               <p class="text-grey-8 md:text-base text-sm">
@@ -116,7 +119,10 @@
             </div>
           </div>
           <div class="h-[0.5px] bg-grey-8"></div>
-          <div class="bg-white rounded-md md:p-10 p-5 my-7 space-y-7">
+          <div
+            class="bg-white rounded-md md:p-10 p-5 my-7 space-y-7"
+            id="manage-plan"
+          >
             <div class="md:space-y-5 space-y-3">
               <h3 class="font-bold md:text-2xl text-xl">Manage Plans</h3>
               <p class="text-grey-8 md:text-base text-sm">
