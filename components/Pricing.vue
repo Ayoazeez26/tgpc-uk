@@ -310,8 +310,8 @@ const containsItem = computed(() => {
               class="flex flex-col items-center text-center gap-8 px-5 pb-5 w-full"
             >
               <div class="flex flex-col gap-2 items-center text-center w-full">
-                <h4 class="text-xl font-medium">£16/MONTH</h4>
-                <p class="font-medium text-sm">Billed £192 annually</p>
+                <h4 class="text-xl font-medium">£50/MONTH</h4>
+                <p class="font-medium text-sm">Billed £600 annually</p>
               </div>
               
               <button class="text-sm bg-secondary text-white py-4 px-8 rounded w-full">

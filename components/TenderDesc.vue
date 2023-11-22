@@ -381,7 +381,7 @@ const requestWriter = async () => {
       </h3>
       <div class="flex flex-col gap-2 w-full md:w-auto md:items-center">
         <nuxt-link
-          to="/tender/one"
+          to="/contact"
           class="bg-grey-5 border-2 border-grey-2 flex items-center justify-center w-full gap-2 font-medium py-4 px-8 rounded text-secondary"
         >
           <p class="leading-[30px] text-sm font-bold tracking-[0.028px]">
