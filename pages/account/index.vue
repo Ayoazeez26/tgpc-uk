@@ -27,7 +27,7 @@
               >
                 <Heading4 content="Profile" />
                 <button
-                  class="bg-black text-white px-7 py-3 disabled:text-[#A5A5A5] disabled:bg-[#EBEBEB] disabled:cursor-not-allowed rounded"
+                  class="bg-black text-white px-7 py-3 disabled:text-[#A5A5A5] disabled:bg-grey-5 disabled:cursor-not-allowed rounded"
                   disabled
                 >
                   Save
@@ -52,7 +52,7 @@
               >
                 <Heading4 content="Email" />
                 <button
-                  class="bg-black text-white px-7 py-3 disabled:text-[#A5A5A5] disabled:bg-[#EBEBEB] disabled:cursor-not-allowed rounded"
+                  class="bg-black text-white px-7 py-3 disabled:text-[#A5A5A5] disabled:bg-grey-5 disabled:cursor-not-allowed rounded"
                   disabled
                 >
                   Save
@@ -75,7 +75,7 @@
               >
                 <Heading4 content="Change Password" />
                 <button
-                  class="bg-black text-white px-7 py-3 disabled:text-[#A5A5A5] disabled:bg-[#EBEBEB] disabled:cursor-not-allowed rounded"
+                  class="bg-black text-white px-7 py-3 disabled:text-[#A5A5A5] disabled:bg-grey-5 disabled:cursor-not-allowed rounded"
                   disabled
                 >
                   Update Password
