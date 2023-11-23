@@ -97,5 +97,3 @@
   }
 }
 </style>
-
-<style scoped></style>

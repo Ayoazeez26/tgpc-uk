@@ -48,8 +48,6 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
-
 * {
   cursor: none;
   margin: 0;
@@ -61,19 +59,6 @@ body,
 html {
   width: 100%;
   height: 100%;
-}
-
-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  flex-direction: column;
-}
-
-h1 {
-  font-family: montserrat;
-  font-size: 40px;
 }
 
 a {
