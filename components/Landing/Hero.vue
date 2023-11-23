@@ -70,8 +70,8 @@
 </template>
 
 <script>
-import gsap from 'gsap-trial';
-import { ScrambleTextPlugin } from 'gsap-trial/ScrambleTextPlugin';
+import gsap from 'gsap';
+import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin';
 
 export default {
   mounted() {

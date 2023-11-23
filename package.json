@@ -18,12 +18,13 @@
     "nuxt-icon": "^0.4.1"
   },
   "dependencies": {
+    "@gsap/shockingly": "^3.12.2",
     "@paypal/paypal-js": "^7.1.0",
     "@pinia/nuxt": "^0.4.11",
     "@vuepic/vue-datepicker": "^7.2.0",
     "aos": "^2.3.4",
     "click-outside-vue3": "^4.0.1",
-    "gsap": "npm:@gsap/business",
+    "gsap": "npm:@gsap/shockingly",
     "gsap-trial": "^3.12.2",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
