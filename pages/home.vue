@@ -12,6 +12,7 @@
     <LandingCTA />
     <LandingFooter />
   </div>
+  <CustomCursor />
 </template>
 
 <script></script>
