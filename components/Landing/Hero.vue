@@ -4,10 +4,17 @@
       <div
         class="lg:max-w-[40rem] md:max-w-md max-w-sm mx-auto space-y-7 lg:pt-28 md:pt-32 pt-32"
       >
-        <h3
+        <!-- <h3
+          ref="scrambleText"
           class="md:font-bold font-semibold lg:text-[56px] md:text-4xl text-5xl lg:leading-snug md:leading-snug leading-snug"
         >
           Find Health Sector Tender Opportunities
+          <span class="md:hidden">with HSCT</span>
+        </h3> -->
+        <h3
+          ref="scrambleText"
+          class="md:font-bold font-semibold lg:text-[56px] md:text-4xl text-5xl lg:leading-snug md:leading-snug leading-snug"
+        >
           <span class="md:hidden">with HSCT</span>
         </h3>
         <p class="lg:text-lg">
@@ -62,7 +69,34 @@
   </section>
 </template>
 
-<script></script>
+<script>
+import gsap from 'gsap-trial';
+import { ScrambleTextPlugin } from 'gsap-trial/ScrambleTextPlugin';
+
+export default {
+  mounted() {
+    this.scrambleText();
+  },
+  methods: {
+    scrambleText() {
+      gsap.registerPlugin(ScrambleTextPlugin);
+
+      const textElement = this.$refs.scrambleText;
+
+      gsap.to(textElement, {
+        duration: 5,
+        scrambleText: {
+          text: 'Find Health Sector Tender Opportunities',
+          chars: 'XO',
+          revealDelay: 0.5,
+          speed: 0.5,
+          newClass: 'myClass',
+        },
+      });
+    },
+  },
+};
+</script>
 
 <style scoped>
 .hero {
