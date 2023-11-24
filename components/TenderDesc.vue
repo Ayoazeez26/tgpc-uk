@@ -233,10 +233,10 @@ const requestWriter = async () => {
             </button> -->
           </div>
           <div
-            class="w-full px-10 pt-6 pb-16 mt-10 text-grey-8 font-light leading-[32px]"
+            class="w-full px-10 pb-16 text-grey-8 font-light leading-[32px]"
           >
             <template v-if="currentTab === 'description'">
-              <p class="mt-6">
+              <p class="mt-10">
                 {{ tender.Description }}
               </p>
             </template>

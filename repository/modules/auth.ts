@@ -12,6 +12,7 @@ import {
   ConfirmResetOTPInput,
   ConfirmResetOTPResponse,
   NewPasswordInput,
+  RefreshTokenInput,
 } from '~/types';
 
 class AuthModule extends FetchFactory {
@@ -65,6 +66,16 @@ class AuthModule extends FetchFactory {
     return await this.call<ConfirmResetOTPResponse>(
       'POST',
       `${this.RESOURCE}/account/reset-password`,
+      credentials
+    );
+  }
+
+  async refreshToken(
+    credentials: RefreshTokenInput
+  ): Promise<ConfirmResetOTPResponse> {
+    return await this.call<ConfirmResetOTPResponse>(
+      'POST',
+      `${this.RESOURCE}/account/refresh-token`,
       credentials
     );
   }

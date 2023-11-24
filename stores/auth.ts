@@ -18,7 +18,8 @@ export const useAuthStore = defineStore(
     const tempEmail = ref('');
     const user = ref(null);
     const signupData = reactive({});
-    const token = ref<string | null>(localStorage.getItem('user-token'));
+    const token = ref<string | null>();
+    const refreshToken = ref<string | null>(null);
 
     const signup = (payload: UserLoginInput) => {
       dialog.isLoading = true;
@@ -52,6 +53,7 @@ export const useAuthStore = defineStore(
           .then((res) => {
             dialog.isLoading = false;
             token.value = res.accessToken;
+            refreshToken.value = res.refreshToken;
             user.value = res;
             authenticated.value = true;
             loggedIn = true;
@@ -96,6 +98,7 @@ export const useAuthStore = defineStore(
           tempEmail.value = payload;
           successToast('An OTP has been sent to your email account');
           resetId.value = res.id;
+          console.log(resetId.value);
           router.push('/password/emailOTP')
         })
       })
@@ -147,7 +150,10 @@ export const useAuthStore = defineStore(
       resetPasswordEmail,
       confirmResetPassword,
       setNewPassword,
-      tempEmail
+      tempEmail,
+      resetId,
+      user,
+      refreshToken
     };
   },
   {
