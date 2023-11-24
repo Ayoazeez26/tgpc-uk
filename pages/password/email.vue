@@ -27,6 +27,13 @@ const sendEmail = async (): Promise<void> => {
   auth.resetPasswordEmail(email.value);
 };
 
+const containsItem = computed(() => {
+  if (errorMsg.email === '') {
+    return false;
+  } else {
+    return true;
+  }
+});
 </script>
 <template>
   <div class="body">
@@ -51,7 +58,7 @@ const sendEmail = async (): Promise<void> => {
         >
           Reset Password<br />
           <span class="font-extralight text-xl"
-            >Input your email account</span
+            >Input your email address</span
           >
         </h5>
         <div class="w-full my-10 max-w-[422px]">
@@ -78,7 +85,8 @@ const sendEmail = async (): Promise<void> => {
           <div class="flex flex-col w-full lg:items-center gap-4">
             <button
               @click="sendEmail"
-              class="bg-black border-2 border-grey-6 font-medium py-4 px-8 h-[62px] rounded text-white w-full"
+              :disabled="containsItem"
+              class="bg-black disabled:bg-black/50 disabled:border-grey disabled:text-white/70 border-2 border-grey-6 font-medium py-4 px-8 h-[62px] rounded text-white w-full"
             >
               Submit
             </button>
@@ -87,10 +95,10 @@ const sendEmail = async (): Promise<void> => {
             By continuing, you agree to TGPC's
             <span class="underline">Terms of Service</span>
           </p>
-          <p class="mt-6 text-sm text-grey-8 font-light">
+          <!-- <p class="mt-6 text-sm text-grey-8 font-light">
             Don't have an account?
             <nuxt-link to="/register" class="underline">Register</nuxt-link>
-          </p>
+          </p> -->
         </div>
       </div>
     </div>

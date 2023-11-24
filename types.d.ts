@@ -104,3 +104,8 @@ export interface RequestTenderInput {
   tenderName: string;
   tenderTitle: string;
 }
+
+export interface RefreshTokenInput {
+  expiredToken: string;
+  refreshToken: string;
+}

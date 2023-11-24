@@ -135,15 +135,20 @@ const goToTender = (tender) => {
         <li class="cursor-pointer text-grey-6 font-light text-sm py-3" @click="open = !open">
           <nuxt-link to="/">{{ dataStore.userEmail }}</nuxt-link>
         </li>
-        <div
-          class="flex flex-col w-full lg:w-auto lg:flex-row lg:items-center gap-4"
-        >
-          <button
-            @click="logout"
-            class=" text-center font-semibold rounded-lg text-grey-6"
+        <div class="flex flex-col w-full gap-3">
+          <li class="cursor-pointer sora flex gap-x-2 text-neutral py-3" @click="open = !open">
+            <img src="/svg/bookmarks.svg" alt="bookmarks icon"><nuxt-link to="/bookmarks">Bookmarks</nuxt-link>
+          </li>
+          <div
+            class="flex flex-col w-full lg:w-auto lg:flex-row lg:items-center gap-4"
           >
-            logout
-          </button>
+            <button
+              @click="logout"
+              class=" text-center font-semibold rounded-lg text-grey-6"
+            >
+              Logout
+            </button>
+          </div>
         </div>
       </ul>
     </ul>
