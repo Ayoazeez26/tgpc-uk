@@ -84,13 +84,12 @@ export default {
       const textElement = this.$refs.scrambleText;
 
       gsap.to(textElement, {
-        duration: 5,
+        duration: 2,
         scrambleText: {
           text: 'Find Health Sector Tender Opportunities',
-          chars: 'XO',
-          revealDelay: 0.5,
-          speed: 0.5,
-          newClass: 'myClass',
+          chars: '\\\\',
+          revealDelay: 0.3,
+          speed: 0.1,
         },
       });
     },

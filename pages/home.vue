@@ -11,6 +11,7 @@
     <LandingFAQ />
     <LandingCTA />
     <LandingFooter />
+    <Test />
   </div>
   <CustomCursor />
 </template>
