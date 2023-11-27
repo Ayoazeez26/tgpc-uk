@@ -109,3 +109,48 @@ export interface RefreshTokenInput {
   expiredToken: string;
   refreshToken: string;
 }
+
+export interface UpdateProfileInput {
+  fullName: string;
+}
+
+export interface address {
+  country: string;
+  city: string;
+  state: string;
+  zip: string;
+}
+
+export interface phoneNumber {
+  code: string;
+  number: string;
+  local: string;
+}
+
+export interface UpdateProfileResponse {
+  email: string;
+  accountStatus: string;
+  createdAt: string;
+  updatedAt: string;
+  address: {
+    [key: string]: address;
+  };
+  firstName: string;
+  gender: string;
+  maritalStatus: string;
+  phoneNumber: {
+    [key: string]: phoneNumber;
+  }
+  fullName: string;
+  id: string;
+}
+
+export interface updatePasswordInput {
+  currentPassword: string;
+  password: string;
+  confirmPassword: string;
+}
+
+export interface updatePasswordResponse {
+  success: boolean;
+}
