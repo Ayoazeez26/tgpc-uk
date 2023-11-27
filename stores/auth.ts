@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { UserEmailOTPInput, UserLoginInput, OtpValue, ConfirmResetOTPInput, NewPasswordInput } from '~/types';
+import { UserEmailOTPInput, UserLoginInput, OtpValue, ConfirmResetOTPInput, NewPasswordInput, UpdateProfileInput, updatePasswordInput } from '~/types';
 import { successToast } from '~/plugins/vue3-toastify';
 import { useDialogStore } from './dialog';
 import { useDataStore } from './data';
@@ -30,13 +30,6 @@ export const useAuthStore = defineStore(
             dialog.isLoading = false;
             console.log(res);
             Object.assign(signupData, res)
-            // signupData.value = res;
-            // useProfile().setToken(res.token);
-            // const token = useCookie('token');
-            // token.value = null;
-            // token.value = res.token;
-            // authenticated.value = true;
-            // localStorage.setItem('user-token', res.token);
             successToast('Account created successfully!');
             router.push('/confirmEmail');
             console.log(signupData.result);
@@ -57,7 +50,7 @@ export const useAuthStore = defineStore(
             user.value = res;
             authenticated.value = true;
             loggedIn = true;
-            localStorage.setItem('user-token', res.accessToken);
+            // localStorage.setItem('user-token', res.accessToken);
             router.push('/dashboard');
           })
       });
@@ -132,11 +125,37 @@ export const useAuthStore = defineStore(
       });
     };
 
+    const updateProfile = (payload: UpdateProfileInput) => {
+      dialog.isLoading = true;
+      return new Promise((resolve, reject) => {
+        $api.auth.updateProfile(payload).then((res) => {
+          dialog.isLoading = false;
+          successToast('Profile Updated Successfully')
+          user.value = res;
+        });
+      });
+    };
+
+    const updatePassword = (payload: updatePasswordInput) => {
+      dialog.isLoading = true;
+      return new Promise((resolve, reject) => {
+        $api.auth.updatePassword(payload).then((res) => {
+          dialog.isLoading = false;
+          successToast('Password Updated Successfully');
+          // user.value = res;
+          resolve(res);
+        });
+      });
+    };
+
     const logout = () => {
       // const token = useCookie('token');
       // token.value = null;
       dataStore.loggedIn = false;
       authenticated.value = false;
+      user.value = null;
+      token.value = null;
+      refreshToken.value = null;
       router.push('/login');
     };
 
@@ -153,7 +172,9 @@ export const useAuthStore = defineStore(
       tempEmail,
       resetId,
       user,
-      refreshToken
+      refreshToken,
+      updateProfile,
+      updatePassword
     };
   },
   {

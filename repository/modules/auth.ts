@@ -13,6 +13,10 @@ import {
   ConfirmResetOTPResponse,
   NewPasswordInput,
   RefreshTokenInput,
+  UpdateProfileInput,
+  UpdateProfileResponse,
+  updatePasswordInput,
+  updatePasswordResponse,
 } from '~/types';
 
 class AuthModule extends FetchFactory {
@@ -76,6 +80,26 @@ class AuthModule extends FetchFactory {
     return await this.call<ConfirmResetOTPResponse>(
       'POST',
       `${this.RESOURCE}/account/refresh-token`,
+      credentials
+    );
+  }
+
+  async updateProfile(
+    credentials: UpdateProfileInput
+  ): Promise<UpdateProfileResponse> {
+    return await this.call<UpdateProfileResponse>(
+      'PATCH',
+      `${this.RESOURCE}/account/update-profile`,
+      credentials
+    );
+  }
+
+  async updatePassword(
+    credentials: updatePasswordInput
+  ): Promise<updatePasswordResponse> {
+    return await this.call<updatePasswordResponse>(
+      'POST',
+      `${this.RESOURCE}/account/update-password`,
       credentials
     );
   }
