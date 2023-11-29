@@ -8,6 +8,9 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({
+  middleware: ["guest"]
+})
 </script>
 
 <style scoped></style>

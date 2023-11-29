@@ -29,22 +29,22 @@ const searchTerm = ref('');
 const tenders = ref([]);
 const closeModal = ref(false);
 
-watch(searchTerm, (value) => {
-  if (value === '') {
-    closeModal.value = true;
-    getTenders('The');
-  } else {
-    closeModal.value = false;
-    getTenders(value);
-  }
-});
+// watch(searchTerm, (value) => {
+//   if (value === '') {
+//     closeModal.value = true;
+//     getTenders('The');
+//   } else {
+//     closeModal.value = false;
+//     getTenders(value);
+//   }
+// });
 
-const getTenders = _.debounce(async () => {
+const getTenders = async () => {
   const searchResults = await dataStore.searchTenders(
-    `?searchTerm=${searchTerm.value}&size=20`
+    `?searchTerm=${searchTerm.value}&size=20&from=0`
   );
-  tenders.value = searchResults;
-}, 500);
+  tenders.value = searchResults.mappedResults;
+};
 
 const goToTender = (tender) => {
   dataStore.singleTender = tender;
@@ -95,10 +95,16 @@ const goToTender = (tender) => {
           name="search"
           v-model="searchTerm"
           id="search"
-          class="px-6 pl-14 border focus:outline-none text-sm focus:ring-grey-2 focus:ring-1 border-grey-2 rounded py-4 w-full"
+          class="px-6 pl-14 pr-[145px] border focus:outline-none text-sm focus:ring-grey-2 focus:ring-1 border-grey-2 rounded py-5 w-full"
           placeholder="Search Tenders & Contracts"
         />
-        <div
+        <button
+          @click="getTenders"
+          class="bg-secondary border-2 leading-[30px] tracking-[0.028px] border-secondary absolute right-2 font-medium py-1.5 top-2 px-8 rounded text-white"
+        >
+          Search
+        </button>
+        <!-- <div
           v-if="tenders.length !== 0 && !closeModal"
           class="shadow absolute w-full bg-grey-3 z-10 h-auto max-h-40 overflow-y-auto top-16 p-2"
         >
@@ -110,7 +116,7 @@ const goToTender = (tender) => {
               {{ tender.Title }}
             </button>
           </template>
-        </div>
+        </div> -->
       </div>
       <button class="hidden lg:block" ref="hamburger" @click="open = !open">
         <Icon name="ic:round-menu" size="24px" color="#0A0A0A" />

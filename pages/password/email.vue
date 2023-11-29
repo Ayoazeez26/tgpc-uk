@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { useAuthStore } from '~/stores/auth';
 import { UserLoginInput } from '~/types';
-
+definePageMeta({
+  middleware: ["guest"]
+})
 const auth = useAuthStore();
 const router = useRouter();
 const email = ref('');

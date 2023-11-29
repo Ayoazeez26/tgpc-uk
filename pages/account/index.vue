@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { useAuthStore } from '~/stores/auth';
 import { UpdateProfileInput, updatePasswordInput } from '~/types';
-
+definePageMeta({
+  middleware: ["authenticated"]
+})
 const auth = useAuthStore();
 const fullName = ref('');
 fullName.value = auth.user.fullName;

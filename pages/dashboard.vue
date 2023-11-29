@@ -12,15 +12,9 @@
 </template>
 
 <script setup lang="ts">
-// import { useDataStore } from '~/stores/data';
-// const data = useDataStore();
-
-// const getUserData = () => {
-//   const userData = data.getUser();
-
-// }
-
-// getUserData();
+definePageMeta({
+  middleware: ["authenticated"]
+})
 </script>
 
 <style scoped></style>
