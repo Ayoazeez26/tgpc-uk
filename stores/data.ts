@@ -8,6 +8,7 @@ export const useDataStore = defineStore(
     const { $api } = useNuxtApp();
     const dialog = useDialogStore();
     const userEmail = ref('');
+    const totalCount = ref(0);
     let loggedIn = ref(false);
     const allTenders = ref([]);
     const singleTender = ref({});
@@ -18,7 +19,8 @@ export const useDataStore = defineStore(
         $api.data.searchTenders(data).then((res) => {
           dialog.isLoading = false;
           console.log('tender response is =>', res);
-          allTenders.value = res;
+          allTenders.value = res.mappedResults;
+          totalCount.value = res.total;
           resolve(res);
         });
       });
@@ -29,8 +31,9 @@ export const useDataStore = defineStore(
       return new Promise((resolve, reject) => {
         $api.data.searchTenders(data).then((res) => {
           dialog.isLoading = false;
-          // console.log('tender response is =>', res);
-          // allTenders.value = res.data;
+          console.log('tender response is =>', res.total);
+          allTenders.value = res.mappedResults;
+          totalCount.value = res.total;
           resolve(res);
         });
       });
@@ -42,7 +45,8 @@ export const useDataStore = defineStore(
         $api.data.searchTendersByLocation(data).then((res) => {
           dialog.isLoading = false;
           // console.log('tender response is =>', res);
-          allTenders.value = res;
+          allTenders.value = res.mappedResults;
+          totalCount.value = res.total;
           resolve(res);
         });
       });
@@ -91,7 +95,8 @@ export const useDataStore = defineStore(
       loggedIn,
       searchTendersByValue,
       requestTender,
-      requestWriter
+      requestWriter,
+      totalCount
     };
   },
   {

@@ -7,11 +7,6 @@ const props = defineProps({
     default: 3,
   },
 
-  totalPages: {
-    type: Number,
-    required: true,
-  },
-
   total: {
     type: Number,
     required: true,
@@ -33,13 +28,21 @@ const props = defineProps({
   },
 });
 // computed: {
+const totalPages = computed(() => {
+
+  if (props.total && props.perPage) {
+    return Math.ceil(props.total/props.perPage);
+  }
+
+  return props.currentPage - 1;
+});
+const totalNumberOfPages: number = (totalPages as ComputedRef<number>).value;
 const startPage = computed(() => {
   if (props.currentPage === 1) {
     return 1;
   }
-
-  if (props.currentPage === props.totalPages) {
-    return props.totalPages - props.maxVisibleButtons + 1;
+  if (props.currentPage === totalNumberOfPages) {
+    return totalNumberOfPages - props.maxVisibleButtons + 1;
   }
 
   return props.currentPage - 1;
@@ -48,7 +51,7 @@ const convertedStartPage: number = (startPage as ComputedRef<number>).value;
 const endPage = computed(() => {
   return Math.min(
     convertedStartPage + props.maxVisibleButtons - 1,
-    props.totalPages
+    totalNumberOfPages
   );
 });
 const convertedEndPage: number = (endPage as ComputedRef<number>).value;
@@ -68,7 +71,7 @@ const isInFirstPage = computed(() => {
   return props.currentPage === 1;
 });
 const isInLastPage = computed(() => {
-  return props.currentPage === props.totalPages;
+  return props.currentPage === totalNumberOfPages;
 });
 // },
 
@@ -86,7 +89,7 @@ const onClickNextPage = () => {
   emit('pagechanged', props.currentPage + 1);
 };
 const onClickLastPage = () => {
-  emit('pagechanged', props.totalPages);
+  emit('pagechanged', totalNumberOfPages);
 };
 const isPageActive = (page) => {
   return props.currentPage === page;

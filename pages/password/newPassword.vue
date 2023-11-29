@@ -5,10 +5,9 @@ import { useAuthStore } from '~/stores/auth';
 import { NewPasswordInput, UserLoginInput } from '~/types';
 import { successToast, errorToast } from '~/plugins/vue3-toastify';
 // import { useToast } from 'vue-toastification';
-
-const { $api } = useNuxtApp();
-const data = useDataStore();
-const dialog = useDialogStore();
+definePageMeta({
+  middleware: ["guest"]
+})
 const auth = useAuthStore();
 const router = useRouter();
 const isPasswordVisible = ref(false);

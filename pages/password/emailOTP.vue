@@ -2,10 +2,10 @@
 import { useDialogStore } from '@/stores/dialog';
 import { useAuthStore } from '~/stores/auth';
 import { OtpValue } from '~/types';
-
-const { $api } = useNuxtApp();
+definePageMeta({
+  middleware: ["guest"]
+})
 const auth = useAuthStore();
-const dialog = useDialogStore();
 const router = useRouter();
 
 
