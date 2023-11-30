@@ -3,7 +3,7 @@ import { useAuthStore } from "~/stores/auth";
 import { useDataStore } from "~/stores/data";
 
 export default defineNuxtRouteMiddleware((to, from) => {
-  console.log(to);
+  // console.log(to);
   const { authenticated } = storeToRefs(useAuthStore());
   // const { token } = useAuthStore();
   // const { loggedIn } = useDataStore();
@@ -25,7 +25,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
   //   return navigateTo('/login');
   // }
 
-  if (!authenticated) {
+  if (!authenticated.value) {
     abortNavigation();
     return navigateTo('/');
   }

@@ -41,7 +41,7 @@ const closeModal = ref(false);
 
 const getTenders = async () => {
   const searchResults = await dataStore.searchTenders(
-    `?searchTerm=${searchTerm.value}&size=20&from=0`
+    `?searchTerm=${searchTerm.value}&size=20&from=1`
   );
   tenders.value = searchResults.mappedResults;
 };
