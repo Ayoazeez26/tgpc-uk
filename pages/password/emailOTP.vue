@@ -2,10 +2,10 @@
 import { useDialogStore } from '@/stores/dialog';
 import { useAuthStore } from '~/stores/auth';
 import { OtpValue } from '~/types';
-
-const { $api } = useNuxtApp();
+definePageMeta({
+  middleware: ["guest"]
+})
 const auth = useAuthStore();
-const dialog = useDialogStore();
 const router = useRouter();
 
 
@@ -62,9 +62,9 @@ const confirmOTP = async (): Promise<void> => {
             <button
               @click="confirmOTP"
               class="bg-black disabled:bg-black/50 disabled:border-grey disabled:text-white/70 border-2 border-grey-6 font-medium py-4 px-8 h-[62px] rounded text-white w-full"
-              :disabled="code ? false : true"
+              :disabled="code.length !== 6 ? true : false"
             >
-              Continue with email
+              Continue
             </button>
           </div>
           <button class="mt-6 text-sm text-grey-8 font-light">

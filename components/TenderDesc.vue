@@ -233,10 +233,10 @@ const requestWriter = async () => {
             </button> -->
           </div>
           <div
-            class="w-full px-10 pt-6 pb-16 mt-10 text-grey-8 font-light leading-[32px]"
+            class="w-full px-10 pb-16 text-grey-8 font-light leading-[32px]"
           >
             <template v-if="currentTab === 'description'">
-              <p class="mt-6">
+              <p class="mt-10">
                 {{ tender.Description }}
               </p>
             </template>
@@ -381,7 +381,7 @@ const requestWriter = async () => {
       </h3>
       <div class="flex flex-col gap-2 w-full md:w-auto md:items-center">
         <nuxt-link
-          to="/tender/one"
+          to="/contact"
           class="bg-grey-5 border-2 border-grey-2 flex items-center justify-center w-full gap-2 font-medium py-4 px-8 rounded text-secondary"
         >
           <p class="leading-[30px] text-sm font-bold tracking-[0.028px]">

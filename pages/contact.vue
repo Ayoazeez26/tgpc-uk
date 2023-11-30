@@ -2,10 +2,7 @@
   <div class="body">
     <main class="text-primary bg-grey-3">
       <DashHeader />
-      <!-- <DashboardHeroLmaoo /> -->
-      <DashboardSearch />
-      <!-- <HomeCTA /> -->
-      <!-- <HomeQandA /> -->
+      <ContactUs />
     </main>
     <AppFooter />
   </div>
@@ -17,4 +14,6 @@ definePageMeta({
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>

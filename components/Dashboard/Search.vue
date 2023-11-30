@@ -8,7 +8,7 @@ const currentTab = ref('adultCare');
 const page = ref(1);
 const from = ref(0);
 const errorMsg = reactive({});
-const payload = ref('The');
+const payload = ref('health');
 const totalPages = ref(10);
 const perPage = ref(10);
 const total = ref(100);
@@ -23,16 +23,16 @@ const showValueSearch = ref(false);
 const location = ref('');
 const date = ref();
 const currentFilter = ref('searchTerm');
-const getTenders = _.debounce(async (condition: boolean) => {
+const getTenders = async (condition: boolean) => {
   window.scrollTo(0, 0);
   if (!condition) {
     from.value = 0;
     page.value = 1;
     currentPage.value = 1;
   }
-  const query = `?searchTerm=${payload.value}&size=${perPage.value}&from=${
-    from.value
-  }
+  const query = `?searchTerm=${payload.value.toLowerCase()}&size=${
+    perPage.value
+  }&from=${from.value}
   ${location.value !== '' ? `&location=${location.value}` : ''}
   ${startDate.value !== '' ? `&startDate=${startDate.value}` : ''}
   ${endDate.value !== '' ? `&endDate=${endDate.value}` : ''}
@@ -41,7 +41,7 @@ const getTenders = _.debounce(async (condition: boolean) => {
   await dataStore.getTenders(query);
   currentFilter.value = 'searchTerm';
   // dataStore.allTenders = allTenders;
-}, 500);
+};
 const getDateTenders = _.debounce(async (condition: boolean) => {
   window.scrollTo(0, 0);
   if (!condition) {
@@ -111,7 +111,7 @@ const showMore = (newPage: number) => {
   if (newPage === 1) {
     from.value = 0;
   } else {
-    from.value = newPage * 10 - 11;
+    from.value = newPage * 10 - 10;
   }
   switch (currentFilter.value) {
     case 'searchTerm':
@@ -385,14 +385,19 @@ onMounted(() => {
                 No results found
               </h3>
             </template>
-            <Pagination
-              :total-pages="totalPages"
-              :total="total"
-              :per-page="perPage"
-              :current-page="currentPage"
-              :has-more-pages="hasMorePages"
-              @pagechanged="showMore"
-            />
+            <div class="flex justify-between items-center">
+              <p>
+                {{ from + 1 }} - {{ from + 10 }} of
+                {{ dataStore.totalCount }} results
+              </p>
+              <Pagination
+                :total="dataStore.totalCount"
+                :per-page="perPage"
+                :current-page="currentPage"
+                :has-more-pages="hasMorePages"
+                @pagechanged="showMore"
+              />
+            </div>
           </div>
         </div>
       </div>

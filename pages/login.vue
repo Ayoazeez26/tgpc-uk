@@ -9,6 +9,9 @@
 
 <script setup lang="ts">
 import { useAuthStore } from '~/stores/auth';
+definePageMeta({
+  middleware: ["guest"]
+})
 
 const auth = useAuthStore();
 auth.authenticated = false;

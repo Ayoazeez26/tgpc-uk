@@ -29,22 +29,22 @@ const searchTerm = ref('');
 const tenders = ref([]);
 const closeModal = ref(false);
 
-watch(searchTerm, (value) => {
-  if (value === '') {
-    closeModal.value = true;
-    getTenders('The');
-  } else {
-    closeModal.value = false;
-    getTenders(value);
-  }
-});
+// watch(searchTerm, (value) => {
+//   if (value === '') {
+//     closeModal.value = true;
+//     getTenders('The');
+//   } else {
+//     closeModal.value = false;
+//     getTenders(value);
+//   }
+// });
 
-const getTenders = _.debounce(async () => {
+const getTenders = async () => {
   const searchResults = await dataStore.searchTenders(
-    `?searchTerm=${searchTerm.value}&size=20`
+    `?searchTerm=${searchTerm.value}&size=20&from=0`
   );
-  tenders.value = searchResults;
-}, 500);
+  tenders.value = searchResults.mappedResults;
+};
 
 const goToTender = (tender) => {
   dataStore.singleTender = tender;
@@ -95,10 +95,16 @@ const goToTender = (tender) => {
           name="search"
           v-model="searchTerm"
           id="search"
-          class="px-6 pl-14 border focus:outline-none text-sm focus:ring-grey-2 focus:ring-1 border-grey-2 rounded py-4 w-full"
+          class="px-6 pl-14 pr-[145px] border focus:outline-none text-sm focus:ring-grey-2 focus:ring-1 border-grey-2 rounded py-5 w-full"
           placeholder="Search Tenders & Contracts"
         />
-        <div
+        <button
+          @click="getTenders"
+          class="bg-secondary border-2 leading-[30px] tracking-[0.028px] border-secondary absolute right-2 font-medium py-1.5 top-2 px-8 rounded text-white"
+        >
+          Search
+        </button>
+        <!-- <div
           v-if="tenders.length !== 0 && !closeModal"
           class="shadow absolute w-full bg-grey-3 z-10 h-auto max-h-40 overflow-y-auto top-16 p-2"
         >
@@ -110,43 +116,64 @@ const goToTender = (tender) => {
               {{ tender.Title }}
             </button>
           </template>
-        </div>
+        </div> -->
       </div>
       <button class="hidden lg:block" ref="hamburger" @click="open = !open">
-          <Icon name="ic:round-menu" size="24px" color="#0A0A0A" />
-        </button>
-      </div>
+        <Icon name="ic:round-menu" size="24px" color="#0A0A0A" />
+      </button>
+    </div>
+  </div>
+  <ul
+    class="navbar-links flex items-start max-h-fit"
+    :class="{ 'navbar-links--navopen overflow-y-auto pb-8': open }"
+    v-click-outside="close"
+  >
+    <div class="flex w-full justify-end items-end">
+      <button class="" @click="open = !open">
+        <Icon name="ic:round-close" size="24px" color="#1B5588" />
+      </button>
     </div>
     <ul
-      class="navbar-links flex items-start max-h-fit"
-      :class="{ 'navbar-links--navopen overflow-y-auto pb-8': open }"
-      v-click-outside="close"
+      class="flex flex-col lg:items-start w-full gap-4 mt-10 lg:mt-0 lg:gap-10"
     >
-      
-      <div class="flex w-full justify-end items-end">
-        
-        <button class="" @click="open = !open">
-          <Icon name="ic:round-close" size="24px" color="#1B5588" />
-        </button>
-      </div>
-      <ul
-        class="flex flex-col lg:items-start w-full gap-4 mt-10 lg:mt-0 lg:gap-10"
+      <li
+        class="cursor-pointer text-grey-6 font-light text-sm py-3"
+        @click="open = !open"
       >
-        <li class="cursor-pointer text-grey-6 font-light text-sm py-3" @click="open = !open">
-          <nuxt-link to="/">{{ dataStore.userEmail }}</nuxt-link>
+        <nuxt-link to="/">{{ dataStore.userEmail }}</nuxt-link>
+      </li>
+      <div class="flex flex-col w-full gap-3">
+        <li
+          class="cursor-pointer sora flex gap-x-2 text-neutral py-3"
+          @click="open = !open"
+        >
+          <img src="/svg/billing.svg" alt="billing icon" /><nuxt-link
+            to="/account"
+            >Billing & Profile</nuxt-link
+          >
+        </li>
+        <li
+          class="cursor-pointer sora flex gap-x-2 text-neutral py-3"
+          @click="open = !open"
+        >
+          <img src="/svg/bookmarks.svg" alt="bookmarks icon" /><nuxt-link
+            to="/bookmarks"
+            >Bookmarks</nuxt-link
+          >
         </li>
         <div
           class="flex flex-col w-full lg:w-auto lg:flex-row lg:items-center gap-4"
         >
           <button
             @click="logout"
-            class=" text-center font-semibold rounded-lg text-grey-6"
+            class="text-center font-semibold rounded-lg text-grey-6"
           >
-            logout
+            Logout
           </button>
         </div>
-      </ul>
+      </div>
     </ul>
+  </ul>
 </template>
 
 <style lang="scss" scoped>
@@ -192,49 +219,49 @@ const goToTender = (tender) => {
     }
 
     // @media screen and (max-width: 1023px) {
-      transform: translateX(500px);
-      // pointer-events: none;
-      position: fixed;
-      transition: transform 0.2s ease-out;
-      display: flex;
-      flex-direction: column;
-      padding-top: 20px;
-      padding-left: 20px !important;
-      padding-right: 20px;
-      top: 20px;
-      bottom: 0;
-      right: 20px;
-      width: 300px;
-      max-width: 100vw;
-      background-color: $grey;
-      border: 1px solid $grey-2;
-      border-radius: 12px;
-      z-index: 100;
-      &__toggle {
-        display: none;
+    transform: translateX(500px);
+    // pointer-events: none;
+    position: fixed;
+    transition: transform 0.2s ease-out;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    padding-left: 20px !important;
+    padding-right: 20px;
+    top: 20px;
+    bottom: 0;
+    right: 20px;
+    width: 300px;
+    max-width: 100vw;
+    background-color: $grey;
+    border: 1px solid $grey-2;
+    border-radius: 12px;
+    z-index: 100;
+    &__toggle {
+      display: none;
+    }
+    &--navopen {
+      transform: translateX(0);
+      pointer-events: all;
+
+      .navbar-links__toggle {
+        display: block;
+        position: fixed;
+        top: 50px;
+        right: 20px;
+        background: none;
+        border: none;
       }
-      &--navopen {
-        transform: translateX(0);
-        pointer-events: all;
 
-        .navbar-links__toggle {
-          display: block;
-          position: fixed;
-          top: 50px;
-          right: 20px;
-          background: none;
-          border: none;
-        }
+      .navbar-links__item {
+        text-align: left;
+        margin: 20px 0;
+        width: 100%;
 
-        .navbar-links__item {
-          text-align: left;
-          margin: 20px 0;
+        .btn {
           width: 100%;
-
-          .btn {
-            width: 100%;
-          }
         }
+      }
       // }
     }
   }
