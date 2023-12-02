@@ -152,6 +152,7 @@ export const useAuthStore = defineStore(
       // const token = useCookie('token');
       // token.value = null;
       dataStore.loggedIn = false;
+      dataStore.searchTerm = '';
       authenticated.value = false;
       user.value = null;
       token.value = null;

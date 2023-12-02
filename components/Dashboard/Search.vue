@@ -22,6 +22,11 @@ const showLocationSearch = ref(false);
 const showValueSearch = ref(false);
 const location = ref('');
 const date = ref();
+const minValue = ref(1000000);
+const maxValue = ref(9000000);
+const min = ref(0);
+const max = ref(100000000);
+const progressRef = ref(null);
 const currentFilter = ref('searchTerm');
 const getTenders = async (condition: boolean) => {
   window.scrollTo(0, 0);
@@ -30,80 +35,81 @@ const getTenders = async (condition: boolean) => {
     page.value = 1;
     currentPage.value = 1;
   }
-  const query = `?searchTerm=${payload.value.toLowerCase()}&size=${
+  const query = `?searchTerm=${dataStore.searchTerm === '' ? 'the' : dataStore.searchTerm.toLowerCase()}&size=${
     perPage.value
   }&from=${from.value}
-  ${location.value !== '' ? `&location=${location.value}` : ''}
+  ${location.value !== '' ? `&location=${location.value}` : '&location=London'}
   ${startDate.value !== '' ? `&startDate=${startDate.value}` : ''}
   ${endDate.value !== '' ? `&endDate=${endDate.value}` : ''}
-  ${value.value !== '' ? `&value=${value.value}` : ''}
+  ${minValue.value >= 0 ? `&minValue=${minValue.value}` : ''}
+  ${maxValue.value >= 0 ? `&maxValue=${maxValue.value}` : ''}
   `;
-  await dataStore.getTenders(query);
-  currentFilter.value = 'searchTerm';
+  await dataStore.filterTenders(query);
+  // currentFilter.value = 'searchTerm';
   // dataStore.allTenders = allTenders;
 };
-const getDateTenders = _.debounce(async (condition: boolean) => {
-  window.scrollTo(0, 0);
-  if (!condition) {
-    from.value = 0;
-    page.value = 1;
-    currentPage.value = 1;
-  }
-  const query = `?searchTerm=${payload.value}&size=${perPage.value}&from=${
-    from.value
-  }
-  ${startDate.value !== '' ? `&startDate=${startDate.value}` : ''}
-  ${endDate.value !== '' ? `&endDate=${endDate.value}` : ''}
-  `;
-  await dataStore.getTenders(query);
-  currentFilter.value = 'date';
-  // dataStore.allTenders = allTenders;
-}, 500);
-const getValueTenders = _.debounce(async (condition: boolean) => {
-  window.scrollTo(0, 0);
-  if (!condition) {
-    from.value = 0;
-    page.value = 1;
-    currentPage.value = 1;
-  }
-  const query = `?searchTerm=${value.value}&size=${perPage.value}&from=${from.value}
-  `;
-  await dataStore.searchTendersByValue(query);
-  currentFilter.value = 'value';
-  // dataStore.allTenders = allTenders;
-}, 500);
 
-getTenders();
+getTenders(false);
+
+// const getDateTenders = _.debounce(async (condition: boolean) => {
+//   window.scrollTo(0, 0);
+//   if (!condition) {
+//     from.value = 0;
+//     page.value = 1;
+//     currentPage.value = 1;
+//   }
+//   const query = `?searchTerm=${dataStore.searchTerm.toLowerCase()}&size=${perPage.value}&from=${
+//     from.value
+//   }
+//   ${startDate.value !== '' ? `&startDate=${startDate.value}` : ''}
+//   ${endDate.value !== '' ? `&endDate=${endDate.value}` : ''}
+//   `;
+//   await dataStore.getTenders(query);
+//   currentFilter.value = 'date';
+//   // dataStore.allTenders = allTenders;
+// }, 500);
+// const getValueTenders = _.debounce(async (condition: boolean) => {
+//   window.scrollTo(0, 0);
+//   if (!condition) {
+//     from.value = 0;
+//     page.value = 1;
+//     currentPage.value = 1;
+//   }
+//   const query = `?searchTerm=${value.value}&size=${perPage.value}&from=${from.value}
+//   `;
+//   await dataStore.searchTendersByValue(query);
+//   currentFilter.value = 'value';
+//   // dataStore.allTenders = allTenders;
+// }, 500);
+
+watch(minValue, () => {
+  getTenders(false);
+})
+watch(maxValue, () => {
+  getTenders(false);
+})
 
 watch(location, (value) => {
-  if (value) {
-    getTendersByLocation();
-  } else {
-    getTenders();
-  }
+  // if (value) {
+  //   getTendersByLocation();
+  // } else {
+  //   getTenders(false);
+  // }
+    getTenders(false);
 });
 
-const getTendersByLocation = _.debounce(async (condition: boolean) => {
-  window.scrollTo(0, 0);
-  if (!condition) {
-    from.value = 0;
-    page.value = 1;
-    currentPage.value = 1;
-  }
-  await dataStore.searchTendersByLocation(
-    `?searchTerm=${location.value}&size=${perPage.value}&from=${from.value}`
-  );
-  currentFilter.value = 'location';
-}, 500);
-
-const addValueSearch = () => {
-  if (Number(value.value) && Number(value.value) !== 0) {
-    errorMsg.valueError = '';
-    getValueTenders();
-  } else {
-    errorMsg.valueError = 'Input a valid number';
-  }
-};
+// const getTendersByLocation = _.debounce(async (condition: boolean) => {
+//   window.scrollTo(0, 0);
+//   if (!condition) {
+//     from.value = 0;
+//     page.value = 1;
+//     currentPage.value = 1;
+//   }
+//   await dataStore.searchTendersByLocation(
+//     `?searchTerm=${location.value}&size=${perPage.value}&from=${from.value}`
+//   );
+//   currentFilter.value = 'location';
+// }, 500);
 
 const showMore = (newPage: number) => {
   page.value = newPage;
@@ -113,32 +119,32 @@ const showMore = (newPage: number) => {
   } else {
     from.value = newPage * 10 - 10;
   }
-  switch (currentFilter.value) {
-    case 'searchTerm':
-      getTenders(true);
-      break;
-    case 'date':
-      getDateTenders(true);
-      break;
-    case 'value':
-      getValueTenders(true);
-      break;
-    case 'location':
-      getTendersByLocation(true);
-      break;
-    default:
-      // getTenders();
-      console.log('this is the default block');
-      break;
-  }
-  // getTenders();
+  // switch (currentFilter.value) {
+  //   case 'searchTerm':
+  //     getTenders(true);
+  //     break;
+  //   case 'date':
+  //     getDateTenders(true);
+  //     break;
+  //   case 'value':
+  //     getValueTenders(true);
+  //     break;
+  //   case 'location':
+  //     getTendersByLocation(true);
+  //     break;
+  //   default:
+  //     // getTenders();
+  //     console.log('this is the default block');
+  //     break;
+  // }
+  getTenders(true);
 };
 
 const handleDate = (modelData) => {
   console.log(modelData);
   startDate.value = moment(modelData[0]).format('YYYY-MM-DD');
   endDate.value = moment(modelData[1]).format('YYYY-MM-DD');
-  getDateTenders();
+  getTenders(false);
 };
 
 const container = ref(null);
@@ -152,7 +158,6 @@ onUnmounted(() => {
 });
 onMounted(() => {
   setTimeout(() => {
-    console.log('mounted');
     $ScrollTrigger.refresh();
   }, 1000);
   ctx.add(() => {
@@ -168,93 +173,67 @@ onMounted(() => {
     });
   });
 });
-// function controlFromInput(fromSlider, fromInput, toInput, controlSlider) {
-//     const [from, to] = getParsed(fromInput, toInput);
-//     fillSlider(fromInput, toInput, '#C6C6C6', '#25daa5', controlSlider);
-//     if (from > to) {
-//         fromSlider.value = to;
-//         fromInput.value = to;
-//     } else {
-//         fromSlider.value = from;
-//     }
-// }
-    
-// function controlToInput(toSlider, fromInput, toInput, controlSlider) {
-//     const [from, to] = getParsed(fromInput, toInput);
-//     fillSlider(fromInput, toInput, '#C6C6C6', '#25daa5', controlSlider);
-//     setToggleAccessible(toInput);
-//     if (from <= to) {
-//         toSlider.value = to;
-//         toInput.value = to;
-//     } else {
-//         toInput.value = from;
-//     }
-// }
 
-// function controlFromSlider(fromSlider, toSlider, fromInput) {
-//   const [from, to] = getParsed(fromSlider, toSlider);
-//   fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
-//   if (from > to) {
-//     fromSlider.value = to;
-//     fromInput.value = to;
-//   } else {
-//     fromInput.value = from;
-//   }
-// }
-
-// function controlToSlider(fromSlider, toSlider, toInput) {
-//   const [from, to] = getParsed(fromSlider, toSlider);
-//   fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
-//   setToggleAccessible(toSlider);
-//   if (from <= to) {
-//     toSlider.value = to;
-//     toInput.value = to;
-//   } else {
-//     toInput.value = from;
-//     toSlider.value = from;
-//   }
-// }
-
-// function getParsed(currentFrom, currentTo) {
-//   const from = parseInt(currentFrom.value, 10);
-//   const to = parseInt(currentTo.value, 10);
-//   return [from, to];
-// }
-
-// function fillSlider(from, to, sliderColor, rangeColor, controlSlider) {
-//     const rangeDistance = to.max-to.min;
-//     const fromPosition = from.value - to.min;
-//     const toPosition = to.value - to.min;
-//     controlSlider.style.background = `linear-gradient(
-//       to right,
-//       ${sliderColor} 0%,
-//       ${sliderColor} ${(fromPosition)/(rangeDistance)*100}%,
-//       ${rangeColor} ${((fromPosition)/(rangeDistance))*100}%,
-//       ${rangeColor} ${(toPosition)/(rangeDistance)*100}%, 
-//       ${sliderColor} ${(toPosition)/(rangeDistance)*100}%, 
-//       ${sliderColor} 100%)`;
-// }
-
-// function setToggleAccessible(currentTarget) {
-//   const toSlider = document.querySelector('#toSlider');
-//   if (Number(currentTarget.value) <= 0 ) {
-//     toSlider.style.zIndex = 2;
-//   } else {
-//     toSlider.style.zIndex = 0;
-//   }
-// }
-
-// const fromSlider = document.querySelector('#fromSlider');
-// const toSlider = document.querySelector('#toSlider');
-// const fromInput = document.querySelector('#fromInput');
-// const toInput = document.querySelector('#toInput');
-// fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
-// setToggleAccessible(toSlider);
-
-// fromSlider.oninput = () => controlFromSlider(fromSlider, toSlider, fromInput);
-// toSlider.oninput = () => controlToSlider(fromSlider, toSlider, toInput);
-// fromInput.oninput = () => controlFromInput(fromSlider, fromInput, toInput, toSlider);
-// toInput.oninput = () => controlToInput(toSlider, fromInput, toInput, toSlider);
+const handleMin = (e) => {
+  if (maxValue.value - minValue.value >= 100 && maxValue.value <= max.value) {
+    if (parseInt(e.target.value) > maxValue.value) {
+    } else {
+      minValue.value = parseInt(e.target.value);
+    }
+  } else {
+    if (parseInt(e.target.value) < minValue.value) {
+      minValue.value = parseInt(e.target.value);
+    }
+  }
+};
+const handleMax = (e) => {
+  if (maxValue.value - minValue.value >= 100 && maxValue.value <= max.value) {
+    if (parseInt(e.target.value) < minValue.value) {
+    } else {
+      maxValue.value = parseInt(e.target.value);
+    }
+  } else {
+    if (parseInt(e.target.value) > maxValue.value) {
+      maxValue.value = parseInt(e.target.value);
+    }
+  }
+};
+watch(
+  progressRef,
+  () => {
+    if (progressRef.value) {
+      progressRef.value.style.left = `${(minValue.value / max.value) * 100}%`;
+      progressRef.value.style.right = `${
+        100 - (maxValue.value / max.value) * 100
+      }%`;
+    }
+  },
+  { immediate: true }
+);
+watch(
+  minValue,
+  () => {
+    if (progressRef.value) {
+      progressRef.value.style.left = `${(minValue.value / max.value) * 100}%`;
+      progressRef.value.style.right = `${
+        100 - (maxValue.value / max.value) * 100
+      }%`;
+    }
+  },
+  { immediate: true }
+);
+watch(
+  maxValue,
+  () => {
+    if (progressRef.value) {
+      progressRef.value.style.left = `${(minValue.value / max.value) * 100}%`;
+      progressRef.value.style.right = `${
+        100 - (maxValue.value / max.value) * 100
+      }%`;
+    }
+  },
+  { immediate: true }
+);
 </script>
 <template>
   <div
@@ -421,50 +400,50 @@ onMounted(() => {
                 </div>
               </div>
               <div v-if="showValueSearch" class="relative w-full">
-                <div class="range_container">
-                  <div class="sliders_control">
-                    <input
-                      id="fromSlider"
-                      type="range"
-                      value="10"
-                      min="0"
-                      max="100"
-                    />
-                    <input
-                      id="toSlider"
-                      type="range"
-                      value="40"
-                      min="0"
-                      max="100"
-                    />
-                  </div>
-                  <div class="form_control">
-                    <div class="form_control_container">
-                      <div class="form_control_container__time">Min</div>
-                      <input
-                        class="form_control_container__time__input"
-                        type="number"
-                        id="fromInput"
-                        value="10"
-                        min="0"
-                        max="100"
-                      />
-                    </div>
-                    <div class="form_control_container">
-                      <div class="form_control_container__time">Max</div>
-                      <input
-                        class="form_control_container__time__input"
-                        type="number"
-                        id="toInput"
-                        value="40"
-                        min="0"
-                        max="100"
-                      />
-                    </div>
-                  </div>
+                <!-- <p id="rangeValue">100</p> -->
+                <!-- <div class="slider">
+                  <input
+                    type="range"
+                    min="0"
+                    max="200"
+                    value="100"
+                    oninput="rangeValue.innerText = this.value"
+                  />
+                </div> -->
+
+                <div class="flex rounded py-2 px-4 bg-grey border border-secondary items-center justify-center gap-2 my-6">
+                  {{ minValue }}
+                  <Icon name="mdi:arrow-right" size="18" />
+                  {{ maxValue }}
+                </div>
+                <div class="slider relative h-1 rounded-md bg-gray-300">
+                  <div
+                    ref="progressRef"
+                    class="progress h-1 absolute bg-secondary rounded"
+                  ></div>
+                </div>
+                <div class="range-input relative w-full mb-4">
+                  <input
+                    :value="minValue"
+                    type="range"
+                    class="range-min absolute w-full left-0 -top-1 h-1 bg-transparent appearance-none pointer-events-none"
+                    :min="min"
+                    :step="100000"
+                    :max="max"
+                    @change="handleMin"
+                  />
+                  <input
+                    :value="maxValue"
+                    type="range"
+                    class="range-max absolute w-full right-0 -top-1 h-1 bg-transparent appearance-none pointer-events-none"
+                    :min="min"
+                    :step="100000"
+                    :max="max"
+                    @change="handleMax"
+                  />
                 </div>
 
-                <div class="flex gap-3">
+                <!-- <div class="flex gap-3">
                   <input
                     type="text"
                     name="search"
@@ -481,7 +460,7 @@ onMounted(() => {
                       Search
                     </p>
                   </button>
-                </div>
+                </div> -->
                 <span
                   v-if="errorMsg.valueError"
                   class="text-red-500 self-start text-left text-xs mt-1"
@@ -537,82 +516,48 @@ onMounted(() => {
 </template>
 
 <style lang="scss">
-.range_container {
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  margin: 35% auto;
-}
-
-.sliders_control {
-  position: relative;
-  min-height: 50px;
-}
-
-.form_control {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  font-size: 24px;
-  color: #635a5a;
-}
-
-input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  pointer-events: all;
-  width: 24px;
-  height: 24px;
-  background-color: #fff;
+// .slider {
+// position: absolute;
+// top: 50%;
+// left: 50%;
+// transform: translate(-50%, -50%);
+// width: 270px;
+// height: 60px;
+// padding: 30px;
+// padding-left: 40px;
+// background: #fcfcfc;
+// border-radius: 20px;
+// display: flex;
+// align-items: center;
+// box-shadow: 0px 15px 40px #7e6d5766;
+// }
+// .slider p {
+//   font-size: 26px;
+//   font-weight: 600;
+//   font-family: Open Sans;
+//   padding-left: 30px;
+//   color: black;
+// }
+// .slider input[type='range'] {
+//   -webkit-appearance: none !important;
+//   width: 420px;
+//   height: 2px;
+//   background: black;
+//   border: none;
+//   outline: none;
+// }
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  pointer-events: auto;
+  width: 20px;
+  height: 20px;
+  background: white;
+  filter: drop-shadow(0px 0px 10px rgba(132, 132, 132, 0.15));
+  border: 2px solid $secondary;
   border-radius: 50%;
-  box-shadow: 0 0 0 1px #C6C6C6;
   cursor: pointer;
 }
-
-input[type=range]::-moz-range-thumb {
-  -webkit-appearance: none;
-  pointer-events: all;
-  width: 24px;
-  height: 24px;
-  background-color: #fff;
-  border-radius: 50%;
-  box-shadow: 0 0 0 1px #C6C6C6;
-  cursor: pointer;  
-}
-
-input[type=range]::-webkit-slider-thumb:hover {
-  background: #f7f7f7;
-}
-
-input[type=range]::-webkit-slider-thumb:active {
-  box-shadow: inset 0 0 3px #387bbe, 0 0 9px #387bbe;
-  -webkit-box-shadow: inset 0 0 3px #387bbe, 0 0 9px #387bbe;
-}
-
-input[type="number"] {
-  color: #8a8383;
-  width: 50px;
-  height: 30px;
-  font-size: 20px;
-  border: none;
-}
-
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button {  
-   opacity: 1;
-}
-
-input[type="range"] {
-  -webkit-appearance: none; 
-  appearance: none;
-  height: 2px;
-  width: 100%;
-  position: absolute;
-  background-color: #C6C6C6;
-  pointer-events: none;
-}
-
-#fromSlider {
-  height: 0;
-  z-index: 1;
-}
+// .slider input[type='range']::-webkit-slider-thumb:hover {
+//   background: black;
+// }
 </style>

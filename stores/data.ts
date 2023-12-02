@@ -12,13 +12,14 @@ export const useDataStore = defineStore(
     let loggedIn = ref(false);
     const allTenders = ref([]);
     const singleTender = ref({});
+    const searchTerm = ref('');
 
     const getTenders = (data: string) => {
       dialog.isLoading = true;
       return new Promise((resolve, reject) => {
         $api.data.searchTenders(data).then((res) => {
           dialog.isLoading = false;
-          console.log('tender response is =>', res);
+          // console.log('tender response is =>', res);
           allTenders.value = res.mappedResults;
           totalCount.value = res.total;
           resolve(res);
@@ -31,7 +32,7 @@ export const useDataStore = defineStore(
       return new Promise((resolve, reject) => {
         $api.data.searchTenders(data).then((res) => {
           dialog.isLoading = false;
-          console.log('tender response is =>', res.total);
+          // console.log('tender response is =>', res.total);
           allTenders.value = res.mappedResults;
           totalCount.value = res.total;
           resolve(res);
@@ -39,10 +40,10 @@ export const useDataStore = defineStore(
       });
     };
 
-    const searchTendersByLocation = (data: string) => {
+    const filterTenders = (data: string) => {
       dialog.isLoading = true;
       return new Promise((resolve, reject) => {
-        $api.data.searchTendersByLocation(data).then((res) => {
+        $api.data.filterTenders(data).then((res) => {
           dialog.isLoading = false;
           // console.log('tender response is =>', res);
           allTenders.value = res.mappedResults;
@@ -88,7 +89,7 @@ export const useDataStore = defineStore(
     return {
       userEmail,
       searchTenders,
-      searchTendersByLocation,
+      filterTenders,
       getTenders,
       allTenders,
       singleTender,
@@ -96,7 +97,8 @@ export const useDataStore = defineStore(
       searchTendersByValue,
       requestTender,
       requestWriter,
-      totalCount
+      totalCount,
+      searchTerm
     };
   },
   {
