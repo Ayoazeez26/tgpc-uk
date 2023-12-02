@@ -2,7 +2,7 @@
   <div class="body">
     <main class="text-primary bg-grey-3">
       <DashHeader />
-      <!-- <DashboardHeroLmaoo /> -->
+      <DashboardHero />
       <DashboardSearch />
       <!-- <HomeCTA /> -->
       <!-- <HomeQandA /> -->

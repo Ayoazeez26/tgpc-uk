@@ -25,7 +25,7 @@ const logout = () => {
 if (typeof window !== 'undefined') {
   window.addEventListener('scroll', handleScroll);
 }
-const searchTerm = ref('');
+// const searchTerm = ref('');
 const tenders = ref([]);
 const closeModal = ref(false);
 
@@ -41,15 +41,11 @@ const closeModal = ref(false);
 
 const getTenders = async () => {
   const searchResults = await dataStore.searchTenders(
-    `?searchTerm=${searchTerm.value}&size=20&from=1`
+    `?searchTerm=${dataStore.searchTerm === '' ? 'the' : dataStore.searchTerm.toLowerCase()}&size=20&from=1`
   );
   tenders.value = searchResults.mappedResults;
 };
 
-const goToTender = (tender) => {
-  dataStore.singleTender = tender;
-  router.push(`/tender/${tender.ID}`);
-};
 </script>
 <template>
   <div
@@ -93,7 +89,7 @@ const goToTender = (tender) => {
         <input
           type="text"
           name="search"
-          v-model="searchTerm"
+          v-model="dataStore.searchTerm"
           id="search"
           class="px-6 pl-14 pr-[145px] border focus:outline-none text-sm focus:ring-grey-2 focus:ring-1 border-grey-2 rounded py-5 w-full"
           placeholder="Search Tenders & Contracts"

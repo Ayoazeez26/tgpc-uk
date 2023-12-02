@@ -11,10 +11,6 @@ interface IApiInstance {
   data: DataModule;
 }
 
-let refreshTokenPromise = null;
-
-const getRefreshToken = () => {};
-
 // Example POST method implementation:
 export async function refreshToken(config: any, data: RefreshTokenInput) {
   // Default options are marked with *
@@ -46,10 +42,10 @@ export default defineNuxtPlugin((nuxtApp) => {
     baseURL: config.public.baseUrl,
     onRequest({ request, options }) {
       const authStore = useAuthStore();
-      console.log(authStore.authenticated);
-      if (authStore.authenticated && authStore.token) {
+      // console.log(authStore.authenticated);
+      if (authStore.authenticated && authStore.user.accessToken) {
         console.log(authStore.token);
-        opt = { Authorization: `Bearer ${authStore.token}` };
+        opt = { Authorization: `Bearer ${authStore.user.accessToken}` };
         options.headers = opt;
       } else {
         console.log('Not authenticated');
@@ -64,8 +60,8 @@ export default defineNuxtPlugin((nuxtApp) => {
       console.log(error);
       if (error.response.status === 451) {
         const payload: RefreshTokenInput = {
-          expiredToken: authStore.token as string,
-          refreshToken: authStore.refreshToken as string,
+          expiredToken: authStore.user.accessToken as string,
+          refreshToken: authStore.user.refreshToken as string,
         };
         // opt = { Authorization: '' };
 
@@ -73,10 +69,11 @@ export default defineNuxtPlugin((nuxtApp) => {
           .then((data) => {
             console.log(data);
             opt = { Authorization: `Bearer ${data.token}` };
-            authStore.token = data.token;
-            authStore.refreshToken = data.refreshToken;
+            authStore.user.accessToken = data.token;
+            authStore.user.refreshToken = data.refreshToken;
           })
           .catch((err) => {
+            console.log(err);
             errorToast('Session has expired, please login again!');
             setTimeout(() => {
               authStore.logout();
