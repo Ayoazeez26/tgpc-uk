@@ -89,6 +89,8 @@ watch(maxValue, () => {
   getTenders(false);
 })
 
+dataStore.getGenericEnums();
+
 watch(location, (value) => {
   // if (value) {
   //   getTendersByLocation();

@@ -26,12 +26,12 @@
         Need help understanding tender acquistion?
       </h4>
       <div class="flex flex-col gap-2 w-full md:items-center">
-        <button
-          @click="requestWriter"
+        <nuxt-link
+          to="/contact"
           class="bg-grey-5 border-2 border-grey-2 flex items-center justify-center w-full gap-2 font-medium py-4 px-8 rounded text-secondary"
         >
           <p class=" text-sm tracking-[0.028px]">Contact us</p>
-        </button>
+        </nuxt-link>
       </div>
     </div>
   </div>

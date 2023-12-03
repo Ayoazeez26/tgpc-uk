@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { useDialogStore } from './dialog';
-import { RequestTenderInput } from '~/types';
+import { RequestTenderInput, contactUsInput } from '~/types';
 
 export const useDataStore = defineStore(
   'data',
@@ -13,6 +13,18 @@ export const useDataStore = defineStore(
     const allTenders = ref([]);
     const singleTender = ref({});
     const searchTerm = ref('');
+    const enumList = ref(null);
+
+    const getGenericEnums = () => {
+      // dialog.isLoading = true;
+      // return new Promise((resolve, reject) => {
+        $api.data.getGenericEnums().then((res) => {
+          // dialog.isLoading = false;
+          enumList.value = res;
+          // resolve(res);
+        });
+      // });
+    };
 
     const getTenders = (data: string) => {
       dialog.isLoading = true;
@@ -86,6 +98,17 @@ export const useDataStore = defineStore(
       });
     };
 
+    const contactUs = (data: contactUsInput) => {
+      dialog.isLoading = true;
+      return new Promise((resolve, reject) => {
+        $api.data.contactUs(data).then((res) => {
+          console.log(res);
+          dialog.isLoading = false;
+          resolve(res);
+        });
+      });
+    };
+
     return {
       userEmail,
       searchTenders,
@@ -98,7 +121,10 @@ export const useDataStore = defineStore(
       requestTender,
       requestWriter,
       totalCount,
-      searchTerm
+      searchTerm,
+      getGenericEnums,
+      enumList,
+      contactUs
     };
   },
   {
