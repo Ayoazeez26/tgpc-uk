@@ -16,6 +16,13 @@ export const useDataStore = defineStore(
     const singleTender = ref({});
     const searchTerm = ref('');
     const enumList = ref(null);
+    const location = ref('');
+    const startDate = ref('');
+    const endDate = ref('');
+    const minValue = ref(0);
+    const maxValue = ref(90000000);
+    const from = ref(0);
+    const perPage = ref(10);
 
     const getGenericEnums = () => {
       // dialog.isLoading = true;
@@ -126,6 +133,13 @@ export const useDataStore = defineStore(
       getGenericEnums,
       enumList,
       contactUs,
+      maxValue,
+      minValue,
+      endDate,
+      startDate,
+      location,
+      perPage,
+      from
     };
   },
   {

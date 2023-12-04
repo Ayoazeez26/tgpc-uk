@@ -20,10 +20,11 @@ const hasMorePages = ref(true);
 const showDatePicker = ref(false);
 const showLocationSearch = ref(false);
 const showValueSearch = ref(false);
+const showClearFilters = ref(false);
 const location = ref('');
 const date = ref();
-const minValue = ref(1000000);
-const maxValue = ref(9000000);
+const minValue = ref(0);
+const maxValue = ref(90000000);
 const min = ref(0);
 const max = ref(100000000);
 const progressRef = ref(null);
@@ -35,9 +36,9 @@ const getTenders = _.debounce(async (condition: boolean) => {
     page.value = 1;
     currentPage.value = 1;
   }
-  const query = `?searchTerm=${dataStore.searchTerm === '' ? 'the' : dataStore.searchTerm.toLowerCase()}&size=${
-    perPage.value
-  }&from=${from.value}
+  const query = `?searchTerm=${
+    dataStore.searchTerm === '' ? 'the' : dataStore.searchTerm.toLowerCase()
+  }&size=${perPage.value}&from=${from.value}
   ${location.value !== '' ? `&location=${location.value}` : '&location=London'}
   ${startDate.value !== '' ? `&startDate=${startDate.value}` : ''}
   ${endDate.value !== '' ? `&endDate=${endDate.value}` : ''}
@@ -83,13 +84,13 @@ getTenders(false);
 // }, 500);
 
 watch(minValue, () => {
+  showClearFilters.value = true;
   getTenders(false);
-})
+});
 watch(maxValue, () => {
+  showClearFilters.value = true;
   getTenders(false);
-})
-
-dataStore.getGenericEnums();
+});
 
 watch(location, (value) => {
   // if (value) {
@@ -97,7 +98,8 @@ watch(location, (value) => {
   // } else {
   //   getTenders(false);
   // }
-    getTenders(false);
+  showClearFilters.value = true;
+  getTenders(false);
 });
 
 // const getTendersByLocation = _.debounce(async (condition: boolean) => {
@@ -146,7 +148,29 @@ const handleDate = (modelData) => {
   console.log(modelData);
   startDate.value = moment(modelData[0]).format('YYYY-MM-DD');
   endDate.value = moment(modelData[1]).format('YYYY-MM-DD');
+  showClearFilters.value = true;
   getTenders(false);
+};
+
+const clearFilters = () => {
+  startDate.value = '';
+  endDate.value = '';
+  location.value = '';
+  minValue.value = 0;
+  maxValue.value = 90000000;
+  showDatePicker.value = false;
+  showLocationSearch.value = false;
+  showValueSearch.value = false;
+  getSearchTermTenders();
+};
+
+const getSearchTermTenders = async () => {
+  const searchResults = await dataStore.searchTenders(
+    `?searchTerm=${
+      dataStore.searchTerm === '' ? 'the' : dataStore.searchTerm.toLowerCase()
+    }&size=20&from=1`
+  );
+  // tenders.value = searchResults.mappedResults;
 };
 
 const container = ref(null);
@@ -320,13 +344,23 @@ watch(
             class="filter text-secondary hidden lg:flex flex-col gap-y-6 pt-8 pr-6 items-start w-[272px]"
           >
             <h4 class="font-semibold leading-8">Filter Tenders</h4>
-            <button
-              class="px-4 py-3 flex items-center justify-center rounded border border-grey-2 bg-grey"
-            >
-              <Icon name="material-symbols:arrow-back-ios" /><span class="ml-1"
-                >Filters</span
+            <div class="flex items-center w-full justify-between">
+              <button
+                class="px-4 py-3 flex items-center justify-center rounded border border-grey-2 bg-grey"
               >
-            </button>
+                <Icon name="material-symbols:arrow-back-ios" /><span
+                  class="ml-1"
+                  >Filters</span
+                >
+              </button>
+              <button
+                v-if="showClearFilters"
+                @click="clearFilters"
+                class="text-secondary font-bold"
+              >
+                Clear all
+              </button>
+            </div>
             <div class="flex flex-col w-full gap-4">
               <div
                 @click="showLocationSearch = !showLocationSearch"
@@ -337,8 +371,11 @@ watch(
                   <p>Location</p>
                 </div>
                 <div class="flex gap-2 items-center">
-                  <!-- <p class="text-grey-6">100</p> -->
-                  <Icon name="ic:baseline-arrow-forward-ios" size="12" />
+                  <Icon
+                    :class="showLocationSearch ? 'rotate-90' : ''"
+                    name="ic:baseline-arrow-forward-ios"
+                    size="12"
+                  />
                 </div>
               </div>
               <div v-if="showLocationSearch" class="relative w-full">
@@ -357,16 +394,6 @@ watch(
                   placeholder="Search by Location"
                 />
               </div>
-              <!-- <div class="flex justify-between items-center py-2 w-full">
-                <div class="flex gap-3 items-center">
-                  <img src="/svg/file.svg" alt="file" />
-                  <p>Contract Type</p>
-                </div>
-                <div class="flex gap-2 items-center">
-                  <p class="text-grey-6">40</p>
-                  <Icon name="ic:baseline-arrow-forward-ios" size="12" />
-                </div>
-              </div> -->
               <div
                 @click="showDatePicker = !showDatePicker"
                 class="flex justify-between cursor-pointer items-center py-2 w-full"
@@ -376,7 +403,11 @@ watch(
                   <p>Date Range</p>
                 </div>
                 <div class="flex gap-2 items-center">
-                  <Icon name="ic:baseline-arrow-forward-ios" size="12" />
+                  <Icon
+                    :class="showDatePicker ? 'rotate-90' : ''"
+                    name="ic:baseline-arrow-forward-ios"
+                    size="12"
+                  />
                 </div>
               </div>
               <div v-if="showDatePicker">
@@ -398,7 +429,11 @@ watch(
                   <p>Value</p>
                 </div>
                 <div class="flex gap-2 items-center">
-                  <Icon name="ic:baseline-arrow-forward-ios" size="12" />
+                  <Icon
+                    :class="showValueSearch ? 'rotate-90' : ''"
+                    name="ic:baseline-arrow-forward-ios"
+                    size="12"
+                  />
                 </div>
               </div>
               <div v-if="showValueSearch" class="relative w-full">
@@ -413,10 +448,13 @@ watch(
                   />
                 </div> -->
 
-                <div class="flex rounded py-2 px-4 bg-grey border border-secondary items-center justify-center gap-2 my-6">
-                  {{ minValue }}
+                <div
+                  class="flex rounded py-2 px-4 bg-grey border border-secondary items-center justify-center gap-2 my-6"
+                >
+                  €
+                  {{ minValue ? minValue.toLocaleString() : minValue }}
                   <Icon name="mdi:arrow-right" size="18" />
-                  {{ maxValue }}
+                  {{ maxValue ? maxValue.toLocaleString() : maxValue }}
                 </div>
                 <div class="slider relative h-1 rounded-md bg-gray-300">
                   <div
@@ -496,10 +534,18 @@ watch(
                 No results found
               </h3>
             </template>
-            <div class="flex justify-between items-center">
+            <div
+              v-if="dataStore.totalCount"
+              class="flex justify-between items-center"
+            >
               <p>
-                {{ from + 1 }} - {{ from + 10 }} of
-                {{ dataStore.totalCount }} results
+                {{ from + 1 }} -
+                {{
+                  from + 10 <= dataStore.totalCount
+                    ? from + 10
+                    : dataStore.totalCount
+                }}
+                of {{ dataStore.totalCount }} results
               </p>
               <Pagination
                 :total="dataStore.totalCount"

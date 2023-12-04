@@ -52,6 +52,7 @@ export const useAuthStore = defineStore(
             loggedIn = true;
             // localStorage.setItem('user-token', res.accessToken);
             router.push('/dashboard');
+            dataStore.getGenericEnums();
           })
       });
     };

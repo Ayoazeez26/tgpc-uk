@@ -46,7 +46,7 @@ const getTenders = async () => {
       dataStore.searchTerm === '' ? 'the' : dataStore.searchTerm.toLowerCase()
     }&size=20&from=1`
   );
-  tenders.value = searchResults.mappedResults;
+  // tenders.value = searchResults.mappedResults;
 };
 </script>
 <template>
