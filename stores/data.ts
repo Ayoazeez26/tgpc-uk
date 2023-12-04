@@ -1,12 +1,14 @@
 import { defineStore } from 'pinia';
 import { useDialogStore } from './dialog';
 import { RequestTenderInput, contactUsInput } from '~/types';
+import { successToast } from '~/plugins/vue3-toastify';
 
 export const useDataStore = defineStore(
   'data',
   () => {
     const { $api } = useNuxtApp();
     const dialog = useDialogStore();
+    const router = useRouter();
     const userEmail = ref('');
     const totalCount = ref(0);
     let loggedIn = ref(false);
@@ -18,11 +20,11 @@ export const useDataStore = defineStore(
     const getGenericEnums = () => {
       // dialog.isLoading = true;
       // return new Promise((resolve, reject) => {
-        $api.data.getGenericEnums().then((res) => {
-          // dialog.isLoading = false;
-          enumList.value = res;
-          // resolve(res);
-        });
+      $api.data.getGenericEnums().then((res) => {
+        // dialog.isLoading = false;
+        enumList.value = res;
+        // resolve(res);
+      });
       // });
     };
 
@@ -100,12 +102,11 @@ export const useDataStore = defineStore(
 
     const contactUs = (data: contactUsInput) => {
       dialog.isLoading = true;
-      return new Promise((resolve, reject) => {
-        $api.data.contactUs(data).then((res) => {
-          console.log(res);
-          dialog.isLoading = false;
-          resolve(res);
-        });
+      $api.data.contactUs(data).then((res) => {
+        console.log(res);
+        dialog.isLoading = false;
+        successToast('Your message has been sent successfully!');
+        router.push('/dashboard');
       });
     };
 
@@ -124,7 +125,7 @@ export const useDataStore = defineStore(
       searchTerm,
       getGenericEnums,
       enumList,
-      contactUs
+      contactUs,
     };
   },
   {
