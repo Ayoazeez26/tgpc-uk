@@ -117,7 +117,7 @@ const containsItem = computed(() => {
               class="bg-black disabled:bg-black/50 disabled:border-grey disabled:text-white/70 border-2 border-grey-6 font-medium py-4 px-8 h-[62px] rounded text-white w-full"
               :disabled="containsItem"
             >
-              Continue with email
+              Login
             </button>
           </div>
           <p class="mt-6 text-sm text-grey-8 font-light">

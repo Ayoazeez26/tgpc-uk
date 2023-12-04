@@ -78,6 +78,7 @@ watch(email, (value) => {
 watch(message, (value) => {
   validateInput("message", value);
 });
+
 </script>
 <template>
   <div
