@@ -28,7 +28,7 @@ const min = ref(0);
 const max = ref(100000000);
 const progressRef = ref(null);
 const currentFilter = ref('searchTerm');
-const getTenders = async (condition: boolean) => {
+const getTenders = _.debounce(async (condition: boolean) => {
   window.scrollTo(0, 0);
   if (!condition) {
     from.value = 0;
@@ -47,7 +47,7 @@ const getTenders = async (condition: boolean) => {
   await dataStore.filterTenders(query);
   // currentFilter.value = 'searchTerm';
   // dataStore.allTenders = allTenders;
-};
+}, 500);
 
 getTenders(false);
 
