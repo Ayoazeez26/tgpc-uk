@@ -62,7 +62,6 @@ const confirmOTP = async (): Promise<void> => {
             <button
               @click="confirmOTP"
               class="bg-black disabled:bg-black/50 disabled:border-grey disabled:text-white/70 border-2 border-grey-6 font-medium py-4 px-8 h-[62px] rounded text-white w-full"
-              :disabled="code.length !== 6 ? true : false"
             >
               Continue
             </button>

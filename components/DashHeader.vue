@@ -40,12 +40,14 @@ const closeModal = ref(false);
 // });
 
 const getTenders = async () => {
+  showSearchBar.value = false;
   const searchResults = await dataStore.searchTenders(
-    `?searchTerm=${dataStore.searchTerm === '' ? 'the' : dataStore.searchTerm.toLowerCase()}&size=20&from=1`
+    `?searchTerm=${
+      dataStore.searchTerm === '' ? 'the' : dataStore.searchTerm.toLowerCase()
+    }&size=20&from=1`
   );
   tenders.value = searchResults.mappedResults;
 };
-
 </script>
 <template>
   <div
@@ -57,24 +59,17 @@ const getTenders = async () => {
       <nuxt-link to="/dashboard">
         <img class="w-[63px]" src="/svg/logo.svg" />
       </nuxt-link>
-      <div class="flex items-center gap-4 lg:hidden" @click="open = !open">
+      <div class="pro border lg:hidden border-white flex items-center text-grey-5 gap-2 h-[38px] px-4">
+        <div class="italic font-black uppercase">pro</div>
+      </div>
+      <div class="flex items-center gap-4 lg:hidden">
         <Icon
           @click="showSearchBar = true"
           name="ic:baseline-search"
           size="24px"
           color="#0A0A0A"
-          class="absolute top-4 left-6"
+          class=""
         />
-        <!-- <div
-          @click="logout"
-          class="pro flex items-center text-grey-5 gap-2 h-[38px] px-4"
-        >
-          <div class="italic font-black uppercase">pro</div>
-          <div class="flex gap-1 items-center">
-            <img src="/svg/coins.svg" alt="coins" />
-            <p class="text-sm font-bold">15</p>
-          </div>
-        </div> -->
         <button ref="hamburger" @click="open = !open">
           <Icon name="ic:round-menu" size="24px" color="#0A0A0A" />
         </button>
@@ -100,23 +95,45 @@ const getTenders = async () => {
         >
           Search
         </button>
-        <!-- <div
-          v-if="tenders.length !== 0 && !closeModal"
-          class="shadow absolute w-full bg-grey-3 z-10 h-auto max-h-40 overflow-y-auto top-16 p-2"
-        >
-          <template v-for="(tender, index) in tenders" :key="index">
-            <button
-              @click="goToTender(tender)"
-              class="bg-white clamp text-left w-full overflow-hidden text-ellipsis font-semibold text-sm p-3 border border-grey-2 rounded-lg mb-2"
-            >
-              {{ tender.Title }}
-            </button>
-          </template>
-        </div> -->
       </div>
-      <button class="hidden lg:block" ref="hamburger" @click="open = !open">
-        <Icon name="ic:round-menu" size="24px" color="#0A0A0A" />
-      </button>
+      <template v-if="showSearchBar">
+        <div class="absolute top-0 left-0 flex flex-col gap-4 p-4 pb-6 rounded-b bg-grey-3 w-full">
+          <div class="relative min-w-full">
+            <Icon
+              name="ic:baseline-search"
+              size="24px"
+              color="#0A0A0A"
+              class="absolute top-5 left-6"
+            />
+            <input
+              type="text"
+              name="search"
+              v-model="dataStore.searchTerm"
+              id="search"
+              class="px-6 pl-[52px] border focus:outline-none text-sm focus:ring-secondary focus:ring-1 border-secondary rounded py-5 w-full"
+              placeholder="Search Tenders & Contracts"
+            />
+          </div>
+          <button
+            @click="getTenders"
+            class="bg-secondary border-2 leading-[30px] tracking-[0.028px] border-secondary w-full font-medium py-1.5 top-2 px-8 rounded text-white"
+          >
+            Search
+          </button>
+        </div>
+      </template>
+      <div class="hidden lg:flex gap-4">
+        <div class="pro border border-white flex items-center text-grey-5 gap-2 h-[38px] px-8">
+          <p class="italic font-black uppercase text-sm">pro</p>
+          <!-- <div class="flex gap-1 items-center">
+              <img src="/svg/coins.svg" alt="coins" />
+              <p class="text-sm font-bold">15</p>
+            </div> -->
+        </div>
+        <button ref="hamburger" @click="open = !open">
+          <Icon name="ic:round-menu" size="24px" color="#0A0A0A" />
+        </button>
+      </div>
     </div>
   </div>
   <ul

@@ -1,11 +1,15 @@
 <script setup lang="ts">
-// import { BuildingOffice2Icon, EnvelopeIcon, PhoneIcon } from '@heroicons/vue/24/outline'
+import { useDataStore } from '~/stores/data';
+import { contactUsInput } from '~/types';
 
+// import { BuildingOffice2Icon, EnvelopeIcon, PhoneIcon } from '@heroicons/vue/24/outline'
+const dataStore = useDataStore();
 const errorMsg = reactive({});
 const firstname = ref('');
 const lastname = ref('');
 const email = ref('');
 const message = ref('');
+const subject = ref('');
 
 const validateEmail = (email) => {
   if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
@@ -19,10 +23,9 @@ const validateInput = (input, value) => {
   if (value) {
     errorMsg[input] = '';
   } else {
-    errorMsg[input] = ` ${input} required`;
+    errorMsg[input] = `${input} is required`;
   }
 };
-
 
 watch(firstname, (value) => {
   validateInput('firstname', value);
@@ -30,6 +33,10 @@ watch(firstname, (value) => {
 
 watch(lastname, (value) => {
   validateInput('lastname', value);
+});
+
+watch(subject, (value) => {
+  validateInput('subject', value);
 });
 
 watch(email, (value) => {
@@ -42,6 +49,34 @@ watch(message, (value) => {
 const submitForm = () => {
   console.log('submitting form');
 };
+
+const contactUs = () => {
+  const payload: contactUsInput = {
+    firstName: firstname.value,
+    lastName: lastname.value,
+    email: email.value,
+    message: message.value,
+    account: dataStore.enumList.contactEnum[1],
+    subject: subject.value
+  }
+
+  console.log(payload);
+  dataStore.contactUs(payload);
+}
+
+const containsItem = computed(() => {
+  if (
+    errorMsg.firstname === '' &&
+    errorMsg.lastname === '' &&
+    errorMsg.email === '' &&
+    errorMsg.subject === '' &&
+    errorMsg.message === ''
+  ) {
+    return false;
+  } else {
+    return true;
+  }
+});
 </script>
 
 <template>
@@ -104,9 +139,12 @@ const submitForm = () => {
           </dl>
         </div>
       </div>
-      <form @submit.prevent="submitForm" class="pt-12 pb-24 px-4 lg:px-0 w-full mx-auto">
+      <form
+        @submit.prevent="submitForm"
+        class="pt-12 pb-24 px-4 lg:px-0 w-full mx-auto"
+      >
         <div class="mx-auto max-w-xl lg:max-w-lg">
-          <div class="grid grid-cols-1 gap-x-8 gap-y-2 sm:grid-cols-2">
+          <div class="grid grid-cols-1 gap-x-8 sm:grid-cols-2">
             <div>
               <label for="first-name" class="block text-grey-8"
                 >First name</label
@@ -121,9 +159,11 @@ const submitForm = () => {
                   class="border border-grey-2 bg-grey rounded-sm py-4 px-6 focus:outline-none placeholder:text-gray-400 w-full h-12"
                   :class="errorMsg.firstname ? 'border border-red-500' : ''"
                 />
-                <span v-if="errorMsg.firstname" class="text-red-500 text-xs mt-1">{{
-                  errorMsg.firstname
-                }}</span>
+                <span
+                  v-if="errorMsg.firstname"
+                  class="text-red-500 text-xs mt-1"
+                  >{{ errorMsg.firstname }}</span
+                >
                 <span v-else class="text-transparent text-xs mt-1"
                   >There is no error message</span
                 >
@@ -141,9 +181,11 @@ const submitForm = () => {
                   class="border border-grey-2 bg-grey rounded-sm py-4 px-6 focus:outline-none placeholder:text-gray-400 w-full h-12"
                   :class="errorMsg.lastname ? 'border border-red-500' : ''"
                 />
-                <span v-if="errorMsg.lastname" class="text-red-500 text-xs mt-1">{{
-                  errorMsg.lastname
-                }}</span>
+                <span
+                  v-if="errorMsg.lastname"
+                  class="text-red-500 text-xs mt-1"
+                  >{{ errorMsg.lastname }}</span
+                >
                 <span v-else class="text-transparent text-xs mt-1"
                   >There is no error message</span
                 >
@@ -164,6 +206,28 @@ const submitForm = () => {
                 <span v-if="errorMsg.email" class="text-red-500 text-xs mt-1">{{
                   errorMsg.email
                 }}</span>
+                <span v-else class="text-transparent text-xs mt-1"
+                  >There is no error message</span
+                >
+              </div>
+            </div>
+            <div class="sm:col-span-2">
+              <label for="subject" class="block text-grey-8">Subject</label>
+              <div class="mt-2.5">
+                <input
+                  type="text"
+                  name="subject"
+                  v-model="subject"
+                  id="subject"
+                  autocomplete="subject"
+                  class="border border-grey-2 bg-grey rounded-sm py-4 px-6 focus:outline-none placeholder:text-gray-400 w-full h-12"
+                  :class="errorMsg.subject ? 'border border-red-500' : ''"
+                />
+                <span
+                  v-if="errorMsg.subject"
+                  class="text-red-500 text-xs mt-1"
+                  >{{ errorMsg.subject }}</span
+                >
                 <span v-else class="text-transparent text-xs mt-1"
                   >There is no error message</span
                 >
@@ -194,13 +258,15 @@ const submitForm = () => {
             </div>
           </div>
           <div class="w-full mt-6">
-              <button
-                type="submit"
-                class="liquor-btn min-w-max py-4 px-8 leading-none rounded-sm  bg-secondary text-white w-full hover:bg-secondary/90"
-              >
-                Get In Touch
-              </button>
-            </div>
+            <button
+              type="submit"
+              class="bg-black text-white px-7 py-3 border border-grey-6 disabled:text-[#A5A5A5] disabled:bg-grey-2 w-full disabled:cursor-not-allowed rounded"
+              :disabled="containsItem"
+              @click="contactUs"
+            >
+              Get In Touch
+            </button>
+          </div>
         </div>
       </form>
     </div>

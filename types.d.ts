@@ -154,3 +154,27 @@ export interface updatePasswordInput {
 export interface updatePasswordResponse {
   success: boolean;
 }
+
+export interface enumResponse {
+  genderEnum: string[];
+  signUpMediumEnum: string[];
+  accountStatusEnum: string[];
+  countryCodeAbvENum: string[];
+  currency: string[];
+  countryEnum: string[];
+  phoneCountryCodeEnum: string[];
+  statusEnum: string[];
+  maritalStatus: string[];
+  dateFormat: string[];
+  locationEnum: string[];
+  contactEnum: string[];
+}
+
+export interface contactUsInput {
+  firstName: string;
+  lastName: string;
+  message: string;
+  email: string;
+  subject: string;
+  account: string;
+}
