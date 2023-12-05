@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import moment from 'moment';
+import { useAuthStore } from '~/stores/auth';
 import { useDataStore } from '~/stores/data';
 import { useDialogStore } from '~/stores/dialog';
 import { RequestTenderInput } from '~/types';
 
 const dataStore = useDataStore();
+const authStore = useAuthStore();
 const dialog = useDialogStore();
 const days = ref(0);
 const hours = ref(0);
@@ -38,7 +40,7 @@ setInterval(() => {
 }, 1000);
 
 const payload: RequestTenderInput = {
-  email: dataStore.userEmail,
+  email: authStore.user.email,
   tenderName: tender.Classification,
   tenderTitle: tender.Title
 };

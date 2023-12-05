@@ -101,9 +101,9 @@ const containsItem = computed(() => {
                 >
                 <span>Our friendly team is here to help</span>
                 <a
-                  href="mailto:hi@untitledui.com"
+                  href="mailto:contactus@hsct.com"
                   class="mt-5 hover:text-gray-900"
-                  >hi@untitledui.com</a
+                  >contactus@hsct.com</a
                 >
               </dd>
             </div>
@@ -118,7 +118,7 @@ const containsItem = computed(() => {
                 <span>Come say hello at our office HQ</span>
 
                 <span class="mt-5"
-                  >100 Smith Street<br />Collingwood VIC 3066 AU</span
+                  >30 Churchill Place, <br />Canary Wharf, E14 5RE</span
                 >
               </dd>
             </div>
@@ -131,8 +131,8 @@ const containsItem = computed(() => {
                   >Phone</span
                 >
                 <span>Mon-Fri from 8am to 5pm.</span>
-                <a class="hover:text-gray-900 mt-5" href="tel:+1 (555) 234-5678"
-                  >+1 (555) 234-5678</a
+                <a class="hover:text-gray-900 mt-5" href="tel:+44 7399044269"
+                  >+44 7399044269</a
                 >
               </dd>
             </div>
