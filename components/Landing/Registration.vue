@@ -17,7 +17,7 @@
       <div class="lg:pt-20 md:pt-20 md:px-0 px-5 space-y-5 md:w-[40%]">
         <div class="flex">
           <div class="flex items-center border border-[#D7D7D7] rounded">
-            <p class="bg-grey-5 py-3 px-6 text-[#0A0A0A] text-xl">1</p>
+            <p class="bg-grey-5 py-3 px-6 text-secondary text-xl">1</p>
             <p class="text-lg lg:px-7 px-5">How it works</p>
           </div>
         </div>

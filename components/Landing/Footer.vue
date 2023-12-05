@@ -14,7 +14,7 @@
         <li><NuxtLink to="/how-it-works">How it works</NuxtLink></li>
       </ul>
     </div>
-    <div class="bg-[#0A0A0A] h-[0.1px] my-10"></div>
+    <div class="bg-secondary h-[0.1px] my-10"></div>
     <div class="text-center text-grey-8 text-sm">
       &copy; {{ currentYear }} HSCT. All rights reserved.
     </div>

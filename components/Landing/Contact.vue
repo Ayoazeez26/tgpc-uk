@@ -21,15 +21,15 @@
               alt="message icon"
               class="bg-grey-5 border border-[#D7D7D7] p-3 rounded-md"
             />
-            <p class="font-bold text-2xl text-[#0a0a0a]">Email</p>
+            <p class="font-bold text-2xl text-secondary">Email</p>
             <p class="text-grey-8">
               Let's talk about how HSCT can help you find and win health sector
               tender opportunities.
             </p>
             <NuxtLink
-              to="mailto:hello@hsct.com"
-              class="text-[#0A0A0A] underline block"
-              >hello@hsct.com</NuxtLink
+              to="mailto:contactus@hsct.com"
+              class="text-secondary underline block"
+              >contactus@hsct.com</NuxtLink
             >
           </div>
           <div class="space-y-5">
@@ -38,12 +38,12 @@
               alt="phone icon"
               class="bg-grey-5 border border-[#D7D7D7] p-3 rounded-md"
             />
-            <p class="font-bold text-2xl text-[#0a0a0a]">Phone</p>
+            <p class="font-bold text-2xl text-secondary">Phone</p>
             <p class="text-grey-8">Reach out to us today to learn more.</p>
             <NuxtLink
               to="tel:+15551234567"
-              class="text-[#0A0A0A] underline block"
-              >+1 (555) 123-4567</NuxtLink
+              class="text-secondary underline block"
+              >+44 7399044269</NuxtLink
             >
           </div>
         </div>

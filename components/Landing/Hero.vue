@@ -33,11 +33,12 @@
         <div
           class="flex md:flex-row flex-col md:space-y-0 space-y-5 md:items-center md:justify-center md:space-x-7"
         >
-          <button
-            class="bg-grey-5 text-[#0A0A0A] border border-[#D7D7D7] md:w-auto w-full rounded-md md:px-8 md:py-4 py-5"
+          <nuxt-link
+            to="/register"
+            class="bg-grey-5 text-secondary border border-[#D7D7D7] md:w-auto w-full rounded-md md:px-8 md:py-4 py-5"
           >
             Try it now
-          </button>
+          </nuxt-link>
           <button
             class="bg-[#606973] border border-[#606973] md:w-auto w-full rounded-md md:px-8 md:py-4 py-5"
           >
