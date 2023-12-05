@@ -2,8 +2,8 @@
 import { useDataStore } from '@/stores/data';
 import { useDialogStore } from '@/stores/dialog';
 import { useAuthStore } from '~/stores/auth';
-import { UserLoginInput } from '~/types';
 import { successToast, errorToast } from '~/plugins/vue3-toastify';
+import type { UserLoginInput } from '~/types';
 // import { useToast } from 'vue-toastification';
 
 const { $api } = useNuxtApp();

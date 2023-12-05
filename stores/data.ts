@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { useDialogStore } from './dialog';
-import { RequestTenderInput, contactUsInput } from '~/types';
+import type { RequestTenderInput, contactUsInput } from '~/types';
 import { successToast } from '~/plugins/vue3-toastify';
 
 export const useDataStore = defineStore(

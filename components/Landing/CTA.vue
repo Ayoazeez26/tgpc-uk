@@ -7,7 +7,7 @@
       <p>Discover and apply for tender opportunities in the health sector.</p>
       <button>
         <NuxtLink
-          to="/register"
+          to="/login"
           class="bg-grey-5 border md:w-auto w-full block border-[#D7D7D7] text-secondary rounded-md lg:px-20 md:px-14 px-36 py-3"
           >Try it now</NuxtLink
         >

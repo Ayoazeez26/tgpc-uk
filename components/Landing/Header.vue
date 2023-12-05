@@ -7,12 +7,12 @@
       <!-- Tablet and desktop navigation links -->
       <div class="md:flex hidden items-center space-x-20">
         <ul class="flex items-center space-x-10">
-          <li><NuxtLink to="/about">About</NuxtLink></li>
-          <li><NuxtLink to="/features">Features</NuxtLink></li>
-          <li><NuxtLink to="/how-it-works">How it works</NuxtLink></li>
+          <li><NuxtLink to="#about">About</NuxtLink></li>
+          <li><NuxtLink to="#features">Features</NuxtLink></li>
+          <li><NuxtLink to="#how-it-works">How it works</NuxtLink></li>
         </ul>
-        <NuxtLink to="/" class="px-10 py-4 bg-black rounded-md text-white"
-          ><button>Try it now</button></NuxtLink
+        <NuxtLink to="/login" class="px-10 py-4 bg-black rounded-md text-white"
+          >Try it now</NuxtLink
         >
       </div>
       <div class="flex md:hidden items-center">
@@ -50,7 +50,7 @@
       </ul>
       <NuxtLink
         @click="toggleMobileNav"
-        to="/"
+        to="/login"
         class="px-10 py-4 bg-black rounded-md text-white"
       >
         <button>Try it now</button>

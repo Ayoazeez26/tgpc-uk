@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useAuthStore } from '~/stores/auth';
-import { UpdateProfileInput, updatePasswordInput } from '~/types';
+import type { UpdateProfileInput, updatePasswordInput } from '~/types';
 definePageMeta({
   middleware: ['authenticated'],
 });

@@ -62,6 +62,7 @@
         </p>
       </div>
     </div>
+    <div id="how-it-works" />
   </section>
 </template>
 

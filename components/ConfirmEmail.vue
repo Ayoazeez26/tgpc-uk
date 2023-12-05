@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useDialogStore } from '@/stores/dialog';
 import { useAuthStore } from '~/stores/auth';
-import { OtpValue } from '~/types';
+import type { OtpValue } from '~/types';
 
 const { $api } = useNuxtApp();
 const auth = useAuthStore();

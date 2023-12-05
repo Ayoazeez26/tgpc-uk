@@ -12,7 +12,7 @@
           that match your expertise and interests.
         </p>
         <button class="px-10 py-4 bg-black rounded-md text-white">
-          <NuxtLink to="/">Try it now</NuxtLink>
+          <NuxtLink to="/login">Try it now</NuxtLink>
         </button>
       </div>
       <div>
@@ -24,6 +24,7 @@
           />
         </div>
       </div>
+      <div id="features" />
     </div>
   </section>
 </template>

@@ -1,7 +1,7 @@
 
 import FetchFactory from '../factory';
 
-import { RequestTenderInput, contactUsInput, enumResponse } from '~/types';
+import type { RequestTenderInput, contactUsInput, enumResponse } from '~/types';
 
 class DataModule extends FetchFactory {
   private RESOURCE = '';

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useDataStore } from '~/stores/data';
-import { contactUsInput } from '~/types';
+import type { contactUsInput } from '~/types';
 
 // import { BuildingOffice2Icon, EnvelopeIcon, PhoneIcon } from '@heroicons/vue/24/outline'
 const dataStore = useDataStore();
