@@ -1,10 +1,10 @@
 <script setup lang="ts"></script>
 <template>
   <div
-    class="pt-20 px-4 xl:px-0 md:pt-28 mt-10 w-full max-w-[1296px] flex flex-col xl:flex-row items-start gap-10 mx-auto"
+    class="pt-20 px-4 md:px-0 md:pt-28 mt-10 w-full max-w-[1440px] flex flex-col xl:flex-row items-start gap-10 mx-auto"
   >
     <div
-      class="w-full flex justify-between items-center relative bg-black text-grey-5 "
+      class="w-full flex justify-between items-center relative bg-black text-grey-5 rounded-r-lg"
     >
       <div class="flex flex-col gap-6 w-full px-10 py-16">
         <h1

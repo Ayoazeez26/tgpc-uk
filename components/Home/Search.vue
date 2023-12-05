@@ -345,7 +345,7 @@ onMounted(() => {
               <h3
                 class="text-2xl lg:text-[30px] capitalize lg:leading-[48px] text-center mt-5 font-semibold"
               >
-                >No results found
+                No results found
               </h3>
             </template>
           </div>

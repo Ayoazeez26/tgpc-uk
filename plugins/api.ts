@@ -14,48 +14,55 @@ interface IApiInstance {
 // Example POST method implementation:
 export async function refreshToken(config: any, data: RefreshTokenInput) {
   // Default options are marked with *
-  const response = await fetch(
-    `${config.public.baseUrl}/account/refresh-token`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: '',
-      },
-      body: JSON.stringify(data),
+  try {
+    const response = await fetch(
+      `${config.public.baseUrl}/account/refresh-token`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: '',
+        },
+        body: JSON.stringify(data),
+      }
+    );
+    if (response.ok) {
+      console.log(response);
+      return response.json();
+    } else {
+      throw new Error(response);
     }
-  );
-  return response.json(); // parses JSON response into native JavaScript objects
+  } catch (response) {
+    throw new Error(response);
+  }
+  // return response.json(); // parses JSON response into native JavaScript objects
 }
 
 export default defineNuxtPlugin((nuxtApp) => {
   const config = useRuntimeConfig();
   const dialog = useDialogStore();
   const router = useRouter();
-  let opt = {
-
-  }
+  let opt = {};
   const fetchOptions: FetchOptions = {
     retryStatusCodes: [451],
     retry: 3,
-    retryDelay: 500, // ms
+    retryDelay: 1000, // ms
     baseURL: config.public.baseUrl,
     onRequest({ request, options }) {
       const authStore = useAuthStore();
       // console.log(authStore.authenticated);
       if (authStore.authenticated && authStore.user.accessToken) {
-        console.log(authStore.token);
+        // console.log(authStore.token);
         opt = { Authorization: `Bearer ${authStore.user.accessToken}` };
         options.headers = opt;
       } else {
-        console.log('Not authenticated');
+        // console.log('Not authenticated');
         opt = { Authorization: '' };
       }
     },
     onResponseError(error) {
       const authStore = useAuthStore();
       const { $api } = useNuxtApp();
-      console.log('dialog is =>', dialog);
       dialog.isLoading = false;
       console.log(error);
       if (error.response.status === 451) {
@@ -64,7 +71,18 @@ export default defineNuxtPlugin((nuxtApp) => {
           refreshToken: authStore.user.refreshToken as string,
         };
         // opt = { Authorization: '' };
-
+        // const refreshUserToken = refreshToken(config, payload);
+        // if (!refreshUserToken) {
+        //   errorToast('Session has expired, please login again!');
+        //   setTimeout(() => {
+        //     authStore.logout();
+        //   }, 1000);
+        // } else {
+        //   console.log(refreshUserToken);
+        //   opt = { Authorization: `Bearer ${refreshUserToken.data.token}` };
+        //   authStore.user.accessToken = refreshUserToken.data.token;
+        //   authStore.user.refreshToken = refreshUserToken.data.refreshToken;
+        // }
         refreshToken(config, payload)
           .then((data) => {
             console.log(data);
@@ -81,7 +99,7 @@ export default defineNuxtPlugin((nuxtApp) => {
           });
         // $api.auth.refreshToken(payload).then((res) => {
         //   console.log(res);
-        // })
+        // });
       } else if (error.response.status === 456) {
         errorToast('Session has expired, please login again!');
         setTimeout(() => {
