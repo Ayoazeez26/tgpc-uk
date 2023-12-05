@@ -30,7 +30,7 @@ const max = ref(100000000);
 const progressRef = ref(null);
 const currentFilter = ref('searchTerm');
 const getTenders = _.debounce(async (condition: boolean) => {
-  window.scrollTo(0, 0);
+  window.scrollTo(0, 500);
   if (!condition) {
     from.value = 0;
     page.value = 1;
@@ -270,7 +270,7 @@ watch(
       <div class="w-full flex flex-col items-center text-center px-4">
         <div class="w-full max-w-[822px] mb-10">
           <h2
-            class="text-2xl lg:text-[32px] capitalize lg:leading-[48px] font-extralight"
+            class="text-2xl text-secondary lg:text-[32px] capitalize lg:leading-[48px] font-extralight"
           >
             Current
             <span class="font-semibold"
@@ -449,7 +449,7 @@ watch(
                 </div> -->
 
                 <div
-                  class="flex rounded py-2 px-4 bg-grey border border-secondary items-center justify-center gap-2 my-6"
+                  class="flex rounded py-2 px-4 bg-grey border border-secondary items-center justify-center gap-2 mb-6"
                 >
                   €
                   {{ minValue ? minValue.toLocaleString() : minValue }}

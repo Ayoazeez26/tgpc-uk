@@ -86,7 +86,7 @@ const containsItem = computed(() => {
               class="email py-4 px-6 bg-grey border mt-1 focus:outline-none text-grey-8 rounded focus:border-secondary focus:ring-secondary h-[62px] w-full"
               :type="isPasswordVisible ? 'text' : 'password'"
               name="username"
-              placeholder="z$!a.*gt#@7&g%"
+              placeholder="password"
             />
             <div class="absolute bottom-10 right-4">
               <button
