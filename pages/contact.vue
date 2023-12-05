@@ -1,7 +1,7 @@
 <template>
   <div class="body">
     <main class="text-primary bg-grey-3">
-      <AppHeader />
+      <DashHeader />
       <ContactUs />
     </main>
     <AppFooter />
@@ -9,6 +9,9 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({
+  middleware: ["authenticated"]
+})
 </script>
 
 <style scoped>

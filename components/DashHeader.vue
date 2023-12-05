@@ -25,30 +25,28 @@ const logout = () => {
 if (typeof window !== 'undefined') {
   window.addEventListener('scroll', handleScroll);
 }
-const searchTerm = ref('');
+// const searchTerm = ref('');
 const tenders = ref([]);
 const closeModal = ref(false);
 
-watch(searchTerm, (value) => {
-  if (value === '') {
-    closeModal.value = true;
-    getTenders('The');
-  } else {
-    closeModal.value = false;
-    getTenders(value);
-  }
-});
+// watch(searchTerm, (value) => {
+//   if (value === '') {
+//     closeModal.value = true;
+//     getTenders('The');
+//   } else {
+//     closeModal.value = false;
+//     getTenders(value);
+//   }
+// });
 
-const getTenders = _.debounce(async () => {
+const getTenders = async () => {
+  showSearchBar.value = false;
   const searchResults = await dataStore.searchTenders(
-    `?searchTerm=${searchTerm.value}&size=20`
+    `?searchTerm=${
+      dataStore.searchTerm === '' ? 'the' : dataStore.searchTerm.toLowerCase()
+    }&size=20&from=1`
   );
-  tenders.value = searchResults;
-}, 500);
-
-const goToTender = (tender) => {
-  dataStore.singleTender = tender;
-  router.push(`/tender/${tender.ID}`);
+  // tenders.value = searchResults.mappedResults;
 };
 </script>
 <template>
@@ -61,24 +59,17 @@ const goToTender = (tender) => {
       <nuxt-link to="/dashboard">
         <img class="w-[63px]" src="/svg/logo.svg" />
       </nuxt-link>
-      <div class="flex items-center gap-4 lg:hidden" @click="open = !open">
+      <div class="pro border lg:hidden border-white flex items-center text-grey-5 gap-2 h-[38px] px-4">
+        <div class="italic font-black uppercase">pro</div>
+      </div>
+      <div class="flex items-center gap-4 lg:hidden">
         <Icon
           @click="showSearchBar = true"
           name="ic:baseline-search"
           size="24px"
           color="#0A0A0A"
-          class="absolute top-4 left-6"
+          class=""
         />
-        <!-- <div
-          @click="logout"
-          class="pro flex items-center text-grey-5 gap-2 h-[38px] px-4"
-        >
-          <div class="italic font-black uppercase">pro</div>
-          <div class="flex gap-1 items-center">
-            <img src="/svg/coins.svg" alt="coins" />
-            <p class="text-sm font-bold">15</p>
-          </div>
-        </div> -->
         <button ref="hamburger" @click="open = !open">
           <Icon name="ic:round-menu" size="24px" color="#0A0A0A" />
         </button>
@@ -93,60 +84,109 @@ const goToTender = (tender) => {
         <input
           type="text"
           name="search"
-          v-model="searchTerm"
+          v-model="dataStore.searchTerm"
           id="search"
-          class="px-6 pl-14 border focus:outline-none text-sm focus:ring-grey-2 focus:ring-1 border-grey-2 rounded py-4 w-full"
+          class="px-6 pl-14 pr-[145px] border focus:outline-none text-sm focus:ring-grey-2 focus:ring-1 border-grey-2 rounded py-5 w-full"
           placeholder="Search Tenders & Contracts"
         />
-        <div
-          v-if="tenders.length !== 0 && !closeModal"
-          class="shadow absolute w-full bg-grey-3 z-10 h-auto max-h-40 overflow-y-auto top-16 p-2"
+        <button
+          @click="getTenders"
+          class="bg-secondary border-2 leading-[30px] tracking-[0.028px] border-secondary absolute right-2 font-medium py-1.5 top-2 px-8 rounded text-white"
         >
-          <template v-for="(tender, index) in tenders" :key="index">
-            <button
-              @click="goToTender(tender)"
-              class="bg-white clamp text-left w-full overflow-hidden text-ellipsis font-semibold text-sm p-3 border border-grey-2 rounded-lg mb-2"
-            >
-              {{ tender.Title }}
-            </button>
-          </template>
-        </div>
+          Search
+        </button>
       </div>
-      <button class="hidden lg:block" ref="hamburger" @click="open = !open">
+      <template v-if="showSearchBar">
+        <div class="absolute top-0 left-0 flex flex-col gap-4 p-4 pb-6 rounded-b bg-grey-3 w-full">
+          <div class="relative min-w-full">
+            <Icon
+              name="ic:baseline-search"
+              size="24px"
+              color="#0A0A0A"
+              class="absolute top-5 left-6"
+            />
+            <input
+              type="text"
+              name="search"
+              v-model="dataStore.searchTerm"
+              id="search"
+              class="px-6 pl-[52px] border focus:outline-none text-sm focus:ring-secondary focus:ring-1 border-secondary rounded py-5 w-full"
+              placeholder="Search Tenders & Contracts"
+            />
+          </div>
+          <button
+            @click="getTenders"
+            class="bg-secondary border-2 leading-[30px] tracking-[0.028px] border-secondary w-full font-medium py-1.5 top-2 px-8 rounded text-white"
+          >
+            Search
+          </button>
+        </div>
+      </template>
+      <div class="hidden lg:flex gap-4">
+        <div class="pro border border-white flex items-center text-grey-5 gap-2 h-[38px] px-8">
+          <p class="italic font-black uppercase text-sm">pro</p>
+          <!-- <div class="flex gap-1 items-center">
+              <img src="/svg/coins.svg" alt="coins" />
+              <p class="text-sm font-bold">15</p>
+            </div> -->
+        </div>
+        <button ref="hamburger" @click="open = !open">
           <Icon name="ic:round-menu" size="24px" color="#0A0A0A" />
         </button>
       </div>
     </div>
+  </div>
+  <ul
+    class="navbar-links flex items-start max-h-fit"
+    :class="{ 'navbar-links--navopen overflow-y-auto pb-8': open }"
+    v-click-outside="close"
+  >
+    <div class="flex w-full justify-end items-end">
+      <button class="" @click="open = !open">
+        <Icon name="ic:round-close" size="24px" color="#1B5588" />
+      </button>
+    </div>
     <ul
-      class="navbar-links flex items-start max-h-fit"
-      :class="{ 'navbar-links--navopen overflow-y-auto pb-8': open }"
-      v-click-outside="close"
+      class="flex flex-col lg:items-start w-full gap-4 mt-10 lg:mt-0 lg:gap-10"
     >
-      
-      <div class="flex w-full justify-end items-end">
-        
-        <button class="" @click="open = !open">
-          <Icon name="ic:round-close" size="24px" color="#1B5588" />
-        </button>
-      </div>
-      <ul
-        class="flex flex-col lg:items-start w-full gap-4 mt-10 lg:mt-0 lg:gap-10"
+      <li
+        class="cursor-pointer text-grey-6 font-light text-sm py-3"
+        @click="open = !open"
       >
-        <li class="cursor-pointer text-grey-6 font-light text-sm py-3" @click="open = !open">
-          <nuxt-link to="/">{{ dataStore.userEmail }}</nuxt-link>
+        <nuxt-link to="/">{{ dataStore.userEmail }}</nuxt-link>
+      </li>
+      <div class="flex flex-col w-full gap-3">
+        <li
+          class="cursor-pointer sora flex gap-x-2 text-neutral py-3"
+          @click="open = !open"
+        >
+          <img src="/svg/billing.svg" alt="billing icon" /><nuxt-link
+            to="/account"
+            >Billing & Profile</nuxt-link
+          >
+        </li>
+        <li
+          class="cursor-pointer sora flex gap-x-2 text-neutral py-3"
+          @click="open = !open"
+        >
+          <img src="/svg/bookmarks.svg" alt="bookmarks icon" /><nuxt-link
+            to="/bookmarks"
+            >Bookmarks</nuxt-link
+          >
         </li>
         <div
           class="flex flex-col w-full lg:w-auto lg:flex-row lg:items-center gap-4"
         >
           <button
             @click="logout"
-            class=" text-center font-semibold rounded-lg text-grey-6"
+            class="text-center font-semibold rounded-lg text-grey-6"
           >
-            logout
+            Logout
           </button>
         </div>
-      </ul>
+      </div>
     </ul>
+  </ul>
 </template>
 
 <style lang="scss" scoped>
@@ -192,49 +232,49 @@ const goToTender = (tender) => {
     }
 
     // @media screen and (max-width: 1023px) {
-      transform: translateX(500px);
-      // pointer-events: none;
-      position: fixed;
-      transition: transform 0.2s ease-out;
-      display: flex;
-      flex-direction: column;
-      padding-top: 20px;
-      padding-left: 20px !important;
-      padding-right: 20px;
-      top: 20px;
-      bottom: 0;
-      right: 20px;
-      width: 300px;
-      max-width: 100vw;
-      background-color: $grey;
-      border: 1px solid $grey-2;
-      border-radius: 12px;
-      z-index: 100;
-      &__toggle {
-        display: none;
+    transform: translateX(500px);
+    // pointer-events: none;
+    position: fixed;
+    transition: transform 0.2s ease-out;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    padding-left: 20px !important;
+    padding-right: 20px;
+    top: 20px;
+    bottom: 0;
+    right: 20px;
+    width: 300px;
+    max-width: 100vw;
+    background-color: $grey;
+    border: 1px solid $grey-2;
+    border-radius: 12px;
+    z-index: 100;
+    &__toggle {
+      display: none;
+    }
+    &--navopen {
+      transform: translateX(0);
+      pointer-events: all;
+
+      .navbar-links__toggle {
+        display: block;
+        position: fixed;
+        top: 50px;
+        right: 20px;
+        background: none;
+        border: none;
       }
-      &--navopen {
-        transform: translateX(0);
-        pointer-events: all;
 
-        .navbar-links__toggle {
-          display: block;
-          position: fixed;
-          top: 50px;
-          right: 20px;
-          background: none;
-          border: none;
-        }
+      .navbar-links__item {
+        text-align: left;
+        margin: 20px 0;
+        width: 100%;
 
-        .navbar-links__item {
-          text-align: left;
-          margin: 20px 0;
+        .btn {
           width: 100%;
-
-          .btn {
-            width: 100%;
-          }
         }
+      }
       // }
     }
   }

@@ -1,3 +1,85 @@
+<script setup lang="ts">
+import { useAuthStore } from '~/stores/auth';
+import { UpdateProfileInput, updatePasswordInput } from '~/types';
+definePageMeta({
+  middleware: ['authenticated'],
+});
+const auth = useAuthStore();
+const fullName = ref('');
+fullName.value = auth.user.fullName;
+const updateProfile = async () => {
+  const payload: UpdateProfileInput = {
+    fullName: fullName.value,
+  };
+  await auth.updateProfile(payload);
+};
+
+const passwordData: updatePasswordInput = reactive({
+  currentPassword: '',
+  password: '',
+  confirmPassword: '',
+});
+const errorMsg = reactive({
+  password: '',
+});
+const validatePassword = (pw: string) => {
+  if (
+    /[A-Z]/.test(pw) &&
+    /[a-z]/.test(pw) &&
+    /[0-9]/.test(pw) &&
+    /[^A-Za-z0-9]/.test(pw) &&
+    pw.length > 6
+  ) {
+    errorMsg.password = '';
+  } else {
+    errorMsg.password =
+      'Password must contain at least one uppercase letter, lowercase letter, number, and special character';
+  }
+};
+watch(
+  () => passwordData,
+  (newVal) => {
+    if (newVal.password.length) {
+      validatePassword(newVal.password);
+    }
+    if (newVal.confirmPassword.length) {
+      validateConfirmPassword(newVal.confirmPassword);
+    }
+  },
+  { deep: true }
+);
+
+const validateConfirmPassword = (value) => {
+  if (passwordData.password !== value) {
+    errorMsg.confirmPassword = 'Password do not match';
+  } else {
+    errorMsg.confirmPassword = '';
+  }
+};
+
+const updatePassword = async () => {
+  const passwordUpdated = await auth.updatePassword(passwordData);
+  if (passwordUpdated) {
+    // console.log(passwordUpdated);
+    passwordData.confirmPassword = '';
+    passwordData.currentPassword = '';
+    passwordData.password = '';
+  }
+};
+
+const containsItem = computed(() => {
+  if (
+    errorMsg.password === '' &&
+    errorMsg.confirmPassword === '' &&
+    passwordData.currentPassword
+  ) {
+    return false;
+  } else {
+    return true;
+  }
+});
+</script>
+
 <template>
   <div class="body">
     <main class="text-primary bg-grey-3">
@@ -27,8 +109,9 @@
               >
                 <Heading4 content="Profile" />
                 <button
-                  class="bg-black text-white px-7 py-3 disabled:text-[#A5A5A5] disabled:bg-grey-5 disabled:cursor-not-allowed rounded"
-                  disabled
+                  @click="updateProfile"
+                  class="bg-black text-white px-7 py-3 disabled:text-[#A5A5A5] disabled:bg-[#EBEBEB] disabled:cursor-not-allowed rounded"
+                  :disabled="!fullName"
                 >
                   Save
                 </button>
@@ -36,11 +119,11 @@
               <div class="flex flex-col space-y-3">
                 <label for="full-name" class="text-grey-8">Full Name</label>
                 <input
+                  v-model="fullName"
                   type="text"
                   name="full-name"
                   id="full-name"
                   class="w-full bg-grey border border-grey-2 rounded p-3 outline-none"
-                  value="Chinye Okonkwo"
                 />
               </div>
             </div>
@@ -61,11 +144,12 @@
               <div class="flex flex-col space-y-3">
                 <label for="email" class="text-grey-8">Email</label>
                 <input
+                  v-model="auth.user.email"
                   type="email"
                   name="email"
                   id="email"
-                  class="w-full bg-grey border border-grey-2 rounded p-3 outline-none"
-                  value="chinyeokonkwo@gmail.com"
+                  class="w-full bg-grey border border-grey-2 text-[#A5A5A5] disabled:cursor-not-allowed rounded p-3 outline-none"
+                  disabled
                 />
               </div>
             </div>
@@ -75,8 +159,9 @@
               >
                 <Heading4 content="Change Password" />
                 <button
-                  class="bg-black text-white px-7 py-3 disabled:text-[#A5A5A5] disabled:bg-grey-5 disabled:cursor-not-allowed rounded"
-                  disabled
+                  @click="updatePassword"
+                  class="bg-black text-white px-7 py-3 disabled:text-[#A5A5A5] disabled:bg-[#EBEBEB] disabled:cursor-not-allowed rounded"
+                  :disabled="containsItem"
                 >
                   Update Password
                 </button>
@@ -87,33 +172,53 @@
                     >Existing Password</label
                   >
                   <input
+                    v-model="passwordData.currentPassword"
                     type="password"
                     name="existing-password"
                     id="existing-password"
                     class="w-full bg-grey border border-grey-2 rounded p-3 outline-none"
                   />
                 </div>
-                <div class="flex flex-col space-y-3">
+                <div class="flex flex-col relative space-y-3">
                   <label for="new-password" class="text-grey-8"
                     >New Password</label
                   >
                   <input
-                    type="new-password"
+                    v-model="passwordData.password"
+                    type="password"
                     name="new-password"
                     id="new-password"
                     class="w-full bg-grey border border-grey-2 rounded p-3 outline-none"
                   />
+                  <span
+                    v-if="errorMsg.password"
+                    class="text-red-500 self-start text-left text-xs mt-1"
+                    >{{ errorMsg.password }}</span
+                  >
+                  <span v-else class="text-transparent self-start text-xs mt-1"
+                    >There is no error message of any sort and there is nothing
+                    to worry about just so you know</span
+                  >
                 </div>
-                <div class="flex flex-col space-y-3">
+                <div class="flex flex-col relative space-y-3">
                   <label for="new-password" class="text-grey-8"
                     >Confirm Password</label
                   >
                   <input
-                    type="new-password"
-                    name="new-password"
-                    id="new-password"
+                    v-model="passwordData.confirmPassword"
+                    type="password"
+                    name="confirm-password"
+                    id="confirm-password"
                     class="w-full bg-grey border border-grey-2 rounded p-3 outline-none"
                   />
+                  <span
+                    v-if="errorMsg.confirmPassword"
+                    class="text-red-500 self-start text-left text-xs mt-1"
+                    >{{ errorMsg.confirmPassword }}</span
+                  >
+                  <span v-else class="text-transparent self-start text-xs mt-1"
+                    >There is no error message</span
+                  >
                 </div>
               </div>
             </div>
@@ -189,12 +294,5 @@
     </main>
   </div>
 </template>
-
-<script setup lang="ts">
-import { useAuthStore } from '~/stores/auth';
-
-const auth = useAuthStore();
-auth.authenticated = false;
-</script>
 
 <style scoped></style>

@@ -5,10 +5,9 @@ import { useAuthStore } from '~/stores/auth';
 import { NewPasswordInput, UserLoginInput } from '~/types';
 import { successToast, errorToast } from '~/plugins/vue3-toastify';
 // import { useToast } from 'vue-toastification';
-
-const { $api } = useNuxtApp();
-const data = useDataStore();
-const dialog = useDialogStore();
+definePageMeta({
+  middleware: ["guest"]
+})
 const auth = useAuthStore();
 const router = useRouter();
 const isPasswordVisible = ref(false);
@@ -92,7 +91,6 @@ const containsItem = computed(() => {
           class="text-2xl text-black md:text-[32px] max-w-[422px] font-semibold md:leading-[48px]"
         >
           Enter New Password
-          <!-- <span class="font-extralight">Browsing Tenders</span> -->
         </h5>
         <div class="w-full my-10 max-w-[422px]">
           
@@ -116,7 +114,7 @@ const containsItem = computed(() => {
               </button>
               <button
                 type="button"
-                v-if="!isPasswordVisible"
+                v-else
                 @click.stop="togglePasswordVisibility"
               >
                 <Icon name="mdi:eye-off-outline" size="20" color="#0A0A0A" />
@@ -136,22 +134,22 @@ const containsItem = computed(() => {
               id="userPassword"
               v-model="confirmPassword"
               class="email py-4 px-6 bg-grey border mt-1 focus:outline-none text-grey-8 rounded focus:border-secondary focus:ring-secondary h-[62px] w-full"
-              :type="isPasswordVisible ? 'text' : 'password'"
+              :type="isConfirmPasswordVisible ? 'text' : 'password'"
               name="username"
               placeholder="Confirm Password"
             />
             <div class="absolute bottom-10 right-4">
               <button
                 type="button"
-                v-if="isPasswordVisible"
-                @click.stop="togglePasswordVisibility"
+                v-if="isConfirmPasswordVisible"
+                @click.stop="toggleConfirmPasswordVisibility"
                 class="show-icon"
               >
                 <Icon name="mdi:eye-outline" size="20" color="#0A0A0A" />
               </button>
               <button
                 type="button"
-                v-if="!isConfirmPasswordVisible"
+                v-else
                 @click.stop="toggleConfirmPasswordVisibility"
               >
                 <Icon name="mdi:eye-off-outline" size="20" color="#0A0A0A" />

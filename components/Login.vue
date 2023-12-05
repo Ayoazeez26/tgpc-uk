@@ -32,7 +32,7 @@ const login = async (): Promise<void> => {
 };
 
 const containsItem = computed(() => {
-  if (loginData.value.email.length > 0 && loginData.value.password.length > 0) {
+  if (errorMsg.email === '' && password.value.length > 0) {
     return false;
   } else {
     return true;
@@ -86,7 +86,7 @@ const containsItem = computed(() => {
               class="email py-4 px-6 bg-grey border mt-1 focus:outline-none text-grey-8 rounded focus:border-secondary focus:ring-secondary h-[62px] w-full"
               :type="isPasswordVisible ? 'text' : 'password'"
               name="username"
-              placeholder="z$!a.*gt#@7&g%"
+              placeholder="password"
             />
             <div class="absolute bottom-10 right-4">
               <button
@@ -114,9 +114,10 @@ const containsItem = computed(() => {
           <div class="flex flex-col w-full lg:items-center gap-4">
             <button
               @click="login"
-              class="bg-black border-2 border-grey-6 font-medium py-4 px-8 h-[62px] rounded text-white w-full"
+              class="bg-black disabled:bg-black/50 disabled:border-grey disabled:text-white/70 border-2 border-grey-6 font-medium py-4 px-8 h-[62px] rounded text-white w-full"
+              :disabled="containsItem"
             >
-              Continue with email
+              Login
             </button>
           </div>
           <p class="mt-6 text-sm text-grey-8 font-light">

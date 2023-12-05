@@ -1,15 +1,16 @@
-import { FetchOptions, ofetch } from 'ofetch';
-import { AsyncDataOptions } from 'nuxt/app';
 
 import FetchFactory from '../factory';
 
-import { GetUserResponse, RequestTenderInput } from '~/types';
+import { RequestTenderInput, contactUsInput, enumResponse } from '~/types';
 
 class DataModule extends FetchFactory {
   private RESOURCE = '';
 
-  async getUser(): Promise<GetUserResponse> {
-    return await this.call<GetUserResponse>('GET', `${this.RESOURCE}/getUser`);
+  async getGenericEnums(): Promise<enumResponse> {
+    return await this.call<enumResponse>(
+      'GET',
+      `${this.RESOURCE}/generic-apis/all-enum`
+    );
   }
 
   async searchTenders(credentials: string): Promise {
@@ -19,10 +20,10 @@ class DataModule extends FetchFactory {
     );
   }
 
-  async searchTendersByLocation(credentials: string): Promise {
+  async filterTenders(credentials: string): Promise {
     return await this.call(
       'GET',
-      `${this.RESOURCE}/tenders/location-search${credentials}`
+      `${this.RESOURCE}/tenders/filter-search${credentials}`
     );
   }
 
@@ -45,6 +46,14 @@ class DataModule extends FetchFactory {
     return await this.call(
       'POST',
       `${this.RESOURCE}/account/request-writer`,
+      credentials
+    );
+  }
+
+  async contactUs(credentials: contactUsInput): Promise {
+    return await this.call(
+      'POST',
+      `https://dev.tgpcmedia.com/contact/create`,
       credentials
     );
   }

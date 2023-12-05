@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { UserEmailOTPInput, UserLoginInput, OtpValue, ConfirmResetOTPInput, NewPasswordInput } from '~/types';
+import { UserEmailOTPInput, UserLoginInput, OtpValue, ConfirmResetOTPInput, NewPasswordInput, UpdateProfileInput, updatePasswordInput } from '~/types';
 import { successToast } from '~/plugins/vue3-toastify';
 import { useDialogStore } from './dialog';
 import { useDataStore } from './data';
@@ -18,7 +18,8 @@ export const useAuthStore = defineStore(
     const tempEmail = ref('');
     const user = ref(null);
     const signupData = reactive({});
-    const token = ref<string | null>(localStorage.getItem('user-token'));
+    const token = ref<string | null>();
+    const refreshToken = ref<string | null>(null);
 
     const signup = (payload: UserLoginInput) => {
       dialog.isLoading = true;
@@ -29,13 +30,6 @@ export const useAuthStore = defineStore(
             dialog.isLoading = false;
             console.log(res);
             Object.assign(signupData, res)
-            // signupData.value = res;
-            // useProfile().setToken(res.token);
-            // const token = useCookie('token');
-            // token.value = null;
-            // token.value = res.token;
-            // authenticated.value = true;
-            // localStorage.setItem('user-token', res.token);
             successToast('Account created successfully!');
             router.push('/confirmEmail');
             console.log(signupData.result);
@@ -52,11 +46,13 @@ export const useAuthStore = defineStore(
           .then((res) => {
             dialog.isLoading = false;
             token.value = res.accessToken;
+            refreshToken.value = res.refreshToken;
             user.value = res;
             authenticated.value = true;
             loggedIn = true;
-            localStorage.setItem('user-token', res.accessToken);
+            // localStorage.setItem('user-token', res.accessToken);
             router.push('/dashboard');
+            dataStore.getGenericEnums();
           })
       });
     };
@@ -96,6 +92,7 @@ export const useAuthStore = defineStore(
           tempEmail.value = payload;
           successToast('An OTP has been sent to your email account');
           resetId.value = res.id;
+          console.log(resetId.value);
           router.push('/password/emailOTP')
         })
       })
@@ -129,11 +126,38 @@ export const useAuthStore = defineStore(
       });
     };
 
+    const updateProfile = (payload: UpdateProfileInput) => {
+      dialog.isLoading = true;
+      return new Promise((resolve, reject) => {
+        $api.auth.updateProfile(payload).then((res) => {
+          dialog.isLoading = false;
+          successToast('Profile Updated Successfully')
+          user.value = res;
+        });
+      });
+    };
+
+    const updatePassword = (payload: updatePasswordInput) => {
+      dialog.isLoading = true;
+      return new Promise((resolve, reject) => {
+        $api.auth.updatePassword(payload).then((res) => {
+          dialog.isLoading = false;
+          successToast('Password Updated Successfully');
+          // user.value = res;
+          resolve(res);
+        });
+      });
+    };
+
     const logout = () => {
       // const token = useCookie('token');
       // token.value = null;
       dataStore.loggedIn = false;
+      dataStore.searchTerm = '';
       authenticated.value = false;
+      user.value = null;
+      token.value = null;
+      refreshToken.value = null;
       router.push('/login');
     };
 
@@ -147,7 +171,12 @@ export const useAuthStore = defineStore(
       resetPasswordEmail,
       confirmResetPassword,
       setNewPassword,
-      tempEmail
+      tempEmail,
+      resetId,
+      user,
+      refreshToken,
+      updateProfile,
+      updatePassword
     };
   },
   {

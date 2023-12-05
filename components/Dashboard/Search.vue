@@ -8,7 +8,7 @@ const currentTab = ref('adultCare');
 const page = ref(1);
 const from = ref(0);
 const errorMsg = reactive({});
-const payload = ref('The');
+const payload = ref('health');
 const totalPages = ref(10);
 const perPage = ref(10);
 const total = ref(100);
@@ -20,90 +20,100 @@ const hasMorePages = ref(true);
 const showDatePicker = ref(false);
 const showLocationSearch = ref(false);
 const showValueSearch = ref(false);
+const showClearFilters = ref(false);
 const location = ref('');
 const date = ref();
+const minValue = ref(0);
+const maxValue = ref(90000000);
+const min = ref(0);
+const max = ref(100000000);
+const progressRef = ref(null);
 const currentFilter = ref('searchTerm');
 const getTenders = _.debounce(async (condition: boolean) => {
-  window.scrollTo(0, 0);
+  window.scrollTo(0, 500);
   if (!condition) {
     from.value = 0;
     page.value = 1;
     currentPage.value = 1;
   }
-  const query = `?searchTerm=${payload.value}&size=${perPage.value}&from=${
-    from.value
-  }
-  ${location.value !== '' ? `&location=${location.value}` : ''}
+  const query = `?searchTerm=${
+    dataStore.searchTerm === '' ? 'the' : dataStore.searchTerm.toLowerCase()
+  }&size=${perPage.value}&from=${from.value}
+  ${location.value !== '' ? `&location=${location.value}` : '&location=London'}
   ${startDate.value !== '' ? `&startDate=${startDate.value}` : ''}
   ${endDate.value !== '' ? `&endDate=${endDate.value}` : ''}
-  ${value.value !== '' ? `&value=${value.value}` : ''}
+  ${minValue.value >= 0 ? `&minValue=${minValue.value}` : ''}
+  ${maxValue.value >= 0 ? `&maxValue=${maxValue.value}` : ''}
   `;
-  await dataStore.getTenders(query);
-  currentFilter.value = 'searchTerm';
-  // dataStore.allTenders = allTenders;
-}, 500);
-const getDateTenders = _.debounce(async (condition: boolean) => {
-  window.scrollTo(0, 0);
-  if (!condition) {
-    from.value = 0;
-    page.value = 1;
-    currentPage.value = 1;
-  }
-  const query = `?searchTerm=${payload.value}&size=${perPage.value}&from=${
-    from.value
-  }
-  ${startDate.value !== '' ? `&startDate=${startDate.value}` : ''}
-  ${endDate.value !== '' ? `&endDate=${endDate.value}` : ''}
-  `;
-  await dataStore.getTenders(query);
-  currentFilter.value = 'date';
-  // dataStore.allTenders = allTenders;
-}, 500);
-const getValueTenders = _.debounce(async (condition: boolean) => {
-  window.scrollTo(0, 0);
-  if (!condition) {
-    from.value = 0;
-    page.value = 1;
-    currentPage.value = 1;
-  }
-  const query = `?searchTerm=${value.value}&size=${perPage.value}&from=${from.value}
-  `;
-  await dataStore.searchTendersByValue(query);
-  currentFilter.value = 'value';
+  await dataStore.filterTenders(query);
+  // currentFilter.value = 'searchTerm';
   // dataStore.allTenders = allTenders;
 }, 500);
 
-getTenders();
+getTenders(false);
 
-watch(location, (value) => {
-  if (value) {
-    getTendersByLocation();
-  } else {
-    getTenders();
-  }
+// const getDateTenders = _.debounce(async (condition: boolean) => {
+//   window.scrollTo(0, 0);
+//   if (!condition) {
+//     from.value = 0;
+//     page.value = 1;
+//     currentPage.value = 1;
+//   }
+//   const query = `?searchTerm=${dataStore.searchTerm.toLowerCase()}&size=${perPage.value}&from=${
+//     from.value
+//   }
+//   ${startDate.value !== '' ? `&startDate=${startDate.value}` : ''}
+//   ${endDate.value !== '' ? `&endDate=${endDate.value}` : ''}
+//   `;
+//   await dataStore.getTenders(query);
+//   currentFilter.value = 'date';
+//   // dataStore.allTenders = allTenders;
+// }, 500);
+// const getValueTenders = _.debounce(async (condition: boolean) => {
+//   window.scrollTo(0, 0);
+//   if (!condition) {
+//     from.value = 0;
+//     page.value = 1;
+//     currentPage.value = 1;
+//   }
+//   const query = `?searchTerm=${value.value}&size=${perPage.value}&from=${from.value}
+//   `;
+//   await dataStore.searchTendersByValue(query);
+//   currentFilter.value = 'value';
+//   // dataStore.allTenders = allTenders;
+// }, 500);
+
+watch(minValue, () => {
+  showClearFilters.value = true;
+  getTenders(false);
+});
+watch(maxValue, () => {
+  showClearFilters.value = true;
+  getTenders(false);
 });
 
-const getTendersByLocation = _.debounce(async (condition: boolean) => {
-  window.scrollTo(0, 0);
-  if (!condition) {
-    from.value = 0;
-    page.value = 1;
-    currentPage.value = 1;
-  }
-  await dataStore.searchTendersByLocation(
-    `?searchTerm=${location.value}&size=${perPage.value}&from=${from.value}`
-  );
-  currentFilter.value = 'location';
-}, 500);
+watch(location, (value) => {
+  // if (value) {
+  //   getTendersByLocation();
+  // } else {
+  //   getTenders(false);
+  // }
+  showClearFilters.value = true;
+  getTenders(false);
+});
 
-const addValueSearch = () => {
-  if (Number(value.value) && Number(value.value) !== 0) {
-    errorMsg.valueError = '';
-    getValueTenders();
-  } else {
-    errorMsg.valueError = 'Input a valid number';
-  }
-};
+// const getTendersByLocation = _.debounce(async (condition: boolean) => {
+//   window.scrollTo(0, 0);
+//   if (!condition) {
+//     from.value = 0;
+//     page.value = 1;
+//     currentPage.value = 1;
+//   }
+//   await dataStore.searchTendersByLocation(
+//     `?searchTerm=${location.value}&size=${perPage.value}&from=${from.value}`
+//   );
+//   currentFilter.value = 'location';
+// }, 500);
 
 const showMore = (newPage: number) => {
   page.value = newPage;
@@ -111,34 +121,56 @@ const showMore = (newPage: number) => {
   if (newPage === 1) {
     from.value = 0;
   } else {
-    from.value = newPage * 10 - 11;
+    from.value = newPage * 10 - 10;
   }
-  switch (currentFilter.value) {
-    case 'searchTerm':
-      getTenders(true);
-      break;
-    case 'date':
-      getDateTenders(true);
-      break;
-    case 'value':
-      getValueTenders(true);
-      break;
-    case 'location':
-      getTendersByLocation(true);
-      break;
-    default:
-      // getTenders();
-      console.log('this is the default block');
-      break;
-  }
-  // getTenders();
+  // switch (currentFilter.value) {
+  //   case 'searchTerm':
+  //     getTenders(true);
+  //     break;
+  //   case 'date':
+  //     getDateTenders(true);
+  //     break;
+  //   case 'value':
+  //     getValueTenders(true);
+  //     break;
+  //   case 'location':
+  //     getTendersByLocation(true);
+  //     break;
+  //   default:
+  //     // getTenders();
+  //     console.log('this is the default block');
+  //     break;
+  // }
+  getTenders(true);
 };
 
 const handleDate = (modelData) => {
   console.log(modelData);
   startDate.value = moment(modelData[0]).format('YYYY-MM-DD');
   endDate.value = moment(modelData[1]).format('YYYY-MM-DD');
-  getDateTenders();
+  showClearFilters.value = true;
+  getTenders(false);
+};
+
+const clearFilters = () => {
+  startDate.value = '';
+  endDate.value = '';
+  location.value = '';
+  minValue.value = 0;
+  maxValue.value = 90000000;
+  showDatePicker.value = false;
+  showLocationSearch.value = false;
+  showValueSearch.value = false;
+  getSearchTermTenders();
+};
+
+const getSearchTermTenders = async () => {
+  const searchResults = await dataStore.searchTenders(
+    `?searchTerm=${
+      dataStore.searchTerm === '' ? 'the' : dataStore.searchTerm.toLowerCase()
+    }&size=20&from=1`
+  );
+  // tenders.value = searchResults.mappedResults;
 };
 
 const container = ref(null);
@@ -152,7 +184,6 @@ onUnmounted(() => {
 });
 onMounted(() => {
   setTimeout(() => {
-    console.log('mounted');
     $ScrollTrigger.refresh();
   }, 1000);
   ctx.add(() => {
@@ -168,6 +199,67 @@ onMounted(() => {
     });
   });
 });
+
+const handleMin = (e) => {
+  if (maxValue.value - minValue.value >= 100 && maxValue.value <= max.value) {
+    if (parseInt(e.target.value) > maxValue.value) {
+    } else {
+      minValue.value = parseInt(e.target.value);
+    }
+  } else {
+    if (parseInt(e.target.value) < minValue.value) {
+      minValue.value = parseInt(e.target.value);
+    }
+  }
+};
+const handleMax = (e) => {
+  if (maxValue.value - minValue.value >= 100 && maxValue.value <= max.value) {
+    if (parseInt(e.target.value) < minValue.value) {
+    } else {
+      maxValue.value = parseInt(e.target.value);
+    }
+  } else {
+    if (parseInt(e.target.value) > maxValue.value) {
+      maxValue.value = parseInt(e.target.value);
+    }
+  }
+};
+watch(
+  progressRef,
+  () => {
+    if (progressRef.value) {
+      progressRef.value.style.left = `${(minValue.value / max.value) * 100}%`;
+      progressRef.value.style.right = `${
+        100 - (maxValue.value / max.value) * 100
+      }%`;
+    }
+  },
+  { immediate: true }
+);
+watch(
+  minValue,
+  () => {
+    if (progressRef.value) {
+      progressRef.value.style.left = `${(minValue.value / max.value) * 100}%`;
+      progressRef.value.style.right = `${
+        100 - (maxValue.value / max.value) * 100
+      }%`;
+    }
+  },
+  { immediate: true }
+);
+watch(
+  maxValue,
+  () => {
+    if (progressRef.value) {
+      progressRef.value.style.left = `${(minValue.value / max.value) * 100}%`;
+      progressRef.value.style.right = `${
+        100 - (maxValue.value / max.value) * 100
+      }%`;
+    }
+  },
+  { immediate: true }
+);
 </script>
 <template>
   <div
@@ -178,7 +270,7 @@ onMounted(() => {
       <div class="w-full flex flex-col items-center text-center px-4">
         <div class="w-full max-w-[822px] mb-10">
           <h2
-            class="text-2xl lg:text-[32px] capitalize lg:leading-[48px] font-extralight"
+            class="text-2xl text-secondary lg:text-[32px] capitalize lg:leading-[48px] font-extralight"
           >
             Current
             <span class="font-semibold"
@@ -252,13 +344,23 @@ onMounted(() => {
             class="filter text-secondary hidden lg:flex flex-col gap-y-6 pt-8 pr-6 items-start w-[272px]"
           >
             <h4 class="font-semibold leading-8">Filter Tenders</h4>
-            <button
-              class="px-4 py-3 flex items-center justify-center rounded border border-grey-2 bg-grey"
-            >
-              <Icon name="material-symbols:arrow-back-ios" /><span class="ml-1"
-                >Filters</span
+            <div class="flex items-center w-full justify-between">
+              <button
+                class="px-4 py-3 flex items-center justify-center rounded border border-grey-2 bg-grey"
               >
-            </button>
+                <Icon name="material-symbols:arrow-back-ios" /><span
+                  class="ml-1"
+                  >Filters</span
+                >
+              </button>
+              <button
+                v-if="showClearFilters"
+                @click="clearFilters"
+                class="text-secondary font-bold"
+              >
+                Clear all
+              </button>
+            </div>
             <div class="flex flex-col w-full gap-4">
               <div
                 @click="showLocationSearch = !showLocationSearch"
@@ -269,8 +371,11 @@ onMounted(() => {
                   <p>Location</p>
                 </div>
                 <div class="flex gap-2 items-center">
-                  <!-- <p class="text-grey-6">100</p> -->
-                  <Icon name="ic:baseline-arrow-forward-ios" size="12" />
+                  <Icon
+                    :class="showLocationSearch ? 'rotate-90' : ''"
+                    name="ic:baseline-arrow-forward-ios"
+                    size="12"
+                  />
                 </div>
               </div>
               <div v-if="showLocationSearch" class="relative w-full">
@@ -289,16 +394,6 @@ onMounted(() => {
                   placeholder="Search by Location"
                 />
               </div>
-              <!-- <div class="flex justify-between items-center py-2 w-full">
-                <div class="flex gap-3 items-center">
-                  <img src="/svg/file.svg" alt="file" />
-                  <p>Contract Type</p>
-                </div>
-                <div class="flex gap-2 items-center">
-                  <p class="text-grey-6">40</p>
-                  <Icon name="ic:baseline-arrow-forward-ios" size="12" />
-                </div>
-              </div> -->
               <div
                 @click="showDatePicker = !showDatePicker"
                 class="flex justify-between cursor-pointer items-center py-2 w-full"
@@ -308,7 +403,11 @@ onMounted(() => {
                   <p>Date Range</p>
                 </div>
                 <div class="flex gap-2 items-center">
-                  <Icon name="ic:baseline-arrow-forward-ios" size="12" />
+                  <Icon
+                    :class="showDatePicker ? 'rotate-90' : ''"
+                    name="ic:baseline-arrow-forward-ios"
+                    size="12"
+                  />
                 </div>
               </div>
               <div v-if="showDatePicker">
@@ -330,11 +429,61 @@ onMounted(() => {
                   <p>Value</p>
                 </div>
                 <div class="flex gap-2 items-center">
-                  <Icon name="ic:baseline-arrow-forward-ios" size="12" />
+                  <Icon
+                    :class="showValueSearch ? 'rotate-90' : ''"
+                    name="ic:baseline-arrow-forward-ios"
+                    size="12"
+                  />
                 </div>
               </div>
               <div v-if="showValueSearch" class="relative w-full">
-                <div class="flex gap-3">
+                <!-- <p id="rangeValue">100</p> -->
+                <!-- <div class="slider">
+                  <input
+                    type="range"
+                    min="0"
+                    max="200"
+                    value="100"
+                    oninput="rangeValue.innerText = this.value"
+                  />
+                </div> -->
+
+                <div
+                  class="flex rounded py-2 px-4 bg-grey border border-secondary items-center justify-center gap-2 mb-6"
+                >
+                  €
+                  {{ minValue ? minValue.toLocaleString() : minValue }}
+                  <Icon name="mdi:arrow-right" size="18" />
+                  {{ maxValue ? maxValue.toLocaleString() : maxValue }}
+                </div>
+                <div class="slider relative h-1 rounded-md bg-gray-300">
+                  <div
+                    ref="progressRef"
+                    class="progress h-1 absolute bg-secondary rounded"
+                  ></div>
+                </div>
+                <div class="range-input relative w-full mb-4">
+                  <input
+                    :value="minValue"
+                    type="range"
+                    class="range-min absolute w-full left-0 -top-1 h-1 bg-transparent appearance-none pointer-events-none"
+                    :min="min"
+                    :step="100000"
+                    :max="max"
+                    @change="handleMin"
+                  />
+                  <input
+                    :value="maxValue"
+                    type="range"
+                    class="range-max absolute w-full right-0 -top-1 h-1 bg-transparent appearance-none pointer-events-none"
+                    :min="min"
+                    :step="100000"
+                    :max="max"
+                    @change="handleMax"
+                  />
+                </div>
+
+                <!-- <div class="flex gap-3">
                   <input
                     type="text"
                     name="search"
@@ -351,7 +500,7 @@ onMounted(() => {
                       Search
                     </p>
                   </button>
-                </div>
+                </div> -->
                 <span
                   v-if="errorMsg.valueError"
                   class="text-red-500 self-start text-left text-xs mt-1"
@@ -385,14 +534,27 @@ onMounted(() => {
                 No results found
               </h3>
             </template>
-            <Pagination
-              :total-pages="totalPages"
-              :total="total"
-              :per-page="perPage"
-              :current-page="currentPage"
-              :has-more-pages="hasMorePages"
-              @pagechanged="showMore"
-            />
+            <div
+              v-if="dataStore.totalCount"
+              class="flex justify-between items-center"
+            >
+              <p>
+                {{ from + 1 }} -
+                {{
+                  from + 10 <= dataStore.totalCount
+                    ? from + 10
+                    : dataStore.totalCount
+                }}
+                of {{ dataStore.totalCount }} results
+              </p>
+              <Pagination
+                :total="dataStore.totalCount"
+                :per-page="perPage"
+                :current-page="currentPage"
+                :has-more-pages="hasMorePages"
+                @pagechanged="showMore"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -401,4 +563,49 @@ onMounted(() => {
   </div>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+// .slider {
+// position: absolute;
+// top: 50%;
+// left: 50%;
+// transform: translate(-50%, -50%);
+// width: 270px;
+// height: 60px;
+// padding: 30px;
+// padding-left: 40px;
+// background: #fcfcfc;
+// border-radius: 20px;
+// display: flex;
+// align-items: center;
+// box-shadow: 0px 15px 40px #7e6d5766;
+// }
+// .slider p {
+//   font-size: 26px;
+//   font-weight: 600;
+//   font-family: Open Sans;
+//   padding-left: 30px;
+//   color: black;
+// }
+// .slider input[type='range'] {
+//   -webkit-appearance: none !important;
+//   width: 420px;
+//   height: 2px;
+//   background: black;
+//   border: none;
+//   outline: none;
+// }
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  pointer-events: auto;
+  width: 20px;
+  height: 20px;
+  background: white;
+  filter: drop-shadow(0px 0px 10px rgba(132, 132, 132, 0.15));
+  border: 2px solid $secondary;
+  border-radius: 50%;
+  cursor: pointer;
+}
+// .slider input[type='range']::-webkit-slider-thumb:hover {
+//   background: black;
+// }
+</style>

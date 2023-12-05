@@ -104,3 +104,77 @@ export interface RequestTenderInput {
   tenderName: string;
   tenderTitle: string;
 }
+
+export interface RefreshTokenInput {
+  expiredToken: string;
+  refreshToken: string;
+}
+
+export interface UpdateProfileInput {
+  fullName: string;
+}
+
+export interface address {
+  country: string;
+  city: string;
+  state: string;
+  zip: string;
+}
+
+export interface phoneNumber {
+  code: string;
+  number: string;
+  local: string;
+}
+
+export interface UpdateProfileResponse {
+  email: string;
+  accountStatus: string;
+  createdAt: string;
+  updatedAt: string;
+  address: {
+    [key: string]: address;
+  };
+  firstName: string;
+  gender: string;
+  maritalStatus: string;
+  phoneNumber: {
+    [key: string]: phoneNumber;
+  }
+  fullName: string;
+  id: string;
+}
+
+export interface updatePasswordInput {
+  currentPassword: string;
+  password: string;
+  confirmPassword: string;
+}
+
+export interface updatePasswordResponse {
+  success: boolean;
+}
+
+export interface enumResponse {
+  genderEnum: string[];
+  signUpMediumEnum: string[];
+  accountStatusEnum: string[];
+  countryCodeAbvENum: string[];
+  currency: string[];
+  countryEnum: string[];
+  phoneCountryCodeEnum: string[];
+  statusEnum: string[];
+  maritalStatus: string[];
+  dateFormat: string[];
+  locationEnum: string[];
+  contactEnum: string[];
+}
+
+export interface contactUsInput {
+  firstName: string;
+  lastName: string;
+  message: string;
+  email: string;
+  subject: string;
+  account: string;
+}
