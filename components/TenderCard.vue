@@ -53,7 +53,7 @@ const goToTender = () => {
       </div>
       <div class="">
         <h3
-          class="clamp overflow-hidden text-ellipsis text-lg font-medium leading-[36px]"
+          class="clamp overflow-hidden text-secondary text-ellipsis text-lg font-medium leading-[36px]"
         >
           {{ props.tender.Title }}
         </h3>
