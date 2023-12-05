@@ -3,7 +3,7 @@ import moment from 'moment';
 import { useAuthStore } from '~/stores/auth';
 import { useDataStore } from '~/stores/data';
 import { useDialogStore } from '~/stores/dialog';
-import { RequestTenderInput } from '~/types';
+import type { RequestTenderInput } from '~/types';
 
 const dataStore = useDataStore();
 const authStore = useAuthStore();

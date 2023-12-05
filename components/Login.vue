@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useDialogStore } from '~/stores/dialog';
 import { useAuthStore } from '~/stores/auth';
-import { UserLoginInput } from '~/types';
+import type { UserLoginInput } from '~/types';
 
 const auth = useAuthStore();
 const email = ref('');

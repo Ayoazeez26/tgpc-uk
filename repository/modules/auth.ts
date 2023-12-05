@@ -2,7 +2,7 @@ import { FetchOptions, ofetch } from 'ofetch';
 import { AsyncDataOptions } from 'nuxt/app';
 
 import FetchFactory from '../factory';
-import {
+import type {
   UserLoginInput,
   UserCreateResponse,
   UserLoginResponse,

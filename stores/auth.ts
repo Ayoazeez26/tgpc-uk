@@ -1,5 +1,13 @@
 import { defineStore } from 'pinia';
-import { UserEmailOTPInput, UserLoginInput, OtpValue, ConfirmResetOTPInput, NewPasswordInput, UpdateProfileInput, updatePasswordInput } from '~/types';
+import type {
+  UserEmailOTPInput,
+  UserLoginInput,
+  OtpValue,
+  ConfirmResetOTPInput,
+  NewPasswordInput,
+  UpdateProfileInput,
+  updatePasswordInput,
+} from '~/types';
 import { successToast } from '~/plugins/vue3-toastify';
 import { useDialogStore } from './dialog';
 import { useDataStore } from './data';

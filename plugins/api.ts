@@ -4,7 +4,7 @@ import DataModule from '~/repository/modules/data';
 import { useAuthStore } from '~/stores/auth';
 import { errorToast } from './vue3-toastify';
 import { useDialogStore } from '~/stores/dialog';
-import { RefreshTokenInput } from '~/types';
+import type { RefreshTokenInput } from '~/types';
 
 interface IApiInstance {
   auth: AuthModule;

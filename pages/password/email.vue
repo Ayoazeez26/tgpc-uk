@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useAuthStore } from '~/stores/auth';
-import { UserLoginInput } from '~/types';
+import type { UserLoginInput } from '~/types';
 definePageMeta({
   middleware: ["guest"]
 })
