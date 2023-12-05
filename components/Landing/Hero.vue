@@ -4,25 +4,18 @@
       <div
         class="lg:max-w-[40rem] md:max-w-md max-w-sm mx-auto space-y-7 lg:pt-28 md:pt-32 pt-32"
       >
-<<<<<<< HEAD
         <!-- <h3
           ref="scrambleText"
-=======
-        <h3
->>>>>>> 71c4d43 (feat: rebasing)
           class="md:font-bold font-semibold lg:text-[56px] md:text-4xl text-5xl lg:leading-snug md:leading-snug leading-snug"
         >
           Find Health Sector Tender Opportunities
           <span class="md:hidden">with HSCT</span>
-<<<<<<< HEAD
         </h3> -->
         <h3
           ref="scrambleText"
           class="md:font-bold font-semibold lg:text-[56px] md:text-4xl text-5xl lg:leading-snug md:leading-snug leading-snug"
         >
           <span class="md:hidden">with HSCT</span>
-=======
->>>>>>> 71c4d43 (feat: rebasing)
         </h3>
         <p class="lg:text-lg">
           HSCT is the leading platform for searching and applying for health
@@ -78,7 +71,6 @@
   </section>
 </template>
 
-<<<<<<< HEAD
 <script>
 import gsap from 'gsap';
 import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin';
@@ -106,9 +98,6 @@ export default {
   },
 };
 </script>
-=======
-<script></script>
->>>>>>> 71c4d43 (feat: rebasing)
 
 <style scoped>
 .hero {
@@ -143,8 +132,3 @@ export default {
   }
 }
 </style>
-<<<<<<< HEAD
-=======
-
-<style scoped></style>
->>>>>>> 71c4d43 (feat: rebasing)
