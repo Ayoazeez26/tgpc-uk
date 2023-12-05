@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useAuthStore } from '~/stores/auth';
-import { UpdateProfileInput, updatePasswordInput } from '~/types';
+import type { UpdateProfileInput, updatePasswordInput } from '~/types';
 definePageMeta({
   middleware: ['authenticated'],
 });
@@ -112,6 +112,7 @@ const containsItem = computed(() => {
                   @click="updateProfile"
                   class="bg-black text-white px-7 py-3 disabled:text-[#A5A5A5] disabled:bg-[#EBEBEB] disabled:cursor-not-allowed rounded"
                   :disabled="!fullName"
+
                 >
                   Save
                 </button>
@@ -135,7 +136,7 @@ const containsItem = computed(() => {
               >
                 <Heading4 content="Email" />
                 <button
-                  class="bg-black text-white px-7 py-3 disabled:text-[#A5A5A5] disabled:bg-[#EBEBEB] disabled:cursor-not-allowed rounded"
+                  class="bg-black text-white px-7 py-3 disabled:text-[#A5A5A5] disabled:bg-grey-5 disabled:cursor-not-allowed rounded"
                   disabled
                 >
                   Save
@@ -162,6 +163,7 @@ const containsItem = computed(() => {
                   @click="updatePassword"
                   class="bg-black text-white px-7 py-3 disabled:text-[#A5A5A5] disabled:bg-[#EBEBEB] disabled:cursor-not-allowed rounded"
                   :disabled="containsItem"
+
                 >
                   Update Password
                 </button>

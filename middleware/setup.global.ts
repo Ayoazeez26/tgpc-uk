@@ -20,18 +20,6 @@ export default defineNuxtRouteMiddleware((to, from) => {
     return navigateTo('/dashboard');
   }
 
-  // if (to?.name !== 'dashboard' && authenticated) {
-  //   if (to?.name !== 'login' && !loggedIn) {
-  //     if (to?.name !== 'confirmEmail') {
-  //       if (to?.name !== 'register') {
-  //         if (to?.name !== 'index') {
-  //           abortNavigation();
-  //           return navigateTo('/login');
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
   if (!authenticated && to?.name === 'dashboard') {
     abortNavigation();
     return navigateTo('/login');

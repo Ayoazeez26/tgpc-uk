@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 // Default are on https://tailwindcss.nuxtjs.org/tailwind/config#default-configuration
 export default <Partial<Config>>{
@@ -8,6 +8,7 @@ export default <Partial<Config>>{
         primary: '#091A4A',
         secondary: '#0A0A0A',
         black: '#161616',
+        'greyish-white': '#FAFAFA',
         head: '#343B5C',
         lime: '#E6F4F1',
         brown: '#F1F1E6',

@@ -29,6 +29,8 @@ export default defineNuxtConfig({
     '~/assets/fonts/fonts.css',
     '~/assets/notification.scss',
   ],
+  plugins: [{ src: '@/plugins/aos', ssr: false, mode: 'client' }],
+
   modules: [
     '@nuxtjs/tailwindcss',
     'nuxt-icon',

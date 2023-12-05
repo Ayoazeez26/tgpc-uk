@@ -2,7 +2,7 @@
 import { useDataStore } from '@/stores/data';
 import { useDialogStore } from '@/stores/dialog';
 import { useAuthStore } from '~/stores/auth';
-import { NewPasswordInput, UserLoginInput } from '~/types';
+import type { NewPasswordInput, UserLoginInput } from '~/types';
 import { successToast, errorToast } from '~/plugins/vue3-toastify';
 // import { useToast } from 'vue-toastification';
 definePageMeta({
