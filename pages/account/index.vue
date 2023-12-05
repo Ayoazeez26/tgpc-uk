@@ -112,6 +112,7 @@ const containsItem = computed(() => {
                   @click="updateProfile"
                   class="bg-black text-white px-7 py-3 disabled:text-[#A5A5A5] disabled:bg-[#EBEBEB] disabled:cursor-not-allowed rounded"
                   :disabled="!fullName"
+
                 >
                   Save
                 </button>
@@ -162,6 +163,7 @@ const containsItem = computed(() => {
                   @click="updatePassword"
                   class="bg-black text-white px-7 py-3 disabled:text-[#A5A5A5] disabled:bg-[#EBEBEB] disabled:cursor-not-allowed rounded"
                   :disabled="containsItem"
+
                 >
                   Update Password
                 </button>

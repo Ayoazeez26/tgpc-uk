@@ -24,8 +24,13 @@
     "@vuepic/vue-datepicker": "^7.2.0",
     "aos": "^2.3.4",
     "click-outside-vue3": "^4.0.1",
+<<<<<<< HEAD
     "gsap": "npm:@gsap/shockingly",
     "gsap-trial": "^3.12.2",
+=======
+    "gsap": "^3.12.2",
+    "aos": "^2.3.4",
+>>>>>>> 71c4d43 (feat: rebasing)
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "nuxt-swiper": "^1.1.1",
